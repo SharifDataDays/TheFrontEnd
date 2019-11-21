@@ -1,0 +1,15 @@
+[ignore]
+.*/build/.*
+
+[include]
+
+[libs]
+./node_modules/immer/src/immer.js.flow
+./flow-typed
+
+[lints]
+
+[options]
+module.name_mapper='^~\/\(.*\)$' -> '<PROJECT_ROOT>/\1'
+
+[strict]
