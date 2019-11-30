@@ -1,16 +1,18 @@
 import React from 'react';
-import { Flex, Box, Button } from 'rebass/styled-components';
+import { Flex, Box } from 'rebass/styled-components';
 import { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
-import NavbarButton from './navbarButton';
+import HoverTrigger, { CustomButton } from './button';
 import theme from '~/theme';
 
 function CustomLink({ href, text }) {
   return (
     <Link href={href}>
-      <NavbarButton color="text" bg="background">
-        {text}
-      </NavbarButton>
+      <HoverTrigger color="primary" bg="background">
+        <CustomButton color="text" bg="background">
+          {text}
+        </CustomButton>
+      </HoverTrigger>
     </Link>
   );
 }
