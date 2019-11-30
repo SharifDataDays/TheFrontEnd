@@ -1,8 +1,10 @@
+import React from 'react';
 import styled from 'styled-components';
-import { color } from 'styled-system';
-import { Button } from 'rebass/styled-components';
+import { color, border } from 'styled-system';
+import { Button as RebassButton } from 'rebass/styled-components';
 
-export const CustomButton = styled(Button)`
+export const Button = styled(RebassButton)`
+  ${border};
   cursor: pointer;
 
   &:focus {
@@ -11,14 +13,45 @@ export const CustomButton = styled(Button)`
 `;
 
 const HoverTrigger = styled.div`
-  ${CustomButton} {
-    transition: background-color 0.25s, color 0.25s;
+  ${Button} {
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s ease;
   }
 
-  ${CustomButton}:hover {
+  ${Button}:hover {
     ${color};
-    transition: background-color 0.25s, color 0.25s;
+    ${border};
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s ease;
   }
 `;
 
-export default HoverTrigger;
+export function NavbarButton({ text }) {
+  return (
+    <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="background">
+      <Button color="text" bg="background" borderBottom="1px solid" borderColor="background">
+        {text}
+      </Button>
+    </HoverTrigger>
+  );
+}
+
+export function LoginButton({ text }) {
+  return (
+    <HoverTrigger
+      color="background"
+      bg="primary"
+      border="1px solid"
+      borderColor="primary"
+      borderRadius={3}
+    >
+      <Button
+        color="text"
+        bg="background"
+        border="1px solid"
+        borderColor="primary"
+        borderRadius={3}
+      >
+        {text}
+      </Button>
+    </HoverTrigger>
+  );
+}
