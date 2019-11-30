@@ -1,34 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import { Flex, Box } from 'rebass/styled-components';
 import { ThemeProvider } from 'styled-components';
 import NextLink from 'next/link';
 import { NavbarButton, LoginButton } from './button';
 import theme from '~/theme';
-
-const list = {
-  blog: {
-    href: 'blog',
-    text: 'blog',
-    side: 'start',
-    order: 1,
-    component: NavbarButton,
-  },
-  tutorial: {
-    href: 'tutorial',
-    text: 'tutorial',
-    side: 'start',
-    order: 2,
-    component: NavbarButton,
-  },
-  login: {
-    href: 'login',
-    text: 'login',
-    side: 'end',
-    order: 1,
-    component: LoginButton,
-  },
-};
 
 function Link({ href, text, Component }) {
   return (
@@ -38,27 +13,17 @@ function Link({ href, text, Component }) {
   );
 }
 
-function Side({ list, side }) {
-  return (
-    <>
-      {_.map(
-        _.filter(list, (item) => item.side === side),
-        (item) => {
-          return <Link href={item.href} text={item.text} Component={item.component} />;
-        },
-      )}
-    </>
-  );
-}
-
 function Navbar() {
   return (
     <ThemeProvider theme={theme}>
-      <Flex alignItems="center" px={6} py={4} bg="background" boxShadow={1}>
-        <Side list={list} side="left" />
-        <Box mx="auto" />
-        <Side list={list} side="right" />
-      </Flex>
+      <Box borderBottom="1px solid" borderColor="primary">
+        <Flex alignItems="center" px={6} py={4} bg="background">
+          <Link href="blog" text="blog" Component={NavbarButton} />
+          <Link href="resources" text="resources" Component={NavbarButton} />
+          <Box mx="auto" />
+          <Link href="login" text="login" Component={LoginButton} />
+        </Flex>
+      </Box>
     </ThemeProvider>
   );
 }

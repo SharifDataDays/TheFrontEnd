@@ -26,8 +26,14 @@ const HoverTrigger = styled.div`
 
 export function NavbarButton({ text }) {
   return (
-    <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="background">
-      <Button color="text" bg="background" borderBottom="1px solid" borderColor="background">
+    <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="primary">
+      <Button
+        color="text"
+        bg="background"
+        borderBottom="1px solid"
+        borderRadius={0}
+        borderColor="background"
+      >
         {text}
       </Button>
     </HoverTrigger>
