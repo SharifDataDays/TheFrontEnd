@@ -1,14 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import LargeNavbar from './navbar';
+import Navbar from './navbar';
 import NavLink from './link';
 import { NavbarButton, LoginButton } from './buttons';
 import theme from '~/theme';
 
-function Navbar() {
+function SiteNavbar() {
   return (
     <ThemeProvider theme={theme}>
-      <LargeNavbar
+      <Navbar
         header={<h1>LOGO</h1>}
         start={
           <>
@@ -40,4 +40,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default SiteNavbar;

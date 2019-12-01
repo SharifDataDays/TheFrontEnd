@@ -2,8 +2,6 @@ import React from 'react';
 import { Flex, Box, Heading, Image } from 'rebass/styled-components';
 import MDX from '@mdx-js/runtime';
 import { useRouter } from 'next/router';
-import Navbar from '~/components/global/navbar';
-import GlobalStyle from '~/components/global/globalStyles';
 
 const mdx = `
 # react-markdown
@@ -64,10 +62,8 @@ export default function Post() {
 
   return (
     <>
-      <GlobalStyle />
-      <Navbar />
       <Flex justifyContent="center">
-        <Box p={3} width={[1, 2 / 3, 2 / 3]} color="text" bg="primary">
+        <Box p={3} width={[1, 1 / 2, 2 / 3]} color="text">
           <Heading textAlign={direction} mt={2} fontSize={8} fontWeight="light">
             {router.query.id}
           </Heading>

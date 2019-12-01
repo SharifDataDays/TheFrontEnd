@@ -1,4 +1,13 @@
+import _ from 'lodash';
+
+export const breakpoints = {
+  small: '40em',
+  medium: '52em',
+  large: '64em',
+};
+
 export default {
+  breakpoints: _.values(breakpoints),
   googleFonts: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap',
   colors: {
     text: '#000',
