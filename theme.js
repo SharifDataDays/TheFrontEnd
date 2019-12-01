@@ -7,7 +7,7 @@ export const breakpoints = {
 };
 
 export default {
-  breakpoints: _.values(breakpoints),
+  breakpoints: _.map(_.values(breakpoints), (value) => `${value}px`),
   googleFonts: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap',
   colors: {
     text: '#000',

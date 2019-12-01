@@ -6,7 +6,7 @@ import { Box } from 'rebass/styled-components';
 function NavItem(props: { children: Node }): Node {
   const { children } = props;
   return (
-    <Box bg="background" display="inline-block">
+    <Box bg="background" display="inline-block" ml={[0, 0, 3]}>
       {children}
     </Box>
   );
