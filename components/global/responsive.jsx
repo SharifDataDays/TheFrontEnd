@@ -1,31 +1,49 @@
-import { useMediaQuery } from 'react-responsive';
+// @flow
+import React, { Component } from 'react';
+import type { Node } from 'react';
 import { breakpoints } from '~/theme';
 
-export const Desktop = ({ children }) => {
-  const isDesktop = useMediaQuery({ minWidth: breakpoints.large });
-  return isDesktop ? children : null;
-};
-export const Tablet = ({ children }) => {
-  const isTablet = useMediaQuery({ minWidth: breakpoints.medium, maxWidth: breakpoints.large });
-  return isTablet ? children : null;
-};
+class Responsive extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      windowWidth: 0,
+    };
+    this.updateDimensions = this.updateDimensions.bind(this);
+  }
 
-export const LargeMobile = ({ children }) => {
-  const isMobile = useMediaQuery({ minWidth: breakpoints.small, maxWidth: breakpoints.medium });
-  return isMobile ? children : null;
-};
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions);
+  }
 
-export const SmallMobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: breakpoints.small });
-  return isMobile ? children : null;
-};
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
 
-export const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: breakpoints.medium });
-  return isMobile ? children : null;
-};
+  updateDimensions() {
+    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
 
-export const NotMobile = ({ children }) => {
-  const isNotMobile = useMediaQuery({ minWidth: breakpoints.medium });
-  return isNotMobile ? children : null;
-};
+    this.setState({ windowWidth });
+  }
+
+  render(): Node {
+    const { verySmall, small, medium, large } = this.props;
+    const { windowWidth } = this.state;
+
+    console.log(windowWidth, breakpoints.small);
+
+    if (windowWidth < breakpoints.small) {
+      return verySmall;
+    }
+    if (windowWidth >= breakpoints.small && windowWidth < breakpoints.medium) {
+      return small;
+    }
+    if (windowWidth >= breakpoints.medium && windowWidth < breakpoints.large) {
+      return medium;
+    }
+    return large;
+  }
+}
+
+export default Responsive;

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
 export const breakpoints = {
-  small: '40em',
-  medium: '52em',
-  large: '64em',
+  small: 640,
+  medium: 832,
+  large: 1024,
 };
 
 export default {

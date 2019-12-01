@@ -4,6 +4,7 @@ import type { Node } from 'react';
 import styled from 'styled-components';
 import { border, position } from 'styled-system';
 import { Flex, Box } from 'rebass/styled-components';
+import Responsive from '../responsive';
 
 const defaultProps = {
   header: <></>,
@@ -101,17 +102,13 @@ function Navbar({
   extras: Node,
   visible: boolean,
 } = defaultProps): Node {
-  /* return (
-    <>
-      <NotMobile>
-        <LargeNavbar header={header} start={start} end={end} extras={extras} visible={visible} />
-      </NotMobile>
-      <Mobile>
-        <SmallNavbar header={header} start={start} end={end} extras={extras} visible={visible} />
-      </Mobile>
-    </>
-  ); */
-  return <LargeNavbar header={header} start={start} end={end} extras={extras} visible={visible} />;
+  const small = (
+    <SmallNavbar header={header} start={start} end={end} extras={extras} visible={visible} />
+  );
+  const large = (
+    <LargeNavbar header={header} start={start} end={end} extras={extras} visible={visible} />
+  );
+  return <Responsive verySmall={small} small={small} medium={large} large={large} />;
 }
 
 class HiddenNavbar extends Component {
