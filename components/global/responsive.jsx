@@ -1,10 +1,21 @@
 // @flow
-import React, { Component } from 'react';
+import { Component } from 'react';
 import type { Node } from 'react';
 import { breakpoints } from '~/theme';
 
-class Responsive extends Component {
-  constructor(props) {
+type PropsType = {
+  verySmall: Node,
+  small: Node,
+  medium: Node,
+  large: Node,
+};
+
+type StateType = {
+  windowWidth: number,
+};
+
+class Responsive extends Component<PropsType, StateType> {
+  constructor(props: PropsType) {
     super(props);
     this.state = {
       windowWidth: 0,
@@ -30,8 +41,6 @@ class Responsive extends Component {
   render(): Node {
     const { verySmall, small, medium, large } = this.props;
     const { windowWidth } = this.state;
-
-    console.log(windowWidth, breakpoints.small);
 
     if (windowWidth < breakpoints.small) {
       return verySmall;
