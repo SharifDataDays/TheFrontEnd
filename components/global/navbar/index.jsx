@@ -1,11 +1,13 @@
+// @flow
 import React from 'react';
+import type { Node } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Navbar from './navbar';
 import NavLink from './link';
 import { NavbarButton, LoginButton } from './buttons';
 import theme from '~/theme';
 
-function SiteNavbar() {
+function SiteNavbar(): Node {
   return (
     <ThemeProvider theme={theme}>
       <Navbar

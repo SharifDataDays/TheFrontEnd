@@ -6,14 +6,6 @@ import { border, position } from 'styled-system';
 import { Flex, Box } from 'rebass/styled-components';
 import Responsive from '../responsive';
 
-const defaultProps = {
-  header: <></>,
-  start: <></>,
-  end: <></>,
-  extras: <></>,
-  visible: true,
-};
-
 const BorderedBox = styled(Box)`
   ${border};
   ${position};
@@ -21,19 +13,29 @@ const BorderedBox = styled(Box)`
   transition: top 0.6s;
 `;
 
+type NavbarType = {
+  header: Node,
+  start: Node,
+  end: Node,
+  extras: Node,
+  visible: boolean,
+};
+
+const NavbarDefaultProps = {
+  header: <></>,
+  start: <></>,
+  end: <></>,
+  extras: <></>,
+  visible: true,
+};
+
 function LargeNavbar({
   header,
   start,
   end,
   extras,
   visible,
-}: {
-  header: Node,
-  start: Node,
-  end: Node,
-  extras: Node,
-  visible: boolean,
-} = defaultProps): Node {
+}: NavbarType = NavbarDefaultProps): Node {
   return (
     <BorderedBox
       visible={visible}
@@ -59,13 +61,7 @@ function SmallNavbar({
   end,
   extras,
   visible,
-}: {
-  header: Node,
-  start: Node,
-  end: Node,
-  extras: Node,
-  visible: boolean,
-} = defaultProps): Node {
+}: NavbarType = NavbarDefaultProps): Node {
   return (
     <BorderedBox
       visible={visible}
@@ -89,19 +85,7 @@ function SmallNavbar({
   );
 }
 
-function Navbar({
-  header,
-  start,
-  end,
-  extras,
-  visible,
-}: {
-  header: Node,
-  start: Node,
-  end: Node,
-  extras: Node,
-  visible: boolean,
-} = defaultProps): Node {
+function Navbar({ header, start, end, extras, visible }: NavbarType = NavbarDefaultProps): Node {
   const small = (
     <SmallNavbar header={header} start={start} end={end} extras={extras} visible={visible} />
   );
@@ -111,8 +95,27 @@ function Navbar({
   return <Responsive verySmall={small} small={small} medium={large} large={large} />;
 }
 
-class HiddenNavbar extends Component {
-  constructor(props) {
+type HiddenNavbarPropsType = {
+  header: Node,
+  start: Node,
+  end: Node,
+  extras: Node,
+};
+
+type HiddenNavbarStateType = {
+  prevScrollpos: number,
+  visible: boolean,
+};
+
+const HiddenNavbarDefaultProps = {
+  header: <></>,
+  start: <></>,
+  end: <></>,
+  extras: <></>,
+};
+
+class HiddenNavbar extends Component<HiddenNavbarPropsType, HiddenNavbarStateType> {
+  constructor(props: HiddenNavbarPropsType = HiddenNavbarDefaultProps) {
     super(props);
 
     this.state = {
