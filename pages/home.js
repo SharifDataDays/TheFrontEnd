@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { Box } from 'rebass'
+import Parallax from 'react-springy-parallax'
+import {
+    Box,
+    Card,
+    Image,
+    Heading,
+    Text
+} from 'rebass'
 import styled from 'styled-components';
-
-
 
 const layer1 = "http://s6.picofile.com/file/8380137176/layer_01_1920_x_1080.png"
 const layer2 = "http://s6.picofile.com/file/8380137200/layer_02_1920_x_1080.png"
@@ -11,13 +15,15 @@ const layer3 = "http://s6.picofile.com/file/8380137368/layer_05_1920_x_1080.png"
 const layer4 = "http://s7.picofile.com/file/8380137468/layer_06_1920_x_1080.png"
 const layer5 = "http://s6.picofile.com/file/8380137442/layer_07_1920_x_1080.png"
 
-const BgBox = styled(Box)`
-    background-image: url(${props => props.bg_url});
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-`
+
+const bg_style = {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+}
 
 export default class Home extends Component {
 
@@ -27,35 +33,43 @@ export default class Home extends Component {
             document.body.style.backgroundColor = "black";
         }
     }
+
     render() {
         return (
-            <ParallaxProvider>
-                <Parallax y={[-40, 40]}>
-                    <BgBox bg_url={layer5}>
-                        <Parallax y={[10, -10]}>
-                            <BgBox bg_url={layer4}>
-                                <Parallax y={[10, -10]}>
-                                    <BgBox bg_url={layer3}>
-                                        <Parallax y={[10, -10]}>
-                                            <BgBox bg_url={layer2} sx={{ height: '1000px' }}>
-                                                <Parallax y={[5, -10]}>
-                                                    <BgBox bg_url={layer1} sx={{ height: '1000px' }}>
-                                                    </BgBox>
-                                                    <div style={{ height: "800px", backgroundColor: "black" }}>rest of page content</div>
-                                                </Parallax>
-                                            </BgBox>
-                                        </Parallax>
-                                    </BgBox>
-                                </Parallax>
-                            </BgBox>
-                        </Parallax>
-                    </BgBox>
+            <div>
+                <Parallax ref='parallax' pages={2}>
+                    <div style={{ position: 'relative' }}>
+                        <Parallax.Layer offset={0} speed={0}>
+                            <img src={layer5} style={bg_style} />
+                        </Parallax.Layer>
+                        <Parallax.Layer offset={0} speed={0.1}>
+                            <img src={layer4} style={bg_style} />
+                        </Parallax.Layer>
+                        <Parallax.Layer offset={0} speed={0.2}>
+                            <img src={layer3} style={bg_style} />
+                        </Parallax.Layer>
+                        <Parallax.Layer offset={0} speed={0.3}>
+                            <img src={layer2} style={bg_style} />
+                        </Parallax.Layer>
+                        <Parallax.Layer offset={0} speed={0.4}>
+                            <div style={bg_style}>
+                                <img src={layer1} style={{ position: "relative", width: "100%" }} />
+                                <div style={{
+                                    position: "relative",
+                                    backgroundColor: "black",
+                                    marginTop: "-10px",
+                                    height: "1000px"
+                                }}>
+
+                                    {/* home content */}
+
+                                </div>
+                            </div>
+                        </Parallax.Layer>
+                    </div>
                 </Parallax>
 
-
-            </ParallaxProvider >
-
+            </div>
         )
     }
 }
-
