@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import Parallax from 'react-springy-parallax'
-import {
-    Box,
-    Card,
-    Image,
-    Heading,
-    Text
-} from 'rebass'
 import styled from 'styled-components';
 
 const layer1 = "http://s6.picofile.com/file/8380137176/layer_01_1920_x_1080.png"
@@ -27,11 +20,9 @@ const bg_style = {
 
 export default class Home extends Component {
 
-    componentWillMount() {
-        if (typeof window !== 'undefined') {
-            document.body.style.margin = 0;
-            document.body.style.backgroundColor = "black";
-        }
+    componentDidMount() {
+        document.body.style.margin = 0;
+        document.body.style.backgroundColor = "black";
     }
 
     render() {
