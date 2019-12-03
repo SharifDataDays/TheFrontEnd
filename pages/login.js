@@ -4,6 +4,8 @@ import { Input, Label } from '@rebass/forms';
 import neuralnet from '../components/login/neuralnet';
 import LoginBox from '../components/login/loginBox';
 import Head from 'next/head';
+import SingupBox from '../components/login/signupBox';
+import LoginSignUpContainer from '../components/login/loginSignupContainer';
 
 class LoginPage extends Component {
   componentDidMount() {
@@ -54,7 +56,7 @@ class LoginPage extends Component {
             <Heading fontFamily="Arial" fontSize={6} color="white">
               Welcome!
             </Heading>
-            <LoginBox />
+            <LoginSignUpContainer><SingupBox/></LoginSignUpContainer>
           </Box>
         </Flex>
       </div>
