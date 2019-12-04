@@ -1,14 +1,7 @@
-<<<<<<< HEAD:pages/index.js
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/global/navbar'
-=======
 import React from 'react';
 import Head from 'next/head';
 import Nav from '~/components/global/navbar';
 import GlobalStyle from '~/components/global/globalStyles';
->>>>>>> 0c26bfa6dfa78b71f2de660f808ae4be079781cc:pages/index.jsx
-
 const Home = () => (
   <>
     <GlobalStyle />
