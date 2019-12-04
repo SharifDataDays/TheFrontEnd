@@ -17,3 +17,6 @@ const Home = () => (
 );
 
 export default Home;
+
+
+// font: FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
