@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import LoginContainer from '../components/login/loginContainer'
+import SignupContainer from '../components/signup/signupContainer'
 import Head from 'next/head';
-class LoginPage extends Component {
+
+class SignupPage extends Component {
   render() {
     return (
       <div>
         <Head>
           <style>{'body {background-color : #95d1fc}'}</style>
         </Head>
-        <LoginContainer/>
+        <SignupContainer/>
       </div>
     );
   }
 }
 
-export default LoginPage;
+export default SignupPage;

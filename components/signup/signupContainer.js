@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Box, Flex, Heading, Link, Button, Text } from 'rebass';
-import LoginBox from './loginBox';
+import {Heading} from 'rebass';
+import SignupBox from './signupBox';
 import LoginSignupContainer from '../global/loginSignupContainer';
 
 export default class LoginContainer extends Component {
@@ -10,7 +10,7 @@ export default class LoginContainer extends Component {
         <Heading fontFamily="Arial" fontSize={6} color="white">
           Welcome!
         </Heading>
-        <LoginBox />
+        <SignupBox />
       </LoginSignupContainer>
     );
   }
