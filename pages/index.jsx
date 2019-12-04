@@ -1,9 +1,17 @@
+<<<<<<< HEAD:pages/index.js
 import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/global/navbar'
+=======
+import React from 'react';
+import Head from 'next/head';
+import Nav from '~/components/global/navbar';
+import GlobalStyle from '~/components/global/globalStyles';
+>>>>>>> 0c26bfa6dfa78b71f2de660f808ae4be079781cc:pages/index.jsx
 
 const Home = () => (
-  <div>
+  <>
+    <GlobalStyle />
     <Head>
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
@@ -26,10 +34,7 @@ const Home = () => (
           <h3>Next.js Learn &rarr;</h3>
           <p>Learn about Next.js by following an interactive tutorial!</p>
         </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
+        <a href="https://github.com/zeit/next.js/tree/master/examples" className="card">
           <h3>Examples &rarr;</h3>
           <p>Find other example boilerplates on the Next.js GitHub.</p>
         </a>
@@ -82,7 +87,7 @@ const Home = () => (
         color: #333;
       }
     `}</style>
-  </div>
-)
+  </>
+);
 
-export default Home
+export default Home;
