@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Box, Link, Button, Text, Flex } from 'rebass';
+import { Button as NavButton } from '../global/navbar/button';
 import { Input, Label } from '@rebass/forms';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
+import {Button as LoginButton} from '../loginSignup/button'
+import {Wrapper as HoverWrapper} from '../loginSignup/button'
+import {HoverButton} from '../loginSignup/button'
+
+
 export default class LoginBox extends Component {
   render() {
     return (
@@ -33,9 +39,9 @@ export default class LoginBox extends Component {
         >
           Forgot password?
         </Link>
-        <Button sx={{ backgroundColor: '#95d1fc', color: '#051838', fontFamily: 'Arial' }}>
+        <NavButton sx={{ backgroundColor: '#95d1fc', color: '#051838', fontFamily: 'Arial' }}>
           Login
-        </Button>
+        </NavButton>
         <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
         <Box flexDirection="column" width="100%">
           <Button
@@ -66,6 +72,10 @@ export default class LoginBox extends Component {
             Click here
           </Link>
         </Text>
+        {/* <LoginButton>login button test</LoginButton> */}
+        <HoverButton text="%%%"></HoverButton>
+        
+
       </Box>
     );
   }
