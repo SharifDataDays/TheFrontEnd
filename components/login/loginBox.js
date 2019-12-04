@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Box, Link, Button, Text } from 'rebass';
+import { Box, Link, Button, Text, Flex } from 'rebass';
 import { Input, Label } from '@rebass/forms';
-import Head from 'next/head';
-
+import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 export default class LoginBox extends Component {
   render() {
     return (
@@ -11,7 +10,7 @@ export default class LoginBox extends Component {
           Email
         </Label>
         <Input
-          style={{ border: 'none' }}
+          style={{ border: 'none', color: '#edf3f5', outline: 'none' }}
           id="email"
           name="email"
           type="email"
@@ -21,7 +20,7 @@ export default class LoginBox extends Component {
           Password
         </Label>
         <Input
-          style={{ border: 'none' }}
+          style={{ border: 'none', color: '#edf3f5', outline: 'none' }}
           id="password"
           name="password"
           type="password"
@@ -37,6 +36,30 @@ export default class LoginBox extends Component {
         <Button sx={{ backgroundColor: '#95d1fc', color: '#051838', fontFamily: 'Arial' }}>
           Login
         </Button>
+        <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
+        <Box flexDirection="column" width="100%">
+          <Button
+            width="100%"
+            bg="transparent"
+            sx={{ border: '1px solid #95d1fc', outline: 'none' }}
+          >
+            <Text>
+              Log in with Google
+              <IoLogoGoogle style={{marginLeft : 10}} size={25} color='white'/>
+            </Text>
+          </Button>
+          <Button onClick={() => {console.log('here')}}
+            width="100%"
+            bg="transparent"
+            marginY={1}
+            sx={{ border: '1px solid #95d1fc', outline: 'none'}}
+          >
+            <Text>
+              Log in with Github
+              <IoLogoGithub style={{marginLeft : 10}} size={25} color='white'/>
+            </Text>
+          </Button>
+        </Box>
         <Text color="white" sx={{ marginY: 3, fontFamily: 'Arial' }}>
           Don't have an account?
           <Link sx={{ marginLeft: 2, textDecoration: 'none' }} color="#95d1fc" href=".">

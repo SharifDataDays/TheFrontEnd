@@ -326,7 +326,7 @@ export default function neuralnet(canvas) {
   }
 
   window.addEventListener('resize', function() {
-    opts.vanishPoint.x = (w = canvas.width = window.innerWidth) / 2;
+    opts.vanishPoint.x = (w = canvas.width = 4 * window.innerWidth / 5) / 2;
     opts.vanishPoint.y = (h = canvas.height = window.innerHeight) / 2;
     ctx.fillRect(0, 0, w, h);
   });
