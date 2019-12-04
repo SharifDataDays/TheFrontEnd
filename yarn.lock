@@ -1423,6 +1423,13 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@rebass/forms@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@rebass/forms/-/forms-4.0.6.tgz#19a3af64f855baa65dec65aecadda5cd95a09dd7"
+  integrity sha512-20dHAlb5V0Na2HxCr73Jjoc4hD1ElimmlBpQtclXMoXUsjJ7ORdCNL1S9R54MX5f7iU2VrLGHU42eL7+nONNPQ==
+  dependencies:
+    reflexbox "^4.0.6"
+
 "@rebass/preset@^4.0.5":
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/@rebass/preset/-/preset-4.0.5.tgz#f4fb9bec85efa1eb658b92fc64fbb4250d0af2fb"
@@ -7723,7 +7730,7 @@ prop-types-exact@1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@15.7.2, prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7896,6 +7903,13 @@ react-error-overlay@5.1.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
 
+react-icons@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.8.0.tgz#229de5904809696c9f46932bd9b6126b2522866e"
+  integrity sha512-rA/8GRKjPulft8BSBSMsHkE1AGPqJ7LjNsyk0BE7XjG70Iz62zOled2SJk7LDo8x9z86a3xOstDlKlMZ4pAy7A==
+  dependencies:
+    camelcase "^5.0.0"
+
 react-is@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -7917,6 +7931,13 @@ react-redux@^7.1.3:
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
     react-is "^16.9.0"
+
+react-scroll-parallax@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-2.2.0.tgz#604eb9d2d9c4343047b94fdc063d537269ed9c3f"
+  integrity sha512-WXiLEwSwYU+lTS2G1mlVYVA+bKwhFpgMvqWMblyD/wjNRrxO1IAxpF2Y1dnaf6jz7wX4CvQHHuSQJfMQnxW0xQ==
+  dependencies:
+    prop-types "^15.5.10"
 
 react@16.12.0:
   version "16.12.0"
