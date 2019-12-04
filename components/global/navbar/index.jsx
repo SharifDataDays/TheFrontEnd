@@ -54,7 +54,7 @@ function Side({ list, side }) {
 function Navbar() {
   return (
     <ThemeProvider theme={theme}>
-      <Flex alignItems="center" px={6} py={4} bg="background" boxShadow={1}>
+      <Flex alignItems="center" px={6} py={4} bg="black" boxShadow={1}>
         <Side list={list} side="left" />
         <Box mx="auto" />
         <Side list={list} side="right" />
