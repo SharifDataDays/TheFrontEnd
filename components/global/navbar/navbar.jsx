@@ -13,6 +13,13 @@ const BorderedBox = styled(Box)`
   transition: top 0.6s;
 `;
 
+const InnerBox = styled(Flex)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+`;
+
 type NavbarType = {
   header: Node,
   start: Node,
@@ -38,19 +45,21 @@ function LargeNavbar({
 }: NavbarType = NavbarDefaultProps): Node {
   return (
     <BorderedBox
-      visible={visible}
       position="fixed"
+      visible={visible}
+      height={96}
       width={1}
       borderBottom="1px solid"
       borderColor="#e2e2e2"
+      bg="background"
     >
-      <Flex alignItems="center" px={6} py={1} bg="background">
+      <InnerBox alignItems="center" px={6} py={1} bg="background" verticalAlign="middle">
         {header}
         {start}
         <Box mx="auto" />
         {end}
         {extras}
-      </Flex>
+      </InnerBox>
     </BorderedBox>
   );
 }
@@ -64,8 +73,8 @@ function SmallNavbar({
 }: NavbarType = NavbarDefaultProps): Node {
   return (
     <BorderedBox
-      visible={visible}
       position="fixed"
+      visible={visible}
       width={1}
       borderBottom="1px solid"
       borderColor="#e2e2e2"
@@ -136,9 +145,8 @@ class HiddenNavbar extends Component<HiddenNavbarPropsType, HiddenNavbarStateTyp
 
   handleScroll() {
     const { prevScrollpos } = this.state;
-
     const currentScrollPos = window.pageYOffset;
-    const visible = prevScrollpos > currentScrollPos;
+    const visible = prevScrollpos > currentScrollPos || currentScrollPos < 96;
 
     this.setState({
       prevScrollpos: currentScrollPos,

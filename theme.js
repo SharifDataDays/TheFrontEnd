@@ -22,7 +22,7 @@ export default {
     heading: 'inherit',
     monospace: '"Roboto Mono", monospace',
   },
-  fontSizes: [10, 12, 14, 16, 20, 24, 34, 48, 60, 96],
+  fontSizes: [10, 12, 14, 16, 20, 24, 34, 48, 60, 96, 120],
   fontWeights: {
     body: 400,
     heading: 400,

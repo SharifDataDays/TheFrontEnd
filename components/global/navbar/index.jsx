@@ -22,16 +22,6 @@ function SiteNavbar(): Node {
             </NavLink>
           </>
         }
-        end={
-          <>
-            <NavLink href="/blog">
-              <NavbarButton text="blog" />
-            </NavLink>
-            <NavLink href="/resources">
-              <NavbarButton text="resources" />
-            </NavLink>
-          </>
-        }
         extras={
           <NavLink href="/login">
             <LoginButton text="login" />

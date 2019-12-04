@@ -1,59 +1,17 @@
 import React from 'react';
-import { Flex, Box, Heading, Image } from 'rebass/styled-components';
-import MDX from '@mdx-js/runtime';
+import { Flex, Box } from 'rebass/styled-components';
 import { useRouter } from 'next/router';
+import HeaderImage from '~/components/blog/post/headerImage';
+import Header from '~/components/blog/post/header';
+import Content from '~/components/blog/post/content';
 
 const mdx = `
 # react-markdown
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant morbi. Mauris augue neque gravida in. Aliquam id diam maecenas ultricies mi eget mauris. Turpis massa sed elementum tempus egestas. Consequat ac felis donec et odio pellentesque diam. Amet massa vitae tortor condimentum lacinia. Nullam non nisi est sit amet facilisis magna etiam. Est lorem ipsum dolor sit. Nunc scelerisque viverra mauris in. Mattis pellentesque id nibh tortor id aliquet. Sit amet facilisis magna etiam tempor. Sed blandit libero volutpat sed cras ornare arcu. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit.
 
-Renders Markdown as pure React components.
+Neque gravida in fermentum et sollicitudin. Nam libero justo laoreet sit amet. Dignissim cras tincidunt lobortis feugiat vivamus at. Eu augue ut lectus arcu bibendum at varius vel. Elit pellentesque habitant morbi tristique senectus et. Ac tincidunt vitae semper quis lectus nulla at. Non consectetur a erat nam at. A pellentesque sit amet porttitor. Sodales ut etiam sit amet nisl purus in mollis. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Gravida arcu ac tortor dignissim convallis. Augue neque gravida in fermentum et sollicitudin. Malesuada fames ac turpis egestas maecenas. Enim ut sem viverra aliquet eget. Arcu cursus euismod quis viverra nibh cras. Vestibulum mattis ullamcorper velit sed ullamcorper.
 
-[![npm version](https://img.shields.io/npm/v/react-markdown.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown)[![Build Status](https://img.shields.io/travis/rexxars/react-markdown/master.svg?style=flat-square)](https://travis-ci.org/rexxars/react-markdown)
-
-Demo available at https://rexxars.github.io/react-markdown/
-
----
-
-react-markdown is proudly sponsored by
-
-<a href="https://www.sanity.io/?utm_source=GitHub&utm_campaign=react-markdown" rel="nofollow" target="_blank">
-<img src="https://www.sanity.io/static/images/logo_red.svg?v=2" width="300" /><br />
-Sanity: The Headless CMS Construction Kit
-</a>
-
----
-
-## Installing
-
-
-## Basic usage
-
-
-## Upgrading to 4.0
-
-Should be straightforward. You might need to alter you code slightly if you:
-
-See [CHANGELOG](CHANGELOG.md) for more details.
-
-## Notes
-
-
-## Options
-
-## Parsing HTML
-
-If you want to specify options for the HTML parsing step, you can instead import the HTML parser plugin directly:
-
-## Node types
-
-Note: Disallowing a node will also prevent the rendering of any children of that node, unless the
-children text nodes.
-
-## Developing
-
-## License
-
-MIT © [Espen Hovlandsdal](https://espen.codes/)
+A iaculis at erat pellentesque. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Duis ultricies lacus sed turpis tincidunt id aliquet. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Bibendum at varius vel pharetra vel. Augue lacus viverra vitae congue eu consequat ac felis donec. At quis risus sed vulputate odio ut enim. Auctor elit sed vulputate mi sit amet mauris commodo. Nunc sed blandit libero volutpat sed. Morbi tincidunt ornare massa eget egestas purus viverra.
 `;
 
 export default function Post() {
@@ -62,16 +20,15 @@ export default function Post() {
 
   return (
     <>
+      <HeaderImage url="https://source.unsplash.com/random/1024x768?ai" />
       <Flex justifyContent="center">
-        <Box p={3} width={[1, 1 / 2, 2 / 3]} color="text">
-          <Heading textAlign={direction} mt={2} fontSize={8} fontWeight="light">
-            {router.query.id}
-          </Heading>
-          <Image
-            src="https://images.unsplash.com/photo-1489389944381-3471b5b30f04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-            mt={5}
+        <Box p={3} width={[1, 2 / 3, 7 / 12]} color="text">
+          <Header
+            title="Who Owns Financial Data?"
+            desc="The story of data - part 1"
+            date="November 18, 2018"
           />
-          <MDX>{mdx}</MDX>
+          <Content content={mdx} />
         </Box>
       </Flex>
     </>
