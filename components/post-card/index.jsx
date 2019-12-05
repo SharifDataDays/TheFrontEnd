@@ -4,12 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import Container from './container';
 import theme from '~/theme';
 
-function Posts() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Container />
-    </ThemeProvider>
-  );
+const Post = () => {
+    return <Flex></Flex>
 }
-
-export default Posts;
+;

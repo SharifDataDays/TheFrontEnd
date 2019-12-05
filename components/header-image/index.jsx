@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import HeaderImage from './image';
 import theme from '~/theme';
 
-const imageSrc = 'https://source.unsplash.com/1600x900/?programming/1440x475';
+const imageSrc = 'https://source.unsplash.com/1600x900/?programming/1400x475';
 
 function HeaderImageContainer(props) {
   return (
