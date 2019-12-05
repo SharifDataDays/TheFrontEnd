@@ -26,7 +26,7 @@ const HoverTrigger = styled.div`
   }
 `;
 
-export function NavbarButton({ text }: { text: string }): Node {
+export function EmptyButton({ text }: { text: string }): Node {
   return (
     <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="primary">
       <Button
@@ -42,7 +42,7 @@ export function NavbarButton({ text }: { text: string }): Node {
   );
 }
 
-export function LoginButton({ text }: { text: string }): Node {
+export function FilledButton({ text }: { text: string }): Node {
   return (
     <HoverTrigger
       color="background"

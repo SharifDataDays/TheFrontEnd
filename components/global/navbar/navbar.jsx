@@ -10,7 +10,7 @@ const BorderedBox = styled(Box)`
   ${border};
   ${position};
   top: ${(props: { visible: boolean }): string => (props.visible ? '0' : '-200px')};
-  transition: top 0.6s;
+  transition: top 0.5s;
 `;
 
 const InnerBox = styled(Flex)`

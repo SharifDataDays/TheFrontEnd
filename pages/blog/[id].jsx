@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import HeaderImage from '~/components/blog/post/headerImage';
 import Header from '~/components/blog/post/header';
 import Content from '~/components/blog/post/content';
+import Comments from '~/components/blog/post/comments';
 
 const mdx = `
 # react-markdown
@@ -29,6 +30,11 @@ export default function Post() {
             date="November 18, 2018"
           />
           <Content content={mdx} />
+        </Box>
+      </Flex>
+      <Flex justifyContent="center" bg="gray">
+        <Box p={3} width={[1, 2 / 3, 7 / 12]} color="text" my={5}>
+          <Comments count={0} />
         </Box>
       </Flex>
     </>

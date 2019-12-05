@@ -2,9 +2,9 @@
 import React from 'react';
 import type { Node } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { FilledButton, EmptyButton } from '../buttons';
 import Navbar from './navbar';
 import NavLink from './link';
-import { NavbarButton, LoginButton } from './buttons';
 import theme from '~/theme';
 
 function SiteNavbar(): Node {
@@ -15,16 +15,16 @@ function SiteNavbar(): Node {
         start={
           <>
             <NavLink href="/blog">
-              <NavbarButton text="blog" />
+              <EmptyButton text="blog" />
             </NavLink>
             <NavLink href="/resources">
-              <NavbarButton text="resources" />
+              <EmptyButton text="resources" />
             </NavLink>
           </>
         }
         extras={
           <NavLink href="/login">
-            <LoginButton text="login" />
+            <FilledButton text="login" />
           </NavLink>
         }
       />
