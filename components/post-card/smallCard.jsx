@@ -73,7 +73,7 @@ const LargeCard = ({ justifyContentImage, title, categorise, dir, contentSummary
         {contentSummary}
       </Text>
       <Link
-        href="."
+        href="./blog"
         sx={{
           fontFamily: 'Soleil_Light,Helvetica,Arial,sans-serif',
           letterSpacing: '1px',

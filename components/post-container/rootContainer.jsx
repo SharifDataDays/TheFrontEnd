@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex } from 'rebass/styled-components';
 import Post from '../post-card/smallCard';
 
-export default function LargeContainer({ justifyContent }) {
+export default function LargeContainer({ justifyContent, width, mt, con }) {
   const width = '95%';
   const mt = '30%';
   const content =

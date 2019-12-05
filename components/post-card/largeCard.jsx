@@ -26,15 +26,16 @@ const LargeCard = ({ justifyContentImage, title, categorise, dir, contentSummary
       mt="1%"
       className="posts-container"
     >
-      <ImageCard height="360px" src={src} radius="20px" />
+      <ImageCard height="280px" src={src} radius="20px" />
 
       <Text
-        my="4%"
-        fontSize="15px"
+        mt="9%"
+        mb="4%"
+        fontSize="13px"
         color="black"
         sx={{
           fontFamily: 'Soleil_Light,Helvetica,Arial,sans-serif',
-          letterSpacing: '3px',
+          letterSpacing: '2px',
           textTransfrom: 'uppercase',
           direction,
         }}
@@ -74,7 +75,7 @@ const LargeCard = ({ justifyContentImage, title, categorise, dir, contentSummary
         {contentSummary}
       </Text>
       <Link
-        href="."
+        href="./blog"
         sx={{
           fontFamily: 'Soleil_Light,Helvetica,Arial,sans-serif',
           letterSpacing: '1px',
