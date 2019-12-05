@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 
-const logo1 = 'http://s6.picofile.com/file/8380759042/All_Logos39.png';
-const logo2 = 'http://s6.picofile.com/file/8380760484/Bazaar_logo_and_logotype.png';
-const logo3 = 'http://s7.picofile.com/file/8380759184/whicapp_%D8%A8%D9%84%D8%AF_logos_.png';
-const logo4 = 'http://s7.picofile.com/file/8380759168/Tap30.png';
-const logo5 = 'http://s6.picofile.com/file/8380759092/shariflogo.png';
-
-const logos_color = [logo1, logo2, logo3, logo4, logo5];
 
 class Logo extends Component {
   constructor(props) {
@@ -47,6 +40,8 @@ class Logo extends Component {
   }
 }
 
+
+
 export default class Sponsers extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +49,7 @@ export default class Sponsers extends Component {
 
     this.state = {
       logo_width: 100,
-      logos: logos_color,
+      logos: this.props.logos,
       logo_filter: 'grayscale(100%)',
       backgroundColor: 'rgba(245,245,245, 0.9)',
     };
