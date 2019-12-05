@@ -1,31 +1,14 @@
 import React, { Component } from 'react';
 import { Box, Link, Button, Text, Flex } from 'rebass';
-import { Input, Label } from '@rebass/forms';
+import { Label } from '@rebass/forms';
+import Input from '../loginSignup/input';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 export default class LoginBox extends Component {
   render() {
     return (
       <Box sx={{ flexDirection: 'column', display: 'flex', width: '75%', mx: 'auto' }}>
-        <Label style={{ marginTop: 20, fontFamily: 'Arial' }} color="white" htmlFor="email">
-          Email
-        </Label>
-        <Input
-          style={{ border: 'none', color: '#edf3f5', outline: 'none' }}
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Enter your email here!"
-        />
-        <Label style={{ marginTop: 20, fontFamily: 'Arial' }} color="white" htmlFor="password">
-          Password
-        </Label>
-        <Input
-          style={{ border: 'none', color: '#edf3f5', outline: 'none' }}
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Enter your password here!"
-        />
+        <Input label='Email'/>
+        <Input label='Password'/>
         <Link
           color="#95d1fc"
           sx={{ marginY: 3, fontFamily: 'Arial', textDecoration: 'none' }}
