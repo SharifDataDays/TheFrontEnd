@@ -31,7 +31,7 @@ export default class Parall extends Component {
   render() {
     return (
       <div>
-        <Parallax ref="parallax" pages={2}>
+        <Parallax ref="parallax" pages={3}>
           <div style={{ position: 'relative' }}>
             {this.make_layers(this.props.layers.slice(0, this.layers_count - 1))}
             <Parallax.Layer offset={0} speed={this.sp * this.layers_count}>
@@ -45,7 +45,7 @@ export default class Parall extends Component {
                     position: 'relative',
                     backgroundColor: this.props.backgroundColor,
                     marginTop: '-10px',
-                    height: '1000px',
+                    height: '500px',
                   }}
                 >
                   {this.props.children}
