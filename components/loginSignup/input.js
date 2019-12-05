@@ -13,9 +13,8 @@ const TextInput = styled.input`
   font-size: 14px;
   display: block;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #051838;
   width: 300px;
-  color: white;
   padding: 10px 10px 10px 5px;
   &:focus {
     outline: none;
@@ -26,7 +25,7 @@ const TextInput = styled.input`
 const Label = styled.label`
   font-family: Arial;
   font-size: 16px;
-  color: white;
+  colr: #051838;
   pointer-events: none;
   postition: absolute;
   left: 5px;

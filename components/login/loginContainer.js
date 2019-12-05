@@ -7,7 +7,7 @@ export default class LoginContainer extends Component {
   render() {
     return (
       <LoginSignupContainer>
-        <Heading fontFamily="Arial" fontSize={6} color="white">
+        <Heading fontFamily="Arial" color="#051838" fontSize={6} marginTop={5} marginLeft={3}>
           Welcome!
         </Heading>
         <LoginBox />
