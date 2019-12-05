@@ -1,4 +1,13 @@
+import _ from 'lodash';
+
+export const breakpoints = {
+  small: 640,
+  medium: 832,
+  large: 1024,
+};
+
 export default {
+  breakpoints: _.map(_.values(breakpoints), (value) => `${value}px`),
   googleFonts: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap',
   colors: {
     text: '#000',
@@ -13,7 +22,7 @@ export default {
     heading: 'inherit',
     monospace: '"Roboto Mono", monospace',
   },
-  fontSizes: [10, 12, 14, 16, 20, 24, 34, 48, 60, 96],
+  fontSizes: [10, 12, 14, 16, 20, 24, 34, 48, 60, 96, 120],
   fontWeights: {
     body: 400,
     heading: 400,

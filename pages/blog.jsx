@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Nav from '~/components/global/navbar';
 import GlobalStyle from '~/components/global/globalStyles';
 import HeaderImage from '~/components/header-image';
+import Posts from '~/components/post-container';
 
 const Home = () => (
   <>
@@ -13,10 +14,10 @@ const Home = () => (
     </Head>
     <Nav />
     <HeaderImage />
+    <Posts />
   </>
 );
 
 export default Home;
-
 
 // font: FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
