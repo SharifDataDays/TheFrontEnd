@@ -22,10 +22,10 @@ function Header({ title, desc, date, rtl }: PropsType = DefaultProps): Node {
 
   return (
     <>
-      <Heading fontSize={[4, 5, 6]} color="gray" mt={[3, 4, 5]} textAlign={direction}>
+      <Heading fontSize={[4, 5, 6]} color="gray" mb={[3, 4, 5]} textAlign={direction}>
         {desc}
       </Heading>
-      <Heading fontSize={[6, 7, 8]} fontWeight="bold" mt={[2, 2, 3]} textAlign={direction}>
+      <Heading fontSize={[6, 7, 8]} fontWeight="bold" mb={[2, 2, 3]} textAlign={direction}>
         {title}
       </Heading>
       <hr size={2} />

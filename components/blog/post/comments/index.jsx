@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import type { Node } from 'react';
-import { Box, Heading } from 'rebass/styled-components';
+import { Box } from 'rebass/styled-components';
 import { FilledButton } from '~/components/global/buttons';
 
 class Comments extends Component {
@@ -13,7 +13,6 @@ class Comments extends Component {
 
   loadComments(e) {
     e.preventDefault();
-    console.log('test');
   }
 
   render(): Node {

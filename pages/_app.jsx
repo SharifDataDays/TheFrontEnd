@@ -6,12 +6,14 @@ import { ThemeProvider } from 'styled-components';
 import theme from '~/theme';
 import GlobalStyle from '~/components/global/globalStyles';
 import Navbar from '~/components/global/navbar';
+import Footer from '~/components/global/footer';
 
 function Layout({ children }: { children: Node }): Node {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
       {children}
+      <Footer />
     </ThemeProvider>
   );
 }

@@ -1,10 +1,7 @@
 import React from 'react';
 import { Flex, Box } from 'rebass/styled-components';
 import { useRouter } from 'next/router';
-import HeaderImage from '~/components/blog/post/headerImage';
-import Header from '~/components/blog/post/header';
-import Content from '~/components/blog/post/content';
-import Comments from '~/components/blog/post/comments';
+import Post from '~/components/blog/post';
 
 const mdx = `
 # react-markdown
@@ -15,28 +12,20 @@ Neque gravida in fermentum et sollicitudin. Nam libero justo laoreet sit amet. D
 A iaculis at erat pellentesque. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Duis ultricies lacus sed turpis tincidunt id aliquet. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Bibendum at varius vel pharetra vel. Augue lacus viverra vitae congue eu consequat ac felis donec. At quis risus sed vulputate odio ut enim. Auctor elit sed vulputate mi sit amet mauris commodo. Nunc sed blandit libero volutpat sed. Morbi tincidunt ornare massa eget egestas purus viverra.
 `;
 
-export default function Post() {
+export default function PostPage() {
   const router = useRouter();
   const direction = 'left';
 
   return (
-    <>
-      <HeaderImage url="https://source.unsplash.com/random/1024x768?ai" />
-      <Flex justifyContent="center">
-        <Box p={3} width={[1, 2 / 3, 7 / 12]} color="text">
-          <Header
-            title="Who Owns Financial Data?"
-            desc="The story of data - part 1"
-            date="November 18, 2018"
-          />
-          <Content content={mdx} />
-        </Box>
-      </Flex>
-      <Flex justifyContent="center" bg="gray">
-        <Box p={3} width={[1, 2 / 3, 7 / 12]} color="text" my={5}>
-          <Comments count={0} />
-        </Box>
-      </Flex>
-    </>
+    <Post
+      image="https://source.unsplash.com/random/1024x768?ai"
+      header={{
+        title: 'Who Owns Financial Data?',
+        desc: 'The story of data - part 1',
+        date: 'November 18, 2018',
+      }}
+      content={mdx}
+      comments={1}
+    />
   );
 }
