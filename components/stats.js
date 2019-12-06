@@ -1,57 +1,85 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react';
 import anime from 'animejs';
+import { Box } from 'rebass';
 
-class Box extends React.Component {
-  componentDidMount() {
-    this.anime();
+const sleep = (milliseconds) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
+
+class Stats extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      participants: this.props.participants,
+      num: this.props.participants,
+      constant: true,
+    };
   }
 
-  componentDidUpdate() {
-    this.anime();
-  }
+  // animation() {
+  //   anime({
+  //     targets: document.getElementsByClassName('stats')[0],
+  //     value: [0, this.state.participants],
+  //     round: 1,
+  //     easing: 'easeInOutExpo',
+  //     update: function() {
+  //       document.getElementsByClassName('stats')[0].innerHTML = ':\\';
+  //     },
+  //   });
+  // }
 
-  anime = () => {
-    anime({
-      targets: '.dom-attribute-demo input',
-      value: [0, 1000],
-      round: 1,
-      easing: 'easeInOutExpo',
-    });
+  counter = async () => {
+    if (this.state.constant === true) {
+      this.setState({
+        num: 0,
+        constant: false,
+      });
+
+      for (let i = 0; i <= this.state.participants; i++) {
+        await sleep(50);
+        console.log(i);
+        this.setState({
+          num: i,
+        });
+      }
+    }
+    // if (this.state.num === this.state.participants) {
+    //   this.setState({
+    //     constant: true,
+    //   });
+    // }
   };
+
+  // componentDidMount() {
+  //   // this.animation();
+  // }
 
   render() {
     return (
-      <div ref={(box) => (this.box = box)}>
-        <h2>Start editing to see some magic happen {'\u2728'}</h2>
-      </div>
-    );
-  }
-}
-
-export default class Stats extends React.Component {
-  state = {
-    translateX: 0,
-    translateY: 0,
-  };
-
-  render() {
-    const { translateX, translateY } = this.state;
-
-    return (
-      <div>
-        <button
-          onClick={() =>
-            this.setState({
-              translateX: translateX + 10,
-              translateY: translateY + 10,
-            })
-          }
+      <div
+        onMouseEnter={this.counter}
+        style={{
+          padding: '40px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <p
+          className="stats"
+          style={{
+            color: 'white',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '48px',
+          }}
         >
-          +10
-        </button>
-        <Box translateX={translateX} translateY={translateY} />
+          {this.state.num}
+        </p>
       </div>
     );
   }
 }
+
+export default Stats;

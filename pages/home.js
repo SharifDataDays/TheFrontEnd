@@ -11,9 +11,6 @@ const layer2 = 'http://s7.picofile.com/file/8380137468/layer_06_1920_x_1080.png'
 const layer1 = 'http://s6.picofile.com/file/8380137442/layer_07_1920_x_1080.png';
 const layers = [layer1, layer2, layer3, layer4, layer5];
 
-const backgroundColor = 'white';
-
-
 const logo1 = 'http://s6.picofile.com/file/8380759042/All_Logos39.png';
 const logo2 = 'http://s6.picofile.com/file/8380760484/Bazaar_logo_and_logotype.png';
 const logo3 = 'http://s7.picofile.com/file/8380759184/whicapp_%D8%A8%D9%84%D8%AF_logos_.png';
@@ -22,6 +19,8 @@ const logo5 = 'http://s6.picofile.com/file/8380759092/shariflogo.png';
 
 const logos = [logo1, logo2, logo3, logo4, logo5];
 
+const backgroundColor = 'black';
+const numberOfParticipants = 117;
 
 export default class Home extends Component {
   constructor(props) {
@@ -34,23 +33,22 @@ export default class Home extends Component {
   }
 
   render() {
-      const a = <div>
-      <Parall layers={layers} backgroundColor={backgroundColor}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}
-        >
-            <Stats/>
-          <Sponsers logos={logos} />            
-        </div>
-      </Parall>
-    </div>
     return (
-      <Stats/>
+      <div>
+        <Parall layers={layers} backgroundColor={backgroundColor}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Stats participants={numberOfParticipants}/>
+            <Sponsers logos={logos} />
+          </div>
+        </Parall>
+      </div>
     );
   }
 }
