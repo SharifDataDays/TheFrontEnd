@@ -3,10 +3,9 @@ import { Box, Link, Button, Text, Flex } from 'rebass';
 import { Button as NavButton } from '../global/navbar/button';
 import { Input, Label } from '@rebass/forms';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
-import {Button as LoginButton} from '../loginSignup/button'
-import {Wrapper as HoverWrapper} from '../loginSignup/button'
-import {HoverButton} from '../loginSignup/button'
-
+import { Button as LoginButton } from '../loginSignup/button';
+import { LoginSignupButton } from '../loginSignup/button';
+import { IconButton } from '../loginSignup/iconButton';
 
 export default class LoginBox extends Component {
   render() {
@@ -39,32 +38,15 @@ export default class LoginBox extends Component {
         >
           Forgot password?
         </Link>
-        <NavButton sx={{ backgroundColor: '#95d1fc', color: '#051838', fontFamily: 'Arial' }}>
-          Login
-        </NavButton>
+        <LoginSignupButton text="Login" />
         <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
         <Box flexDirection="column" width="100%">
-          <Button
-            width="100%"
-            bg="transparent"
-            sx={{ border: '1px solid #95d1fc', outline: 'none' }}
-          >
-            <Text>
-              Log in with Google
-              <IoLogoGoogle style={{marginLeft : 10}} size={25} color='white'/>
-            </Text>
-          </Button>
-          <Button onClick={() => {console.log('here')}}
-            width="100%"
-            bg="transparent"
-            marginY={1}
-            sx={{ border: '1px solid #95d1fc', outline: 'none'}}
-          >
-            <Text>
-              Log in with Github
-              <IoLogoGithub style={{marginLeft : 10}} size={25} color='white'/>
-            </Text>
-          </Button>
+          <IconButton text="Log in with Google">
+            <IoLogoGoogle style={{ marginLeft: 10 }} size={25} color="white" />
+          </IconButton>
+          <IconButton text="Log in with Github">
+            <IoLogoGithub style={{ marginLeft: 10 }} size={25} color="white" />
+          </IconButton>
         </Box>
         <Text color="white" sx={{ marginY: 3, fontFamily: 'Arial' }}>
           Don't have an account?
@@ -72,10 +54,6 @@ export default class LoginBox extends Component {
             Click here
           </Link>
         </Text>
-        {/* <LoginButton>login button test</LoginButton> */}
-        <HoverButton text="%%%"></HoverButton>
-        
-
       </Box>
     );
   }
