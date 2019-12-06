@@ -8,7 +8,7 @@ export default function PreviewContent({ fontSize, letterSpacing, direction, con
       color="black"
       sx={{
         fontFamily: 'Soleil_Light,Helvetica,Arial,sans-serif',
-        letterSpacing: letterSpacing,
+        letterSpacing,
         direction,
         display: 'block',
         textOverflow: 'ellipsis',

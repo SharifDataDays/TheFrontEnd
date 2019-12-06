@@ -1,10 +1,8 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import SmallCard from './smallCard';
-import MediumCard from './smallCard';
-import LargeCard from './smallCard';
 import Responsive from '../global/reponsive';
-import theme from '~/theme';
+import SmallCard from './smallCard';
+import MediumCard from './mediumCard';
+import LargeCard from './largeCard';
 
 const Post = () => {
   return (

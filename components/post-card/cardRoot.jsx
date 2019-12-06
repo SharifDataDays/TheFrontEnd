@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, Link } from 'rebass/styled-components';
+import { Flex } from 'rebass/styled-components';
 import ImageCard from './imageCard';
 import Categoris from './categoriseCard';
 import Heading from './headingCard';
