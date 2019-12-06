@@ -24,9 +24,6 @@ function Footer(): Node {
     >
       <Flex px={5} py={4}>
         <Box width={1 / 3}>test</Box>
-        <Box>test</Box>
-        <Box>test</Box>
-        <Box>test</Box>
       </Flex>
     </BorderedBox>
   );

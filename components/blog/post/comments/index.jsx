@@ -2,10 +2,27 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import type { Node } from 'react';
-import { Box, Heading } from 'rebass/styled-components';
+import styled from 'styled-components';
+import { shadow, typography } from 'styled-system';
+import { Box } from 'rebass/styled-components';
+import TextareaAutosize from 'react-autosize-textarea';
 import { ClipLoader } from 'react-spinners';
 import Comment from './comment';
 import { FilledButton } from '~/components/global/buttons';
+
+const ShadowedBox = styled(Box)`
+  ${shadow};
+`;
+
+const TextArea = styled(TextareaAutosize)`
+  ${typography};
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  border: 0;
+  resize: none;
+  direction: auto;
+`;
 
 const sampleComments = [
   {
@@ -48,33 +65,28 @@ class Comments extends Component {
     const { count } = this.props;
     const { loading, comments, loaded } = this.state;
 
-    if (count === 0) {
-      return (
-        <Box width={1} textAlign="center">
-          <Heading>No Comments.</Heading>
-        </Box>
-      );
-    }
-    if (loading) {
-      return (
-        <Box width={1} textAlign="center">
-          <Box onClick={this.loadComments}>
+    return (
+      <Box width={1} textAlign="center">
+        <ShadowedBox mb={4} p={3} bg="background" boxShadow={0}>
+          <TextArea fontSize={3} placeholder="Write a comment..." />
+        </ShadowedBox>
+        {loading ? (
+          <>
             {comments.map((comment) => {
               return <Comment comment={comment} />;
             })}
             <ClipLoader sizeUnit="px" size={30} color="#000" loading={loading} />
-          </Box>
-        </Box>
-      );
-    }
-    return (
-      <Box width={1} textAlign="center">
-        <Box onClick={this.loadComments}>
-          {comments.map((comment) => {
-            return <Comment comment={comment} />;
-          })}
-          {loaded < count ? <FilledButton text="Load Comments" /> : <></>}
-        </Box>
+          </>
+        ) : (
+          <>
+            {comments.map((comment) => {
+              return <Comment comment={comment} />;
+            })}
+            <Box onClick={this.loadComments}>
+              {loaded < count ? <FilledButton text="Load Comments" /> : <></>}
+            </Box>
+          </>
+        )}
       </Box>
     );
   }
