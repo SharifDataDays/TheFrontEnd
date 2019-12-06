@@ -20,7 +20,6 @@ export default class LoginBox extends Component {
           <GoogleLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
           <GithubLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
         </Flex>
-        <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
         <Text sx={{ marginY: 3, fontFamily: 'Arial' }}>
           Don't have an account?
           <Link sx={{ marginLeft: 2 }} href=".">
