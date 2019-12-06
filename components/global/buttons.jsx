@@ -1,7 +1,9 @@
+// @flow
 import React from 'react';
+import type { Node } from 'react';
 import styled from 'styled-components';
 import { color, border } from 'styled-system';
-import { Button as RebassButton } from 'rebass/styled-components';
+import { Button as RebassButton, Text as RebassText } from 'rebass/styled-components';
 
 export const Button = styled(RebassButton)`
   ${border};
@@ -24,17 +26,23 @@ const HoverTrigger = styled.div`
   }
 `;
 
-export function NavbarButton({ text }) {
+export function EmptyButton({ text }: { text: string }): Node {
   return (
-    <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="background">
-      <Button color="text" bg="background" borderBottom="1px solid" borderColor="background">
-        {text}
+    <HoverTrigger color="primary" bg="background" borderBottom="1px solid" borderColor="primary">
+      <Button
+        color="text"
+        bg="background"
+        borderBottom="1px solid"
+        borderRadius={0}
+        borderColor="background"
+      >
+        <RebassText fontSize={[1, 1, 3]}>{text}</RebassText>
       </Button>
     </HoverTrigger>
   );
 }
 
-export function LoginButton({ text }) {
+export function FilledButton({ text }: { text: string }): Node {
   return (
     <HoverTrigger
       color="background"
@@ -50,7 +58,7 @@ export function LoginButton({ text }) {
         borderColor="primary"
         borderRadius={3}
       >
-        {text}
+        <RebassText fontSize={[1, 1, 3]}>{text}</RebassText>
       </Button>
     </HoverTrigger>
   );
