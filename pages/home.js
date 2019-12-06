@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Parall from '../components/parall';
 import Sponsers from '../components/sponsers';
+import Stats from '../components/stats';
 
 const layer5 = 'http://s6.picofile.com/file/8380137176/layer_01_1920_x_1080.png';
 const layer4 = 'http://s6.picofile.com/file/8380137200/layer_02_1920_x_1080.png';
@@ -10,7 +11,7 @@ const layer2 = 'http://s7.picofile.com/file/8380137468/layer_06_1920_x_1080.png'
 const layer1 = 'http://s6.picofile.com/file/8380137442/layer_07_1920_x_1080.png';
 const layers = [layer1, layer2, layer3, layer4, layer5];
 
-const backgroundColor = 'black';
+const backgroundColor = 'white';
 
 
 const logo1 = 'http://s6.picofile.com/file/8380759042/All_Logos39.png';
@@ -33,21 +34,23 @@ export default class Home extends Component {
   }
 
   render() {
+      const a = <div>
+      <Parall layers={layers} backgroundColor={backgroundColor}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}
+        >
+            <Stats/>
+          <Sponsers logos={logos} />            
+        </div>
+      </Parall>
+    </div>
     return (
-      <div>
-        <Parall layers={layers} backgroundColor={backgroundColor}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignContent: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Sponsers logos={logos} />            
-          </div>
-        </Parall>
-      </div>
+      <Stats/>
     );
   }
 }
