@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'rebass/styled-components';
 
 export default function ReadMore({ href, direction }) {
+  const content = direction === 'rtl' ? 'بیشتر بخوانید' : 'read more';
   return (
     <Link
       href={href}
@@ -12,7 +13,7 @@ export default function ReadMore({ href, direction }) {
       }}
       color="black"
     >
-      read more
+      {content}
     </Link>
   );
 }

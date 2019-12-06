@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Flex } from 'rebass/styled-components';
 import ImageCard from './imageCard';

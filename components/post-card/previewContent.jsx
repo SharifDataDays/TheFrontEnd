@@ -2,12 +2,15 @@ import React from 'react';
 import { Text } from 'rebass/styled-components';
 
 export default function PreviewContent({ fontSize, letterSpacing, direction, content }) {
+  const persionFont = 'IRANSans';
+  const englishFonts = 'Soleil_Bold,Helvetica,Arial,sans-serif';
+  const font = direction === 'rtl' ? persionFont : englishFonts;
   return (
     <Text
       fontSize={fontSize}
       color="black"
       sx={{
-        fontFamily: 'Soleil_Light,Helvetica,Arial,sans-serif',
+        fontFamily: font,
         letterSpacing,
         direction,
         display: 'block',
