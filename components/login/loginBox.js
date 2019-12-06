@@ -18,15 +18,15 @@ export default class LoginBox extends Component {
             color: '#051838',
             fontFamily: 'Arial',
             fontWeight: 'bold',
-            width : '48%'
+            width: '48%',
           }}
         >
           Login
         </Button>
         <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
-        <Flex flexDirection="row" width="100%" justifyContent='space-between'>
-          <GoogleLoginButton style={{width : '48%', fontSize : '16px'}}/>
-          <GithubLoginButton style={{width : '48%', fontSize : '16px'}}/>
+        <Flex flexDirection="row" width="100%" justifyContent="space-between">
+          <GoogleLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
+          <GithubLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
         </Flex>
         <Text color="#051838" sx={{ marginY: 3, fontFamily: 'Arial' }}>
           Don't have an account?

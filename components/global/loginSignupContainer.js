@@ -31,7 +31,7 @@ export default class LoginSignUpContainer extends Component {
             backgroundColor: 'white',
           }}
         >
-          <Box width={[0 , 45 / 100, 45/100]} sx={{ marginRight: 10 }}>
+          <Box width={[0, 45 / 100, 45 / 100]} sx={{ marginRight: 10 }}>
             <canvas
               ref="canvas"
               style={{
@@ -40,7 +40,7 @@ export default class LoginSignUpContainer extends Component {
               }}
             ></canvas>
           </Box>
-          <Box width={[1, 55 / 100, 55/100]} sx={{ marginX: 'auto', backgroundColor: 'white' }}>
+          <Box width={[1, 55 / 100, 55 / 100]} sx={{ marginX: 'auto', backgroundColor: 'white' }}>
             {this.props.children}
           </Box>
         </Flex>
