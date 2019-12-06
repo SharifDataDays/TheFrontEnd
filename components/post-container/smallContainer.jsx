@@ -12,6 +12,7 @@ function parseJson(data) {
       categorise={post.categorise}
       dir={post.dir}
       contentSummary={post.contentSummary}
+      topicImage={post.topicImage}
     />
   ));
   return posts;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './cardRoot';
 
-const LargeCard = ({ justifyContent, title, categorise, dir, contentSummary }) => {
+const LargeCard = ({ justifyContent, title, categorise, dir, contentSummary, topicImage }) => {
   const props = {
     justifyContent,
     title,
@@ -18,13 +18,14 @@ const LargeCard = ({ justifyContent, title, categorise, dir, contentSummary }) =
     ImageCardHeight: '280px',
     mtCat: '9%',
     mbCat: '4%',
-    fontSizeCat: '15px',
-    letterSpacingCat: '2px',
-    mtHeading: '-1%',
+    fontSizeCat: '12px',
+    letterSpacingCat: '3px',
+    mtHeading: '1%',
     mbHeading: '5%',
-    fontSizeHeading: '22px',
+    fontSizeHeading: '17px',
     fontSizeText: '13px',
-    letterSpacingPreview: '1px',
+    letterSpacingPreview: '0px',
+    topicImage,
   };
 
   return <Card {...props} />;

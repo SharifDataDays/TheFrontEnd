@@ -3,7 +3,7 @@ import { Text } from 'rebass/styled-components';
 
 export default function PreviewContent({ fontSize, letterSpacing, direction, content }) {
   const persionFont = 'IRANSans';
-  const englishFonts = 'Soleil_Bold,Helvetica,Arial,sans-serif';
+  const englishFonts = 'Soleil,Helvetica,Arial,sans-serif';
   const font = direction === 'rtl' ? persionFont : englishFonts;
   return (
     <Text
@@ -19,6 +19,7 @@ export default function PreviewContent({ fontSize, letterSpacing, direction, con
         overflow: 'hidden',
         maxHeight: '5.4em',
         lineHeight: '1.8em',
+        opacity: '75%'
       }}
     >
       {content}

@@ -3,8 +3,9 @@ import { Heading } from 'rebass/styled-components';
 
 export default function HeadingCard({ mt, mb, fontSize, direction, content }) {
   const persionFont = 'IRANSansWeb,Arial,Helvetica,sans-serif';
-  const englishFonts = 'Soleil_Bold,Helvetica,Arial,sans-serif';
+  const englishFonts = 'FreightSans';
   const font = direction === 'rtl' ? persionFont : englishFonts;
+  const fontWeight = '600';
   return (
     <Heading
       mt={mt}
@@ -15,6 +16,7 @@ export default function HeadingCard({ mt, mb, fontSize, direction, content }) {
         fontFamily: font,
         textTransfrom: 'uppercase',
         direction,
+        fontWeight,
       }}
     >
       {content}

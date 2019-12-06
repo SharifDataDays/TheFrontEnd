@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './cardRoot';
 
-const MediumCard = ({ justifyContent, title, categorise, dir, contentSummary }) => {
+const MediumCard = ({ justifyContent, title, categorise, dir, contentSummary, topicImage }) => {
   const props = {
     justifyContent,
     title,
@@ -25,6 +25,7 @@ const MediumCard = ({ justifyContent, title, categorise, dir, contentSummary }) 
     fontSizeHeading: '18px',
     fontSizeText: '13px',
     letterSpacingPreview: '1px',
+    topicImage,
   };
 
   return <Card {...props} />;

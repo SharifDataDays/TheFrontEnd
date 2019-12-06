@@ -7,10 +7,6 @@ import Heading from './headingCard';
 import PreviewContent from './previewContent';
 import ReadMore from './readMore';
 
-const index = Math.floor(Math.random(5));
-const choices = ['programming', 'developper', 'macbook setup', 'machine learning', 'coding style'];
-const src = `https://source.unsplash.com/1600x900/?${choices[index]}/350x350`;
-
 const Card = ({
   justifyContentImage,
   title,
@@ -34,6 +30,7 @@ const Card = ({
   fontSizeHeading,
   fontSizeText,
   letterSpacingPreview,
+  topicImage,
 }) => {
   return (
     <Flex
@@ -48,7 +45,7 @@ const Card = ({
       mt={mt}
       className={className}
     >
-      <ImageCard height={ImageCardHeight} src={src} radius="20px" />
+      <ImageCard height={ImageCardHeight} topic={topicImage} radius="20px" />
 
       <Categoris
         mt={mtCat}
