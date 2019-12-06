@@ -38,6 +38,7 @@
     "react-icons": "^3.8.0",
     "react-redux": "^7.1.3",
     "react-scroll-parallax": "^2.2.0",
+    "react-social-login-buttons": "^3.0.0",
     "rebass": "^4.0.7",
     "redux": "^4.0.4",
     "styled-components": "^4.4.1",

@@ -1,5 +1,5 @@
 export default function neuralnet(canvas) {
-  var w = (canvas.width = 4 * window.innerWidth / 5 ),
+  var w = (canvas.width = 3 * window.innerWidth / 5 ),
     h = (canvas.height = window.innerHeight),
     ctx = canvas.getContext('2d'),
     opts = {

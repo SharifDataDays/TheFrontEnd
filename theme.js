@@ -1,5 +1,6 @@
 export default {
   googleFonts: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap',
+  breakpoints: ['40em', '52em', '64em'],
   colors: {
     text: '#000',
     background: '#fff',
