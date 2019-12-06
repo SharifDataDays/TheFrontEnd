@@ -25,7 +25,7 @@ export default function PostPage() {
         date: 'November 18, 2018',
       }}
       content={mdx}
-      comments={1}
+      comments={2}
     />
   );
 }

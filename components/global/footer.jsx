@@ -19,7 +19,8 @@ function Footer(): Node {
       position="absolute"
       borderTop="1px solid"
       borderColor="#e2e2e2"
-      bg="background"
+      color="background"
+      bg="text"
     >
       <Flex px={5} py={4}>
         <Box width={1 / 3}>test</Box>
