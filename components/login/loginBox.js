@@ -3,6 +3,8 @@ import { Box, Button, Text, Flex } from 'rebass';
 import Link from '../loginSignup/link';
 import Input from '../loginSignup/input';
 import { GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
+import { LoginSignupButton } from '../loginSignup/button';
+
 export default class LoginBox extends Component {
   render() {
     return (
@@ -12,23 +14,14 @@ export default class LoginBox extends Component {
         <Link sx={{ marginY: 3 }} href=".">
           Forgot password?
         </Link>
-        <Button
-          sx={{
-            backgroundColor: '#95d1fc',
-            color: '#051838',
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            width: '48%',
-          }}
-        >
-          Login
-        </Button>
+        <LoginSignupButton text="Login" />
         <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
         <Flex flexDirection="row" width="100%" justifyContent="space-between">
           <GoogleLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
           <GithubLoginButton style={{ width: '48%', fontSize: '16px', outline: 'none' }} />
         </Flex>
-        <Text color="#051838" sx={{ marginY: 3, fontFamily: 'Arial' }}>
+        <hr style={{ display: 'block', width: '100%', marginTop: 10 }} />
+        <Text sx={{ marginY: 3, fontFamily: 'Arial' }}>
           Don't have an account?
           <Link sx={{ marginLeft: 2 }} href=".">
             Click here
