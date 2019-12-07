@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Wrapper from './Wrapper';
 
 class Logo extends Component {
   constructor(props) {
@@ -32,15 +32,12 @@ class Logo extends Component {
           padding: '20px',
           filter: this.state.logo_filter,
         }}
-        
         onMouseEnter={this.change_to_color}
         onMouseLeave={this.change_to_gray}
       />
     );
   }
 }
-
-
 
 export default class Sponsers extends Component {
   constructor(props) {
@@ -78,22 +75,11 @@ export default class Sponsers extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          backgroundColor: this.state.backgroundColor,
-          padding: '20px',
-          paddingTop: '40px',
-          paddingBottom: '40px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+
+        <Wrapper bg={this.state.backgroundColor} p={20} pt={40} pb={40}>
         {this.make_layers(this.state.logos)}
-        
-      </div>
+        </Wrapper>
+
     );
   }
 }

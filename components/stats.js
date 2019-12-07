@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import anime from 'animejs';
 import { Box } from 'rebass';
+import 'intersection-observer';
+import handleViewport from 'react-in-viewport';
+import Wrapper from "./Wrapper";
 
 const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -12,22 +14,23 @@ class Stats extends React.Component {
     this.state = {
       participants: this.props.participants,
       num: this.props.participants,
-      constant: true,
+      constant: false,
     };
   }
 
-  // animation() {
-  //   anime({
-  //     targets: document.getElementsByClassName('stats')[0],
-  //     value: [0, this.state.participants],
-  //     round: 1,
-  //     easing: 'easeInOutExpo',
-  //     update: function() {
-  //       document.getElementsByClassName('stats')[0].innerHTML = ':\\';
-  //     },
-  //   });
-  // }
+  componentDidMount(){
+      this.setState({
+        constant: true,
+      });
+    
+  }
 
+  componentWillUnmount(){
+    this.setState({
+      constant: false,
+    });
+  
+  }
   counter = async () => {
     if (this.state.constant === true) {
       this.setState({
@@ -36,49 +39,46 @@ class Stats extends React.Component {
       });
 
       for (let i = 0; i <= this.state.participants; i++) {
-        await sleep(50);
+        await sleep(30);
         console.log(i);
         this.setState({
           num: i,
         });
       }
     }
-    // if (this.state.num === this.state.participants) {
-    //   this.setState({
-    //     constant: true,
-    //   });
-    // }
   };
 
-  // componentDidMount() {
-  //   // this.animation();
-  // }
+  counter_end = () => {
+    if (this.state.num === this.state.participants) {
+      this.setState({
+        constant: true,
+      });
+    }
+  };
 
   render() {
-    return (
-      <div
-        onMouseEnter={this.counter}
-        style={{
-          padding: '40px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <p
-          className="stats"
-          style={{
-            color: 'white',
-            fontFamily: 'Arial, sans-serif',
-            fontSize: '48px',
-          }}
+    const A = (props) => {
+      const { inViewport, forwardedRef } = props;
+      return (
+        <Wrapper
+          className="viewport-block"
+          ref={forwardedRef}
         >
-          {this.state.num}
-        </p>
-      </div>
-    );
+          <p
+            className="stats"
+            style={{
+              color: 'white',
+              fontFamily: 'Arial, sans-serif',
+              fontSize: '48px',
+            }}
+          >
+            {this.state.num}
+          </p>
+        </Wrapper>
+      );
+    };
+    const ViewportBlock = handleViewport(A);
+    return <ViewportBlock onEnterViewport={this.counter} onLeaveViewport={this.counter_end} />;
   }
 }
 
