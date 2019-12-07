@@ -9,6 +9,7 @@ export const breakpoints = {
 export default {
   breakpoints: _.map(_.values(breakpoints), (value) => `${value}px`),
   googleFonts: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap',
+  breakpoints: ['40em', '52em', '64em'],
   colors: {
     text: '#000',
     background: '#fff',
@@ -43,7 +44,7 @@ export default {
   },
   shadows: [
     // source: https://medium.com/@Florian/freebie-google-material-design-shadow-helper-2a0501295a2d
-    '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+    '0 1px 4px rgba(0,0,0,.04), 0 1px 4px rgba(0,0,0,.04)',
     '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
