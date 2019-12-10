@@ -1,8 +1,10 @@
 // @flow
+import 'semantic-ui-css/semantic.min.css';
 import App from 'next/app';
 import React from 'react';
 import type { Node } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Container } from 'semantic-ui-react';
 import theme from '~/theme';
 import GlobalStyle from '~/components/global/globalStyles';
 import Navbar from '~/components/global/navbar';
@@ -12,7 +14,7 @@ function Layout({ children }: { children: Node }): Node {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-      {children}
+      <Container fluid>{children}</Container>
       <Footer />
     </ThemeProvider>
   );

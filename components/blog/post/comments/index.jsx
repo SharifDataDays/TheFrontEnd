@@ -7,8 +7,8 @@ import { shadow, typography } from 'styled-system';
 import { Box } from 'rebass/styled-components';
 import TextareaAutosize from 'react-autosize-textarea';
 import { ClipLoader } from 'react-spinners';
+import { Button } from 'semantic-ui-react';
 import Comment from './comment';
-import { FilledButton } from '~/components/global/buttons';
 
 const ShadowedBox = styled(Box)`
   ${shadow};
@@ -83,7 +83,7 @@ class Comments extends Component {
               return <Comment comment={comment} />;
             })}
             <Box onClick={this.loadComments}>
-              {loaded < count ? <FilledButton text="Load Comments" /> : <></>}
+              {loaded < count ? <Button primary>Load Comments</Button> : <></>}
             </Box>
           </>
         )}

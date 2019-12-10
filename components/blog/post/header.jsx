@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import { Heading } from 'rebass/styled-components';
+import { Divider, Header as Heading } from 'semantic-ui-react';
 
 type PropsType = {
   title: string,
@@ -22,17 +22,10 @@ function Header({ title, desc, date, rtl }: PropsType = DefaultProps): Node {
 
   return (
     <>
-      <Heading fontSize={[4, 5, 6]} color="gray" mb={[3, 4, 5]} textAlign={direction}>
-        {desc}
-      </Heading>
-      <Heading fontSize={[6, 7, 8]} fontWeight="bold" mb={[2, 2, 3]} textAlign={direction}>
-        {title}
-      </Heading>
-      <hr size={2} />
-      <Heading fontSize={[1, 2, 3]} color="gray" textAlign={direction}>
-        {date}
-      </Heading>
-      <hr size={2} />
+      <Heading as="h2">{desc}</Heading>
+      <Heading as="h1">{title}</Heading>
+      <Heading as="h4">{date}</Heading>
+      <Divider />
     </>
   );
 }
