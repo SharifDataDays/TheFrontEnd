@@ -3,8 +3,6 @@ export const changeContext = (context) => (dispatch) => {
         type: 'SELECT_TIMELINE',
         context
     })
-<<<<<<< HEAD
-=======
 }
 
 export const changeTrophySelection = (place) => (dispatch) => {   
@@ -13,5 +11,4 @@ export const changeTrophySelection = (place) => (dispatch) => {
         type: 'TROPHY_STARTED',
         place
     })
->>>>>>> origin/timeline
 }

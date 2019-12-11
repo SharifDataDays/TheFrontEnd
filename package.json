@@ -17,11 +17,8 @@
     "@mdx-js/loader": "^1.5.1",
     "@mdx-js/runtime": "^1.5.1",
     "@next/mdx": "^9.1.4",
-<<<<<<< HEAD
     "@rebass/preset": "^4.0.5",
     "@styled-system/css": "^5.1.4",
-=======
->>>>>>> origin/timeline
     "@types/rc-progress": "^2.4.3",
     "@zeit/next-css": "^1.0.1",
     "animejs": "^3.1.0",
@@ -40,7 +37,6 @@
     "react": "16.12.0",
     "react-animate-on-scroll": "^2.1.5",
     "react-anime": "^2.2.0",
-<<<<<<< HEAD
     "react-autosize-textarea": "^7.0.0",
     "react-circle": "^1.1.1",
     "react-dom": "16.12.0",
@@ -49,11 +45,6 @@
     "react-line": "^1.0.2",
     "react-media": "^1.10.0",
     "react-motion": "^0.5.2",
-=======
-    "react-circle": "^1.1.1",
-    "react-dom": "16.12.0",
-    "react-line": "^1.0.2",
->>>>>>> origin/timeline
     "react-redux": "^7.1.3",
     "react-responsive": "^8.0.1",
     "react-scroll-parallax": "^2.2.0",
@@ -64,10 +55,7 @@
     "rebass": "^4.0.7",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-<<<<<<< HEAD
     "semantic-ui-react": "^0.88.2",
-=======
->>>>>>> origin/timeline
     "styled-components": "^4.4.1",
     "styled-system": "^5.1.2"
   },
