@@ -87,24 +87,30 @@ import Trophy from '../components/Trophy';
 //     `}</style>
 //   </div>
 // )
-const index = () => {
-  return (
-    <Provider store={store}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          backgroundColor: 'black',
-          alignItems: 'center',
-          marginTop: 2000,
-        }}
-      >
-        <Trophy place={2} />
-        <Trophy place={1} />
-        <Trophy place={3} />
-      </div>
-    </Provider>
-  );
-};
+class index extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start ',
+            backgroundColor: 'black',
+            alignItems: 'center',
+            marginTop: 200
+          }}
+        >
+          <Trophy place={2} />
+          <Trophy place={1} />
+          <Trophy place={3} />
+        </div>
+      </Provider>
+    );
+  }
+}
 export default index;

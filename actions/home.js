@@ -4,3 +4,11 @@ export const changeContext = (context) => (dispatch) => {
         context
     })
 }
+
+export const changeTrophySelection = (place) => (dispatch) => {   
+     
+    dispatch({
+        type: 'TROPHY_STARTED',
+        place
+    })
+}
