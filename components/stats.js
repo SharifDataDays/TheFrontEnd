@@ -67,12 +67,15 @@ class Stats extends React.Component {
               alignItems: 'center',
               justifyContent: 'center',
               color: 'white',
+              padding: '30px'
             }}
           >
             <p
               className="stats"
               style={{
                 fontSize: '48px',
+                margin: '0',
+              padding: '0'
               }}
             >
               {this.state.num}
@@ -81,6 +84,8 @@ class Stats extends React.Component {
               className="stats"
               style={{
                 fontSize: '24px',
+                margin: '0',
+              padding: '0'
               }}
             >
               شرکت‌کننده
