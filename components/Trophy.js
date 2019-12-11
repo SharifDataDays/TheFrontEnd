@@ -119,5 +119,10 @@ class Trophy extends React.Component {
   
 }
 
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
 export default connect((state) => {}, { changeTrophySelection })(Trophy);
 

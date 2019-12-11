@@ -45,7 +45,7 @@ export default class Parall extends Component {
                     position: 'relative',
                     backgroundColor: this.props.backgroundColor,
                     marginTop: '-10px',
-                    height: '500px',
+                    height: '4000px',
                   }}
                 >
                   {this.props.children}
