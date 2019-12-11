@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Box } from 'rebass';
 import 'intersection-observer';
 import handleViewport from 'react-in-viewport';
-import Wrapper from "./Wrapper";
+import Wrapper from './Wrapper';
+import { Segment, Statistic } from 'semantic-ui-react';
 
 const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -18,18 +18,16 @@ class Stats extends React.Component {
     };
   }
 
-  componentDidMount(){
-      this.setState({
-        constant: true,
-      });
-    
+  componentDidMount() {
+    this.setState({
+      constant: true,
+    });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.setState({
       constant: false,
     });
-  
   }
   counter = async () => {
     if (this.state.constant === true) {
@@ -60,20 +58,34 @@ class Stats extends React.Component {
     const A = (props) => {
       const { inViewport, forwardedRef } = props;
       return (
-        <Wrapper
-          className="viewport-block"
-          ref={forwardedRef}
-        >
-          <p
-            className="stats"
+        <Wrapper className="viewport-block" ref={forwardedRef}>
+          <div
             style={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontFamily: 'IRANSansWeb',
+              alignItems: 'center',
+              justifyContent: 'center',
               color: 'white',
-              fontFamily: 'Arial, sans-serif',
-              fontSize: '48px',
             }}
           >
-            {this.state.num}
-          </p>
+            <p
+              className="stats"
+              style={{
+                fontSize: '48px',
+              }}
+            >
+              {this.state.num}
+            </p>
+            <p
+              className="stats"
+              style={{
+                fontSize: '24px',
+              }}
+            >
+              شرکت‌کننده
+            </p>
+          </div>
         </Wrapper>
       );
     };

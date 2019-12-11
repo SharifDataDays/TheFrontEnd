@@ -1,3 +1,2 @@
-const withMDX = require('@next/mdx')();
-
-module.exports = withMDX();
+const withCSS = require('@zeit/next-css');
+module.exports = withCSS();
