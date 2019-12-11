@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Text } from 'rebass';
 import { Button as Rebassbutton, text } from 'rebass/styled-components';
 import css from '@styled-system/css';
-import { Switch } from '@rebass/forms';
+import { Switch } from 'rebass';
 
 export const Button = styled(Rebassbutton)(
   css({

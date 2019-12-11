@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { border } from 'styled-system';
 import { Button as RebassButton } from 'rebass/styled-components';
-import { Input } from '@rebass/forms';
-import {Label} from '@rebass/forms'
+import { Input } from 'rebass';
+import {Label} from 'rebass'
 import css from '@styled-system/css'
 
 export const Button = styled(RebassButton)(
