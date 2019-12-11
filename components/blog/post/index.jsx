@@ -18,8 +18,8 @@ function Post({ image, header, content, comments }: PropsType): Node {
   const { title, desc, date } = header;
   return (
     <>
-      <HeaderImage url={image} />
       <Body>
+        <HeaderImage url={image} />
         <Header title={title} desc={desc} date={date} />
         <Content content={content} />
       </Body>
