@@ -4,8 +4,8 @@ import type { Node } from 'react';
 import Body from './body';
 import HeaderImage from './headerImage';
 import Header from './header';
-import Content from './content';
 import Comments from './comments';
+import Content from '~/components/global/mdx';
 
 type PropsType = {
   image: string,
