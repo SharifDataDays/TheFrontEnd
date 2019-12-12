@@ -13,7 +13,7 @@
     "flow": "./node_modules/.bin/flow",
     "flow-typed": "./node_modules/.bin/flow-typed",
     "semantic:build": "cd .semantic && gulp build-css build-assets",
-    "semantic:watch": "cd .semantic && npm run semantic:build && gulp watch"
+    "semantic:watch": "cd .semantic && yarn run semantic:build && gulp watch"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.5.1",

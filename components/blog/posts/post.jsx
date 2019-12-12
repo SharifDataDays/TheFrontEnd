@@ -3,7 +3,7 @@ import { Grid, Card } from 'semantic-ui-react';
 
 function Post() {
   return (
-    <Grid.Column centered>
+    <Grid.Column>
       <Card
         style={{ width: '100%' }}
         image="https://source.unsplash.com/random/350x350"
