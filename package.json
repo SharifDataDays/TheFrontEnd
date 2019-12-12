@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "test": "./node_modules/.bin/jest",
     "test:watch": "yarn run test -- --watch",
     "lint": "./node_modules/.bin/eslint --ignore-pattern '/flow-typed/' . --fix;exit 0",

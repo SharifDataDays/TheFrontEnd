@@ -3,8 +3,8 @@ import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Container } from 'semantic-ui-react';
-import { appWithTranslation } from '~/i18n';
 import theme from '~/theme';
+import { appWithTranslation } from '~/i18n';
 import GlobalStyle from '~/components/global/globalStyles';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
@@ -31,4 +31,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
