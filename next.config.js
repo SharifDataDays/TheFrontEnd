@@ -3,7 +3,6 @@ const withCSS = require('@zeit/next-css');
 
 module.exports = withMDX(
   withCSS({
-    target: 'serverless',
     webpack(config) {
       config.module.rules.push({
         test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/,

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { Component } from 'react';
 import { Button, Dropdown, Menu as M } from 'semantic-ui-react';
-import { withTranslation } from '~/i18n';
 
 const Menu = styled(M)`
   margin: 0 !important;
@@ -11,15 +10,7 @@ const Menu = styled(M)`
 `;
 
 class Navbar extends Component {
-  static async getInitialProps() {
-    console.log(1);
-    return {
-      namespacesRequired: ['navbar'],
-    };
-  }
-
   constructor(props) {
-    console.log(2);
     super(props);
     this.state = { activeItem: 'LOGO' };
     this.handleItemClick = this.handleItemClick.bind(this);
@@ -33,20 +24,15 @@ class Navbar extends Component {
   }
 
   render() {
-    const { t } = this.props;
     const { activeItem } = this.state;
 
     return (
       <Menu size="large" pointing secondary>
         <Menu.Item name="LOGO" active={activeItem === 'LOGO'} onClick={this.handleItemClick} />
+        <Menu.Item name="blog" active={activeItem === 'blog'} onClick={this.handleItemClick} />
         <Menu.Item
-          name={t('blog')}
-          active={activeItem === t('blog')}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name={t('resources')}
-          active={activeItem === t('resources')}
+          name="resources"
+          active={activeItem === 'resources'}
           onClick={this.handleItemClick}
         />
 
@@ -68,4 +54,4 @@ class Navbar extends Component {
   }
 }
 
-export default withTranslation('navbar')(Navbar);
+export default Navbar;

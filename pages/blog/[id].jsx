@@ -1,5 +1,4 @@
 import React from 'react';
-import { Flex, Box } from 'rebass/styled-components';
 import { useRouter } from 'next/router';
 import Post from '~/components/blog/post';
 
@@ -29,9 +28,5 @@ function PostPage() {
     />
   );
 }
-
-PostPage.getInitialProps = async () => ({
-  namespacesRequired: ['navbar'],
-});
 
 export default PostPage;
