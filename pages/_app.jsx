@@ -1,4 +1,5 @@
 // @flow
+import "semantic-ui-css/semantic.min.css"
 import App from 'next/app';
 import React from 'react';
 import type { Node } from 'react';

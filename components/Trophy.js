@@ -22,7 +22,7 @@ class Trophy extends React.Component {
   }
 
   scrollListener = () => {
-    if (Math.abs(this.myref.current.getBoundingClientRect().y) < 130) {
+    if (Math.abs(this.myref.current.getBoundingClientRect().y) < 230) {
       this.props.changeTrophySelection(this.props.place);
       
       window.removeEventListener('scroll', this.scrollListener);
@@ -104,7 +104,13 @@ class Trophy extends React.Component {
     return (
       <div
         ref={this.myref}
-        style={{ display: 'flex', flexDirection: 'row', backgroundColor: 'black', height: 1000 }}
+        style={{ 
+          display: 'flex', 
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignContent: 'center',
+          height: 1000 , 
+          margin: "30px"}}
       >
         {this.cupHandle('left')}
         <div style={{ display: 'flex', flexDirection: 'column' }}>

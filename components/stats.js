@@ -59,7 +59,13 @@ class Stats extends React.Component {
       const { inViewport, forwardedRef } = props;
       return (
         <Wrapper className="viewport-block" ref={forwardedRef}>
-          <div
+          <Segment inverted>
+    <Statistic inverted>
+      <Statistic.Value>54</Statistic.Value>
+      <Statistic.Label>inverted</Statistic.Label>
+    </Statistic>
+    </Segment>
+          {/* <div
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -90,7 +96,7 @@ class Stats extends React.Component {
             >
               شرکت‌کننده
             </p>
-          </div>
+          </div> */}
         </Wrapper>
       );
     };
