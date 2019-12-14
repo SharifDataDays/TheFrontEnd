@@ -39,7 +39,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: 1000,
+      width: 1024,
     };
   }
 
@@ -62,11 +62,9 @@ export default class Home extends Component {
   render() {
     const { width } = this.state;
     const isMobile = width <= 768;
-    let header = <img />;
+    let header = <img src={web2} style={{ position: 'relative', width: '100%' }} />;
     if (isMobile) {
       header = <img src={mobile1} style={{ position: 'relative', width: '100%' }} />;
-    } else {
-      header = <img src={web2} style={{ position: 'relative', width: '100%' }} />;
     }
     return (
       <Provider store={store}>
@@ -88,20 +86,15 @@ export default class Home extends Component {
 
             <Timeline />
 
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignContent: 'center',
-              }}
-            >
-              <Trophy place={2} />
-              <Trophy place={1} />
-              <Trophy place={3} />
-            </div>
+              <Wrapper flexDirection={isMobile ? 'column' : 'row'} margin= {[0, 1]}>
+                <Trophy place={2} />
+                <Trophy place={1} />
+                <Trophy place={3} />
+              
+              </Wrapper>
             <Sponsers logos={logos} />
           </div>
+
           {/* </Parall> */}
         </div>
       </Provider>

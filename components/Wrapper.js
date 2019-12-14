@@ -17,13 +17,29 @@ import {
   typography,
 } from 'styled-system';
 
-const Section = styled('section')(color, space, layout, {
+const Section = styled('section')(
+  color,
+  space,
+  layout,
+  flex,
+  flexBasis,
+  flexDirection,
+  flexWrap,
+  justifyContent,
+  alignItems,
+  alignSelf,
+  alignContent,
+  shadow,
+  typography,
+);
+
+Section.defaultProps = {
+  padding: '30px',
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-});
-Section.defaultProps = { padding: '30px' };
+};
 
 export default Section;

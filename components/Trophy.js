@@ -5,6 +5,8 @@ import squareStatic from '../constants/trophy';
 import { changeTrophySelection } from '../actions/home';
 import { connect } from 'react-redux';
 let output = { marginTop: 0 };
+import handleViewport from 'react-in-viewport';
+
 
 class Trophy extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class Trophy extends React.Component {
   }
 
   scrollListener = () => {
-    if (Math.abs(this.myref.current.getBoundingClientRect().y) < 230) {
+    if (Math.abs(this.myref.current.getBoundingClientRect().y) < 700) {
       this.props.changeTrophySelection(this.props.place);
       
       window.removeEventListener('scroll', this.scrollListener);
@@ -109,8 +111,10 @@ class Trophy extends React.Component {
           flexDirection: 'row',
           justifyContent: 'center',
           alignContent: 'center',
-          height: 1000 , 
-          margin: "30px"}}
+          // height: 500 , 
+          padding: '50px',
+          // margin: "30px"
+        }}
       >
         {this.cupHandle('left')}
         <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SingleTimeline from '../components/SingleTimeline';
 import { connect } from 'react-redux';
@@ -60,7 +61,7 @@ const styles = {
     alignSelf: 'center',
     height: 100,
     padding: 10,
-    backgroundColor: 'yellow',
+    backgroundColor: 'rgba(245,245,245, 0.9)',
     borderRadius: 20,
   },
   innerContext: {
