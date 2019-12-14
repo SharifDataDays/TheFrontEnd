@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Heading} from 'rebass';
+import { Heading } from 'rebass';
+import LoginSignupContainer from '../loginSignup/container';
 import SignupBox from './signupBox';
-import LoginSignupContainer from '../global/loginSignupContainer';
 
 export default class LoginContainer extends Component {
   render() {

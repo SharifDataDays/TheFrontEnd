@@ -1,24 +1,10 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import styled from 'styled-components';
-import { background } from 'styled-system';
-import { Box } from 'rebass/styled-components';
-
-const BackgroundBox = styled(Box)`
-  ${background};
-`;
+import { Image } from 'semantic-ui-react';
 
 function HeaderImage({ url }: { url: string }): Node {
-  return (
-    <BackgroundBox
-      py={[6, 6, 7]}
-      backgroundImage={`url('${url}')`}
-      backgroundSize="cover"
-      // backgroundRepeat="no-repeat"
-      backgroundPosition="center"
-    />
-  );
+  return <Image src={url} fluid />;
 }
 
 export default HeaderImage;

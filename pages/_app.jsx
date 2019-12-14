@@ -1,32 +1,17 @@
-// @flow
-// import "semantic-ui-css/semantic.min.css"
 import App from 'next/app';
 import React from 'react';
-import type { Node } from 'react';
-import { ThemeProvider } from 'styled-components';
-import theme from '~/theme';
-import GlobalStyle from '~/components/global/globalStyles';
-import Navbar from '~/components/global/navbar';
-import Footer from '~/components/global/footer';
+import RTLLayout from '~/components/global/rtlLayout';
 
-function Layout({ children }: { children: Node }): Node {
-  return (
-    <ThemeProvider theme={theme}>
-      <Navbar />
-      {children}
-      <Footer />
-    </ThemeProvider>
-  );
-}
-
-export default class MyApp extends App {
-  render(): Node {
+class MyApp extends App {
+  render() {
     const { Component, pageProps } = this.props;
     return (
-      <Layout>
-        <GlobalStyle />
+      <RTLLayout>
         <Component {...pageProps} />
-      </Layout>
+      </RTLLayout>
     );
   }
 }
+
+// export default appWithTranslation(MyApp);
+export default MyApp;
