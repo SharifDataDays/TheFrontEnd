@@ -1,7 +1,13 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import { Flex, Box } from 'rebass/styled-components';
+import styled from 'styled-components';
+import { color } from 'styled-system';
+import { Grid as G } from 'semantic-ui-react';
+
+const Grid = styled(G)`
+  ${color};
+`;
 
 type PropsType = {
   children: Node,
@@ -14,11 +20,11 @@ const DefaultProps = {
 
 function Body({ children, bg }: PropsType = DefaultProps): Node {
   return (
-    <Flex justifyContent="center" bg={bg} p={[3, 4, 5]}>
-      <Box width={[1, 2 / 3, 7 / 12]} color="text">
+    <Grid bg={bg} centered>
+      <Grid.Column computer={8} tablet={10} mobile={16}>
         {children}
-      </Box>
-    </Flex>
+      </Grid.Column>
+    </Grid>
   );
 }
 

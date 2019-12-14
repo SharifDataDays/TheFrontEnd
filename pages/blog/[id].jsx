@@ -1,5 +1,4 @@
 import React from 'react';
-import { Flex, Box } from 'rebass/styled-components';
 import { useRouter } from 'next/router';
 import Post from '~/components/blog/post';
 
@@ -12,7 +11,7 @@ Neque gravida in fermentum et sollicitudin. Nam libero justo laoreet sit amet. D
 A iaculis at erat pellentesque. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Duis ultricies lacus sed turpis tincidunt id aliquet. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Bibendum at varius vel pharetra vel. Augue lacus viverra vitae congue eu consequat ac felis donec. At quis risus sed vulputate odio ut enim. Auctor elit sed vulputate mi sit amet mauris commodo. Nunc sed blandit libero volutpat sed. Morbi tincidunt ornare massa eget egestas purus viverra.
 `;
 
-export default function PostPage() {
+function PostPage() {
   const router = useRouter();
   const direction = 'left';
 
@@ -29,3 +28,5 @@ export default function PostPage() {
     />
   );
 }
+
+export default PostPage;
