@@ -11,7 +11,11 @@ function SiteNavbar(): Node {
   return (
     <ThemeProvider theme={theme}>
       <Navbar
-        header={<h1>LOGO</h1>}
+        header={
+          <NavLink href="/">
+            <h1>LOGO</h1>
+          </NavLink>
+        }
         start={
           <>
             <NavLink href="/blog">

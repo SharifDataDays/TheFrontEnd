@@ -21,7 +21,7 @@ export default class Parall extends Component {
     const layers_comp = layers.map((layer, index) => {
       return (
         <Parallax.Layer offset={0} speed={this.sp * index} key={'l' + index}>
-          <img src={layer} style={bg_style}/>
+          <img src={layer} style={bg_style} />
         </Parallax.Layer>
       );
     });
@@ -40,16 +40,18 @@ export default class Parall extends Component {
                   src={this.props.layers[this.layers_count - 1]}
                   style={{ position: 'relative', width: '100%' }}
                 />
-                <div
-                  style={{
-                    position: 'relative',
-                    backgroundColor: this.props.backgroundColor,
-                    marginTop: '-10px',
-                    height: '4000px',
-                  }}
-                >
-                  {this.props.children}
-                </div>
+                  <div
+                    style={{
+                      position: 'relative',
+                      backgroundColor: this.props.backgroundColor,
+                      marginTop: '-10px',
+                      height: '4000px',
+                    }}
+                  >
+                    {this.props.children}
+                  </div>
+                
+
               </div>
             </Parallax.Layer>
           </div>
