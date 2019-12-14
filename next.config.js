@@ -9,7 +9,7 @@ module.exports = withMDX(
         use: {
           loader: 'url-loader',
           options: {
-            limit: 8192,
+            limit: 100000,
             publicPath: '/_next/static/',
             outputPath: 'static/',
             name: '[name].[ext]',
@@ -20,3 +20,23 @@ module.exports = withMDX(
     },
   }),
 );
+
+/*
+{
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+          publicPath: '/_next/static/',
+          outputPath: 'static/',
+          name: '[name].[ext]',
+        },
+      },
+    });
+    return config;
+  },
+}
+*/

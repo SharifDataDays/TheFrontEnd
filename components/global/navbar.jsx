@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import React, { Component } from 'react';
-import { Button, Dropdown, Menu as M } from 'semantic-ui-react';
-import { i18n, withTranslation } from '~/i18n';
+import { Button, Menu as M, Image } from 'semantic-ui-react';
+// import { withTranslation } from '~/i18n';
 
 const Menu = styled(M)`
   margin: 0 !important;
@@ -25,37 +26,32 @@ class Navbar extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    // const { t } = this.props;
     const { activeItem } = this.state;
-
-    i18n.changeLanguage('fa');
 
     return (
       <Menu size="large" pointing secondary>
-        <Menu.Item name="LOGO" active={activeItem === 'LOGO'} onClick={this.handleItemClick} />
-        <Menu.Item name={t('blog')} active={activeItem === 'blog'} onClick={this.handleItemClick} />
-        <Menu.Item
-          name={t('resources')}
-          active={activeItem === 'resources'}
-          onClick={this.handleItemClick}
-        />
-
         <Menu.Menu position="right">
-          <Dropdown item text="Language">
-            <Dropdown.Menu>
-              <Dropdown.Item>English</Dropdown.Item>
-              <Dropdown.Item>Russian</Dropdown.Item>
-              <Dropdown.Item>Spanish</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
           <Menu.Item>
-            <Button primary>Sign Up</Button>
+            <Button primary>ورود</Button>
           </Menu.Item>
         </Menu.Menu>
+
+        <Menu.Item active={activeItem === 'Resources'} onClick={this.handleItemClick}>
+          <Link href="/resources">منابع</Link>
+        </Menu.Item>
+        <Menu.Item active={activeItem === 'Blog'} onClick={this.handleItemClick}>
+          <Link href="/blog">بلاگ</Link>
+        </Menu.Item>
+        <Menu.Header style={{ marginRight: '1rem' }}>
+          <Link href="/">
+            <Image size="mini" src="/logo.png" />
+          </Link>
+        </Menu.Header>
       </Menu>
     );
   }
 }
 
-export default withTranslation('navbar')(Navbar);
+// export default withTranslation('navbar')(Navbar);
+export default Navbar;
