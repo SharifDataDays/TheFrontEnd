@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import { Input, Label } from '@rebass/forms'
+import { Input, Label } from 'rebass'
 import { Box, Link, Button, Text } from 'rebass';
 
 export default class SingupBox extends Component {

@@ -1,82 +1,103 @@
-import React from 'react';
-import Head from 'next/head';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Parall from '../components/parall';
+import Sponsers from '../components/sponsers';
+import Stats from '../components/stats';
+import { Provider } from 'react-redux';
+import store from '../store/store';
+import Trophy from '../../TheFrontEnd/components/Trophy';
+import Timeline from '../pages/timeline';
+import Wrapper from '../components/Wrapper';
 
-const Home = () => (
-  <>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const mobile1 = 'http://s6.picofile.com/file/8381771634/mobile1_new.jpg';
+const mobile2 = 'http://s6.picofile.com/file/8381771668/mobile2_new.jpg';
+const mobile3 = 'http://s7.picofile.com/file/8381771726/mobile3_new.jpg';
+const web1 = 'http://s7.picofile.com/file/8381771750/web1_new.jpg';
+const web2 = 'http://s7.picofile.com/file/8381771784/web2_new.jpg';
 
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+const layer5 = 'http://s6.picofile.com/file/8380137176/layer_01_1920_x_1080.png';
+const layer4 = 'http://s6.picofile.com/file/8380137200/layer_02_1920_x_1080.png';
+const layer3 = 'http://s6.picofile.com/file/8380137368/layer_05_1920_x_1080.png';
+const layer2 = 'http://s7.picofile.com/file/8380137468/layer_06_1920_x_1080.png';
+const layer1 = 'http://s6.picofile.com/file/8380137442/layer_07_1920_x_1080.png';
+// const layers = [layer1, layer2, layer3, layer4, layer5];
+const layers = [web2];
 
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a href="https://github.com/zeit/next.js/tree/master/examples" className="card">
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
-      </div>
-    </div>
+const logo1 = 'http://s6.picofile.com/file/8380759042/All_Logos39.png';
+const logo2 = 'http://s6.picofile.com/file/8380760484/Bazaar_logo_and_logotype.png';
+const logo3 = 'http://s7.picofile.com/file/8380759184/whicapp_%D8%A8%D9%84%D8%AF_logos_.png';
+const logo4 = 'http://s7.picofile.com/file/8380759168/Tap30.png';
+const logo5 = 'http://s6.picofile.com/file/8380759092/shariflogo.png';
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </>
-);
+const logos = [logo1, logo2, logo3, logo4, logo5];
 
-export default Home;
+const backgroundColor = '#333333';
+const numberOfParticipants = 117;
+const bg = 'white';
+
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: 1024,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+    document.body.style.margin = 0;
+    document.body.style.backgroundColor = backgroundColor;
+  }
+  componentWillUnmount() {
+    document.body.style.margin = 0;
+    document.body.style.backgroundColor = bg;
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+    console.log(window.innerWidth);
+  };
+
+  render() {
+    const { width } = this.state;
+    const isMobile = width <= 768;
+    let header = <img src={web2} style={{ position: 'relative', width: '100%' }} />;
+    if (isMobile) {
+      header = <img src={mobile1} style={{ position: 'relative', width: '100%' }} />;
+    }
+    return (
+      <Provider store={store}>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }}>
+            {/* <Parall layers={layers} backgroundColor={backgroundColor} /> */}
+          </div>
+          {header}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignContent: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            <Stats participants={numberOfParticipants} />
+
+            <Timeline />
+
+              <Wrapper flexDirection={isMobile ? 'column' : 'row'} margin= {[0, 1]}>
+                <Trophy place={2} />
+                <Trophy place={1} />
+                <Trophy place={3} />
+              
+              </Wrapper>
+            <Sponsers logos={logos} />
+          </div>
+
+          {/* </Parall> */}
+        </div>
+      </Provider>
+    );
+  }
+}

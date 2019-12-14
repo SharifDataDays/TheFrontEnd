@@ -9,7 +9,7 @@ module.exports = withMDX(
         use: {
           loader: 'url-loader',
           options: {
-            limit: 8192,
+            limit: 100000,
             publicPath: '/_next/static/',
             outputPath: 'static/',
             name: '[name].[ext]',
