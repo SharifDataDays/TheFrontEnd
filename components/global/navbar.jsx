@@ -28,8 +28,6 @@ class Navbar extends Component {
     const { t } = this.props;
     const { activeItem } = this.state;
 
-    i18n.changeLanguage('fa');
-
     return (
       <Menu size="large" pointing secondary>
         <Menu.Item name="LOGO" active={activeItem === 'LOGO'} onClick={this.handleItemClick} />

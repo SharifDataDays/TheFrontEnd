@@ -1,4 +1,4 @@
-import '~/.semantic/dist/semantic.min.css';
+import 'semantic-ui-css/semantic.min.css'
 import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
