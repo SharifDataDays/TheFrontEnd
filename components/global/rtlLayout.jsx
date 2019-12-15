@@ -1,4 +1,4 @@
-import '~/.semantic/dist/semantic.rtl.min.css';
+import 'semantic-ui-css/semantic.min.css';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Container } from 'semantic-ui-react';

@@ -1,4 +1,4 @@
-import '~/.semantic/dist/semantic.rtl.min.css';
+import 'semantic-ui-css/semantic.min.css'
 import App from 'next/app';
 import React from 'react';
 import RTLLayout from '~/components/global/rtlLayout';

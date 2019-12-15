@@ -10,7 +10,7 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-import TestSideBar from '~/components/resources/largeSideBar';
+import TestSideBar from '~/components/resources/smallSideBar';
 
 const HorizontalSidebar = () => (
   // <Sidebar as={Segment} animation="push" direction="left" visible>
