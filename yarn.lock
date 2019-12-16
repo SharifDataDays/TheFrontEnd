@@ -1168,6 +1168,37 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.4.tgz#622a72bebd1e3f48d921563b4b60a762295a81fc"
   integrity sha512-6PYY5DVdAY1ifaQW6XYTnOMihmBVT27elqSjEoodchsGjzYlEsTQMcEhSud99kVawatyTZRTiVkJ/c6lwbQ7nA==
 
+"@fortawesome/fontawesome-common-types@^0.2.26":
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.26.tgz#6e0b13a752676036f8196f8a1500d53a27b4adc1"
+  integrity sha512-CcM/fIFwZlRdiWG/25xE/wHbtyUuCtqoCTrr6BsWw7hH072fR++n4L56KPydAr3ANgMJMjT8v83ZFIsDc7kE+A==
+
+"@fortawesome/fontawesome-free@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.12.0.tgz#8ceb9f09edfb85ea18a6c7bf098f6f5dd5ffd62b"
+  integrity sha512-vKDJUuE2GAdBERaQWmmtsciAMzjwNrROXA5KTGSZvayAsmuTGjam5z6QNqNPCwDfVljLWuov1nEC3mEQf/n6fQ==
+
+"@fortawesome/fontawesome-svg-core@^1.2.26":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.26.tgz#671569271d6b532cdea5e3deb8ff16f8b7ac251d"
+  integrity sha512-3Dfd/v2IztP1TxKOxZiB5+4kaOZK9mNy0KU1vVK7nFlPWz3gzxrCWB+AloQhQUoJ8HhGqbzjliK89Vl7PExGbw==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.26"
+
+"@fortawesome/free-solid-svg-icons@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.12.0.tgz#8decac5844e60453cc0c7c51437d1461df053a35"
+  integrity sha512-CnpsWs6GhTs9ekNB3d8rcO5HYqRkXbYKf2YNiAlTWbj5eVlPqsd/XH1F9If8jkcR1aegryAbln/qYeKVZzpM0g==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.26"
+
+"@fortawesome/react-fontawesome@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.8.tgz#cb6d4dd3aeec45b6ff2d48c812317a6627618511"
+  integrity sha512-I5h9YQg/ePA3Br9ISS18fcwOYmzQYDSM1ftH03/8nHkiqIVHtUyQBw482+60dnzvlr82gHt3mGm+nDUp159FCw==
+  dependencies:
+    prop-types "^15.5.10"
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -10172,7 +10203,14 @@ react-syntax-highlighter@^12.2.1:
     lowlight "1.12.1"
     prismjs "^1.8.4"
     refractor "^2.4.1"
-
+react-vertical-timeline-component@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-vertical-timeline-component/-/react-vertical-timeline-component-2.5.0.tgz#0b8e54b21c0ce9ffc2fa2ce3831ad7f4001d68a3"
+  integrity sha512-922SH2Rxiuis1KwpHGSiMbegzIbkICEQpfHAQ2LuDW+oqQRhEaC27Mh73f+Fez7iEFqGYvMUEPzwjqfmRpQw6Q==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
+    react-visibility-sensor "^5.1.1"
 react-visibility-sensor@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-visibility-sensor/-/react-visibility-sensor-5.1.1.tgz#5238380960d3a0b2be0b7faddff38541e337f5a9"
