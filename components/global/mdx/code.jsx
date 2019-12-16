@@ -1,23 +1,9 @@
 import React from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
-export default ({ children, className }) => {
-  console.log(className);
-  const language = className.replace(/language-/, '');
+function CodeBlock(props) {
+  console.log(props);
+  return <pre>fuck</pre>;
+}
 
-  return (
-    <Highlight {...defaultProps} code={children.trim()} language={language}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  );
-};
+export default CodeBlock;
