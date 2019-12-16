@@ -29,6 +29,7 @@
     "i18n": "^0.8.4",
     "immer": "^5.0.0",
     "intersection-observer": "^0.7.0",
+    "isomorphic-unfetch": "^3.0.0",
     "jest": "^24.9.0",
     "js-logger": "^1.6.0",
     "lodash": "^4.17.15",
