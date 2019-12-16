@@ -31,9 +31,16 @@ export const persianMonthOptions = [
   {key: '12', text: 'اسفند', value: 'اسفند'}
 ]
 
+function handleChange(e, {value}) {
+  e.persist();
+  console.log("*******: ", e.target.textContent);
+  
+}
+
 const SelectingDropDown = (props) => (
+  
   <Dropdown
-    placeholder={props.text} fluid selection options={props.options} 
+    placeholder={props.text} fluid selection options={props.options}
   />
 )
 
