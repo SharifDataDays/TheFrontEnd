@@ -4,6 +4,8 @@ import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/newTimeline';
+import Prize from '~/components/home/prize'
+
 const logo1 = '/images/sponsors/Yektanet.png';
 const logo2 = '/images/sponsors/Bazaar.png';
 const logo3 = '/images/sponsors/Balad.png';
@@ -30,9 +32,9 @@ function Home() {
     <>
       <Navbar transparent />
       <Header />
+      <Introduction header={intro.header} content={intro.content} />
       <Timeline items={items}/>
       <Sponsers logos={logos} />
-      <Introduction header={intro.header} content={intro.content} />
     </>
   );
 }

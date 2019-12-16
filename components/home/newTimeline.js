@@ -3,16 +3,17 @@ import './timeline/VerticalTimelineElement.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGem } from '@fortawesome/free-solid-svg-icons';
 import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
+import { Header } from 'semantic-ui-react';
 
 const constructTimeline = (items) => {
   return items.map((item, i) => {
     return (
       <VerticalTimelineElement
         key={i}
-        contentStyle={{ background: '	#1EBDC1', color: '#003a42' }}
-        contentArrowStyle={{ borderRight: '7px solid #1EBDC1' }}
+        contentStyle={{ background: '#1d93f7', color: 'white' }}
+        contentArrowStyle={{ borderRight: '7px solid white' }}
         date={item.date}
-        iconStyle={{ background: '#1EBDC1', color: '#003a42' }}
+        iconStyle={{ background: '#1d93f7', color: 'white' }}
         icon={<FontAwesomeIcon icon={faGem} style={{ fontSize: 20 }} />}
       >
         <div style={{ direction: 'rtl' }}>
@@ -29,11 +30,12 @@ const Timeline = (props) => {
     <div
       style={{
         width: '100%',
-        paddingTop: 50,
-        paddingBottom: 5,
-        backgroundColor: '#252525',
+        paddingTop: 20,
+        backgroundImage:
+              'linear-gradient(to top, #252525, #313640, #304a5c, #216172, #00797f)',
       }}
     >
+      <Header textAlign='center' as='h1'>{'زمان بندی'}</Header>
       <div style={{ width: '80%', margin: 'auto' }}>
         <VerticalTimeline >{constructTimeline(props.items)}</VerticalTimeline>
       </div>
