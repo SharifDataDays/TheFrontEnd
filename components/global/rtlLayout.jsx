@@ -11,7 +11,7 @@ function Layout({ children }) {
     <ThemeProvider theme={theme}>
       <Navbar />
       <Container fluid>{children}</Container>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }

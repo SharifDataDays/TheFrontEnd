@@ -57,6 +57,7 @@
     "rebass": "^4.0.7",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^4.4.1",
