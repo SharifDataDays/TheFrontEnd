@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import React, { Component } from 'react';
 import { Button, Menu as M, Image } from 'semantic-ui-react';
-// import { withTranslation } from '~/i18n';
 
 const Menu = styled(M)`
   margin: 0 !important;
@@ -26,11 +25,10 @@ class Navbar extends Component {
   }
 
   render() {
-    // const { t } = this.props;
     const { activeItem } = this.state;
 
     return (
-      <Menu size="large" pointing secondary>
+      <Menu size="huge" pointing secondary>
         <Menu.Menu position="right">
           <Menu.Item>
             <Button primary>ورود</Button>
