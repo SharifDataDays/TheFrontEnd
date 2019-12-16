@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rail, Ref, Sticky, Grid, Segment, Sidebar, List, Input, Header } from 'semantic-ui-react';
+import { Rail, Ref, Sticky, Grid, Menu } from 'semantic-ui-react';
 import LargeSideBar from './largeSideBar';
 import Post from '~/components/blog/post';
 
@@ -17,11 +17,11 @@ function filterHeaders(content) {
     headersH2 = headers2.map((x) => x.split(' ')[1]);
   }
 
-  return { h1: headersH1, h2: headersH2 };
+  return { h1: headersH1 };
 }
 
 const mdx = `
-# [React](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![CircleCI Status](https://circleci.com/gh/facebook/react.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/facebook/react) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
+# [React] &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![CircleCI Status](https://circleci.com/gh/facebook/react.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/facebook/react) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
 React is a JavaScript library for building user interfaces.
 
@@ -63,7 +63,6 @@ We have several examples [on the website](https://reactjs.org/). Here is the fir
 `;
 
 function PostPage() {
-  console.log(filterHeaders(mdx));
   return (
     <Post
       image="https://source.unsplash.com/random/1024x768?ai"
@@ -78,15 +77,25 @@ function PostPage() {
   );
 }
 
-const Resource = () => (
-  <Grid>
-    <Grid.Column style={{ width: '70%' }}>
-      <PostPage />
-    </Grid.Column>
-    <Grid.Column>
-      <LargeSideBar />
-    </Grid.Column>
-  </Grid>
-);
+function Resource() {
+  const allHeaders = filterHeaders(mdx);
+  const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
+  const headers = (
+    <Menu fluid vertical tabular style={{ borderRight: '0' }}>
+      {headers1}
+    </Menu>
+  );
+  return (
+    <Grid>
+      <Grid.Column style={{ width: '7%', zIndex: '10' }}>{headers}</Grid.Column>
+      <Grid.Column style={{ width: '63%' }}>
+        <PostPage />
+      </Grid.Column>
+      <Grid.Column>
+        <LargeSideBar />
+      </Grid.Column>
+    </Grid>
+  );
+}
 
 export default Resource;
