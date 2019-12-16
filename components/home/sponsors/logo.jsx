@@ -31,8 +31,7 @@ class Logo extends Component {
 
   render() {
     const { height, src } = this.props;
-    const { color } = this.state;
-
+    const { color } = this.state; 
     return (
       <Image
         src={src}
