@@ -1,9 +1,20 @@
+import _ from 'lodash';
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import styled from 'styled-components';
+import SH from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-function CodeBlock(props) {
-  console.log(props);
-  return <pre>fuck</pre>;
+const SyntaxHighlighter = styled(SH)`
+  text-align: left !important;
+`;
+
+function CodeBlock({ children, className }) {
+  const language = _.replace(className, /language-/, '');
+  return (
+    <SyntaxHighlighter language={language} style={dark}>
+      {children}
+    </SyntaxHighlighter>
+  );
 }
 
 export default CodeBlock;
