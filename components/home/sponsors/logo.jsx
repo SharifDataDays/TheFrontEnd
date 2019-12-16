@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Image as Im } from 'semantic-ui-react';
 
+function change(color, visible) {
+  if (visible) return false;
+  return color === 'gray';
+}
+
 const Image = styled(Im)`
-  filter: ${(props) => (props.color === 'gray' ? 'grayscale(100%)' : 'none')};
-  opacity: ${(props) => (props.color === 'gray' ? 0.66 : 1)};
+  filter: ${(props) => (change(props.color, props.visible) ? 'grayscale(100%)' : 'none')};
+  opacity: ${(props) => (change(props.color, props.visible) ? 0.66 : 1)};
   margin-left: auto;
   margin-right: auto;
 `;
@@ -32,12 +37,12 @@ class Logo extends Component {
   render() {
     const { height, src } = this.props;
     const { color } = this.state;
-
     return (
       <Image
         src={src}
         height={height}
         color={color}
+        visible={this.props.visible}
         onMouseEnter={this.changeToColor}
         onMouseLeave={this.changeToGray}
       />
