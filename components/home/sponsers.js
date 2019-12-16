@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Wrapper from './Wrapper';
+import { Image } from 'semantic-ui-react';
 
 class Logo extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
-      logo_height: this.props.height,
       logo: this.props.logo_src,
       logo_filter: 'grayscale(100%)',
     };
@@ -25,11 +26,14 @@ class Logo extends Component {
 
   render() {
     return (
-      <img
+      <Image
         src={this.state.logo}
+        // size="mini"
+        // centered
         style={{
-          height: this.state.logo_height,
-          padding: '20px',
+          height: "100px",
+          width: 'auto',
+          margin: '20px',
           filter: this.state.logo_filter,
         }}
         onMouseEnter={this.change_to_color}
@@ -43,41 +47,31 @@ export default class Sponsers extends Component {
   constructor(props) {
     super(props);
     this.height = 250;
-
     this.state = {
-      logo_width: 100,
       logos: this.props.logos,
-      logo_filter: 'grayscale(100%)',
-      // backgroundColor: 'rgba(245,245,245, 0.9)',
+      backgroundColor: 'rgba(245,245,245, 0.9)',
     };
   }
-
-  change_to_color = () => {
-    this.setState({
-      logo_filter: 'none',
-      //   backgroundColor: 'rgba(245,245,245, 0.6)',
-    });
-  };
-
-  change_to_gray = () => {
-    this.setState({
-      logo_filter: 'grayscale(100%)',
-      //   backgroundColor: 'rgba(245,245,245, 0.5)',
-    });
-  };
-
   make_layers = (logos) => {
     const layers_comp = logos.map((logo) => {
-      return <Logo logo_src={logo} height="100px" />;
+      return <Logo logo_src={logo}/>;
     });
     return layers_comp;
   };
 
   render() {
     return (
-      <Wrapper p={20} pt={40} pb={40}>
-        {this.make_layers(this.state.logos)}
-      </Wrapper>
+      // <Wrapper bg={this.state.backgroundColor} >
+        <Image.Group style={{
+            backgroundColor: this.state.backgroundColor,
+            padding: '30px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>{this.make_layers(this.state.logos)}</Image.Group>
+      // </Wrapper>
     );
   }
 }
