@@ -11,7 +11,7 @@
 @headerFont        : @fontName, 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @pageFont          : @fontName, 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
-@googleFontName    : '@fontName';
+@googleFontName    : @fontName;
 @importGoogleFonts : true;
 @googleFontSizes   : '400,700,400italic,700italic';
 @googleSubset      : 'latin';
