@@ -17,7 +17,8 @@ function ParticleContainer({ particleCount }) {
       width="100vw"
       height="100vh"
       style={{
-        backgroundImage: 'linear-gradient(to top, #252525, #26292f, #222e38, #16343f, #003a42)',
+        backgroundImage:
+          'linear-gradient(to left bottom, #002573, #1c255e, #24254b, #262538, #252525)',
         // boxShadow: '0px 6px 20px 5px #252525',
       }}
       params={{
