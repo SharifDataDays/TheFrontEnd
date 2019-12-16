@@ -75,11 +75,9 @@ export default class Sponsers extends Component {
 
   render() {
     return (
-
-        <Wrapper bg={this.state.backgroundColor} p={20} pt={40} pb={40}>
+      <Wrapper bg={this.state.backgroundColor} p={20} pt={40} pb={40}>
         {this.make_layers(this.state.logos)}
-        </Wrapper>
-
+      </Wrapper>
     );
   }
 }
