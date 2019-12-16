@@ -1,23 +1,20 @@
+import _ from 'lodash';
 import React from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import styled from 'styled-components';
+import SH from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-export default ({ children, className }) => {
-  console.log(className);
-  const language = className.replace(/language-/, '');
+const SyntaxHighlighter = styled(SH)`
+  text-align: left !important;
+`;
 
+function CodeBlock({ children, className }) {
+  const language = _.replace(className, /language-/, '');
   return (
-    <Highlight {...defaultProps} code={children.trim()} language={language}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <SyntaxHighlighter language={language} style={dark}>
+      {children}
+    </SyntaxHighlighter>
   );
-};
+}
+
+export default CodeBlock;

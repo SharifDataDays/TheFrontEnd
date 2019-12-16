@@ -24,7 +24,7 @@ const components = {
   ),
   li: (props): Node => <List.Item {...props} />,
   pre: (props): Node => <div {...props} />,
-  code: (props): Node => <pre style={{ color: 'tomato' }} {...props} />,
+  code: (props): Node => <CodeBlock {...props} />,
   table: (props): Node => (
     <div dir="RTL">
       <Table celled striped {...props} />
