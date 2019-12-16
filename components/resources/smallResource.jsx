@@ -1,24 +1,6 @@
 import React from 'react';
-import { Rail, Ref, Sticky, Grid, Menu } from 'semantic-ui-react';
-import LargeSideBar from './largeSideBar';
+import SmallSideBar from './smallSideBar';
 import Post from '~/components/blog/post';
-
-function filterHeaders(content) {
-  const h1Headers = /# .+/g;
-  const headers1 = content.match(h1Headers);
-  let headersH1 = null;
-  if (headers1 !== null) {
-    headersH1 = headers1.map((x) => x.split(' ')[1]);
-  }
-  const h2Headers = /#{2, } \w+/g;
-  const headers2 = content.match(h2Headers);
-  let headersH2 = null;
-  if (headers2 !== null) {
-    headersH2 = headers2.map((x) => x.split(' ')[1]);
-  }
-
-  return { h1: headersH1 };
-}
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -88,28 +70,17 @@ function PostPage() {
       }}
       content={mdx}
       comments={2}
+      style={{ display: 'inline' }}
     />
   );
 }
 
 function Resource() {
-  const allHeaders = filterHeaders(mdx);
-  const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
-  const headers = (
-    <Menu fluid vertical tabular style={{ borderRight: '0' }}>
-      {headers1}
-    </Menu>
-  );
   return (
-    <Grid>
-      <Grid.Column style={{ width: '7%', zIndex: '10' }}>{headers}</Grid.Column>
-      <Grid.Column style={{ width: '63%' }}>
-        <PostPage />
-      </Grid.Column>
-      <Grid.Column>
-        <LargeSideBar />
-      </Grid.Column>
-    </Grid>
+    <div>
+      <SmallSideBar />
+      <PostPage style={{ display: 'inline' }} />
+    </div>
   );
 }
 

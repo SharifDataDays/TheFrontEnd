@@ -1,23 +1,24 @@
 import React from 'react';
-import { Header, Image, Menu, Ref, Segment, Sidebar } from 'semantic-ui-react';
-import { render } from 'react-dom';
-import styled from 'styled-components';
+import { Menu, Segment, Sidebar } from 'semantic-ui-react';
 
 class SmallSideBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { visible: true };
+    this.state = { visible: true, height: '100vh' };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     const { visible } = this.state;
+    const { height } = this.state;
     const change = visible === true ? false : true;
-    this.setState({ visible: change });
+    const changeHeight = height === '100vh' ? '5vh' : '100vh';
+    this.setState({ visible: change, height: changeHeight });
   }
 
   render() {
     const { visible } = this.state;
+    const { height } = this.state;
     return (
       <Sidebar.Pushable
         as={Segment.Group}
@@ -47,7 +48,7 @@ class SmallSideBar extends React.Component {
             Channels
           </Menu.Item>
         </Sidebar>
-        <div style={{ height: '100vh' }} />
+        <div style={{ height }} />
       </Sidebar.Pushable>
     );
   }
