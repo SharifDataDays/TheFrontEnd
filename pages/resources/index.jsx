@@ -10,30 +10,8 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-import TestSideBar from '~/components/resources/smallSideBar';
+import Resources from '~/components/resources/largeResource';
 
-const HorizontalSidebar = () => (
-  // <Sidebar as={Segment} animation="push" direction="left" visible>
-  //   <Grid textAlign="center">
-  //     <Grid.Row columns={1}>
-  //       <Grid.Column>
-  //         <Header as="h3">New Content Awaits</Header>
-  //       </Grid.Column>
-  //     </Grid.Row>
-  //     <Grid columns={3} divided>
-  //       <Grid.Column>
-  //         <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-  //       </Grid.Column>
-  //       <Grid.Column>
-  //         <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-  //       </Grid.Column>
-  //       <Grid.Column>
-  //         <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-  //       </Grid.Column>
-  //     </Grid>
-  //   </Grid>
-  // </Sidebar>
-  <TestSideBar />
-);
+const HorizontalSidebar = () => <Resources />;
 
 export default HorizontalSidebar;

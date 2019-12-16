@@ -1,16 +1,19 @@
 import styled from 'styled-components';
-import React from 'react';
-import { Grid, Segment, Sidebar, List, Input, Header } from 'semantic-ui-react';
+import React, { Component, createRef } from 'react';
+import { Rail, Ref, Sticky, Grid, Segment, Sidebar, List, Input, Header } from 'semantic-ui-react';
 
 const LargeSideBar = styled(Sidebar)`
-  width: 25%;
   background-color: #f3f4f7;
+  width: 25vw;
 `;
 
 const LargeGrid = styled(Grid)`
   min-width: 100%;
   background-color: #f3f4f7;
   border-radius: 0;
+  max-height: 100vh;
+  right: 40px;
+  overflow-y: scroll;
 `;
 
 const StyledLists = styled(List)`
@@ -20,9 +23,8 @@ const StyledLists = styled(List)`
 
 const StyledInput = styled(Input)`
   width: 90%;
-  height: 45px;
-  margin: 0 auto;
-  margin-top: 50px;
+  height: 0;
+  margin-top: 10px;
 `;
 
 const StyledHeader = styled(Header)`
@@ -48,10 +50,53 @@ const VeryLastElement = styled(List.Item)`
   margin-bottom: 10%;
 s`;
 
-const HorizontalSidebar = () => (
-  <LargeSideBar as={Segment} animation="push" direction="left" visible>
+const CustomSideBar = () => (
+  <LargeSideBar as={Segment} animation="push" direction="right" visible>
     <LargeGrid textAlign="left" columns={1} divided>
-      <StyledInput placeholder="Search..." />
+      <StyledInput style={{ visibility: 'hidden' }} />
+      <StyledHeader as="p">Getting Started</StyledHeader>
+      <StyledLists link>
+        <StyledLink as="a" href="./resources">
+          Deep Learning with PyTorch: A 60 Minute Blitz
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Writing Custom Datasets, DataLoaders and Transforms
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Writing Custom Datasets, DataLoaders and Transforms
+        </StyledLink>
+      </StyledLists>
+      <StyledHeader as="p">Image</StyledHeader>
+      <StyledLists link>
+        <StyledLink as="a" href="./resources">
+          TorchVision Object Detection Finetuning Tutorial
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Transfer Learning for Computer Vision Tutorial
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Spatial Transformer Networks Tutorial
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Neural Transfer Using PyTorch
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          Adversarial Example Generation
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          DCGAN Tutorials
+        </StyledLink>
+      </StyledLists>
+      <StyledHeader as="p">Text</StyledHeader>
+      <StyledLists link>
+        <StyledLink as="a" href="./resources">
+          NLP From Scratch: Classifying Names with a Character-Level RNN
+        </StyledLink>
+        <StyledLink as="a" href="./resources">
+          NLP From Scratch: Generating Names with a Character-Level RNN
+        </StyledLink>
+      </StyledLists>
+
       <StyledHeader as="p">Getting Started</StyledHeader>
       <StyledLists link>
         <StyledLink as="a" href="./resources">
@@ -99,4 +144,27 @@ const HorizontalSidebar = () => (
   </LargeSideBar>
 );
 
-export default HorizontalSidebar;
+export default class StickyExampleActive extends Component {
+  contextRef = createRef();
+
+  handleToggle = () => this.setState((prevState) => ({ active: !prevState.active }));
+
+  render() {
+    return (
+      <Grid id="WTF" style={{ marginTop: '30px', marginBottom: '30px' }}>
+        <Grid.Column floated="right">
+          <Ref innerRef={this.contextRef}>
+            <Segment style={{ maxWidth: 0, border: 0, borderRadius: 0, padding: 0 }}>
+              <Grid.Row style={{ height: '100vh', visibility: 'hidden' }} />
+              <Rail position="right">
+                <Sticky context={this.contextRef}>
+                  <CustomSideBar />
+                </Sticky>
+              </Rail>
+            </Segment>
+          </Ref>
+        </Grid.Column>
+      </Grid>
+    );
+  }
+}
