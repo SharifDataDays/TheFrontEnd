@@ -35,9 +35,9 @@ function Home() {
       </Head>
       <Navbar transparent />
       <Header />
-      <Timeline items={items} />
-      <Sponsers logos={logos} />
       <Introduction header={intro.header} content={intro.content} />
+      <Timeline items={items}/>
+      <Sponsers logos={logos} />
     </>
   );
 }

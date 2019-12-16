@@ -13,7 +13,7 @@ const Text = styled.p`
 
 function Introduction({ header, content }) {
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative'}}>
       <Grid stackable inverted centered>
         <Grid.Row
           style={{
