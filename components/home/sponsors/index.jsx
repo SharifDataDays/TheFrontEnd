@@ -27,7 +27,7 @@ class Sponsors extends Component {
   render() {
     return (
       <>
-        <VisibilitySensor onChange={this.onChange} offset={{top:-20, bottom:-20}}>
+        <VisibilitySensor onChange={this.onChange} offset={{top:-20, bottom:-20, left:-30, right:-30}}>
           <div>
             <Grid centered>
               {_.map(this.props.logos, (logo, i) => {
