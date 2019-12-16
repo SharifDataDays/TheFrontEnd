@@ -6,7 +6,10 @@ import { Responsive, Image as Im } from 'semantic-ui-react';
 const Image = styled(Im)`
   position: absolute !important;
   left: 50%;
-  top: 55%;
+  top : 50%;
+  @media (min-width: 768px) {
+    height : 100vh;
+  }
   transform: translateX(-50%) translateY(-50%);
   padding: 2rem;
 `;
