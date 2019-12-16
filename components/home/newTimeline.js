@@ -9,10 +9,10 @@ const constructTimeline = (items) => {
         return(
             <VerticalTimelineElement
             key={i}
-            contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-            contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+            contentStyle={{ background: '	#1EBDC1', color: '#003a42' }}
+            contentArrowStyle={{ borderRight: '7px solid #1EBDC1' }}
             date={item.date}
-            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+            iconStyle={{ background: '#1EBDC1', color: '#003a42' }}
             icon={<FontAwesomeIcon icon={faGem} style={{fontSize : 20}}/>}
           >
             <div style={{direction:'rtl'}}>
