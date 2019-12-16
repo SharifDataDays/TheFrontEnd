@@ -8,6 +8,7 @@ const Image = styled(Im)`
   left: 50%;
   top: 55%;
   transform: translateX(-50%) translateY(-50%);
+  padding: 2rem;
 `;
 
 function ParticleContainer({ particleCount }) {
@@ -17,7 +18,7 @@ function ParticleContainer({ particleCount }) {
       height="100vh"
       style={{
         backgroundImage: 'linear-gradient(to top, #252525, #26292f, #222e38, #16343f, #003a42)',
-        boxShadow: '0px 6px 20px 5px #252525',
+        // boxShadow: '0px 6px 20px 5px #252525',
       }}
       params={{
         particles: {
