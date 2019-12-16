@@ -1,8 +1,8 @@
-import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
 import './timeline/VerticalTimeline.css';
 import './timeline/VerticalTimelineElement.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGem } from '@fortawesome/free-solid-svg-icons';
+import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
 
 const constructTimeline = (items) => {
   return items.map((item, i) => {
