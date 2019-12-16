@@ -1,18 +1,26 @@
 import React from 'react';
-import { Grid, Card } from 'semantic-ui-react';
+import { Grid, Card, Item } from 'semantic-ui-react';
+
+const description = [
+  'Cute dogs come in a variety of shapes and sizes. Some cute dogs are cute for their adorable faces, others for their',
+  'tiny stature, and even others for their massive size.',
+].join(' ');
 
 function Post() {
   return (
-    <Grid.Column>
-      <Card
-        style={{ width: '100%' }}
-        image="https://source.unsplash.com/random/350x350"
-        header="Elliot Baker"
-        meta="Friend"
-        description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
-        extra={<p>See More</p>}
-      />
-    </Grid.Column>
+    <Item.Group style={{ direction: 'rtl' }}>
+      <Item>
+        <Item.Image size="small" src="https://react.semantic-ui.com/images/wireframe/image.png" />
+
+        <Item.Content>
+          <Item.Header as="a">Cute Dog</Item.Header>
+          <Item.Description>
+            <p>{description}</p>
+            <p>Many people also have their own barometers for what makes a cute dog.</p>
+          </Item.Description>
+        </Item.Content>
+      </Item>
+    </Item.Group>
   );
 }
 

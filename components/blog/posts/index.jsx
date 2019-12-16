@@ -48,10 +48,12 @@ const posts = [
 
 function Posts() {
   return (
-    <Grid columns={3} stackable container centered>
-      {_.map(posts, (post) => {
-        return <Post content={post} />;
-      })}
+    <Grid style={{ margin: 0 }} centered>
+      <Grid.Column width={8} computer={8} tablet={10} mobile={15}>
+        {_.map(posts, (post) => {
+          return <Post {...post} />;
+        })}
+      </Grid.Column>
     </Grid>
   );
 }

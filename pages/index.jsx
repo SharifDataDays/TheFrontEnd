@@ -1,9 +1,11 @@
 import React from 'react';
+import Head from 'next/head';
 import Navbar from '~/components/global/navbar';
 import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/newTimeline';
+
 const logo1 = '/images/sponsors/Yektanet.png';
 const logo2 = '/images/sponsors/Bazaar.png';
 const logo3 = '/images/sponsors/Balad.png';
@@ -20,17 +22,20 @@ const intro = {
 
 function Home() {
   let items = [
-    {date : 'یک دی - سیزده دی', heading : 'ثبت نام', text : 'تحلیل داده'},
-    {date : 'یک دی تا سیزده دی', heading : 'فاز 1', text : 'تحلیل داده'},
-    {date : 'چهارده دی - هجده بهمن', heading : 'فاز 2', text : 'تحلیل داده'},
-    {date : 'نوزده بهمن - یک اسفند', heading : 'فاز 3', text : 'تحلیل داده'},
-    {date : 'ده اسفند', heading : 'مرحله حضوری', text : 'تحلیل داده'},
-  ]
+    { date: 'یک دی - سیزده دی', heading: 'ثبت نام', text: 'تحلیل داده' },
+    { date: 'یک دی تا سیزده دی', heading: 'فاز 1', text: 'تحلیل داده' },
+    { date: 'چهارده دی - هجده بهمن', heading: 'فاز 2', text: 'تحلیل داده' },
+    { date: 'نوزده بهمن - یک اسفند', heading: 'فاز 3', text: 'تحلیل داده' },
+    { date: 'ده اسفند', heading: 'مرحله حضوری', text: 'تحلیل داده' },
+  ];
   return (
     <>
+      <Head>
+        <title>DataDays 2020</title>
+      </Head>
       <Navbar transparent />
       <Header />
-      <Timeline items={items}/>
+      <Timeline items={items} />
       <Sponsers logos={logos} />
       <Introduction header={intro.header} content={intro.content} />
     </>
