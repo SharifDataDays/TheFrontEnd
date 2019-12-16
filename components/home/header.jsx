@@ -17,7 +17,10 @@ function Header() {
       <Particles
         width="100vw"
         height="100vh"
-        style={{ backgroundColor: '#252525' }}
+        style={{
+          backgroundImage: 'linear-gradient(to top, #252525, #26292f, #222e38, #16343f, #003a42)',
+          boxShadow: '0px 6px 20px 5px #252525',
+        }}
         params={{
           particles: {
             number: {

@@ -140,7 +140,7 @@
        Links
 --------------------*/
 
-@linkColor           : #4183C4;
+@linkColor           : #00DBFF;
 @linkUnderline       : none;
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
@@ -224,13 +224,18 @@
 --------------------*/
 
 /*---  Colors  ---*/
-@red              : #DB2828;
-@orange           : #F2711C;
-@yellow           : #FBBD08;
+/* #DB2828 */
+@red              : #B61262;
+/* #F2711C */
+@orange           : #FCB83E;
+/* #FBBD08 */
+@yellow           : #F9F871;
 @olive            : #B5CC18;
+/* #21BA45 */
 @green            : #21BA45;
 @teal             : #00B5AD;
-@blue             : #2185D0;
+/* #2185D0 */
+@blue             : #00DBFF;
 @violet           : #6435C9;
 @purple           : #A333C8;
 @pink             : #E03997;

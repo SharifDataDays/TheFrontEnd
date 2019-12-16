@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '~/components/global/navbar';
 import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsers';
 import Stats from '~/components/home/stats';
@@ -17,6 +18,7 @@ function Home() {
   // let header = <img src={web2} style={{ position: 'relative', width: '100%' }} />;
   return (
     <>
+      <Navbar transparent />
       <Header />
 
       <div

@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { Box } from 'rebass';
 import styled from 'styled-components';
 import {
   color,

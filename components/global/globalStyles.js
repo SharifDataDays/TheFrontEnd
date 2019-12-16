@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     min-height: 100%;
     position: relative;
+    // background-color: #252525;
   }
 `;
 

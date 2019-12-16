@@ -48,7 +48,7 @@ export default class Sponsers extends Component {
       logo_width: 100,
       logos: this.props.logos,
       logo_filter: 'grayscale(100%)',
-      backgroundColor: 'rgba(245,245,245, 0.9)',
+      // backgroundColor: 'rgba(245,245,245, 0.9)',
     };
   }
 
@@ -75,7 +75,7 @@ export default class Sponsers extends Component {
 
   render() {
     return (
-      <Wrapper bg={this.state.backgroundColor} p={20} pt={40} pb={40}>
+      <Wrapper p={20} pt={40} pb={40}>
         {this.make_layers(this.state.logos)}
       </Wrapper>
     );
