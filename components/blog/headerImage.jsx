@@ -1,12 +1,17 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Image, Header } from 'semantic-ui-react';
 
-function HeaderImageContainer({ src }) {
+function HeaderImageContainer() {
   return (
-    <Grid style={{ margin: 0 }}>
-      <Grid.Row style={{ backgroundColor: '#FFF0EB', direction: 'rtl' }}>
+    <Grid style={{ margin: 0, backgroundColor: '#FFF0EB', direction: 'rtl' }}>
+      <Grid.Column floated="left" computer={5} tablet={5} mobile={15}>
         <Image size="large" src="/images/blog.jpg" />
-      </Grid.Row>
+      </Grid.Column>
+      <Grid.Column verticalAlign="bottom" floated="right" computer={5} tablet={5} mobile={15}>
+        <Header as="h1" style={{ fontSize: '7rem' }}>
+          بلاگ
+        </Header>
+      </Grid.Column>
     </Grid>
   );
 }
