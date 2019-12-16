@@ -138,6 +138,7 @@
   border-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 3px 0 #ddd;
+  width: 50%;
 }
 .vertical-timeline-element--no-children .vertical-timeline-element-content {
   background: transparent;
@@ -151,11 +152,18 @@
 .vertical-timeline-element-content h2 {
   color: #303e49;
 }
-.vertical-timeline-element-content p, .vertical-timeline-element-content .vertical-timeline-element-date {
+.vertical-timeline-element-content p {
   font-size: 13px;
   font-size: 0.8125rem;
   font-weight: 500;
 }
+
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  font-size: 13px;
+  color: white;
+  font-weight: bold;
+}
+
 .vertical-timeline-element-content .vertical-timeline-element-date {
   display: inline-block;
 }
@@ -191,6 +199,13 @@
 .vertical-timeline-element--no-children .vertical-timeline-element-content-arrow {
   display: none;
 }
+
+@media (max-width : 768px) {
+  .vertical-timeline-element-content {
+    width: 80%;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .vertical-timeline-element-content h2 {
     font-size: 20px;
@@ -201,8 +216,9 @@
     font-size: 1rem;
   }
   .vertical-timeline-element-content .vertical-timeline-element-date {
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
   }
 }
 @media only screen and (min-width: 1170px) {

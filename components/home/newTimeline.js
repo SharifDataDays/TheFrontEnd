@@ -35,7 +35,7 @@ const Timeline = (props) => {
       }}
     >
       <div style={{ width: '80%', margin: 'auto' }}>
-        <VerticalTimeline layout="1-column">{constructTimeline(props.items)}</VerticalTimeline>
+        <VerticalTimeline >{constructTimeline(props.items)}</VerticalTimeline>
       </div>
     </div>
   );

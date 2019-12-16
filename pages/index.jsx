@@ -15,11 +15,11 @@ const logos = [logo1, logo2, logo3, logo4, logo5];
 
 function Home() {
   let items = [
-    {date : '1 دی', heading : 'فاز 1', text : 'تحلیل داده'},
-    {date : '1 دی', heading : 'فاز 1', text : 'تحلیل داده'},
-    {date : '1 دی', heading : 'فاز 1', text : 'تحلیل داده'},
-    {date : '1 دی', heading : 'فاز 1', text : 'تحلیل داده'},
-    {date : '1 دی', heading : 'فاز 1', text : 'تحلیل داده'},
+    {date : 'یک دی - سیزده دی', heading : 'ثبت نام', text : 'تحلیل داده'},
+    {date : 'یک دی تا سیزده دی', heading : 'فاز 1', text : 'تحلیل داده'},
+    {date : 'چهارده دی - هجده بهمن', heading : 'فاز 2', text : 'تحلیل داده'},
+    {date : 'نوزده بهمن - یک اسفند', heading : 'فاز 3', text : 'تحلیل داده'},
+    {date : 'ده اسفند', heading : 'مرحله حضوری', text : 'تحلیل داده'},
   ]
   return (
     <>
