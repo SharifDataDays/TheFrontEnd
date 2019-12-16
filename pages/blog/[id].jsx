@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import Navbar from '~/components/global/navbar';
 import Post from '~/components/blog/post';
@@ -9,6 +10,9 @@ function PostPage({ post }) {
   const { image, date, title_fa, text_fa, comments } = post;
   return (
     <>
+      <Head>
+        <title>{`بلاگ DataDays | ${title_fa}`}</title>
+      </Head>
       <Navbar />
       <Post
         image={image}
