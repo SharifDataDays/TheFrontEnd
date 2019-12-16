@@ -5,7 +5,7 @@ import { Grid as G } from 'semantic-ui-react';
 import Logo from './logo';
 
 const Grid = styled(G)`
-  margin-top: 2rem !important;
+  margin-top: 1.5rem !important;
 `;
 
 function Sponsors({ logos }) {

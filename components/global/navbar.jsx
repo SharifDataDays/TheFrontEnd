@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import React from 'react';
-import { Button, Menu as M, Image } from 'semantic-ui-react';
+import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -12,6 +12,12 @@ const Menu = styled(M)`
   background-color: transparent !important;
   z-index: ${(props) => (props.transparent ? 1 : 0)} !important;
   width: 100%;
+`;
+
+const Image = styled(Im)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 function Navbar({ transparent }) {
@@ -31,7 +37,7 @@ function Navbar({ transparent }) {
 
       <Menu.Header style={{ marginRight: '1rem' }}>
         <Link href="/">
-          <Image size="mini" src="/logo.png" />
+          <Image size="mini" src="/images/logo.png" />
         </Link>
       </Menu.Header>
     </Menu>
