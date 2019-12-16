@@ -13,17 +13,26 @@ const Text = styled.p`
 
 function Introduction({ header, content }) {
   return (
-    <Grid stackable inverted centered>
-      <Grid.Row style={{ padding: '12rem 2rem', backgroundColor: '#252525', color: 'white' }}>
-        <Grid.Column width={5}>
-          <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
-        </Grid.Column>
-        <Grid.Column textAlign="center" verticalAlign="middle" width={9}>
-          <Header as="h1">{header}</Header>
-          <Text>{content}</Text>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <div style={{ position: 'relative' }}>
+      <Grid stackable inverted centered>
+        <Grid.Row
+          style={{
+            padding: '12rem 2rem',
+            backgroundImage:
+              'linear-gradient(to bottom, #252525, #313640, #304a5c, #216172, #00797f)',
+            color: 'white',
+          }}
+        >
+          <Grid.Column width={6}>
+            <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
+          </Grid.Column>
+          <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
+            <Header as="h1">{header}</Header>
+            <Text>{content}</Text>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div>
   );
 }
 
