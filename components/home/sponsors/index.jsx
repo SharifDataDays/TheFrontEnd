@@ -6,6 +6,7 @@ import Logo from './logo';
 
 const Grid = styled(G)`
   margin-top: 1.5rem !important;
+  margin-bottom: 2rem !important;
 `;
 
 function Sponsors({ logos }) {

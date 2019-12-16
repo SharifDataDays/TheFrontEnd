@@ -24,8 +24,8 @@ function Home() {
     <>
       <Navbar transparent />
       <Header />
-      <Introduction header={intro.header} content={intro.content} />
       <Sponsers logos={logos} />
+      <Introduction header={intro.header} content={intro.content} />
     </>
   );
 }
