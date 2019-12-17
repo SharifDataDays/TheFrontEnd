@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Ref, Segment, Sidebar, Grid } from 'semantic-ui-react';
-import Post from '~/components/blog/post';
 import Contents from './smallResourceContent';
+import Post from '~/components/blog/post';
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -93,6 +93,7 @@ class Resource extends React.Component {
     const elem = document.getElementsByClassName('fluid container')[0];
     elem.setAttribute('style', 'margin-right: 0px !important; margin-left: 0px !important');
     const { visible } = this.state;
+    const { width } = this.props;
     return (
       <Grid style={{ display: 'inline-block' }}>
         <Sidebar.Pushable as={Segment.Group} raised>
@@ -104,7 +105,7 @@ class Resource extends React.Component {
             width="thin"
             floated="right"
             style={{
-              width: '80vw',
+              width,
               maxHeight: '80vh',
               overflowY: 'scroll',
               backgroundColor: '#f3f4f7',
