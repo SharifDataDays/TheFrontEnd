@@ -81,6 +81,20 @@ class Resource extends React.Component {
     super(props);
     this.state = { visible: '', opacity: '1' };
     this.handleClick = this.handleClick.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', (e) => {
+      this.handleScroll(e);
+    });
+  }
+
+  handleScroll(e) {
+    const { opacity } = this.state;
+    if (opacity !== '1') {
+      window.scrollTo(0, 0);
+    }
   }
 
   handleClick() {
@@ -96,7 +110,7 @@ class Resource extends React.Component {
     const { visible, opacity } = this.state;
     const { width } = this.props;
     return (
-      <Grid style={{ display: 'inline-block' }}>
+      <Grid style={{ display: 'inline-block' }} touchmove={(e) => e.preventDefault()}>
         <Sidebar.Pushable as={Segment.Group} raised>
           <Sidebar
             as={Menu}
@@ -127,7 +141,15 @@ class Resource extends React.Component {
               onClick={this.handleClick}
             />
           </Ref>
-          <Segment style={{ opacity }}>
+          <Segment
+            style={{ opacity }}
+            onClick={() => {
+              if (visible === 'visible') {
+                this.handleClick();
+              }
+            }}
+            touchMove={(e) => e.preventDefault()}
+          >
             <PostPage />
           </Segment>
         </Sidebar.Pushable>
