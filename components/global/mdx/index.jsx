@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading, flowtype/require-parameter-type */
 import React from 'react';
 import type { Node } from 'react';
-import MDX from '@mdx-js/runtime';
+import MDX from './runtime';
 import { Header, Divider, List, Table, Image } from 'semantic-ui-react';
 import CodeBlock from './code';
 
