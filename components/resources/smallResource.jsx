@@ -79,20 +79,21 @@ function PostPage() {
 class Resource extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { visible: '' };
+    this.state = { visible: '', opacity: '1' };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     const { visible } = this.state;
     const change = visible === '' ? 'visible' : '';
-    this.setState({ visible: change });
+    const opacity = visible === '' ? '0.1' : '1';
+    this.setState({ visible: change, opacity });
   }
 
   render() {
     const elem = document.getElementsByClassName('fluid container')[0];
     elem.setAttribute('style', 'margin-right: 0px !important; margin-left: 0px !important');
-    const { visible } = this.state;
+    const { visible, opacity } = this.state;
     const { width } = this.props;
     return (
       <Grid style={{ display: 'inline-block' }}>
@@ -110,6 +111,7 @@ class Resource extends React.Component {
               overflowY: 'scroll',
               backgroundColor: '#f3f4f7',
               direction: 'rtl',
+              zIndex: '2000',
             }}
             onClick={this.handleClick}
           >
@@ -125,7 +127,7 @@ class Resource extends React.Component {
               onClick={this.handleClick}
             />
           </Ref>
-          <Segment>
+          <Segment style={{ opacity }}>
             <PostPage />
           </Segment>
         </Sidebar.Pushable>
