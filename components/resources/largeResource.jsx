@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, Component } from 'react';
 import { Grid, Menu, Container, Ref, Rail, Sticky, Segment } from 'semantic-ui-react';
 import LargeSideBar from './largeSideBar';
 import Post from '~/components/blog/post';
@@ -85,52 +85,71 @@ function PostPage() {
   );
 }
 
-function Resource() {
-  const contextRef = createRef();
-  const allHeaders = filterHeaders(mdx);
-  const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
-  const headers = (
-    <Container>
-      <Container style={{ height: '1000px', paddingRight: '0', paddingLeft: '0', border: '0' }} />
-      <Ref innerRef={contextRef}>
-        <Rail>
-          <Sticky context={contextRef}>
-            <Menu
-              vertical
-              style={{
-                direction: 'rtl',
-                borderLeft: '0',
-                maxHeight: '700px',
-                opacity: '0.75',
-              }}
-            >
-              <Menu.Item style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                {headers1}
-              </Menu.Item>
-            </Menu>
-          </Sticky>
-        </Rail>
-      </Ref>
-    </Container>
-  );
+class Resource extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { visibility: 'visible' };
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
-  return (
-    <Grid columns="equal">
-      <Grid.Column width={2}>
-        <Container>{headers}</Container>
-      </Grid.Column>
-      <Grid.Column width={10}>
-        <Container>
-          <PostPage />
-        </Container>
-      </Grid.Column>
-      <Grid.Column width={4}>
-        <Container>
-          <LargeSideBar />
-        </Container>
-      </Grid.Column>
-    </Grid>
-  );
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    if (window.pageYOffset > 1.5 * window.innerHeight) this.setState({ visibility: 'hidden' });
+    else this.setState({ visibility: 'visible' });
+  }
+
+  render() {
+    const contextRef = createRef();
+    const allHeaders = filterHeaders(mdx);
+    const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
+    const { visibility } = this.state;
+    const headers = (
+      <Container>
+        <Container style={{ height: '1000px', paddingRight: '0', paddingLeft: '0', border: '0' }} />
+        <Ref innerRef={contextRef}>
+          <Rail>
+            <Sticky context={contextRef}>
+              <Menu
+                vertical
+                style={{
+                  direction: 'rtl',
+                  borderLeft: '0',
+                  maxHeight: '700px',
+                  opacity: '0.75',
+                  visibility,
+                }}
+              >
+                <Menu.Item style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+                  {headers1}
+                </Menu.Item>
+              </Menu>
+            </Sticky>
+          </Rail>
+        </Ref>
+      </Container>
+    );
+
+    return (
+      <Grid columns="equal">
+        <Grid.Column width={2}>
+          <Container>{headers}</Container>
+        </Grid.Column>
+        <Grid.Column width={10}>
+          <Container>
+            <PostPage />
+          </Container>
+        </Grid.Column>
+        <Grid.Column width={4}>
+          <Container>
+            <LargeSideBar />
+          </Container>
+        </Grid.Column>
+      </Grid>
+    );
+  }
 }
 
 export default Resource;
