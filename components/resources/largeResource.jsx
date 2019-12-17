@@ -10,13 +10,6 @@ function filterHeaders(content) {
   if (headers1 !== null) {
     headersH1 = headers1.map((x) => x.split(' ')[1]);
   }
-  const h2Headers = /#{2, } \w+/g;
-  const headers2 = content.match(h2Headers);
-  let headersH2 = null;
-  if (headers2 !== null) {
-    headersH2 = headers2.map((x) => x.split(' ')[1]);
-  }
-
   return { h1: headersH1 };
 }
 
