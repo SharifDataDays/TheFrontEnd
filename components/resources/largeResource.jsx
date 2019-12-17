@@ -1,7 +1,7 @@
 import React, { createRef, Component } from 'react';
-import { Grid, Menu, Container, Ref, Rail, Sticky, Segment } from 'semantic-ui-react';
+import { Grid, Menu, Container, Ref, Rail, Sticky } from 'semantic-ui-react';
 import LargeSideBar from './largeSideBar';
-import Post from '~/components/blog/post';
+import Content from '~/components/global/mdx';
 
 function filterHeaders(content) {
   const h1Headers = /# .+/g;
@@ -70,21 +70,6 @@ But **PLEASE** read the [Contributions Guidelines](CONTRIBUTING.md) carefully be
 The materials herein are all &copy; 2019-2020 Kyle Simpson.
 `;
 
-function PostPage() {
-  return (
-    <Post
-      image="https://source.unsplash.com/random/1024x768?ai"
-      header={{
-        title: 'Who Owns Financial Data?',
-        desc: 'The story of data - part 1',
-        date: 'November 18, 2018',
-      }}
-      content={mdx}
-      comments={2}
-    />
-  );
-}
-
 class Resource extends Component {
   constructor(props) {
     super(props);
@@ -139,7 +124,7 @@ class Resource extends Component {
         </Grid.Column>
         <Grid.Column width={10}>
           <Container>
-            <PostPage />
+            <Content content={mdx} />
           </Container>
         </Grid.Column>
         <Grid.Column width={4}>
