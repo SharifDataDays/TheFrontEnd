@@ -3,6 +3,7 @@ import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import { blogHomeAPI } from '~/redux/api/blog';
 import Navbar from '~/components/global/navbar';
+import Footer from '~/components/global/footer';
 import Posts from '~/components/blog/posts';
 import HeaderImage from '~/components/blog/headerImage';
 
@@ -15,6 +16,7 @@ function Blog({ posts }) {
       <Navbar />
       <HeaderImage />
       <Posts posts={posts} />
+      <Footer />
     </>
   );
 }
