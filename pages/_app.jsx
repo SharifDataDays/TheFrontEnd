@@ -1,3 +1,4 @@
+import 'semantic-ui-css/semantic.min.css'
 import App from 'next/app';
 import React from 'react';
 import Layout from '~/components/global/layout';
