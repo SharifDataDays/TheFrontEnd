@@ -2,8 +2,8 @@ import './timeline/VerticalTimeline.css';
 import './timeline/VerticalTimelineElement.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGem } from '@fortawesome/free-solid-svg-icons';
-import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
 import { Header } from 'semantic-ui-react';
+import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
 
 const constructTimeline = (items) => {
   return items.map((item, i) => {
@@ -31,13 +31,13 @@ const Timeline = (props) => {
       style={{
         width: '100%',
         paddingTop: 20,
-        backgroundImage:
-              'linear-gradient(to top, #252525, #313640, #304a5c, #216172, #00797f)',
       }}
     >
-      <Header textAlign='center' as='h1'>{'زمان بندی'}</Header>
+      <Header textAlign="center" as="h1">
+        {'زمان بندی'}
+      </Header>
       <div style={{ width: '80%', margin: 'auto' }}>
-        <VerticalTimeline >{constructTimeline(props.items)}</VerticalTimeline>
+        <VerticalTimeline>{constructTimeline(props.items)}</VerticalTimeline>
       </div>
     </div>
   );

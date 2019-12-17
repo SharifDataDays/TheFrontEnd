@@ -1,7 +1,20 @@
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Card, Item, Image } from 'semantic-ui-react';
 
-function Post({ title, description, date, image }) {
+export function First({ title, description, date, image }) {
+  return (
+    <Card style={{ width: '100%' }}>
+      <Image src="https://react.semantic-ui.com/images/wireframe/image.png" wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{title}</Card.Header>
+        <Card.Meta>{date}</Card.Meta>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+    </Card>
+  );
+}
+
+export function Rest({ title, description, date, image }) {
   return (
     <Item.Group style={{ direction: 'rtl' }}>
       <Item>
@@ -19,5 +32,3 @@ function Post({ title, description, date, image }) {
     </Item.Group>
   );
 }
-
-export default Post;

@@ -13,13 +13,12 @@ const Text = styled.p`
 
 function Introduction({ header, content }) {
   return (
-    <div style={{ position: 'relative'}}>
+    <div style={{ position: 'relative' }}>
       <Grid stackable inverted centered>
         <Grid.Row
           style={{
             padding: '12rem 2rem',
-            backgroundImage:
-              'linear-gradient(to bottom, #252525, #313640, #304a5c, #216172, #00797f)',
+            backgroundColor: '#252525',
             color: 'white',
           }}
         >

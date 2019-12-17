@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import fetch from 'isomorphic-unfetch';
 import { blogHomeAPI } from '~/redux/api/blog';
 import Navbar from '~/components/global/navbar';
 import Posts from '~/components/blog/posts';

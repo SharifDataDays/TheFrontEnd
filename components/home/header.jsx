@@ -6,9 +6,9 @@ import { Responsive, Image as Im } from 'semantic-ui-react';
 const Image = styled(Im)`
   position: absolute !important;
   left: 50%;
-  top : 50%;
+  top: 50%;
   @media (min-width: 768px) {
-    height : 100vh;
+    height: 100vh;
   }
   transform: translateX(-50%) translateY(-50%);
   padding: 2rem;
@@ -41,7 +41,7 @@ function ParticleContainer({ particleCount }) {
 function Header() {
   return (
     <div>
-      <Image src="/images/center.png" />
+      <Image size="large" src="/images/center.png" />
       <Responsive maxWidth={Responsive.onlyTablet.minWidth - 1}>
         <ParticleContainer particleCount={30} />
       </Responsive>
