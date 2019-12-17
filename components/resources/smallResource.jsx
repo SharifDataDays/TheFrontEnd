@@ -1,6 +1,7 @@
 import React from 'react';
-import SmallSideBar from './smallSideBar';
+import { Header, Image, Menu, Ref, Segment, Sidebar, Container, Grid } from 'semantic-ui-react';
 import Post from '~/components/blog/post';
+import SmallSideBar from './smallSideBar';
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -75,13 +76,105 @@ function PostPage() {
   );
 }
 
-function Resource() {
-  return (
-    <div>
-      <SmallSideBar />
-      <PostPage style={{ display: 'inline' }} />
-    </div>
-  );
+class Resource extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { visible: '' };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { visible } = this.state;
+    const change = visible === '' ? 'visible' : '';
+    this.setState({ visible: change });
+  }
+
+  render() {
+    const elem = document.getElementsByClassName('fluid container')[0];
+    elem.setAttribute('style', 'margin-right: 0px !important; margin-left: 0px !important');
+    const { visible } = this.state;
+    return (
+      <Grid style={{ display: 'inline-block' }}>
+        <Sidebar.Pushable as={Segment.Group} raised>
+          <Sidebar
+            as={Menu}
+            animation="overlay"
+            vertical
+            visible={visible}
+            width="thin"
+            floated="right"
+            style={{
+              width: '80vw',
+              maxHeight: '80vh',
+              overflowY: 'scroll',
+              backgroundColor: '#f3f4f7',
+              direction: 'rtl',
+            }}
+          >
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+            <Menu.Item as="a" style={{ color: 'black' }}>
+              Home
+            </Menu.Item>
+            <Menu.Item as="a">Games</Menu.Item>
+            <Menu.Item as="a">Channels</Menu.Item>
+          </Sidebar>
+
+          <Ref>
+            <Segment
+              secondary
+              style={{
+                backgroundColor: '#f3f4f7',
+                height: '50px',
+              }}
+              onClick={this.handleClick}
+            />
+          </Ref>
+          <Segment>
+            <PostPage />
+          </Segment>
+        </Sidebar.Pushable>
+      </Grid>
+    );
+  }
 }
 
 export default Resource;
