@@ -22,7 +22,7 @@ function Introduction({ header, content }) {
             color: 'white',
           }}
         >
-          <Grid.Column width={6}>
+          <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
             <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
           </Grid.Column>
           <Grid.Column textAlign="center" verticalAlign="middle" width={7}>

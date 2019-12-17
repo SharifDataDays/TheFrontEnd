@@ -7,6 +7,7 @@ import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
+import Prize from '~/components/home/prize';
 
 const logo1 = '/images/sponsors/Yektanet.png';
 const logo2 = '/images/sponsors/Bazaar.png';
@@ -35,6 +36,7 @@ function Home({ content }) {
       <Sponsers logos={logos} />
       <Introduction header={intro.header} content={intro.content} />
       <Timeline items={timeline_events} />
+      <Prize />
     </>
   );
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import Navbar from '~/components/global/navbar';
+import Footer from '~/components/global/footer';
 import Post from '~/components/blog/post';
 import { postAPI } from '~/redux/api/blog';
 
@@ -24,6 +25,7 @@ function PostPage({ post }) {
         content={_.replace(text_fa, '\r', '')}
         comments={comments.length}
       />
+      <Footer />
     </>
   );
 }

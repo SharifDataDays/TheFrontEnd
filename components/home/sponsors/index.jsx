@@ -16,24 +16,30 @@ class Sponsors extends Component {
     this.state = {
       visible: false,
     };
+    this.onChange = this.onChange.bind(this);
   }
 
-  onChange = (isVisible) => {
+  onChange(isVisible) {
     this.setState({
       visible: isVisible,
     });
-  };
+  }
 
   render() {
+    const { logos } = this.props;
+    const { visible } = this.state;
     return (
       <>
-        <VisibilitySensor onChange={this.onChange} offset={{top:-20, bottom:-20, left:-30, right:-30}}>
+        <VisibilitySensor
+          onChange={this.onChange}
+          offset={{ top: 150, bottom: 150, left: -30, right: -30 }}
+        >
           <div>
             <Grid centered>
-              {_.map(this.props.logos, (logo, i) => {
+              {_.map(logos, (logo, i) => {
                 return (
                   <Grid.Column textAlign="center" computer={2} tablet={3} mobile={14} key={i}>
-                    <Logo src={logo} height={60} visible={this.state.visible} />
+                    <Logo src={logo} height={60} visible={visible} />
                   </Grid.Column>
                 );
               })}

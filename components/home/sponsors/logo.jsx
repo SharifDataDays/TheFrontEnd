@@ -35,14 +35,14 @@ class Logo extends Component {
   }
 
   render() {
-    const { height, src } = this.props;
+    const { height, src, visible } = this.props;
     const { color } = this.state;
     return (
       <Image
         src={src}
         height={height}
         color={color}
-        visible={this.props.visible}
+        visible={visible}
         onMouseEnter={this.changeToColor}
         onMouseLeave={this.changeToGray}
       />

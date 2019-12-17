@@ -7,10 +7,26 @@ import { Header, Divider, List, Table, Image } from 'semantic-ui-react';
 import CodeBlock from './code';
 
 const components = {
-  h1: (props): Node => <Header as="h1" {...props} />,
-  h2: (props): Node => <Header as="h2" {...props} />,
-  h3: (props): Node => <Header as="h3" {...props} />,
-  p: (props): Node => <p {...props} />,
+  h1: (props): Node => (
+    <div dir="RTL">
+      <Header as="h1" style={{ fontSize: '3rem', lineHeight: 3 }} {...props} />
+    </div>
+  ),
+  h2: (props): Node => (
+    <div dir="RTL">
+      <Header as="h2" style={{ fontSize: '2.25rem', lineHeight: 2 }} {...props} />
+    </div>
+  ),
+  h3: (props): Node => (
+    <div dir="RTL">
+      <Header as="h3" style={{ fontSize: '2rem', lineHeight: 1.75 }} {...props} />
+    </div>
+  ),
+  p: (props): Node => (
+    <div dir="RTL">
+      <p style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem' }} {...props} />
+    </div>
+  ),
   hr: (props): Node => <Divider {...props} />,
   ul: (props): Node => (
     <div dir="RTL">
@@ -22,7 +38,7 @@ const components = {
       <List ordered {...props} />
     </div>
   ),
-  li: (props): Node => <List.Item {...props} />,
+  li: (props): Node => <List.Item style={{ fontSize: '1.25rem', lineHeight: 1.25 }} {...props} />,
   pre: (props): Node => <div {...props} />,
   code: (props): Node => <CodeBlock {...props} />,
   table: (props): Node => (

@@ -104,7 +104,7 @@ const customTheme = createTheme(themes.default, {
 
 export default function Merc() {
   return (
-    <div style={{ marginTop: 14 }}>
+    <div style={{ marginTop: 14, marginBottom: 14 }}>
       <Timeline theme={customTheme} dir="RTL">
         <Events>
           <TextEvent date="1/1/19" text="**Markdown** is *supported*" />
