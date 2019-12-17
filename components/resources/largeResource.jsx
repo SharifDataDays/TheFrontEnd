@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { Grid, Menu, Container, Ref, Rail, Sticky } from 'semantic-ui-react';
+import { Grid, Menu, Container, Ref, Rail, Sticky, Segment } from 'semantic-ui-react';
 import LargeSideBar from './largeSideBar';
 import Post from '~/components/blog/post';
 
@@ -91,17 +91,16 @@ function Resource() {
   const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
   const headers = (
     <Container>
+      <Container style={{ height: '1000px', paddingRight: '0', paddingLeft: '0', border: '0' }} />
       <Ref innerRef={contextRef}>
         <Rail>
-          <Sticky>
+          <Sticky context={contextRef}>
             <Menu
               vertical
               style={{
                 direction: 'rtl',
                 borderLeft: '0',
                 maxHeight: '700px',
-                overflowY: 'scroll',
-                borderRadius: '0',
                 opacity: '0.75',
               }}
             >
