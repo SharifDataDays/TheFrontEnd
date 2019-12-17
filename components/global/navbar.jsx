@@ -28,10 +28,14 @@ function Navbar({ transparent }) {
           <Button primary>ورود</Button>
         </Menu.Item>
         <Menu.Item>
-          <Link href="/resources">منابع</Link>
+          <Link href="/resources">
+            <a href="/resources">منابع</a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link href="/blog">بلاگ</Link>
+          <Link href="/blog">
+            <a href="/blog">بلاگ</a>
+          </Link>
         </Menu.Item>
       </Menu.Menu>
 

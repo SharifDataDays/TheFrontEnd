@@ -1,10 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
+import fetch from 'isomorphic-unfetch';
+import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
 import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
-import Timeline from '~/components/home/newTimeline';
+import Timeline from '~/components/home/timeline';
 
 const logo1 = '/images/sponsors/Yektanet.png';
 const logo2 = '/images/sponsors/Bazaar.png';
@@ -20,14 +22,9 @@ const intro = {
     'اولین رویداد علوم داده دانشگاه شریف، یک رقابت چند مرحله‌ای آموزشی است که مهمترین هدف آن، گسترش آموزش و ایجاد علاقه‌مندی در این حوزه به همراه محک زدن سطح دانش علوم داده در جامعه علمی ایران است. این رویداد با همکاری جمعی از دانشجویان دانشکده مهندسی کامپیوتر و با پشتیبانی اساتید پیشگام در این حوزه طراحی شده‌ است. مسائل این رقابت به گونه‌ای است که شرکت‌کنندگان با هر سطحی از دانش مبتدی تا متخصص بتوانند آورده‌ای از مسابقات داشته باشند.',
 };
 
-function Home() {
-  let items = [
-    { date: 'یک دی - سیزده دی', heading: 'ثبت نام', text: 'تحلیل داده' },
-    { date: 'یک دی تا سیزده دی', heading: 'فاز 1', text: 'تحلیل داده' },
-    { date: 'چهارده دی - هجده بهمن', heading: 'فاز 2', text: 'تحلیل داده' },
-    { date: 'نوزده بهمن - یک اسفند', heading: 'فاز 3', text: 'تحلیل داده' },
-    { date: 'ده اسفند', heading: 'مرحله حضوری', text: 'تحلیل داده' },
-  ];
+function Home({ content }) {
+  const data = JSON.parse(content.dictionary);
+  const { timeline_events } = data;
   return (
     <>
       <Head>
@@ -37,9 +34,15 @@ function Home() {
       <Header />
       <Sponsers logos={logos} />
       <Introduction header={intro.header} content={intro.content} />
-      <Timeline items={items} />
+      <Timeline items={timeline_events} />
     </>
   );
 }
+
+Home.getInitialProps = async (context) => {
+  const res = await fetch(homeAPI());
+  const content = await res.json();
+  return { content };
+};
 
 export default Home;

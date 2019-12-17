@@ -1,9 +1,11 @@
-import './timeline/VerticalTimeline.css';
-import './timeline/VerticalTimelineElement.css';
+import React from 'react';
+import './VerticalTimeline.css';
+import './VerticalTimelineElement.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGem } from '@fortawesome/free-solid-svg-icons';
 import { Header } from 'semantic-ui-react';
-import { VerticalTimeline, VerticalTimelineElement } from './timeline/index';
+import VerticalTimeline from './VerticalTimeline';
+import VerticalTimelineElement from './VerticalTimelineElement';
 
 const constructTimeline = (items) => {
   return items.map((item, i) => {
