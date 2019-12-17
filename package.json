@@ -60,6 +60,7 @@
     "react-syntax-highlighter": "^12.2.1",
     "react-visibility-sensor": "^5.1.1",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^4.4.1",

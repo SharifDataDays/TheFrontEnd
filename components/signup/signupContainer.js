@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { Heading } from 'rebass';
+import { Header, Container } from 'semantic-ui-react';
 import LoginSignupContainer from '../loginSignup/container';
-import SignupBox from './signupBox';
+import SignUpFields from './signUpFields'
 
-export default class LoginContainer extends Component {
+export default class SignupContainer extends Component {
   render() {
     return (
       <LoginSignupContainer>
-        <Heading fontFamily="Arial" fontSize={6} color="white">
-          Welcome!
-        </Heading>
-        <SignupBox />
+        <Header size="huge" dividing>ثبت نام</Header>
+        <SignUpFields />
       </LoginSignupContainer>
     );
   }
