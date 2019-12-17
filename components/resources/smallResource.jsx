@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header, Image, Menu, Ref, Segment, Sidebar, Container, Grid } from 'semantic-ui-react';
+import { Menu, Ref, Segment, Sidebar, Grid } from 'semantic-ui-react';
 import Post from '~/components/blog/post';
-import SmallSideBar from './smallSideBar';
+import Contents from './smallResourceContent';
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -110,54 +110,10 @@ class Resource extends React.Component {
               backgroundColor: '#f3f4f7',
               direction: 'rtl',
             }}
+            onClick={this.handleClick}
           >
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
-            <Menu.Item as="a" style={{ color: 'black' }}>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Games</Menu.Item>
-            <Menu.Item as="a">Channels</Menu.Item>
+            <Contents />
           </Sidebar>
-
           <Ref>
             <Segment
               secondary
