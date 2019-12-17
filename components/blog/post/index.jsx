@@ -4,7 +4,7 @@ import type { Node } from 'react';
 import Body from './body';
 import HeaderImage from './headerImage';
 import Header from './header';
-import Comments from './comments';
+// import Comments from './comments';
 import Content from '~/components/global/mdx';
 
 type PropsType = {
@@ -23,9 +23,9 @@ function Post({ image, header, content, comments }: PropsType): Node {
         <Header title={title} desc={desc} date={date} />
         <Content content={content} />
       </Body>
-      <Body bg="muted">
+      {/* <Body bg="muted">
         <Comments count={comments} />
-      </Body>
+      </Body> */}
     </>
   );
 }
