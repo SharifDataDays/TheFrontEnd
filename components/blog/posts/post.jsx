@@ -1,19 +1,34 @@
 import React from 'react';
-import { Grid, Card } from 'semantic-ui-react';
+import { Card, Item, Image } from 'semantic-ui-react';
 
-function Post() {
+export function First({ title, description, date, image }) {
   return (
-    <Grid.Column>
-      <Card
-        style={{ width: '100%' }}
-        image="https://source.unsplash.com/random/350x350"
-        header="Elliot Baker"
-        meta="Friend"
-        description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
-        extra={<p>See More</p>}
-      />
-    </Grid.Column>
+    <Card style={{ width: '100%' }}>
+      <Image src="https://react.semantic-ui.com/images/wireframe/image.png" wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{title}</Card.Header>
+        <Card.Meta>{date}</Card.Meta>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+    </Card>
   );
 }
 
-export default Post;
+export function Rest({ title, description, date, image }) {
+  return (
+    <Item.Group style={{ direction: 'rtl' }}>
+      <Item>
+        <Item.Image size="small" src="https://react.semantic-ui.com/images/wireframe/image.png" />
+        <Item.Content>
+          <Item.Header as="a">{title}</Item.Header>
+          <Item.Meta>
+            <span>{date}</span>
+          </Item.Meta>
+          <Item.Description>
+            <p>{description}</p>
+          </Item.Description>
+        </Item.Content>
+      </Item>
+    </Item.Group>
+  );
+}

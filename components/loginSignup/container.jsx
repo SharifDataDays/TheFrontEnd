@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Responsive, Image } from 'semantic-ui-react';
 import neuralnet from './neuralnet';
 
+const image = require('./image.png');
 export default class LoginSignupContainer extends Component {
   componentDidMount() {
-    this.renderCanvas();
+    if (window.innerWidth >= 768) {
+      this.renderCanvas();
+    }
   }
 
   componentDidUpdate() {
-    this.renderCanvas();
+    if (window.innerWidth >= 768) {
+      this.renderCanvas();
+    }
   }
 
   renderCanvas = () => {
-    neuralnet(this.refs.canvas);
+    if (window.innerWidth >= 700) {
+      neuralnet(this.refs.canvas);
+    }
   };
 
   render() {
@@ -32,7 +39,8 @@ export default class LoginSignupContainer extends Component {
           backgroundColor: 'white',
         }}
       >
-        <Grid.Column width={8}>
+        <Responsive as={Grid.Column} minWidth={768} width={8}>
+          <Image style={{ position: 'absolute', margin: 10 }} size="mini" src="/images/logo.png" />
           <canvas
             ref="canvas"
             style={{
@@ -40,8 +48,17 @@ export default class LoginSignupContainer extends Component {
               height: '100%',
             }}
           />
+          {/* <div style={{margin : 'auto', height : '100%'}}>
+            <div style={{width : '80%', margin : 'auto'}}>
+              <Diamond/>
+            </div>
+            
+          </div> */}
+        </Responsive>
+
+        <Grid.Column computer={8} tablet={8} mobile={14}>
+          {children}
         </Grid.Column>
-        <Grid.Column width={8}>{children}</Grid.Column>
       </Grid>
     );
   }

@@ -1,18 +1,9 @@
 // @flow
-import _ from 'lodash';
-import React, { Component } from 'react';
-import type { Node } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { shadow, typography } from 'styled-system';
-import { Box } from 'rebass/styled-components';
+import { typography } from 'styled-system';
 import TextareaAutosize from 'react-autosize-textarea';
-import { ClipLoader } from 'react-spinners';
 import { Button, Comment, Form, Header } from 'semantic-ui-react';
-// import Comment from './comment';
-
-const ShadowedBox = styled(Box)`
-  ${shadow};
-`;
 
 const TextArea = styled(TextareaAutosize)`
   ${typography};

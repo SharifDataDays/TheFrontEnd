@@ -6,10 +6,10 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Lato';
+@fontName          : IRANSans;
 
-@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@headerFont        : @fontName, 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : @fontName, 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
 @googleFontName    : @fontName;
 @importGoogleFonts : true;
@@ -140,7 +140,7 @@
        Links
 --------------------*/
 
-@linkColor           : #4183C4;
+@linkColor           : @blue;
 @linkUnderline       : none;
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
@@ -224,16 +224,22 @@
 --------------------*/
 
 /*---  Colors  ---*/
-@red              : #DB2828;
-@orange           : #F2711C;
-@yellow           : #FBBD08;
+/* #DB2828 */
+@red              : #B02258;
+/* #F2711C */
+@orange           : #E86B26;
+/* #FBBD08 */
+@yellow           : #F9F871;
 @olive            : #B5CC18;
-@green            : #21BA45;
-@teal             : #00B5AD;
-@blue             : #2185D0;
+/* #21BA45 */
+@green            : #94F489;
+@teal             : #00E6B9;
+/* #2185D0 */
+@blue             : #1D93F7;
 @violet           : #6435C9;
 @purple           : #A333C8;
-@pink             : #E03997;
+/* #E03997 */
+@pink             : #ED5F89;
 @brown            : #A5673F;
 @grey             : #767676;
 @black            : #1B1C1D;

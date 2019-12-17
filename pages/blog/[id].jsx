@@ -1,32 +1,40 @@
+import _ from 'lodash';
 import React from 'react';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
+import fetch from 'isomorphic-unfetch';
+import Navbar from '~/components/global/navbar';
+import Footer from '~/components/global/footer';
 import Post from '~/components/blog/post';
+import { postAPI } from '~/redux/api/blog';
 
-const mdx = `
-# react-markdown
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant morbi. Mauris augue neque gravida in. Aliquam id diam maecenas ultricies mi eget mauris. Turpis massa sed elementum tempus egestas. Consequat ac felis donec et odio pellentesque diam. Amet massa vitae tortor condimentum lacinia. Nullam non nisi est sit amet facilisis magna etiam. Est lorem ipsum dolor sit. Nunc scelerisque viverra mauris in. Mattis pellentesque id nibh tortor id aliquet. Sit amet facilisis magna etiam tempor. Sed blandit libero volutpat sed cras ornare arcu. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit.
-
-Neque gravida in fermentum et sollicitudin. Nam libero justo laoreet sit amet. Dignissim cras tincidunt lobortis feugiat vivamus at. Eu augue ut lectus arcu bibendum at varius vel. Elit pellentesque habitant morbi tristique senectus et. Ac tincidunt vitae semper quis lectus nulla at. Non consectetur a erat nam at. A pellentesque sit amet porttitor. Sodales ut etiam sit amet nisl purus in mollis. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Gravida arcu ac tortor dignissim convallis. Augue neque gravida in fermentum et sollicitudin. Malesuada fames ac turpis egestas maecenas. Enim ut sem viverra aliquet eget. Arcu cursus euismod quis viverra nibh cras. Vestibulum mattis ullamcorper velit sed ullamcorper.
-
-A iaculis at erat pellentesque. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Duis ultricies lacus sed turpis tincidunt id aliquet. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Bibendum at varius vel pharetra vel. Augue lacus viverra vitae congue eu consequat ac felis donec. At quis risus sed vulputate odio ut enim. Auctor elit sed vulputate mi sit amet mauris commodo. Nunc sed blandit libero volutpat sed. Morbi tincidunt ornare massa eget egestas purus viverra.
-`;
-
-function PostPage() {
-  const router = useRouter();
-  const direction = 'left';
-
+function PostPage({ post }) {
+  const { image, date, title_fa, text_fa, comments } = post;
   return (
-    <Post
-      image="https://source.unsplash.com/random/1024x768?ai"
-      header={{
-        title: 'Who Owns Financial Data?',
-        desc: 'The story of data - part 1',
-        date: 'November 18, 2018',
-      }}
-      content={mdx}
-      comments={2}
-    />
+    <>
+      <Head>
+        <title>{`بلاگ DataDays | ${title_fa}`}</title>
+      </Head>
+      <Navbar />
+      <Post
+        image={image}
+        header={{
+          title: title_fa,
+          desc: '',
+          date,
+        }}
+        content={_.replace(text_fa, '\r', '')}
+        comments={comments.length}
+      />
+      <Footer />
+    </>
   );
 }
+
+PostPage.getInitialProps = async (context) => {
+  const { id } = context.query;
+  const res = await fetch(postAPI(id));
+  const post = await res.json();
+  return { post };
+};
 
 export default PostPage;

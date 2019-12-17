@@ -1,16 +1,19 @@
-// @flow
 import React from 'react';
-import type { Node } from 'react';
-import { Image } from 'semantic-ui-react';
+import { Grid, Image, Header } from 'semantic-ui-react';
 
-const imageSrc = 'https://source.unsplash.com/1600x900/?programming/1400x475';
-
-type PropsType = {
-  src: string,
-};
-
-function HeaderImageContainer({ src }: PropsType): Node {
-  return <Image src={src || imageSrc} />;
+function HeaderImageContainer() {
+  return (
+    <Grid style={{ margin: 0, backgroundColor: '#FFF0EB', direction: 'rtl' }}>
+      <Grid.Column floated="left" computer={5} tablet={5} mobile={15}>
+        <Image size="large" src="/images/blog.jpg" />
+      </Grid.Column>
+      <Grid.Column verticalAlign="bottom" floated="right" computer={5} tablet={5} mobile={15}>
+        <Header as="h1" style={{ fontSize: '7rem' }}>
+          بلاگ
+        </Header>
+      </Grid.Column>
+    </Grid>
+  );
 }
 
 export default HeaderImageContainer;

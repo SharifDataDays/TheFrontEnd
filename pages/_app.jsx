@@ -1,18 +1,17 @@
 import 'semantic-ui-css/semantic.min.css'
 import App from 'next/app';
 import React from 'react';
-import RTLLayout from '~/components/global/rtlLayout';
+import Layout from '~/components/global/layout';
 
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <RTLLayout>
+      <Layout>
         <Component {...pageProps} />
-      </RTLLayout>
+      </Layout>
     );
   }
 }
 
-// export default appWithTranslation(MyApp);
 export default MyApp;
