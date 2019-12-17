@@ -3,6 +3,7 @@ import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
+import Footer from '~/components/global/footer';
 import Header from '~/components/home/header';
 import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
@@ -37,6 +38,7 @@ function Home({ content }) {
       <Introduction header={intro.header} content={intro.content} />
       <Timeline items={timeline_events} />
       <Prize />
+      <Footer />
     </>
   );
 }
