@@ -10,7 +10,7 @@ export default class StickySideBar extends Component {
       <Grid style={{ position: 'relative', left: '5vw' }}>
         <Segment style={{ height: '1000px', paddingRight: '0', paddingLeft: '0', border: '0' }} />
         <Ref innerRef={this.contextRef}>
-          <Segment style={{ paddingRight: '0', paddingLeft: '0' }}>
+          <Segment style={{ paddingRight: '0', paddingLeft: '0', border: '0' }}>
             <Rail position="right" style={{ width: '400px' }}>
               <Sticky context={this.contextRef}>
                 <Content />
