@@ -53,20 +53,6 @@ export default class SignUpFields extends Component {
             submittedBirthDay: birthDay, submittedBirthMonth: birthMonth, submittedBirthYear: birthYear, submittedUniversity: university,
             submittededucation: education, submittedResidence: residence, submittedCallingNumber: callingNumber, submittedPassword: password,
             submittedConfirmPassword: confirmPassword})
-
-        console.log(name)
-        console.log(lastName)
-        console.log(userName)
-        console.log(email)
-        console.log(birthDay)
-        console.log(birthMonth)
-        console.log(birthYear)
-        console.log(university)
-        console.log(education)
-        console.log(residence)
-        console.log(callingNumber)
-        console.log(password)
-        console.log(confirmPassword)
     }
 
     render() {
@@ -87,18 +73,7 @@ export default class SignUpFields extends Component {
                             <SignupInput name="email" value={email} label="ایمیل" />
                         </Form.Group>
 
-                        {/* <FormField>
-                            <label>تاریخ تولد</label>
-                            
-                            <Container className="three fields">
-                                <Input name="birthYear" value={birthYear} type="number" min="1360" max="1390" placeholder="سال" dir="rtl"
-                                 onChange={this.handleChange}/>
-                                <SelectingDropDown name="birthMonth" value={birthMonth} options={persianMonthOptions} text="ماه"
-                                 />
-                                <Input name="birthDay" value={birthDay} type="number" min="1" max="31" placeholder="روز" dir="rtl"
-                                 onChange={this.handleChange}/> 
-                            </Container>
-                        </FormField> */}
+                    
 
                         <Container>
                             <label>تاریخ تولد</label>
@@ -127,15 +102,7 @@ export default class SignUpFields extends Component {
                              <SignupInput name="password" value={password} label="گذرواژه" />
                              <SignupInput name="confirmPassword" value={confirmPassword} label="تکرار گذرواژه" />
                         </Form.Group>
-
-                        {/* <Form.Field> */}
-                        {/* <Button className="ui vk button" style={{width:"48%", height:40} } onClick={this.handleSubmit}>ثبت نام</Button> */}
-                        {/* <Button color="blue" style={{width:"48%", height:40} } onClick={this.handleSubmit}>ثبت نام</Button> */}
                         <SignupButton color="blue" text="ثبت نام" />
-                        {/* <SignupButton text="test" color="black"/> */}
-                        {/* </Form.Field> */}
-
-                        {/* <SignupInput name="bahar" value="bahar" label="bahar"/> */}
                         
                     </Form>
                 </Grid.Column>
