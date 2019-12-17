@@ -4,13 +4,11 @@ import LargeSideBar from './largeSideBar';
 import Content from '~/components/global/mdx';
 
 function filterHeaders(content) {
-  const h1Headers = /# .+/g;
+  const h1Headers = /#{1,}\s+\w[A-Za-z ']*[A-Za-z']/g;
   const headers1 = content.match(h1Headers);
-  let headersH1 = null;
-  if (headers1 !== null) {
-    headersH1 = headers1.map((x) => x.split(' ')[1]);
-  }
-  return { h1: headersH1 };
+  let headers = null;
+  if (headers1 !== null) headers = headers1.map((x) => x.split('# ')[1]);
+  return headers;
 }
 
 const mdx = `
@@ -89,7 +87,7 @@ class Resource extends Component {
   render() {
     const contextRef = createRef();
     const allHeaders = filterHeaders(mdx);
-    const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
+    const headers1 = allHeaders.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
     const { visibility } = this.state;
     const headers = (
       <Container>
