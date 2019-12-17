@@ -1,5 +1,5 @@
-import React from 'react';
-import { Rail, Ref, Sticky, Grid, Menu } from 'semantic-ui-react';
+import React, { createRef } from 'react';
+import { Grid, Menu, Container, Ref, Rail, Sticky } from 'semantic-ui-react';
 import LargeSideBar from './largeSideBar';
 import Post from '~/components/blog/post';
 
@@ -86,21 +86,49 @@ function PostPage() {
 }
 
 function Resource() {
+  const contextRef = createRef();
   const allHeaders = filterHeaders(mdx);
   const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
   const headers = (
-    <Menu fluid vertical tabular style={{ borderRight: '0' }}>
-      {headers1}
-    </Menu>
+    <Container>
+      <Ref innerRef={contextRef}>
+        <Rail>
+          <Sticky>
+            <Menu
+              vertical
+              style={{
+                direction: 'rtl',
+                borderLeft: '0',
+                maxHeight: '700px',
+                overflowY: 'scroll',
+                borderRadius: '0',
+                opacity: '0.75',
+              }}
+            >
+              <Menu.Item style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+                {headers1}
+              </Menu.Item>
+            </Menu>
+          </Sticky>
+        </Rail>
+      </Ref>
+    </Container>
   );
+
   return (
-    <Grid>
-      <Grid.Column style={{ width: '7%', zIndex: '10' }}>{headers}</Grid.Column>
-      <Grid.Column style={{ width: '63%' }}>
-        <PostPage />
+    <Grid columns="equal">
+      <Grid.Column width={2}>
+        <Container>{headers}</Container>
       </Grid.Column>
-      <Grid.Column>
-        <LargeSideBar />
+      <Grid.Column width={10}>
+        <Container>
+          <PostPage />
+        </Container>
+      </Grid.Column>
+      <Grid.Column width={4}>
+        <Container>
+          <LargeSideBar />
+        </Container>
       </Grid.Column>
     </Grid>
   );

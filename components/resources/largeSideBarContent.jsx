@@ -17,7 +17,7 @@ export default class MenuExampleHeaderVertical extends Component {
           maxHeight: '700px',
           overflowY: 'scroll',
           position: 'absolute',
-          width: '20vw',
+          width: '23vw',
           borderRadius: '0',
           backgroundColor: '#f3f4f7',
           opacity: '0.75',
