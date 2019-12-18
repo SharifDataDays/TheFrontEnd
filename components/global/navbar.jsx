@@ -23,7 +23,7 @@ const Image = styled(Im)`
 function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Item>
+      {/* <Menu.Item>
         <Link href="/signup">
           <Button primary>ثبت نام</Button>
         </Link>
@@ -32,7 +32,7 @@ function Navbar({ transparent }) {
         <Link href="/blog">
           <a href="/blog">بلاگ</a>
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Menu position="left">
         <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
           <Link href="/">
