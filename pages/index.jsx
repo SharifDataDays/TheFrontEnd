@@ -10,14 +10,6 @@ import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 
-const logo1 = '/images/sponsors/Yektanet.png';
-const logo2 = '/images/sponsors/Bazaar.png';
-const logo3 = '/images/sponsors/Balad.png';
-const logo4 = '/images/sponsors/Tap30.png';
-const logo5 = '/images/sponsors/shariflogo.png';
-
-const logos = [logo1, logo2, logo3, logo4, logo5];
-
 const intro = {
   header: 'معرفی رویداد',
   content:
@@ -25,8 +17,7 @@ const intro = {
 };
 
 function Home({ content }) {
-  // const data = JSON.parse(content.dictionary);
-  // const { timeline_events } = data;
+  const { intro, timeline } = content;
   return (
     <>
       <Head>
@@ -34,19 +25,19 @@ function Home({ content }) {
       </Head>
       <Navbar transparent />
       <Header />
-      <Sponsers logos={logos} />
-      <Introduction header={intro.header} content={intro.content} />
-      <Timeline />
+      <Sponsers />
+      <Introduction header={intro.header_fa} content={intro.text_fa} />
+      <Timeline timeline={timeline} />
       <Prize />
       <Footer />
     </>
   );
 }
 
-/* Home.getInitialProps = async (context) => {
+Home.getInitialProps = async (context) => {
   const res = await fetch(homeAPI());
   const content = await res.json();
   return { content };
-}; */
+};
 
 export default Home;

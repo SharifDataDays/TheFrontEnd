@@ -5,6 +5,11 @@ import { Grid as G } from 'semantic-ui-react';
 import VisibilitySensor from 'react-visibility-sensor';
 import Logo from './logo';
 
+const logo1 = '/images/sponsors/ssc.png';
+const logo2 = '/images/sponsors/sharif.png';
+
+const logos = [logo1, logo2];
+
 const Grid = styled(G)`
   margin-top: 1.5rem !important;
   margin-bottom: 2rem !important;
@@ -26,7 +31,6 @@ class Sponsors extends Component {
   }
 
   render() {
-    const { logos } = this.props;
     const { visible } = this.state;
     return (
       <>

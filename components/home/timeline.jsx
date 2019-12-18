@@ -1,14 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
-import {
-  Timeline,
-  Events,
-  UrlButton,
-  ImageEvent,
-  TextEvent,
-  YouTubeEvent,
-  themes,
-  createTheme,
-} from '@merc/react-timeline';
+import { Timeline, Events, TextEvent, themes, createTheme } from '@merc/react-timeline';
 
 const customTheme = createTheme(themes.default, {
   timeline: {
@@ -102,33 +94,14 @@ const customTheme = createTheme(themes.default, {
   textAtom: {},
 });
 
-export default function Merc() {
+export default function Merc({ timeline }) {
   return (
-    <div style={{ marginTop: 14, marginBottom: 14 }}>
-      <Timeline theme={customTheme} dir="RTL">
+    <div style={{ marginBottom: 14 }} dir="RTL">
+      <Timeline theme={customTheme}>
         <Events>
-          <TextEvent date="1/1/19" text="**Markdown** is *supported*" />
-
-          <ImageEvent
-            date="4/13/19"
-            text="سلام سلام سلاااااام"
-            src="https://res.cloudinary.com/dovoq8jou/image/upload/v1564772194/jellyfish.jpg"
-            alt="jellyfish swimming"
-            credit="Photo by [@tavi004](https://unsplash.com/@tavi004)"
-          >
-            <div>
-              <UrlButton href="https://unsplash.com/search/photos/undersea">
-                View more undersea photos
-              </UrlButton>
-            </div>
-          </ImageEvent>
-
-          <YouTubeEvent
-            date="6/18/19"
-            id="6UnRHtwHGSE"
-            name="General Tso's Chicken recipe"
-            text="... and YouTube videos!"
-          />
+          {_.map(timeline, (event) => {
+            return <TextEvent date={event.title_fa} text={event.text_fa} />;
+          })}
         </Events>
       </Timeline>
     </div>
