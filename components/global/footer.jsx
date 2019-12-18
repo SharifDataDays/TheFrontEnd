@@ -3,7 +3,7 @@ import { Container, Divider, Grid, Header, List, Segment } from 'semantic-ui-rea
 
 const FixedMenuLayout = () => (
   <div dir="RTL">
-    <Segment inverted vertical style={{ padding: '5em 0em', marginTop: '3rem' }}>
+    <Segment inverted vertical style={{ padding: '5em 0em', marginTop: '1rem', width: '100%' }}>
       <Container textAlign="center">
         <Grid divided inverted stackable>
           <Grid.Column width={3}>
