@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     position: relative;
   }
+  .markdown {
+    direction: rtl !important;
+  }
 `;
 
 export default GlobalStyle;

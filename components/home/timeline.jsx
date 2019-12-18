@@ -9,7 +9,7 @@ const customTheme = createTheme(themes.default, {
     fontFamily: 'IRANSans',
   },
   timelineTrack: {
-    left: '50%',
+    right: '50%',
     width: '2px',
     height: '100%',
     backgroundColor: '#1d93f7',
@@ -46,15 +46,6 @@ const customTheme = createTheme(themes.default, {
     border: 'none',
     cursor: 'pointer',
   },
-  urlButton: {
-    fontSize: '14px',
-    backgroundColor: '#1d93f7',
-    borderRadius: '4px',
-    padding: '6px',
-    margin: '10px 5px 5px 0',
-    border: 'none',
-    color: '#fff',
-  },
   date: {
     backgroundColor: '#1d93f7',
     padding: '4px',
@@ -62,26 +53,6 @@ const customTheme = createTheme(themes.default, {
     borderRadius: '4px',
     fontWeight: 500,
     fontSize: '.85rem',
-  },
-  imageAtom: {
-    objectFit: 'cover',
-    overflow: 'hidden',
-    width: '100%',
-    maxHeight: '400px',
-  },
-  imageCredit: {
-    marginTop: '10px',
-    fontSize: '0.85rem',
-  },
-  imageText: {
-    textAlign: 'right',
-    marginBottom: '10px',
-    fontSize: '1rem',
-  },
-  youTubeText: {
-    textAlign: 'right',
-    marginBottom: '10px',
-    fontSize: '1rem',
   },
   events: {
     textAlign: 'right',
@@ -96,11 +67,11 @@ const customTheme = createTheme(themes.default, {
 
 export default function Merc({ timeline }) {
   return (
-    <div style={{ marginBottom: 14 }} dir="RTL">
+    <div style={{ marginBottom: 14 }}>
       <Timeline theme={customTheme}>
         <Events>
           {_.map(timeline, (event) => {
-            return <TextEvent date={event.title_fa} text={event.text_fa} />;
+            return <TextEvent date={event.title_fa} text={_.replace(event.text_fa, '\r', '')} />;
           })}
         </Events>
       </Timeline>

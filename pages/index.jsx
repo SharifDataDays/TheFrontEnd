@@ -10,12 +10,6 @@ import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 
-const intro = {
-  header: 'معرفی رویداد',
-  content:
-    'اولین رویداد علوم داده دانشگاه شریف، یک رقابت چند مرحله‌ای آموزشی است که مهمترین هدف آن، گسترش آموزش و ایجاد علاقه‌مندی در این حوزه به همراه محک زدن سطح دانش علوم داده در جامعه علمی ایران است. این رویداد با همکاری جمعی از دانشجویان دانشکده مهندسی کامپیوتر و با پشتیبانی اساتید پیشگام در این حوزه طراحی شده‌ است. مسائل این رقابت به گونه‌ای است که شرکت‌کنندگان با هر سطحی از دانش مبتدی تا متخصص بتوانند آورده‌ای از مسابقات داشته باشند.',
-};
-
 function Home({ content }) {
   const { intro, timeline } = content;
   return (
