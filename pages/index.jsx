@@ -43,10 +43,10 @@ function Home({ content }) {
   );
 }
 
-Home.getInitialProps = async (context) => {
+/* Home.getInitialProps = async (context) => {
   const res = await fetch(homeAPI());
   const content = await res.json();
   return { content };
-};
+}; */
 
 export default Home;
