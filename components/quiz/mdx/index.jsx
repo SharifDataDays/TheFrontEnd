@@ -3,10 +3,16 @@
 import React from 'react';
 import type { Node } from 'react';
 import MDX from './runtime';
-import defaultComponents from './defaultComponents';
+import quizComponents from './components';
+import defaultComponents from '~/components/global/mdx/defaultComponents';
+
+const components = {
+  ...defaultComponents,
+  ...quizComponents,
+};
 
 function Content({ content }: { content: string }): Node {
-  return <MDX components={defaultComponents}>{content}</MDX>;
+  return <MDX components={components}>{content}</MDX>;
 }
 
 export default Content;

@@ -1,0 +1,2 @@
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+export const CHANGE_ANSWER = 'CHANGE_ANSWER';
