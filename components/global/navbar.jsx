@@ -29,20 +29,17 @@ function Navbar({ transparent }) {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link href="/resources">
-          <a href="/resources">منابع</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
         <Link href="/blog">
           <a href="/blog">بلاگ</a>
         </Link>
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
-          <a href="/">
-            <Image size="mini" src="/images/logo.png" />
-          </a>
+          <Link href="/">
+            <a href="/">
+              <Image size="mini" src="/images/logo.png" />
+            </a>
+          </Link>
         </Menu.Header>
       </Menu.Menu>
     </Menu>
