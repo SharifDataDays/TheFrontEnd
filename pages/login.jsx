@@ -9,7 +9,6 @@ function LoginPage() {
         <title>login</title>
         <style>{'body {background-color : #95d1fc}'}</style>
       </Head>
-
       <Container />
     </div>
   );

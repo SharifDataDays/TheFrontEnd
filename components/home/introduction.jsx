@@ -4,15 +4,15 @@ import { Grid, Header as H, Image } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import { typography, space } from 'styled-system';
 
-const Header = styled(H)`
-  ${typography}
-`;
-
 const Container = styled.div`
   ${space};
   background-color: #06246d;
   color: white;
   position: relative;
+`;
+
+const Header = styled(H)`
+  ${typography}
 `;
 
 const Text = styled.p`

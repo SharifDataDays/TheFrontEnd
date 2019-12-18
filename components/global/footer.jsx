@@ -3,57 +3,59 @@ import { Container, Divider, Grid, Header, List, Segment } from 'semantic-ui-rea
 
 const FixedMenuLayout = () => (
   <div dir="RTL">
-    <Segment inverted vertical style={{ padding: '5em 0em', marginTop: '1rem', width: '100%' }}>
+    <Segment inverted vertical style={{ padding: '5em 0em', width: '100%' }}>
       <Container textAlign="center">
         <Grid divided inverted stackable>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} />
+          {/* <Grid.Column width={3}>
             <Header inverted as="h4" content="دسترسی‌ها" />
             <List link inverted>
-              <List.Item as="a">بلاگ</List.Item>
-              <List.Item as="a">منابع</List.Item>
+              <List.Item as="a" href="/blog">
+                بلاگ
+              </List.Item>
+              <List.Item as="a" href="/resources">
+                منابع
+              </List.Item>
             </List>
-          </Grid.Column>
+          </Grid.Column> */}
           <Grid.Column width={3}>
-            <Header inverted as="h4" content="Group 2" />
+            <Header inverted as="h4" content="شبکه‌های اجتماعی" />
             <List link inverted>
-              <List.Item as="a">Link One</List.Item>
-              <List.Item as="a">Link Two</List.Item>
-              <List.Item as="a">Link Three</List.Item>
-              <List.Item as="a">Link Four</List.Item>
-            </List>
-          </Grid.Column>
-          <Grid.Column width={3}>
-            <Header inverted as="h4" content="Group 3" />
-            <List link inverted>
-              <List.Item as="a">Link One</List.Item>
-              <List.Item as="a">Link Two</List.Item>
-              <List.Item as="a">Link Three</List.Item>
-              <List.Item as="a">Link Four</List.Item>
+              <List.Item>
+                <a
+                  href="https://instagram.com/datadays_sharif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  اینستاگرام
+                </a>
+              </List.Item>
+              <List.Item>
+                <a href="t.me/datadays_sharif" target="_blank" rel="noopener noreferrer">
+                  تلگرام
+                </a>
+              </List.Item>
+              <List.Item>
+                <a href="twitter.com/data_days" target="_blank" rel="noopener noreferrer">
+                  توییتر
+                </a>
+              </List.Item>
+              <List.Item>
+                <a href="mailto:datadays@sharif.edu">ایمیل</a>
+              </List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={7}>
-            <Header inverted as="h4" content="Footer Header" />
-            <p>
-              Extra space for a call to action inside the footer that could help re-engage users.
-            </p>
+            <Header inverted as="h4" content="آدرس" />
+            <p>تهران، خیابان آزادی، دانشگاه صنعتی شریف، دانشکده مهندسی کامپیوتر</p>
           </Grid.Column>
         </Grid>
 
         <Divider inverted section />
-        <List horizontal inverted divided link size="small">
-          <List.Item as="a" href="#">
-            Site Map
-          </List.Item>
-          <List.Item as="a" href="#">
-            Contact Us
-          </List.Item>
-          <List.Item as="a" href="#">
-            Terms and Conditions
-          </List.Item>
-          <List.Item as="a" href="#">
-            Privacy Policy
-          </List.Item>
-        </List>
+        <p>
+          تمامی حقوق برای انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف محفوظ است.{' '}
+          {new Date().getFullYear()}©
+        </p>
       </Container>
     </Segment>
   </div>

@@ -11,7 +11,7 @@ import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 
 function Home({ content }) {
-  const { intro, timeline } = content;
+  const { intro, timeline, prizes } = content;
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ function Home({ content }) {
       <Sponsers />
       <Introduction header={intro.header_fa} content={intro.text_fa} />
       <Timeline timeline={timeline} />
-      <Prize />
+      <Prize prizes={prizes} />
       <Footer />
     </>
   );
