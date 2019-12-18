@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Grid, Header as H, Image, Transition } from 'semantic-ui-react';
+import { Fade } from 'react-reveal';
 
 const Header = styled(H)`
   font-size: 3rem;
@@ -21,39 +22,37 @@ export default class Introduction extends Component {
   }
 
   onChangeVisibility = (isVisible) => {
-    console.log(isVisible)
+    console.log(isVisible);
     this.setState({ isVisible });
   };
 
   render() {
     const { header, content } = this.props;
     return (
-      <VisibilitySensor
-        onChange={this.onChangeVisibility}
-        offset={{ top: 150 }}
-      >
-        <div style={{ position: 'relative' }}>
-          <Grid stackable inverted centered>
-            <Grid.Row
-              style={{
-                padding: '12rem 2rem',
-                backgroundColor: '#252525',
-                color: 'white',
-              }}
-            >
-              <Transition visible={this.state.isVisible} animation="scale" duration={500}>
-                <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
-                  <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
-                </Grid.Column>
-              </Transition>
-              <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
+      <div style={{ position: 'relative' }}>
+        <Grid stackable inverted centered>
+          <Grid.Row
+            style={{
+              padding: '12rem 2rem',
+              backgroundColor: '#252525',
+              color: 'white',
+            }}
+          >
+            <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
+              <Fade left>
+                <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
+              </Fade>
+            </Grid.Column>
+
+            <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
+              <Fade right>
                 <Header as="h1">{header}</Header>
                 <Text>{content}</Text>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
-      </VisibilitySensor>
+              </Fade>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }
