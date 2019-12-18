@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start",
     "test": "./node_modules/.bin/jest",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "yarn run test -- --watch",
     "lint": "./node_modules/.bin/eslint --ignore-pattern '/flow-typed/' . --fix;exit 0",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc \"src/**/*.{js,jsx}\" --write",
     "flow": "./node_modules/.bin/flow",
     "flow-typed": "./node_modules/.bin/flow-typed",
     "semantic:build": "cd .semantic && gulp build-css build-assets",
-    "semantic:watch": "cd .semantic && npm run semantic:build && gulp watch"
+    "semantic:watch": "cd .semantic && yarn run semantic:build && gulp watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
