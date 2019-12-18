@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Divider, Grid, Header, List, Segment } from 'semantic-ui-react';
 
 const FixedMenuLayout = () => (
@@ -27,21 +28,23 @@ const FixedMenuLayout = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  اینستاگرام
+                  <FontAwesomeIcon icon={['fab', 'instagram']} /> اینستاگرام
                 </a>
               </List.Item>
               <List.Item>
                 <a href="t.me/datadays_sharif" target="_blank" rel="noopener noreferrer">
-                  تلگرام
+                  <FontAwesomeIcon icon={['fab', 'instagram']} /> تلگرام
                 </a>
               </List.Item>
               <List.Item>
                 <a href="twitter.com/data_days" target="_blank" rel="noopener noreferrer">
-                  توییتر
+                  <FontAwesomeIcon icon={['fab', 'instagram']} /> توییتر
                 </a>
               </List.Item>
               <List.Item>
-                <a href="mailto:datadays@sharif.edu">ایمیل</a>
+                <a href="mailto:datadays@sharif.edu">
+                  <FontAwesomeIcon icon={['fab', 'instagram']} /> ایمیل
+                </a>
               </List.Item>
             </List>
           </Grid.Column>
