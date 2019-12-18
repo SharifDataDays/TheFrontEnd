@@ -1,26 +1,20 @@
 import React from 'react';
-import { Image, Grid, Header } from 'semantic-ui-react';
+import { Image, Grid } from 'semantic-ui-react';
 
 function Prize() {
   return (
-    <Grid style={{ backgroundColor: '#252525' }} centered stackable>
-      <Grid.Column desktop={4} tablet={5} mobile={14}>
-        <Image src="/images/second.png" />
-        <Header as="h3" color="white">
-          تیم دوم
-        </Header>
+    <Grid
+      style={{ backgroundColor: '#06246D ', paddingTop: '7rem', paddingBottom: '7rem' }}
+      centered
+    >
+      <Grid.Column computer={4} tablet={5} style={{ paddingTop: '15rem' }}>
+        <Image size="medium" src="/images/second.png" />
       </Grid.Column>
-      <Grid.Column desktop={4} tablet={5} mobile={14}>
-        <Image src="/images/first.png" />
-        <Header as="h3" color="white">
-          تیم اول
-        </Header>
+      <Grid.Column computer={4} tablet={5}>
+        <Image size="medium" src="/images/first.png" />
       </Grid.Column>
-      <Grid.Column desktop={4} tablet={5} mobile={14}>
-        <Image src="/images/third.png" />
-        <Header as="h3" color="white">
-          تیم سوم
-        </Header>
+      <Grid.Column computer={4} tablet={5} style={{ paddingTop: '15rem' }}>
+        <Image size="medium" src="/images/third.png" />
       </Grid.Column>
     </Grid>
   );

@@ -18,7 +18,7 @@ function Introduction({ header, content }) {
         <Grid.Row
           style={{
             padding: '12rem 2rem',
-            backgroundColor: '#252525',
+            backgroundColor: '#06246D',
             color: 'white',
           }}
         >
