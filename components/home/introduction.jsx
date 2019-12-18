@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import VisibilitySensor from 'react-visibility-sensor';
+import { Grid, Header as H, Image, Transition } from 'semantic-ui-react';
+import { Fade } from 'react-reveal';
 import { typography, space } from 'styled-system';
-import { Grid, Header as H, Image } from 'semantic-ui-react';
+
 
 const Header = styled(H)`
   ${typography}
@@ -18,25 +21,46 @@ const Text = styled.p`
   ${typography};
   direction: rtl;
 `;
+export default class Introduction extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false,
+    };
+  }
 
-function Introduction({ header, content }) {
-  return (
-    <Container py={[5, 6, 6]}>
-      <Grid pt={5} stackable inverted centered>
-        <Grid.Row>
-          <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
-            <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
-          </Grid.Column>
-          <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
-            <Header as="h1" fontSize={[6, 7, 7]}>
-              {header}
-            </Header>
-            <Text fontSize={[3, 5, 5]}>{content}</Text>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Container>
-  );
+  onChangeVisibility = (isVisible) => {
+    console.log(isVisible);
+    this.setState({ isVisible });
+  };
+
+  render() {
+    const { header, content } = this.props;
+    return (
+      <div style={{ position: 'relative' }}>
+        <Grid stackable inverted centered>
+          <Grid.Row
+            style={{
+              padding: '12rem 2rem',
+              backgroundColor: '#252525',
+              color: 'white',
+            }}
+          >
+            <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
+              <Fade left>
+                <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
+              </Fade>
+            </Grid.Column>
+
+            <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
+              <Fade right>
+                <Header as="h1">{header}</Header>
+                <Text>{content}</Text>
+              </Fade>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    );
+  }
 }
-
-export default Introduction;
