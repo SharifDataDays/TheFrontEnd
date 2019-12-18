@@ -3,16 +3,24 @@ import styled from 'styled-components';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Grid, Header as H, Image, Transition } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
+import { typography, space } from 'styled-system';
+
 
 const Header = styled(H)`
-  font-size: 3rem;
+  ${typography}
+`;
+
+const Container = styled.div`
+  ${space};
+  background-color: #06246d;
+  color: white;
+  position: relative;
 `;
 
 const Text = styled.p`
-  font-size: 1.75rem;
-  line-height: 1.5;
+  ${typography};
+  direction: rtl;
 `;
-
 export default class Introduction extends Component {
   constructor(props) {
     super(props);
