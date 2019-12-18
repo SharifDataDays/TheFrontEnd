@@ -25,8 +25,8 @@ const intro = {
 };
 
 function Home({ content }) {
-  const data = JSON.parse(content.dictionary);
-  const { timeline_events } = data;
+  // const data = JSON.parse(content.dictionary);
+  // const { timeline_events } = data;
   return (
     <>
       <Head>
@@ -36,7 +36,7 @@ function Home({ content }) {
       <Header />
       <Sponsers logos={logos} />
       <Introduction header={intro.header} content={intro.content} />
-      <Timeline items={timeline_events} />
+      <Timeline />
       <Prize />
       <Footer />
     </>

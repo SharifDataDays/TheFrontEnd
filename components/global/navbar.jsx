@@ -23,27 +23,28 @@ const Image = styled(Im)`
 function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Menu position="right">
-        <Menu.Item>
-          <Button primary>ورود</Button>
-        </Menu.Item>
-        <Menu.Item>
-          <Link href="/resources">
-            <a href="/resources">منابع</a>
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link href="/blog">
-            <a href="/blog">بلاگ</a>
-          </Link>
-        </Menu.Item>
-      </Menu.Menu>
-
-      <Menu.Header style={{ marginRight: '1rem' }}>
-        <Link href="/">
-          <Image size="mini" src="/images/logo.png" />
+      <Menu.Item>
+        <Link href="/signup">
+          <Button primary>ثبت نام</Button>
         </Link>
-      </Menu.Header>
+      </Menu.Item>
+      <Menu.Item>
+        <Link href="/resources">
+          <a href="/resources">منابع</a>
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link href="/blog">
+          <a href="/blog">بلاگ</a>
+        </Link>
+      </Menu.Item>
+      <Menu.Menu position="left">
+        <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
+          <a href="/">
+            <Image size="mini" src="/images/logo.png" />
+          </a>
+        </Menu.Header>
+      </Menu.Menu>
     </Menu>
   );
 }
