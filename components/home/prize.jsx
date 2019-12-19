@@ -23,19 +23,16 @@ function Prize({ prizes }) {
     <Container py={[5, 6, 6]}>
       <Grid dir="RTL" centered>
         <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
-          <Image size="medium" src="/images/first.png" />
-          <Header as="h2">مرحله‌ی آموزشی: {firstLearn}</Header>
-          <Header as="h2">مرحله‌ی اصلی: {firstMain}</Header>
+          <Image style={{ margin: 'auto' }} size="medium" src="/images/first.png" />
+          <Header as="h2">{firstMain}</Header>
         </Grid.Column>
         <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
-          <Image size="medium" src="/images/second.png" />
-          <Header as="h2">مرحله‌ی آموزشی: {secondLearn}</Header>
-          <Header as="h2">مرحله‌ی اصلی: {secondMain}</Header>
+          <Image style={{ margin: 'auto' }} size="medium" src="/images/second.png" />
+          <Header as="h2">{secondMain}</Header>
         </Grid.Column>
         <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
-          <Image size="medium" src="/images/third.png" />
-          <Header as="h2">مرحله‌ی آموزشی: {thirdLearn}</Header>
-          <Header as="h2">مرحله‌ی اصلی: {thirdMain}</Header>
+          <Image style={{ margin: 'auto' }} size="medium" src="/images/third.png" />
+          <Header as="h2">{thirdMain}</Header>
         </Grid.Column>
       </Grid>
     </Container>
