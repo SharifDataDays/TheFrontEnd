@@ -36,12 +36,12 @@ const FixedMenuLayout = () => (
                 </a>
               </List.Item>
               <List.Item>
-                <a href="t.me/datadays_sharif" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/datadays_sharif" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faTelegram} /> تلگرام
                 </a>
               </List.Item>
               <List.Item>
-                <a href="twitter.com/data_days" target="_blank" rel="noopener noreferrer">
+                <a href="https://twitter.com/data_days" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faTwitter} /> توییتر
                 </a>
               </List.Item>
