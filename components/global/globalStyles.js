@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
+    font-family: IRANSans !important;
   }
   body {
     margin: 0;

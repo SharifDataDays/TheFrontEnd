@@ -5,7 +5,7 @@ import { Timeline, Events, TextEvent, themes, createTheme } from '@merc/react-ti
 const customTheme = createTheme(themes.default, {
   timeline: {
     backgroundColor: 'inherit',
-    fontSize: '1rem',
+    fontSize: '1.5rem',
     fontFamily: 'IRANSans',
   },
   timelineTrack: {
@@ -28,7 +28,7 @@ const customTheme = createTheme(themes.default, {
     borderRadius: '4px',
     backgroundColor: '#fff',
     color: '#333',
-    padding: '10px',
+    padding: '1rem',
     boxShadow: '0 6px 10px 3px hsla(0, 0%, 0%, 0.4)',
     width: '100%',
     maxWidth: '560px',
