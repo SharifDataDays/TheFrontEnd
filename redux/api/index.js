@@ -1,3 +1,3 @@
-const BASE_ADDR = 'http://185.215.113.54';
+const BASE_ADDR = 'http:localhost:9000';
 
 export default BASE_ADDR;
