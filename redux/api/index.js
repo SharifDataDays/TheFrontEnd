@@ -1,3 +1,3 @@
-const BASE_ADDR = 'http:localhost:9000';
+const BASE_ADDR = 'http://datadays.ir/api';
 
 export default BASE_ADDR;

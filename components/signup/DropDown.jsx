@@ -31,12 +31,6 @@ export const persianMonthOptions = [
   {key: '12', text: 'اسفند', value: 'اسفند'}
 ]
 
-function handleChange(e, {value}) {
-  e.persist();
-  console.log("*******: ", e.target.textContent);
-  
-}
-
 const SelectingDropDown = (props) => (
   
   <Dropdown

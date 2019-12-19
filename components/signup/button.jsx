@@ -5,7 +5,7 @@ import handleSubmit from './signUpFields'
 
 const SignupButton = (props) => {
     return(
-        <Button color={props.color} style={{width:"48%", height:40}}>
+        <Button onClick={props.onClick} color={props.color} style={{width:"48%", height:40}}>
             {props.text}
         </Button>
     )

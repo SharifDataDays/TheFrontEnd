@@ -6,9 +6,6 @@ class SignupPage extends Component {
   render() {
     return (
       <div>
-        <Head>
-          <style>{'body {background-color : #95d1fc}'}</style>
-        </Head>
         <SignupContainer/>
       </div>
     );

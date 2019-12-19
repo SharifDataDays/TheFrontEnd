@@ -1,112 +1,145 @@
-import React, { Component} from 'react'
-import { Grid, Form, Container, FormField, Button, Checkbox, Input, Responsive, Label } from 'semantic-ui-react';
-import SelectingDropDown from './DropDown'
-import {monthOptions, persianMonthOptions} from './DropDown'
-import SignupInput from './input'
-import SignupButton from './button'
+import React, { Component } from 'react';
+import {
+  Grid,
+  Form,
+  Container,
+  FormField,
+  Button,
+  Checkbox,
+  Input,
+  Responsive,
+  Label,
+} from 'semantic-ui-react';
 
-// export function handleMonthChange(e, {value}) {
-//     e.persist()
-//     console.log("******: ", e.target.textContent)
-//     this.setState({birthMonth: e.target.textContent})
-// }
+import { DateInput } from 'semantic-ui-calendar-react';
+import SignupInput from './input';
+import SignupButton from './button';
 
-export default class SignUpFields extends Component {   
+export default class SignUpFields extends Component {
+  state = {
+    nameFa: '',
+    lastNameFa: '',
+    nameEn: '',
+    lastNameEn: '',
+    userName: '',
+    email: '',
+    birthDate: '',
+    university: '',
+    password: '',
+    confirmPassword: '',
+  };
 
-    state = {
-        name: '',
-        lastName: '',
-        userName: '',
-        email: '',
-        birthDay: '',
-        birthMonth: '',
-        birthYear: '',
-        university: '',
-        education: '',
-        residence: '',
-        callingNumber: '',
-        password: '',
-        confirmPassword: '',
-
-        submittedName: '',
-        submittedLastname: '',
-        submittedUsername: '',
-        submittedEmail: '',
-        submittedBirthDay: '',
-        submittedBirthMonth: '',
-        submittedBirthYear: '',
-        submittedUniversity: '',
-        submittededucation: '',
-        submittedResidence: '',
-        submittedCallingNumber: '',
-        submittedPassword: '',
-        submittedConfirmPassword: ''
+  handleChange = (event, { name, value }) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
     }
+  };
 
-    handleChange = (e, {name, value}) => this.setState({[name]: value})
+  render() {
+    const {
+      name,
+      lastName,
+      userName,
+      email,
+      birthDate,
+      university,
+      password,
+      confirmPassword,
+    } = this.state;
 
-    handleSubmit = () => {
-        const {name, lastName, userName, email, birthDay, birthMonth, birthYear,
-            university, education, residence, callingNumber, password, confirmPassword} = this.state
+    return (
+      <Grid verticalAlign="middle">
+        <Grid.Column>
+          <Form>
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                name="nameFa"
+                onChange={this.handleChange}
+                value={name}
+                label="نام به فارسی"
+              />
+              <SignupInput
+                name="lastNameFa"
+                onChange={this.handleChange}
+                value={lastName}
+                label="نام خانوادگی به فارسی"
+              />
+            </Form.Group>
 
-        this.setState({submittedName: name, submittedLastname:lastName, submittedUsername: userName, submittedEmail: email,
-            submittedBirthDay: birthDay, submittedBirthMonth: birthMonth, submittedBirthYear: birthYear, submittedUniversity: university,
-            submittededucation: education, submittedResidence: residence, submittedCallingNumber: callingNumber, submittedPassword: password,
-            submittedConfirmPassword: confirmPassword})
-    }
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                name="nameEn"
+                onChange={this.handleChange}
+                value={name}
+                label="نام به انگلیسی"
+              />
+              <SignupInput
+                name="lastNameEn"
+                onChange={this.handleChange}
+                value={lastName}
+                label="نام خانوادگی به انگلیسی"
+              />
+            </Form.Group>
 
-    render() {
-        const {name, lastName, userName, email, birthDay, birthMonth, birthYear,
-             university, education, residence, callingNumber, password, confirmPassword} = this.state
+            <Form.Group width={1} dir="rtl">
+              <SignupInput
+                name="university"
+                onChange={this.handleChange}
+                value={university}
+                label="دانشگاه"
+              />
+              <div>
+                <div style={{ marginBottom: 5 }}>
+                  <label style={{ fontWeight: 'bold' }}>تاریخ تولد</label>
+                </div>
 
-        return (
-            <Responsive as={Grid}>
-                <Grid.Column>
-                    <Form>
-                        <Form.Group width={2} dir="rtl">
-                            <SignupInput name="name" value={name} label="نام" />
-                             <SignupInput name="lastName" value={lastName} label="نام خانوادگی" />
-                        </Form.Group>
+                <DateInput
+                  name="birthDate"
+                  placeholder="تاریخ تولد"
+                  iconPosition="right"
+                  value={birthDate}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </Form.Group>
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                onChange={this.handleChange}
+                name="userName"
+                value={userName}
+                label="نام کاربری"
+              />
+              <SignupInput
+                onChange={this.handleChange}
+                name="email"
+                value={email}
+                type="email"
+                label="ایمیل"
+              />
+            </Form.Group>
 
-                        <Form.Group width={2} dir="rtl">
-                            <SignupInput name="userName" value={userName} label="نام کاربری" />
-                            <SignupInput name="email" value={email} label="ایمیل" />
-                        </Form.Group>
-
-                    
-
-                        <Container>
-                            <label>تاریخ تولد</label>
-                        <Form.Group width={3} dir="rtl">
-                            <Input name="birthDay" value={birthDay} type="number" min="1" max="31" placeholder="روز" dir="rtl"
-                                 onChange={this.handleChange} style={{width: 500}}/>
-                            <SelectingDropDown name="birthMonth" value={birthMonth} options={persianMonthOptions} text="ماه"
-                                 /> 
-                            <Input name="birthYear" value={birthYear} type="number" min="1360" max="1390" placeholder="سال" dir="rtl"
-                                 onChange={this.handleChange} style={{width: 500}}/>
-                            
-                        </Form.Group>
-                        </Container>
-
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="education" value={education} label="مقطع تحصیلی" />
-                             <SignupInput name="university" value={university} label="دانشگاه" />
-                        </Form.Group>
-
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="callingNumber" value={callingNumber} label="شماره تماس" />
-                             <SignupInput name="residence" value={residence} label="محل سکونت" />
-                        </Form.Group>
-
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="password" value={password} label="گذرواژه" />
-                             <SignupInput name="confirmPassword" value={confirmPassword} label="تکرار گذرواژه" />
-                        </Form.Group>
-                        <SignupButton color="blue" text="ثبت نام" />
-                        
-                    </Form>
-                </Grid.Column>
-            </Responsive>
-        );
-    }
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                onChange={this.handleChange}
+                name="password"
+                value={password}
+                type="password"
+                label="گذرواژه"
+              />
+              <SignupInput
+                onChange={this.handleChange}
+                name="confirmPassword"
+                value={confirmPassword}
+                type="password"
+                label="تکرار گذرواژه"
+              />
+            </Form.Group>
+            <SignupButton onClick={this.props.notify} color="blue" text="ثبت نام" />
+          </Form>
+          
+        </Grid.Column>
+       
+      </Grid>
+    );
+  }
 }
