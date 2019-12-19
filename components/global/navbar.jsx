@@ -27,15 +27,13 @@ function Navbar({ transparent }) {
         <Link href="/signup">
           <Button primary>ثبت نام</Button>
         </Link>
-      </Menu.Item> */}
+      </Menu.Item>
       <Menu.Item>
         <a href="/blog">بلاگ</a>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Menu position="left">
         <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
-          <a href="/">
-            <Image size="mini" src="/images/logo.png" />
-          </a>
+          <Image size="mini" src="/images/logo.png" />
         </Menu.Header>
       </Menu.Menu>
     </Menu>

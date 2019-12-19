@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Font from '~/components/global/font';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -28,11 +29,20 @@ export default class MyDocument extends Document {
     }
   }
 
+  componentDidMount() {
+    Font();
+  }
+
   render() {
     return (
       <Html>
         <Head>
           <link rel="shortcut icon" href="/favicon.ico" />
+          <meta
+            id="viewport"
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+          />
         </Head>
         <body>
           <Main />
