@@ -33,7 +33,9 @@ function Navbar({ transparent }) {
       </Menu.Item> */}
       <Menu.Menu position="left">
         <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
-          <Image size="mini" src="/images/logo.png" />
+          <a href="/">
+            <Image size="mini" src="/images/logo.png" />
+          </a>
         </Menu.Header>
       </Menu.Menu>
     </Menu>
