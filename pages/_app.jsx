@@ -1,4 +1,4 @@
-import 'semantic-ui-css/semantic.rtl.min.css';
+import '~/.semantic/dist/semantic.rtl.min.css';
 import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
