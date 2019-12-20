@@ -14,6 +14,7 @@ import {
 import { DateInput } from 'semantic-ui-calendar-react';
 import SignupInput from './input';
 import SignupButton from './button';
+import { preReqCheck, reqSignup } from '../../redux/utils/signup';
 
 export default class SignUpFields extends Component {
   state = {
@@ -27,6 +28,18 @@ export default class SignUpFields extends Component {
     university: '',
     password: '',
     confirmPassword: '',
+    errors: {
+      nameFa: false,
+      lastNameFa: false,
+      nameEn: false,
+      lastNameEn: false,
+      userName: false,
+      email: false,
+      birthDate: false,
+      university: false,
+      password: false,
+      confirmPassword: false,
+    },
   };
 
   handleChange = (event, { name, value }) => {
@@ -35,10 +48,24 @@ export default class SignUpFields extends Component {
     }
   };
 
+  onSubmit = async () => {
+    let res = preReqCheck(this.state);
+    this.setState({ errors: res.newErrors });
+    if (res.problem) {
+      this.props.notify(res.problem); 
+    } else {
+      await reqSignup(this.state)
+    }
+    
+    
+  };
+
   render() {
     const {
-      name,
-      lastName,
+      nameFa,
+      lastNameFa,
+      nameEn,
+      lastNameEn,
       userName,
       email,
       birthDate,
@@ -46,6 +73,7 @@ export default class SignUpFields extends Component {
       password,
       confirmPassword,
     } = this.state;
+    const { errors } = this.state;
 
     return (
       <Grid verticalAlign="middle">
@@ -55,13 +83,15 @@ export default class SignUpFields extends Component {
               <SignupInput
                 name="nameFa"
                 onChange={this.handleChange}
-                value={name}
+                value={nameFa}
+                error={errors.nameFa}
                 label="نام به فارسی"
               />
               <SignupInput
                 name="lastNameFa"
                 onChange={this.handleChange}
-                value={lastName}
+                value={lastNameFa}
+                error={errors.lastNameFa}
                 label="نام خانوادگی به فارسی"
               />
             </Form.Group>
@@ -70,13 +100,15 @@ export default class SignUpFields extends Component {
               <SignupInput
                 name="nameEn"
                 onChange={this.handleChange}
-                value={name}
+                value={nameEn}
+                error={errors.nameEn}
                 label="نام به انگلیسی"
               />
               <SignupInput
                 name="lastNameEn"
                 onChange={this.handleChange}
-                value={lastName}
+                value={lastNameEn}
+                error={errors.lastNameEn}
                 label="نام خانوادگی به انگلیسی"
               />
             </Form.Group>
@@ -86,6 +118,7 @@ export default class SignUpFields extends Component {
                 name="university"
                 onChange={this.handleChange}
                 value={university}
+                error={errors.university}
                 label="دانشگاه"
               />
               <div>
@@ -96,6 +129,8 @@ export default class SignUpFields extends Component {
                 <DateInput
                   name="birthDate"
                   placeholder="تاریخ تولد"
+                  popupPosition="top center"
+                  closeOnMouseLeave="false"
                   iconPosition="right"
                   value={birthDate}
                   onChange={this.handleChange}
@@ -107,6 +142,7 @@ export default class SignUpFields extends Component {
                 onChange={this.handleChange}
                 name="userName"
                 value={userName}
+                error={errors.userName}
                 label="نام کاربری"
               />
               <SignupInput
@@ -114,6 +150,7 @@ export default class SignUpFields extends Component {
                 name="email"
                 value={email}
                 type="email"
+                error={errors.email}
                 label="ایمیل"
               />
             </Form.Group>
@@ -124,6 +161,7 @@ export default class SignUpFields extends Component {
                 name="password"
                 value={password}
                 type="password"
+                error={errors.password}
                 label="گذرواژه"
               />
               <SignupInput
@@ -131,14 +169,13 @@ export default class SignUpFields extends Component {
                 name="confirmPassword"
                 value={confirmPassword}
                 type="password"
+                error={errors.confirmPassword}
                 label="تکرار گذرواژه"
               />
             </Form.Group>
-            <SignupButton onClick={this.props.notify} color="blue" text="ثبت نام" />
+            <SignupButton onClick={this.onSubmit} color="blue" text="ثبت نام" />
           </Form>
-          
         </Grid.Column>
-       
       </Grid>
     );
   }
