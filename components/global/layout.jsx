@@ -1,16 +1,8 @@
-import '~/.semantic/dist/semantic.rtl.min.css';
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { Container } from 'semantic-ui-react';
 import GlobalStyle from './globalStyles';
 import theme from '~/theme';
-
-/*
-const Container = styled(C)`
-  width: 100% !important;
-  margin: 0 !important;
-`;
-*/
 
 function Layout({ children }) {
   return (
