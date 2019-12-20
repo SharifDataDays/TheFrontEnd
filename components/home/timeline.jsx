@@ -52,7 +52,7 @@ const customTheme = createTheme(themes.default, {
     color: '#fff',
     borderRadius: '4px',
     fontWeight: 500,
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
   },
   events: {
     textAlign: 'right',

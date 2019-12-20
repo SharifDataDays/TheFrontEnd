@@ -38,14 +38,16 @@ class Logo extends Component {
     const { height, src, visible } = this.props;
     const { color } = this.state;
     return (
-      <Image
-        src={src}
-        height={height}
-        color={color}
-        visible={visible}
-        onMouseEnter={this.changeToColor}
-        onMouseLeave={this.changeToGray}
-      />
+      <a href={src.link} target="_blank" rel="noopener noreferrer">
+        <Image
+          src={src.image}
+          height={height}
+          color={color}
+          visible={visible}
+          onMouseEnter={this.changeToColor}
+          onMouseLeave={this.changeToGray}
+        />
+      </a>
     );
   }
 }

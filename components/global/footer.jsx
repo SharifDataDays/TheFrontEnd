@@ -10,19 +10,8 @@ const FixedMenuLayout = () => (
   <div dir="RTL">
     <Segment inverted vertical style={{ padding: '5em 0em', width: '100%' }}>
       <Container textAlign="center">
-        <Grid divided inverted stackable>
+        <Grid inverted stackable>
           <Grid.Column width={3} />
-          {/* <Grid.Column width={3}>
-            <Header inverted as="h4" content="دسترسی‌ها" />
-            <List link inverted>
-              <List.Item as="a" href="/blog">
-                بلاگ
-              </List.Item>
-              <List.Item as="a" href="/resources">
-                منابع
-              </List.Item>
-            </List>
-          </Grid.Column> */}
           <Grid.Column width={3}>
             <Header inverted as="h4" content="شبکه‌های اجتماعی" />
             <List link inverted>

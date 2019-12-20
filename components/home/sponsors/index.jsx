@@ -5,8 +5,8 @@ import { Grid as G } from 'semantic-ui-react';
 import VisibilitySensor from 'react-visibility-sensor';
 import Logo from './logo';
 
-const logo1 = '/images/sponsors/ssc.png';
-const logo2 = '/images/sponsors/sharif.png';
+const logo1 = { image: '/images/sponsors/ssc.png', link: 'https://ssc.ce.sharif.edu/' };
+const logo2 = { image: '/images/sponsors/sharif.png', link: 'https://ce.sharif.edu/' };
 
 const logos = [logo1, logo2];
 

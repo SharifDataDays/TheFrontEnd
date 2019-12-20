@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import NoSSR from 'react-no-ssr';
 import { Grid, Header as H, Image, Responsive } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import { typography, space } from 'styled-system';
@@ -22,7 +23,7 @@ const Text = styled.p`
 
 function Introduction({ header, content }) {
   return (
-    <>
+    <NoSSR>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Container
           style={{ backgroundImage: "url('/images/intro.png')", backgroundSize: 'cover' }}
@@ -59,7 +60,7 @@ function Introduction({ header, content }) {
           </Grid>
         </Container>
       </Responsive>
-    </>
+    </NoSSR>
   );
 }
 
