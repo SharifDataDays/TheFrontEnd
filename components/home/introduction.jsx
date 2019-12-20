@@ -45,11 +45,9 @@ function Introduction({ header, content }) {
       </Responsive>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Container pb={[5, 6, 6]}>
-          <Grid stackable inverted centered>
-            <Image style={{ width: '100%' }} src="/images/intro.png" />
-            <Grid.Column textAlign="center" verticalAlign="middle" width={6} />
-
-            <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
+          <Image src="/images/intro.png" />
+          <Grid centered>
+            <Grid.Column textAlign="center" verticalAlign="middle" width={14}>
               <Fade right>
                 <Header as="h1" fontSize={(5, 6, 6)}>
                   {header}
