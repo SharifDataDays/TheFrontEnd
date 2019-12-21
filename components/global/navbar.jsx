@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import React from 'react';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
 
@@ -23,18 +22,22 @@ const Image = styled(Im)`
 function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      {/* <Menu.Item>
-        <Link href="/signup">
+      <Menu.Item>
+        <a href="/signup">
           <Button primary>ثبت نام</Button>
-        </Link>
+        </a>
       </Menu.Item>
       <Menu.Item>
         <a href="/blog">بلاگ</a>
-      </Menu.Item> */}
+      </Menu.Item>
       <Menu.Menu position="left">
-        <Menu.Header style={{ marginRight: '1rem', marginTop: '1rem' }}>
+        <Menu.Header>
           <a href="/">
-            <Image size="mini" src="/images/logo.png" />
+            <Image
+              style={{ marginRight: '1rem', marginTop: '2rem' }}
+              size="mini"
+              src="/images/logo.png"
+            />
           </a>
         </Menu.Header>
       </Menu.Menu>
