@@ -64,7 +64,7 @@ class Subscribe extends Component {
       <Modal
         trigger={
           <Segment primary onClick={this.handleOpen}>
-            اشتراک در اخبار
+            اشتراک در خبرنامه
           </Segment>
         }
         open={modalOpen}
@@ -73,7 +73,7 @@ class Subscribe extends Component {
         size="small"
       >
         <div dir="RTL">
-          <Header style={{ color: 'white' }} content="اشتراک در اخبار" />
+          <Header style={{ color: 'white' }} content="اشتراک در خبرنامه" />
           <Modal.Content>
             <Input onChange={this.handleChange} style={{ width: '100%' }} placeholder="ایمیل" />
           </Modal.Content>

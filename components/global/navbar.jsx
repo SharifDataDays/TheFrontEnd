@@ -22,12 +22,12 @@ const Image = styled(Im)`
 function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Item>
+      {/* <Menu.Item>
         <a href="/signup">
           <Button primary>ثبت نام</Button>
         </a>
       </Menu.Item>
-      {/* <Menu.Item>
+      <Menu.Item>
         <a href="/blog">بلاگ</a>
       </Menu.Item> */}
       <Menu.Menu position="left">
