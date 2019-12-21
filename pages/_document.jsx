@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="stylesheet" href="/fonts/font.css" />
           <meta
             id="viewport"
             name="viewport"

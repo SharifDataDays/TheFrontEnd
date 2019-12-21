@@ -10,7 +10,6 @@ const Container = styled.div`
   color: white;
   position: relative;
   background-color: #1d93f7;
-  /* margin-top: -8px !important; */
 `;
 
 const Header = styled(H)`

@@ -36,6 +36,7 @@ function ParticleContainer({ particleCount }) {
           },
           line_linked: {
             color: '#1d93f7',
+            width: 2,
           },
           size: {
             value: 1,
