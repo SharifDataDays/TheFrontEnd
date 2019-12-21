@@ -7,7 +7,7 @@ import { Zoom, Fade } from 'react-reveal';
 
 const Container = styled.div`
   ${space};
-  background-color: #1d93f7;
+  background-color: #202020;
 `;
 
 const Header = styled(H)`
@@ -106,7 +106,7 @@ function Prize({ prizes }) {
             <Divider hidden />
             <Grid.Row>
               <Fade>
-                <Header as="h3" style={{ margin: '1rem' }}>
+                <Header as="h3" style={{ margin: '1rem', padding: '1.5rem' }}>
                   دو تیم از تیم‌های چهارم تا بیستم: هرکدام ۲ میلیون تومان
                 </Header>
               </Fade>

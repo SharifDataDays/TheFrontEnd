@@ -14,8 +14,8 @@ const logos = [logo1, logo2];
 const Container = styled.div`
   ${space};
   color: white;
-  background-color: #1d93f7;
-  margin-top: -8px !important;
+  background-color: #202020;
+  margin-top: -8px;
 `;
 
 class Sponsors extends Component {

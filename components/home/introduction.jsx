@@ -9,7 +9,7 @@ const Container = styled.div`
   ${space};
   color: white;
   position: relative;
-  background-color: #1f1f1f;
+  background-color: #1d93f7;
   /* margin-top: -8px !important; */
 `;
 
@@ -28,14 +28,14 @@ function Introduction({ header, content }) {
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Container
           style={{
-            backgroundImage: "url('/images/timeline.png')",
+            backgroundImage: "url('/images/intro.png')",
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            // backgroundPosition: 'center',
           }}
           py={[5, 6, 6]}
         >
           <Grid stackable inverted centered>
-            <Grid.Column textAlign="center" verticalAlign="middle" width={4} />
+            <Grid.Column textAlign="center" verticalAlign="middle" width={6} />
 
             <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
               <Fade right>

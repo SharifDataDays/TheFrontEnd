@@ -11,7 +11,7 @@ const customTheme = createTheme(themes.default, {
   timelineTrack: {
     right: '50%',
     width: '2px',
-    height: '100%',
+    height: '88%',
     backgroundColor: '#1d93f7',
     content: "''",
   },
