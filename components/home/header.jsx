@@ -20,14 +20,22 @@ function ParticleContainer({ particleCount }) {
       width="100vw"
       height="100vh"
       style={{
-        backgroundImage:
-          'linear-gradient(to left bottom, #002573, #1c255e, #24254b, #262538, #252525)',
+        //backgroundImage:
+        //  'linear-gradient(to left bottom, #002573, #1c255e, #24254b, #262538, #252525)',
         // boxShadow: '0px 6px 20px 5px #252525',
+        // backgroundColor: '#1f1f1f',
+        backgroundImage: 'linear-gradient(to bottom, #101010, #141414, #171717, #1a1a1a, #202020)',
       }}
       params={{
         particles: {
           number: {
             value: particleCount,
+          },
+          coloe: {
+            value: '#1d93f7',
+          },
+          line_linked: {
+            color: '#1d93f7',
           },
           size: {
             value: 1,

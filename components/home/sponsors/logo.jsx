@@ -8,7 +8,7 @@ function change(color, visible) {
 }
 
 const Image = styled(Im)`
-  filter: ${(props) => (change(props.color, props.visible) ? 'grayscale(100%)' : 'none')};
+  filter: ${(props) => (change(props.color, props.visible) ? 'invert(1)' : 'invert(1)')};
   opacity: ${(props) => (change(props.color, props.visible) ? 0.66 : 1)};
   margin-left: auto;
   margin-right: auto;

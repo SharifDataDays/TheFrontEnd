@@ -7,7 +7,7 @@ import { Zoom, Fade } from 'react-reveal';
 
 const Container = styled.div`
   ${space};
-  background-color: #06246d;
+  background-color: #1d93f7;
 `;
 
 const Header = styled(H)`
@@ -78,24 +78,24 @@ function Prize({ prizes }) {
             <Grid.Row>
               <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
                 <Zoom>
-                  <Image style={{ margin: 'auto' }} size="medium" src="/images/first.png" />
-                  <Header as="h2" style={{ margin: '1rem' }}>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/first.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
                     {firstMain}
                   </Header>
                 </Zoom>
               </Grid.Column>
               <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
                 <Zoom>
-                  <Image style={{ margin: 'auto' }} size="medium" src="/images/second.png" />
-                  <Header as="h2" style={{ margin: '1rem' }}>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/second.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
                     {secondMain}
                   </Header>
                 </Zoom>
               </Grid.Column>
               <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
                 <Zoom>
-                  <Image style={{ margin: 'auto' }} size="medium" src="/images/third.png" />
-                  <Header as="h2" style={{ margin: '1rem' }}>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/third.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
                     {thirdMain}
                   </Header>
                 </Zoom>

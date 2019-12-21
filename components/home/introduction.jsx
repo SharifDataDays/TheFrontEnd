@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NoSSR from 'react-no-ssr';
-import { Grid, Header as H, Image, Responsive } from 'semantic-ui-react';
+import { Grid, Header as H, Responsive } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import { typography, space } from 'styled-system';
 
@@ -9,7 +9,8 @@ const Container = styled.div`
   ${space};
   color: white;
   position: relative;
-  background-color: #1d93f7;
+  background-color: #1f1f1f;
+  /* margin-top: -8px !important; */
 `;
 
 const Header = styled(H)`
@@ -26,11 +27,15 @@ function Introduction({ header, content }) {
     <NoSSR>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Container
-          style={{ backgroundImage: "url('/images/intro.png')", backgroundSize: 'cover' }}
+          style={{
+            backgroundImage: "url('/images/timeline.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
           py={[5, 6, 6]}
         >
           <Grid stackable inverted centered>
-            <Grid.Column textAlign="center" verticalAlign="middle" width={6} />
+            <Grid.Column textAlign="center" verticalAlign="middle" width={4} />
 
             <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
               <Fade right>
@@ -44,8 +49,8 @@ function Introduction({ header, content }) {
         </Container>
       </Responsive>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Container pb={[5, 6, 6]}>
-          <Image src="/images/intro.png" />
+        <Container py={[5, 6, 6]}>
+          {/* <Image src="/images/timeline.png" /> */}
           <Grid centered>
             <Grid.Column textAlign="center" verticalAlign="middle" width={14}>
               <Fade right>

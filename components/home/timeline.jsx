@@ -4,7 +4,7 @@ import { Timeline, Events, TextEvent, themes, createTheme } from '@merc/react-ti
 
 const customTheme = createTheme(themes.default, {
   timeline: {
-    backgroundColor: '#252525',
+    backgroundColor: '#202020',
     fontSize: '1.5rem',
     fontFamily: 'IRANSans',
   },
@@ -16,7 +16,7 @@ const customTheme = createTheme(themes.default, {
     content: "''",
   },
   marker: {
-    backgroundColor: '#252525',
+    backgroundColor: '#202020',
     border: '2px solid #1d93f7',
     borderRadius: '50%',
     width: '20px',
