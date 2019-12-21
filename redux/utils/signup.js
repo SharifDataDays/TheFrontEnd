@@ -1,6 +1,8 @@
 import { colorStyle, gridAutoRows } from "styled-system";
 import {signupAPI} from '../api/signup';
 import validator from 'validator';
+import axios from 'axios';
+
 export function preReqCheck(fields) {
   let res = {};
   let newErrors = {};
@@ -56,14 +58,15 @@ export async function reqSignup(fields) {
         university: fields['university']
     }
   }
-  const res = await fetch(signupAPI(), {
-    method : 'POST',
-    headers : {
-      'Content-Type' : 'application/json',
-      'Accept' : 'application/json'
-    },
-    body : JSON.stringify(data)
-  })
-  const content = await res.json()
-  console.log(content)
+  // const res = await fetch(signupAPI(), {
+  //   method : 'POST',
+  //   headers : {
+  //     'Content-Type' : 'application/json',
+  //     'Accept' : 'application/json'
+  //   },
+  //   body : JSON.stringify(data)
+  // })
+  // const content = await res.json()
+  const res = axios.post(signupAPI(), data)
+  console.log(res)
 }
