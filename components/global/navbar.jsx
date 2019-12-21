@@ -27,9 +27,9 @@ function Navbar({ transparent }) {
           <Button primary>ثبت نام</Button>
         </a>
       </Menu.Item>
-      <Menu.Item>
+      {/* <Menu.Item>
         <a href="/blog">بلاگ</a>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Menu position="left">
         <Menu.Header>
           <a href="/">
