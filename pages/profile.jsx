@@ -1,14 +1,103 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { space } from 'styled-system';
-import NoSSR from 'react-no-ssr';
-import { Divider, Image, Grid, Header, Responsive } from 'semantic-ui-react';
-import { Zoom, Fade } from 'react-reveal';
+import { space, layout } from 'styled-system';
+import { Grid, Header, Responsive, Label as L } from 'semantic-ui-react';
+import { Fade } from 'react-reveal';
 import Navbar from '~/components/global/navbar';
+
+const profile_data = {
+  name: 'صبا',
+  lastName: 'آآآ',
+  userName: 'svw',
+  email: 'test@test.com',
+  birthDay: '20',
+  birthMonth: '6',
+  birthYear: '2000',
+  university: 'شریف',
+  education: 'کارشناسی',
+  residence: 'ته',
+  callingNumber: '09190919091',
+  // password: '',
+  // confirmPassword: '',
+};
+
+const fields = [
+  {
+    en: 'name',
+    fa: 'نام',
+    readOnly: true,
+  },
+  {
+    en: 'lastName',
+    fa: 'نام خانوادگی',
+    readOnly: true,
+  },
+  {
+    en: 'userName',
+    fa: 'نام کاربری',
+    readOnly: true,
+  },
+  {
+    en: 'email',
+    fa: 'ایمیل',
+    readOnly: true,
+  },
+  {
+    en: 'birthDay',
+    fa: 'تاریخ تولد',
+    readOnly: true,
+  },
+  {
+    en: 'birthMonth',
+    fa: 'نام',
+    readOnly: true,
+  },
+  {
+    en: 'birthYear',
+    fa: 'نام',
+    readOnly: true,
+  },
+  {
+    en: 'university',
+    fa: 'دانشگاه',
+    readOnly: true,
+  },
+  {
+    en: 'education',
+    fa: 'تحصیلات',
+    readOnly: true,
+  },
+  {
+    en: 'residence',
+    fa: 'محل اقامت',
+    readOnly: true,
+  },
+  {
+    en: 'callingNumber',
+    fa: 'تلفن همراه',
+    readOnly: true,
+  },
+  {
+    en: 'password',
+    fa: 'رمز عبور',
+    readOnly: false,
+  },
+  {
+    en: 'confirmPassword',
+    fa: 'تکرار رمز عبور',
+    readOnly: false,
+  },
+];
 
 const Container = styled.div`
   ${space}
+`;
+
+const Label = styled.label`
+  ${space}
+  ${layout}
 `;
 
 class Profile extends Component {
@@ -41,6 +130,8 @@ class Profile extends Component {
     submittedPassword: '',
     submittedConfirmPassword: '',
   };
+
+  state = profile_data;
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
@@ -78,6 +169,32 @@ class Profile extends Component {
     });
   };
 
+  form_input = (field) => {
+    return (
+      <Form.Group inline>
+        <Grid celled>
+          <Grid.Row>
+            <Grid.Column width={6}>
+              <Label color="red" py={2}>
+                {field.fa}:
+              </Label>
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <Form.Input
+                placeholder={field.fa}
+                name={field.en}
+                value={this.state[field.en]}
+                onChange={this.handleChange}
+                
+                readOnly={field.readOnly}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Form.Group>
+    );
+  };
+
   render() {
     const {
       name,
@@ -98,32 +215,19 @@ class Profile extends Component {
     return (
       <>
         <Navbar />
-        <Container p={[5, 6, 6]}>
-          <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              <Fade right>
-            <Header size="huge" dividing dir="RTL">
-              پروفایل
-            </Header>
+        <Container px={[4, 6, 6]} py={[3, 4, 4]}>
+          <Header size="huge" dividing dir="RTL">
+            پروفایل
+          </Header>
 
+          <Fade up>
             <Form onSubmit={this.handleSubmit} dir="RTL">
-              <Form.Input placeholder="نام" name="name" value={name} onChange={this.handleChange} />
-              <Form.Input
-                placeholder="ایمیل"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-              <Form.Input
-                placeholder="نام کاربری"
-                name="username"
-                value={userName}
-                onChange={this.handleChange}
-                readOnly
-              />
+              {_.map(fields, (field) => {
+                return this.form_input(field);
+              })}
               <Form.Button content="ذخیره‌ی تغییرات" />
             </Form>
-            </Fade>
-          </Responsive>
+          </Fade>
         </Container>
       </>
     );
