@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Responsive, Image } from 'semantic-ui-react';
 import neuralnet from './neuralnet';
+import Link from 'next/link';
 
 const image = require('./image.png');
 export default class LoginSignupContainer extends Component {
@@ -40,7 +41,10 @@ export default class LoginSignupContainer extends Component {
         }}
       >
         <Responsive as={Grid.Column} minWidth={768} width={8}>
-          <Image style={{ position: 'absolute', margin: 10 }} size="mini" src="/images/logo.png" />
+          <a href='.'>
+            <Image style={{ position: 'absolute', margin: 10 }} size="mini" src="/images/logo.png" />
+          </a>
+          
           <canvas
             ref="canvas"
             style={{
@@ -48,12 +52,6 @@ export default class LoginSignupContainer extends Component {
               height: '100%',
             }}
           />
-          {/* <div style={{margin : 'auto', height : '100%'}}>
-            <div style={{width : '80%', margin : 'auto'}}>
-              <Diamond/>
-            </div>
-            
-          </div> */}
         </Responsive>
 
         <Grid.Column computer={8} tablet={8} mobile={14}>
