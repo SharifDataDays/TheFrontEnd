@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout } from 'styled-system';
-import { Grid, Header, Responsive, Label as L } from 'semantic-ui-react';
+import { Container as Cnt, Header, Responsive, Label as L } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import Navbar from '~/components/global/navbar';
 
@@ -172,25 +172,21 @@ class Profile extends Component {
   form_input = (field) => {
     return (
       <Form.Group inline>
-        <Grid celled>
-          <Grid.Row>
-            <Grid.Column width={6}>
-              <Label color="red" py={2}>
-                {field.fa}:
-              </Label>
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <Form.Input
-                placeholder={field.fa}
-                name={field.en}
-                value={this.state[field.en]}
-                onChange={this.handleChange}
-                
-                readOnly={field.readOnly}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        {/* <Cnt dir="RTL"> */}
+        <Label py={2} style={{width: "120px"}}>{field.fa}:</Label>
+        {/* </Form.Group></Cnt> */}
+        <Form.Input
+          placeholder={field.fa}
+          name={field.en}
+          value={this.state[field.en]}
+          onChange={this.handleChange}
+          readOnly={field.readOnly}
+          width={3}
+          style={{
+            borderStyle: "None"
+          }}
+        />
+        
       </Form.Group>
     );
   };
