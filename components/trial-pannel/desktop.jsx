@@ -6,8 +6,8 @@ const RowSegment = styled(Segment)`
   padding: 0 !important;
   display: flex;
   justify-content: flex-end;
-  border-right: 1px solid ${(props) => props.color} !important;
-  border-left: 1px solid ${(props) => props.color} !important;
+  border-right: 3px solid ${(props) => (props.done === true ? 'green' : 'red')} !important;
+  border-left: 3px solid ${(props) => (props.done === true ? 'green' : 'red')} !important;
 `;
 
 const Header = styled(H)`
@@ -23,19 +23,19 @@ const SegmentExamplePiledSegments = () => (
     raised
     style={{ width: '60vw', border: '0px solid', marginLeft: '20vw', display: 'flex' }}
   >
-    <RowSegment color="red">
+    <RowSegment done>
       <Header>(pre-requirements) پیش نیاز‌ها </Header>
       <Image src="/images/pre-requirements.jpg" size="small" inline />
     </RowSegment>
-    <RowSegment raised color="red">
+    <RowSegment raised>
       <Header>(Data Cleaning) تمیزکردن داده</Header>
       <Image src="/images/data-cleaning.jpg" size="small" inline />
     </RowSegment>
-    <RowSegment raised color="green">
+    <RowSegment raised>
       <Header> (Data Visulisation) مصورسازی داده</Header>
       <Image src="/images/data-visual.jpg" size="small" inline />
     </RowSegment>
-    <RowSegment raised color="red">
+    <RowSegment raised>
       <Header>(Regression) رگرسیون</Header>
       <Image src="/images/linear-regression.jpeg" size="small" inline />
     </RowSegment>
