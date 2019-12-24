@@ -177,7 +177,7 @@ class Profile extends Component {
     // }
     return (
       <Form.Group inline>
-        <Label py={2} style={{ width: '120px' }} >
+        <Label py={2} style={{ width: '120px' }}>
           {field.fa}:
         </Label>
         <Form.Input
@@ -186,7 +186,8 @@ class Profile extends Component {
           value={this.state[field.en]}
           onChange={this.handleChange}
           readOnly={field.readOnly}
-          width={8}
+          width={6}
+          transparent={field.readOnly}
         />
       </Form.Group>
     );
@@ -209,11 +210,10 @@ class Profile extends Component {
       confirmPassword,
     } = this.state;
 
-    const a = (
+    return (
       <Container
-        px={4}
-        pt={4}
-        pb={5}
+        px={[4, 5, 6]}
+        py={5}
         m={0}
         backgroundColor="rgba(255, 255, 255, 0.3)"
         borderRadius={6}
@@ -227,36 +227,10 @@ class Profile extends Component {
             {_.map(fields, (field) => {
               return this.formInput(field);
             })}
-            <Form.Button content="ذخیره‌ی تغییرات"  color="black" floated="right" size="large" />
+            <Form.Button content="ذخیره‌ی تغییرات" color="black" floated="right" size="large" />
           </Form>
         </Fade>
       </Container>
-    );
-    return (
-      <NoSSR>
-        {/* <Responsive minWidth={Responsive.onlyTablet.minWidth}> */}
-        <Container
-          style={{
-            backgroundImage: "url('/images/timeline.png')",
-            backgroundSize: 'auto 100%',
-            // backgroundPosition: 'center',
-          }}
-          py={[5, 6, 6]}
-        >
-          <Grid stackable inverted centered>
-            <Grid.Column width={4}></Grid.Column>
-            <Grid.Column width={8}>{a}</Grid.Column>
-          </Grid>
-        </Container>
-        {/* </Responsive> */}
-        {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-          <Container py={[5, 6, 6]}>
-            <Grid centered>
-              <Grid.Column>{a}</Grid.Column>
-            </Grid>
-          </Container>
-        </Responsive> */}
-      </NoSSR>
     );
   }
 }
