@@ -1,112 +1,178 @@
-import React, { Component} from 'react'
-import { Grid, Form, Container, FormField, Button, Checkbox, Input, Responsive, Label } from 'semantic-ui-react';
-import SelectingDropDown from './DropDown'
-import {monthOptions, persianMonthOptions} from './DropDown'
-import SignupInput from './input'
-import SignupButton from './button'
+import React, { Component } from 'react';
+import {
+  Grid,
+  Form,
+} from 'semantic-ui-react';
 
-// export function handleMonthChange(e, {value}) {
-//     e.persist()
-//     console.log("******: ", e.target.textContent)
-//     this.setState({birthMonth: e.target.textContent})
-// }
+import { DateInput } from 'semantic-ui-calendar-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import SignupInput from '../loginSignup/input';
+import SignupButton from '../loginSignup/button';
+import { preReqCheck, reqSignup } from '../../redux/utils/signup';
 
-export default class SignUpFields extends Component {   
+export default class SignUpFields extends Component {
+  state = {
+    nameFa: '',
+    lastNameFa: '',
+    nameEn: '',
+    lastNameEn: '',
+    userName: '',
+    email: '',
+    birthDate: '',
+    university: '',
+    password: '',
+    confirmPassword: '',
+    errors: {
+      nameFa: false,
+      lastNameFa: false,
+      nameEn: false,
+      lastNameEn: false,
+      userName: false,
+      email: false,
+      birthDate: false,
+      university: false,
+      password: false,
+      confirmPassword: false,
+    },
+  };
 
-    state = {
-        name: '',
-        lastName: '',
-        userName: '',
-        email: '',
-        birthDay: '',
-        birthMonth: '',
-        birthYear: '',
-        university: '',
-        education: '',
-        residence: '',
-        callingNumber: '',
-        password: '',
-        confirmPassword: '',
-
-        submittedName: '',
-        submittedLastname: '',
-        submittedUsername: '',
-        submittedEmail: '',
-        submittedBirthDay: '',
-        submittedBirthMonth: '',
-        submittedBirthYear: '',
-        submittedUniversity: '',
-        submittededucation: '',
-        submittedResidence: '',
-        submittedCallingNumber: '',
-        submittedPassword: '',
-        submittedConfirmPassword: ''
+  handleChange = (event, { name, value }) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
     }
+  };
 
-    handleChange = (e, {name, value}) => this.setState({[name]: value})
-
-    handleSubmit = () => {
-        const {name, lastName, userName, email, birthDay, birthMonth, birthYear,
-            university, education, residence, callingNumber, password, confirmPassword} = this.state
-
-        this.setState({submittedName: name, submittedLastname:lastName, submittedUsername: userName, submittedEmail: email,
-            submittedBirthDay: birthDay, submittedBirthMonth: birthMonth, submittedBirthYear: birthYear, submittedUniversity: university,
-            submittededucation: education, submittedResidence: residence, submittedCallingNumber: callingNumber, submittedPassword: password,
-            submittedConfirmPassword: confirmPassword})
+  onSubmit = async () => {
+    let res = preReqCheck(this.state);
+    this.setState({ errors: res.newErrors });
+    if (res.problem) {
+      this.props.notify(res.problem); 
+    } else {
+      await reqSignup(this.state)
     }
+    
+    
+  };
 
-    render() {
-        const {name, lastName, userName, email, birthDay, birthMonth, birthYear,
-             university, education, residence, callingNumber, password, confirmPassword} = this.state
+  render() {
+    const {
+      nameFa,
+      lastNameFa,
+      nameEn,
+      lastNameEn,
+      userName,
+      email,
+      birthDate,
+      university,
+      password,
+      confirmPassword,
+    } = this.state;
+    const { errors } = this.state;
 
-        return (
-            <Responsive as={Grid}>
-                <Grid.Column>
-                    <Form>
-                        <Form.Group width={2} dir="rtl">
-                            <SignupInput name="name" value={name} label="نام" />
-                             <SignupInput name="lastName" value={lastName} label="نام خانوادگی" />
-                        </Form.Group>
+    return (
+      <Grid>
+        <Grid.Column verticalAlign='middle'>
+          <Form>
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                name="nameFa"
+                onChange={this.handleChange}
+                value={nameFa}
+                error={errors.nameFa}
+                label="نام به فارسی"
+              />
+              <SignupInput
+                name="lastNameFa"
+                onChange={this.handleChange}
+                value={lastNameFa}
+                error={errors.lastNameFa}
+                label="نام خانوادگی به فارسی"
+              />
+            </Form.Group>
 
-                        <Form.Group width={2} dir="rtl">
-                            <SignupInput name="userName" value={userName} label="نام کاربری" />
-                            <SignupInput name="email" value={email} label="ایمیل" />
-                        </Form.Group>
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                name="nameEn"
+                onChange={this.handleChange}
+                value={nameEn}
+                error={errors.nameEn}
+                label="نام به انگلیسی"
+              />
+              <SignupInput
+                name="lastNameEn"
+                onChange={this.handleChange}
+                value={lastNameEn}
+                error={errors.lastNameEn}
+                label="نام خانوادگی به انگلیسی"
+              />
+            </Form.Group>
 
-                    
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                name="university"
+                onChange={this.handleChange}
+                value={university}
+                error={errors.university}
+                label="دانشگاه"
+              />
+              <div>
+                <div style={{ marginBottom: 5 }}>
+                  <label style={{ fontWeight: 'bold' }}>تاریخ تولد</label>
+                </div>
 
-                        <Container>
-                            <label>تاریخ تولد</label>
-                        <Form.Group width={3} dir="rtl">
-                            <Input name="birthDay" value={birthDay} type="number" min="1" max="31" placeholder="روز" dir="rtl"
-                                 onChange={this.handleChange} style={{width: 500}}/>
-                            <SelectingDropDown name="birthMonth" value={birthMonth} options={persianMonthOptions} text="ماه"
-                                 /> 
-                            <Input name="birthYear" value={birthYear} type="number" min="1360" max="1390" placeholder="سال" dir="rtl"
-                                 onChange={this.handleChange} style={{width: 500}}/>
-                            
-                        </Form.Group>
-                        </Container>
+                <DateInput
+                  name="birthDate"
+                  placeholder="تاریخ تولد"
+                  popupPosition="top center"
+                  closeOnMouseLeave="false"
+                  icon={<FontAwesomeIcon icon={faCalendar} color='black'/>}
+                  iconPosition="right"
+                  value={birthDate}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </Form.Group>
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                onChange={this.handleChange}
+                name="userName"
+                value={userName}
+                error={errors.userName}
+                label="نام کاربری"
+              />
+              <SignupInput
+                onChange={this.handleChange}
+                name="email"
+                value={email}
+                type="email"
+                error={errors.email}
+                label="ایمیل"
+              />
+            </Form.Group>
 
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="education" value={education} label="مقطع تحصیلی" />
-                             <SignupInput name="university" value={university} label="دانشگاه" />
-                        </Form.Group>
-
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="callingNumber" value={callingNumber} label="شماره تماس" />
-                             <SignupInput name="residence" value={residence} label="محل سکونت" />
-                        </Form.Group>
-
-                        <Form.Group width={2} dir="rtl">
-                             <SignupInput name="password" value={password} label="گذرواژه" />
-                             <SignupInput name="confirmPassword" value={confirmPassword} label="تکرار گذرواژه" />
-                        </Form.Group>
-                        <SignupButton color="blue" text="ثبت نام" />
-                        
-                    </Form>
-                </Grid.Column>
-            </Responsive>
-        );
-    }
+            <Form.Group width={2} dir="rtl">
+              <SignupInput
+                onChange={this.handleChange}
+                name="password"
+                value={password}
+                type="password"
+                error={errors.password}
+                label="گذرواژه"
+              />
+              <SignupInput
+                onChange={this.handleChange}
+                name="confirmPassword"
+                value={confirmPassword}
+                type="password"
+                error={errors.confirmPassword}
+                label="تکرار گذرواژه"
+              />
+            </Form.Group>
+            <SignupButton onClick={this.onSubmit} color="blue" text="ثبت نام" />
+          </Form>
+        </Grid.Column>
+      </Grid>
+    );
+  }
 }
