@@ -57,11 +57,13 @@ const fields = [
     en: 'password',
     fa: 'رمز عبور',
     readOnly: false,
+    pass: true,
   },
   {
     en: 'confirmPassword',
     fa: 'تکرار رمز عبور',
     readOnly: false,
+    pass: true,
   },
 ];
 
@@ -187,7 +189,8 @@ class Profile extends Component {
           onChange={this.handleChange}
           readOnly={field.readOnly}
           width={6}
-          transparent={field.readOnly}
+          type={field.pass === true ? 'password' : 'none'}
+          // transparent={field.readOnly}
         />
       </Form.Group>
     );
