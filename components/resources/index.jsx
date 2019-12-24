@@ -1,4 +1,5 @@
 import React from 'react';
+import { createGlobalStyle } from 'styled-components';
 import Container from './container';
 
 /*
@@ -22,6 +23,23 @@ const ResponsiveResource = () => (
 
 export default ResponsiveResource;
 */
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 0px !important;  
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+  }
+  div.item::before {
+    width: 0 !important
+  }
+`;
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -81,7 +99,12 @@ The materials herein are all &copy; 2019-2020 Kyle Simpson.
 `;
 
 function Resource() {
-  return <Container content={mdx} />;
+  return (
+    <>
+      <GlobalStyle />
+      <Container content={mdx} />
+    </>
+  );
 }
 
 export default Resource;
