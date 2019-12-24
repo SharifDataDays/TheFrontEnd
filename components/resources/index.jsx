@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-thumb {
     background: #FF0000;
   }
-  div.item::before {
+  div.item::before, a.item::before{
     width: 0 !important
   }
 `;
