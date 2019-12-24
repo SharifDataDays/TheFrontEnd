@@ -43,7 +43,16 @@ export function preReqCheck(fields) {
   };
 }
 
+function reverseBirthDate(birthDate) {
+  let parts = birthDate.split("-")
+  parts.reverse()
+  let newBirthDate = parts[0] + "-" + parts[1] + "-" + parts[2]
+
+  return newBirthDate
+}
+
 export async function reqSignup(fields) {
+  reverseBirthDate(fields['birthDate'])
   let data = {
     username: fields['userName'],
     email: fields['email'],
@@ -54,7 +63,7 @@ export async function reqSignup(fields) {
         firstname_en: fields['lastNameFa'],
         lastname_fa: fields['nameEn'],
         lastname_en: fields['lastNameEn'],
-        birth_date: fields['birthDate'],
+        birth_date: reverseBirthDate(fields['birthDate']),
         university: fields['university']
     }
   }
@@ -67,7 +76,15 @@ export async function reqSignup(fields) {
   //   body : JSON.stringify(data)
   // })
   // const content = await res.json()
-  console.log(data)
-  const res = axios.post(signupAPI(), data)
-  console.log(res)
+  // try {
+  //   const res = await axios.post(signupAPI(), data)
+
+  // } catch(e) {
+    
+  // }
+  axios.post(signupAPI(), data)
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err))
+  
+  
 }

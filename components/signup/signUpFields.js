@@ -115,6 +115,7 @@ export default class SignUpFields extends Component {
                 value={university}
                 error={errors.university}
                 label="دانشگاه"
+                width={8}
               />
               <div>
                 <div style={{ marginBottom: 5 }}>
