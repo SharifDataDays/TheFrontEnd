@@ -21,7 +21,7 @@ const profileData = {
 const ProfilePage = () => {
   return (
     <>
-      <Navbar />
+      <Navbar transparent />
       <Profile profileData={profileData} />
     </>
   );

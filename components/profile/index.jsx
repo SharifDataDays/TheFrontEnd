@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { space, layout } from 'styled-system';
-import { Header, Form } from 'semantic-ui-react';
+import { space, layout, color, border, typography } from 'styled-system';
+import { Header, Form, Responsive, Grid } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
+import NoSSR from 'react-no-ssr';
 
 const fields = [
   {
@@ -66,11 +67,14 @@ const fields = [
 
 const Container = styled.div`
   ${space}
+  ${color}
+  ${border}
 `;
 
 const Label = styled.label`
   ${space}
   ${layout}
+  ${typography}
 `;
 
 class Profile extends Component {
@@ -172,8 +176,8 @@ class Profile extends Component {
     //   );
     // }
     return (
-      <Form.Group inline >
-        <Label py={2} style={{ width: '120px' }}>
+      <Form.Group inline>
+        <Label py={2} style={{ width: '120px' }} >
           {field.fa}:
         </Label>
         <Form.Input
@@ -182,7 +186,7 @@ class Profile extends Component {
           value={this.state[field.en]}
           onChange={this.handleChange}
           readOnly={field.readOnly}
-          width={5}
+          width={8}
         />
       </Form.Group>
     );
@@ -205,8 +209,15 @@ class Profile extends Component {
       confirmPassword,
     } = this.state;
 
-    return (
-      <Container px={[4, 6, 6]} py={[3, 4, 4]}>
+    const a = (
+      <Container
+        px={4}
+        pt={4}
+        pb={5}
+        m={0}
+        backgroundColor="rgba(255, 255, 255, 0.3)"
+        borderRadius={6}
+      >
         <Header size="huge" dividing dir="RTL">
           پروفایل
         </Header>
@@ -216,11 +227,36 @@ class Profile extends Component {
             {_.map(fields, (field) => {
               return this.formInput(field);
             })}
-            <Form.Button content="ذخیره‌ی تغییرات" inverted color='blue' floated="right"/>
-            
+            <Form.Button content="ذخیره‌ی تغییرات"  color="black" floated="right" size="large" />
           </Form>
         </Fade>
       </Container>
+    );
+    return (
+      <NoSSR>
+        {/* <Responsive minWidth={Responsive.onlyTablet.minWidth}> */}
+        <Container
+          style={{
+            backgroundImage: "url('/images/timeline.png')",
+            backgroundSize: 'auto 100%',
+            // backgroundPosition: 'center',
+          }}
+          py={[5, 6, 6]}
+        >
+          <Grid stackable inverted centered>
+            <Grid.Column width={4}></Grid.Column>
+            <Grid.Column width={8}>{a}</Grid.Column>
+          </Grid>
+        </Container>
+        {/* </Responsive> */}
+        {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+          <Container py={[5, 6, 6]}>
+            <Grid centered>
+              <Grid.Column>{a}</Grid.Column>
+            </Grid>
+          </Container>
+        </Responsive> */}
+      </NoSSR>
     );
   }
 }
