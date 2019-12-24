@@ -45,7 +45,7 @@ export function preReqCheck(fields) {
 
 export async function reqSignup(fields) {
   let data = {
-    username: fields['username'],
+    username: fields['userName'],
     email: fields['email'],
     password_1: fields['password'],
     password_2: fields['confirmPassword'],
@@ -67,6 +67,7 @@ export async function reqSignup(fields) {
   //   body : JSON.stringify(data)
   // })
   // const content = await res.json()
+  console.log(data)
   const res = axios.post(signupAPI(), data)
   console.log(res)
 }

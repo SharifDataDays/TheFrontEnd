@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import {
   Grid,
   Form,
-  Container,
-  FormField,
-  Button,
-  Checkbox,
-  Input,
-  Responsive,
-  Label,
 } from 'semantic-ui-react';
 
 import { DateInput } from 'semantic-ui-calendar-react';
-import SignupInput from './input';
-import SignupButton from './button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import SignupInput from '../loginSignup/input';
+import SignupButton from '../loginSignup/button';
 import { preReqCheck, reqSignup } from '../../redux/utils/signup';
 
 export default class SignUpFields extends Component {
@@ -76,8 +71,8 @@ export default class SignUpFields extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid verticalAlign="middle">
-        <Grid.Column>
+      <Grid>
+        <Grid.Column verticalAlign='middle'>
           <Form>
             <Form.Group width={2} dir="rtl">
               <SignupInput
@@ -113,7 +108,7 @@ export default class SignUpFields extends Component {
               />
             </Form.Group>
 
-            <Form.Group width={1} dir="rtl">
+            <Form.Group width={2} dir="rtl">
               <SignupInput
                 name="university"
                 onChange={this.handleChange}
@@ -131,6 +126,7 @@ export default class SignUpFields extends Component {
                   placeholder="تاریخ تولد"
                   popupPosition="top center"
                   closeOnMouseLeave="false"
+                  icon={<FontAwesomeIcon icon={faCalendar} color='black'/>}
                   iconPosition="right"
                   value={birthDate}
                   onChange={this.handleChange}

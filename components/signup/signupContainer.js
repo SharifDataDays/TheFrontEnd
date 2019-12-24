@@ -32,7 +32,7 @@ export default class SignupContainer extends Component {
   render() {
     return (
       <LoginSignupContainer>
-        <Header size="huge" dividing>
+        <Header as='h1' dividing>
           ثبت نام
         </Header>
         <SignUpFields notify={this.notify} />
