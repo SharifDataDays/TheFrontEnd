@@ -8,7 +8,10 @@ function Layout({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Container style={{ width: '100% !important', margin: '0 !important' }} fluid>
+      <Container
+        style={{ width: '100% !important', margin: '0 !important', minHeight: '100vh' }}
+        fluid
+      >
         {children}
       </Container>
     </ThemeProvider>

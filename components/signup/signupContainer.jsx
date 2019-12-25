@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Header, Container } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+import { ToastContainer, toast } from 'react-toastify';
 import LoginSignupContainer from '../loginSignup/container';
 import SignUpFields from './signUpFields';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default class SignupContainer extends Component {
   notify = (choice) => {
-    let options = {
+    const options = {
       position: 'bottom-left',
       autoClose: 5000,
       hideProgressBar: true,
@@ -29,10 +29,11 @@ export default class SignupContainer extends Component {
         break;
     }
   };
+
   render() {
     return (
       <LoginSignupContainer>
-        <Header as='h1' dividing>
+        <Header as="h1" dividing>
           ثبت نام
         </Header>
         <SignUpFields notify={this.notify} />

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Responsive, Image } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import neuralnet from './neuralnet';
-import Link from 'next/link';
 
-const image = require('./image.png');
 export default class LoginSignupContainer extends Component {
   componentDidMount() {
     if (window.innerWidth >= 768) {
@@ -19,7 +17,7 @@ export default class LoginSignupContainer extends Component {
 
   renderCanvas = () => {
     if (window.innerWidth >= 700) {
-      neuralnet(this.refs.canvas);
+      neuralnet(this.canvas);
     }
   };
 
@@ -27,36 +25,44 @@ export default class LoginSignupContainer extends Component {
     const { children } = this.props;
     return (
       <Grid
+        celled
+        padded
         centered
         style={{
           padding: 0,
-          width: '100%',
-          height: '100%',
+          width: '100vw',
+          height: '100vh',
           position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          backgroundColor: 'white',
         }}
       >
-        <Grid.Column  computer={8} tablet={0} mobile={0}>
-          <a href='.'>
-            <Image style={{ position: 'absolute', margin: 10 }} size="mini" src="/images/logo.png" />
-          </a>
-          
-          <canvas
-            ref="canvas"
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          />
-        </Grid.Column>
+        <Grid.Row style={{ height: '100%' }}>
+          <Grid.Column computer={8} only="computer">
+            <a href="/">
+              <Image
+                style={{ zIndex: 1, position: 'absolute', margin: 10 }}
+                size="mini"
+                src="/images/logo.png"
+              />
+            </a>
 
-        <Grid.Column verticalAlign='middle' computer={8} tablet={8} mobile={14}>
-          {children}
-        </Grid.Column>
+            <canvas
+              ref={(r) => {
+                this.canvas = r;
+              }}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          </Grid.Column>
+
+          <Grid.Column verticalAlign="middle" computer={8} tablet={8} mobile={14}>
+            {children}
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     );
   }
