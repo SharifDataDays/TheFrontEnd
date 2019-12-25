@@ -1,16 +1,16 @@
-import { colorStyle, gridAutoRows } from 'styled-system';
 import { profileAPI } from '../api/profile';
-import validator from 'validator';
 import axios from 'axios';
 
-export async function getProfileData() {
+export async function getProfileData(USER_TOKEN) {
+  const AuthStr = 'Bearer '.concat(USER_TOKEN);
   axios
-    .get(profileAPI())
+    .get(profileAPI(), { headers: { Authorization: AuthStr } })
     .then((res) => {
       console.log(res);
-      return res;
+      return res.data;
     })
     .catch((err) => console.log(err));
+  console.log('hey');
 }
 
 export function preReqCheck(fields) {
@@ -50,34 +50,20 @@ export async function profileUpdate(fields) {
   let data = {
     // username: fields['userName'],
     // email: fields['email'],
-    password_1: fields['password'],
-    password_2: fields['confirmPassword'],
-    profile: {
-      firstname_fa: fields['nameFa'],
-      firstname_en: fields['lastNameFa'],
-      lastname_fa: fields['nameEn'],
-      lastname_en: fields['lastNameEn'],
-      birth_date: reverseBirthDate(fields['birthDate']),
-      university: fields['university'],
-    },
+
+    firstname_fa: fields['nameFa'],
+    firstname_en: fields['lastNameFa'],
+    lastname_fa: fields['nameEn'],
+    lastname_en: fields['lastNameEn'],
+    birth_date: reverseBirthDate(fields['birthDate']),
+    university: fields['university'],
   };
-  // const res = await fetch(signupAPI(), {
-  //   method : 'POST',
-  //   headers : {
-  //     'Content-Type' : 'application/json',
-  //     'Accept' : 'application/json'
-  //   },
-  //   body : JSON.stringify(data)
-  // })
-  // const content = await res.json()
-  // try {
-  //   const res = await axios.post(signupAPI(), data)
-
-  // } catch(e) {
-
-  // }
+  if (fields['password'].lenght !== 0) {
+    data.password_1 = fields['password'];
+    data.password_2 = fields['confirmPassword'];
+  }
   axios
-    .post(profileAPI(), data)
+    .put(profileAPI(), data)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 }

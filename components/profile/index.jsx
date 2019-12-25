@@ -5,8 +5,6 @@ import { space, layout, color, border, typography } from 'styled-system';
 import { Header, Form, Responsive, Grid } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import { DateInput } from 'semantic-ui-calendar-react';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { preReqCheck, profileUpdate } from '../../redux/utils/profile';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -166,8 +164,6 @@ class Profile extends Component {
   };
 
   formInput = (field) => {
-    console.log(this.state);
-
     const labelWidth = "170px"
     if (field.date) {
       return (
@@ -180,7 +176,6 @@ class Profile extends Component {
             name={field.en}
             value={this.state[field.en]}
             onChange={this.handleChange}
-            icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
             popupPosition="top center"
             closeOnMouseLeave="false"
             readOnly={field.readOnly}
