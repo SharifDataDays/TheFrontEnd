@@ -10,11 +10,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const fields = [
-  {
-    en: 'userName',
-    fa: 'نام کاربری',
-    readOnly: true,
-  },
+  // {
+  //   en: 'userName',
+  //   fa: 'نام کاربری',
+  //   readOnly: true,
+  // },
   {
     en: 'nameFa',
     fa: 'نام به فارسی',
@@ -35,11 +35,11 @@ const fields = [
     fa: 'نام خانوادگی به انگلیسی',
     readOnly: false,
   },
-  {
-    en: 'email',
-    fa: 'ایمیل',
-    readOnly: true,
-  },
+  // {
+  //   en: 'email',
+  //   fa: 'ایمیل',
+  //   readOnly: true,
+  // },
   {
     en: 'birthDate',
     fa: 'تاریخ تولد',

@@ -5,7 +5,7 @@ export async function getProfileData(USER_TOKEN) {
   const AuthStr = 'Bearer '.concat(USER_TOKEN);
     const res = await axios.get(profileAPI(), { headers: { Authorization: AuthStr } });
     const data = await res.data;
-    return { data };
+    return  data ;
 }
 
 export function preReqCheck(fields) {
@@ -53,11 +53,12 @@ export async function profileUpdate(fields) {
     birth_date: reverseBirthDate(fields['birthDate']),
     university: fields['university'],
   };
+  console.log(data)
   if (fields['password'].lenght !== 0) {
     data.password_1 = fields['password'];
     data.password_2 = fields['confirmPassword'];
   }
-  USER_TOKEN = '';
+  const USER_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTc3Mjk5NDY1LCJqdGkiOiIwNjcyZjgxYTJlZGM0MmRhOGRiMzcyNjlhMDE2NzRhNSIsInVzZXJfaWQiOjI2fQ.1ovssFOAlxQUMfEVrtfCyyuznPpeCqJRliOh3GYd_Xw';
   const AuthStr = 'Bearer '.concat(USER_TOKEN);
   axios
     .put(profileAPI(), data, { headers: { Authorization: AuthStr } })
