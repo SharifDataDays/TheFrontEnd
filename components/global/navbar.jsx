@@ -23,8 +23,8 @@ function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
-        <a href="/signup">
-          <Button primary>ثبت نام</Button>
+        <a href="/login">
+          <Button primary>ورود</Button>
         </a>
       </Menu.Item>
       {/* <Menu.Item>

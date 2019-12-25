@@ -21,6 +21,7 @@ class HomePage extends Component {
   render() {
     const { content } = this.props;
     const { intro, timeline, prizes } = content;
+    console.log(content);
     return (
       <>
         <Head>

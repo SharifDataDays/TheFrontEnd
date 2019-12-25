@@ -25,11 +25,15 @@ function withNotLogged(WrappedComponent) {
   };
 
   Wrapper.getInitialProps = async (ctx) => {
+    const pageProps =
+      (await WrappedComponent.getInitialProps) && (await WrappedComponent.getInitialProps(ctx));
+
     const { token } = nextCookie(ctx);
 
     if (!token) {
       return {
         state: 'logout',
+        ...pageProps,
       };
     }
 
@@ -55,15 +59,18 @@ function withNotLogged(WrappedComponent) {
             refresh: token.refresh,
             access: newAccess.access,
           },
+          ...pageProps,
         };
       }
       return {
         state: 'logout',
+        ...pageProps,
       };
     }
     return {
       state: 'login',
       token,
+      ...pageProps,
     };
   };
 

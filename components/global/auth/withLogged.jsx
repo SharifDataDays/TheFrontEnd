@@ -25,11 +25,15 @@ function withLogged(WrappedComponent) {
   };
 
   Wrapper.getInitialProps = async (ctx) => {
+    const pageProps =
+      (await WrappedComponent.getInitialProps) && (await WrappedComponent.getInitialProps(ctx));
+
     const { token } = nextCookie(ctx);
 
     if (!token) {
       return {
         state: '',
+        ...pageProps,
       };
     }
 
@@ -55,15 +59,18 @@ function withLogged(WrappedComponent) {
             refresh: token.refresh,
             access: newAccess.access,
           },
+          ...pageProps,
         };
       }
       return {
         state: '',
+        ...pageProps,
       };
     }
     return {
       state: 'login',
       token,
+      ...pageProps,
     };
   };
 
