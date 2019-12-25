@@ -3,14 +3,9 @@ import axios from 'axios';
 
 export async function getProfileData(USER_TOKEN) {
   const AuthStr = 'Bearer '.concat(USER_TOKEN);
-  axios
-    .get(profileAPI(), { headers: { Authorization: AuthStr } })
-    .then((res) => {
-      console.log(res);
-      return res.data;
-    })
-    .catch((err) => console.log(err));
-  console.log('hey');
+    const res = await axios.get(profileAPI(), { headers: { Authorization: AuthStr } });
+    const data = await res.data;
+    return { data };
 }
 
 export function preReqCheck(fields) {

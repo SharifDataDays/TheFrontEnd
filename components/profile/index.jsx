@@ -177,7 +177,7 @@ class Profile extends Component {
             value={this.state[field.en]}
             onChange={this.handleChange}
             popupPosition="top center"
-            closeOnMouseLeave="false"
+            closeOnMouseLeave={false}
             readOnly={field.readOnly}
             width={6}
             // transparent={field.readOnly}
