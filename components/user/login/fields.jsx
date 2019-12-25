@@ -24,16 +24,18 @@ export default class LoginFields extends Component {
   }
 
   onSubmit() {
-    const res = check(this.state);
-    this.setState({
-      errors: res.newErrors,
+    this.setState((prevState) => {
+      const res = check(prevState);
+      if (res.problem) {
+        const { notify } = this.props;
+        notify(res.problem);
+      } else {
+        this.login();
+      }
+      return {
+        errors: res.errors,
+      };
     });
-    if (res.problem) {
-      const { notify } = this.props;
-      notify(res.problem);
-    } else {
-      this.login();
-    }
   }
 
   handleChange(event) {
@@ -55,7 +57,7 @@ export default class LoginFields extends Component {
         });
         notify('unathenticated');
       } else {
-        login(res);
+        login({ token: res.data });
       }
     });
   }
@@ -84,7 +86,6 @@ export default class LoginFields extends Component {
                 error={errors.password}
               />
             </Form.Group>
-
             <LoginButton onClick={this.onSubmit} color="blue" text="ورود" />
           </Form>
         </Grid.Column>

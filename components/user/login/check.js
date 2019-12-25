@@ -2,21 +2,22 @@ import _ from 'lodash';
 
 function check(fields) {
   const res = {};
-  const newErrors = {};
+  const errors = {};
 
   _.forEach(fields, (value, key) => {
     if (value === '') {
-      newErrors[key] = true;
+      errors[key] = true;
     }
   });
 
-  if (Object.entries(newErrors).length !== 0) {
+  if (Object.entries(errors).length !== 0) {
     res.problem = 'incompleteFields';
-    res.newErrors = newErrors;
+    res.errors = errors;
     return res;
   }
+
   return {
-    newErrors: {
+    errors: {
       username: false,
       password: false,
     },
