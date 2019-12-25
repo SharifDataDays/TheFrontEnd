@@ -44,6 +44,7 @@
     "js-logger": "^1.6.0",
     "lodash": "^4.17.15",
     "next": "9.1.4",
+    "next-cookies": "^2.0.3",
     "next-redux-wrapper": "^4.0.1",
     "prop-types": "^15.7.2",
     "rc-progress": "^2.5.2",

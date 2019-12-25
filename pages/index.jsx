@@ -10,7 +10,7 @@ import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 
-class Home extends Component {
+class HomePage extends Component {
   static async getInitialProps(context) {
     const res = await fetch(homeAPI());
     const content = await res.json();
@@ -37,4 +37,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default HomePage;
