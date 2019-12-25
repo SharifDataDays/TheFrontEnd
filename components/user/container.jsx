@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Image } from 'semantic-ui-react';
-import neuralnet from './network';
+import network from './network';
 
 export default class LoginSignupContainer extends Component {
-  /* componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.renderCanvas = this.renderCanvas.bind(this);
+  }
+
+  componentDidMount() {
     if (window.innerWidth >= 768) {
       this.renderCanvas();
     }
@@ -15,11 +20,11 @@ export default class LoginSignupContainer extends Component {
     }
   }
 
-  renderCanvas = () => {
+  renderCanvas() {
     if (window.innerWidth >= 700) {
-      neuralnet(this.canvas);
+      network(this.canvas);
     }
-  }; */
+  }
 
   render() {
     const { children } = this.props;
@@ -45,7 +50,7 @@ export default class LoginSignupContainer extends Component {
               />
             </a>
 
-            {/* <canvas
+            <canvas
               ref={(r) => {
                 this.canvas = r;
               }}
@@ -56,7 +61,7 @@ export default class LoginSignupContainer extends Component {
                 width: '100%',
                 height: '100%',
               }}
-            /> */}
+            />
           </Grid.Column>
 
           <Grid.Column verticalAlign="middle" computer={8} tablet={8} mobile={14}>
