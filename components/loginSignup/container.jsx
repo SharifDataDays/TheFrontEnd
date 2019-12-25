@@ -40,7 +40,7 @@ export default class LoginSignupContainer extends Component {
           backgroundColor: 'white',
         }}
       >
-        <Responsive as={Grid.Column} minWidth={768} width={8}>
+        <Grid.Column  computer={8} tablet={0} mobile={0}>
           <a href='.'>
             <Image style={{ position: 'absolute', margin: 10 }} size="mini" src="/images/logo.png" />
           </a>
@@ -52,9 +52,9 @@ export default class LoginSignupContainer extends Component {
               height: '100%',
             }}
           />
-        </Responsive>
+        </Grid.Column>
 
-        <Grid.Column computer={8} tablet={8} mobile={14}>
+        <Grid.Column verticalAlign='middle' computer={8} tablet={8} mobile={14}>
           {children}
         </Grid.Column>
       </Grid>
