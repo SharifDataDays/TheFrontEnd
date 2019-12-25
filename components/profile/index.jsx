@@ -7,7 +7,8 @@ import { Fade } from 'react-reveal';
 import { DateInput } from 'semantic-ui-calendar-react';
 import { preReqCheck, profileUpdate } from '../../redux/utils/profile';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const fields = [
   // {
@@ -180,6 +181,8 @@ class Profile extends Component {
             closeOnMouseLeave={false}
             readOnly={field.readOnly}
             width={6}
+            icon={<FontAwesomeIcon icon={faCalendar} color='black'/>}
+
             // transparent={field.readOnly}
           />
         </Form.Group>
