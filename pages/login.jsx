@@ -28,9 +28,7 @@ class LoginPage extends Component {
       });
 
       if (response.ok) {
-        console.log(token);
         const js = await response.json();
-        console.log('js', js);
         return js;
       }
       return redirectOnError();

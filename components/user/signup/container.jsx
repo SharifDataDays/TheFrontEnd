@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import Router from 'next/router';
 import React from 'react';
 import { Header } from 'semantic-ui-react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -28,6 +29,22 @@ function notify(choice) {
       break;
     case 'invalidEmail':
       toast.error('ایمیل وارد شده صحیح نیست', options);
+      break;
+    case 'usernameExists':
+      toast.error('نام کاربری وارد‌شده وجود دارد.', options);
+      break;
+    case 'emailExists':
+      toast.error('ایمیل وارد‌شده وجود دارد.', options);
+      break;
+    case 'success':
+      toast.success('حساب شما با موفقیت ساخته شد.', options);
+      console.log('success');
+      Router.push({
+        pathname: '/login',
+        query: {
+          redirect: 'signup',
+        },
+      });
       break;
     default:
       break;
