@@ -3,19 +3,17 @@ import Profile from '~/components/profile/index';
 import Navbar from '~/components/global/navbar';
 
 const profileData = {
-  name: 'صبا',
-  lastName: 'آآآ',
+  nameFa: 'صبا',
+  nameEn: 'Saba',
+  lastNameFa: 'آآآ',
+  lastNameEn: 'aaa',
   userName: 'svw',
   email: 'test@test.com',
-  birthDay: '20',
-  birthMonth: '6',
-  birthYear: '2000',
+  birthDate: '22-6-2000',
   university: 'شریف',
   education: 'کارشناسی',
   residence: 'ته',
   callingNumber: '09190919091',
-  // password: '',
-  // confirmPassword: '',
 };
 
 const ProfilePage = () => {
