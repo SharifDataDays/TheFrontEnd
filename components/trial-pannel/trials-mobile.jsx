@@ -9,7 +9,7 @@ const Label = styled(Lb)`
 const TrialMobile = ({ fontSize }) => (
   <>
     <Card style={{ width: '100%' }}>
-      <Image src="/images/data-visual.jpg" wrapped style={{ width: '100%' }} />
+      <Image src="/images/data-visual.jpg" style={{ width: '100%', height: '30vh'}} />
       <Card.Content>
         <Card.Header style={{ direction: 'rtl', fontSize }}>
           پیش نیاز‌ها (pre-requirements)
