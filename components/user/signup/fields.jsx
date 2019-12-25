@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Form } from 'semantic-ui-react';
-
 import { DateInput } from 'semantic-ui-calendar-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import SignupInput from '../input';
-import SignupButton from '../button';
-import { preReqCheck, reqSignup } from '~/redux/utils/signup';
+import Input from '../input';
+import Button from '../button';
+import check from './check';
+import { reqSignup } from '~/redux/utils/signup';
 
 export default class SignUpFields extends Component {
   constructor(props) {
@@ -35,22 +35,24 @@ export default class SignUpFields extends Component {
         confirmPassword: false,
       },
     };
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   async onSubmit() {
-    let res = preReqCheck(this.state);
+    let res = check(this.state);
     this.setState({ errors: res.newErrors });
     if (res.problem) {
       this.props.notify(res.problem);
     } else {
       await reqSignup(this.state);
     }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   render() {
@@ -73,14 +75,14 @@ export default class SignUpFields extends Component {
         <Grid.Column verticalAlign="middle">
           <Form>
             <Form.Group width={2} dir="rtl">
-              <SignupInput
+              <Input
                 name="nameFa"
                 onChange={this.handleChange}
                 value={nameFa}
                 error={errors.nameFa}
                 label="نام به فارسی"
               />
-              <SignupInput
+              <Input
                 name="lastNameFa"
                 onChange={this.handleChange}
                 value={lastNameFa}
@@ -90,14 +92,14 @@ export default class SignUpFields extends Component {
             </Form.Group>
 
             <Form.Group width={2} dir="rtl">
-              <SignupInput
+              <Input
                 name="nameEn"
                 onChange={this.handleChange}
                 value={nameEn}
                 error={errors.nameEn}
                 label="نام به انگلیسی"
               />
-              <SignupInput
+              <Input
                 name="lastNameEn"
                 onChange={this.handleChange}
                 value={lastNameEn}
@@ -107,7 +109,7 @@ export default class SignUpFields extends Component {
             </Form.Group>
 
             <Form.Group width={2} dir="rtl">
-              <SignupInput
+              <Input
                 name="university"
                 onChange={this.handleChange}
                 value={university}
@@ -133,14 +135,14 @@ export default class SignUpFields extends Component {
               </div>
             </Form.Group>
             <Form.Group width={2} dir="rtl">
-              <SignupInput
+              <Input
                 onChange={this.handleChange}
                 name="userName"
                 value={userName}
                 error={errors.userName}
                 label="نام کاربری"
               />
-              <SignupInput
+              <Input
                 onChange={this.handleChange}
                 name="email"
                 value={email}
@@ -151,7 +153,7 @@ export default class SignUpFields extends Component {
             </Form.Group>
 
             <Form.Group width={2} dir="rtl">
-              <SignupInput
+              <Input
                 onChange={this.handleChange}
                 name="password"
                 value={password}
@@ -159,7 +161,7 @@ export default class SignUpFields extends Component {
                 error={errors.password}
                 label="گذرواژه"
               />
-              <SignupInput
+              <Input
                 onChange={this.handleChange}
                 name="confirmPassword"
                 value={confirmPassword}
@@ -168,7 +170,7 @@ export default class SignUpFields extends Component {
                 label="تکرار گذرواژه"
               />
             </Form.Group>
-            <SignupButton onClick={this.onSubmit} color="blue" text="ثبت نام" />
+            <Button onClick={this.onSubmit} color="blue" text="ثبت نام" />
           </Form>
         </Grid.Column>
       </Grid>

@@ -1,9 +1,11 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, Grid } from 'semantic-ui-react';
 import LoginInput from '../input';
 import LoginButton from '../button';
-import { preReqCheck, reqLogin } from '~/redux/utils/login';
-import { storeAccessToken, storeRefreshToken } from '~/redux/utils/auth';
+import check from './check';
+import { loginAPI } from '~/redux/api/auth';
+import { login } from '~/redux/utils/auth';
 
 export default class LoginFields extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ export default class LoginFields extends Component {
   }
 
   onSubmit() {
-    const res = preReqCheck(this.state);
+    const res = check(this.state);
     this.setState({
       errors: res.newErrors,
     });
@@ -43,7 +45,7 @@ export default class LoginFields extends Component {
   login() {
     const { username, password } = this.state;
     const { notify } = this.props;
-    reqLogin(username, password).then((res) => {
+    axios.post(loginAPI(), { username, password }).then((res) => {
       if (!res.data.access) {
         this.setState({
           errors: {
@@ -53,10 +55,7 @@ export default class LoginFields extends Component {
         });
         notify('unathenticated');
       } else {
-        console.log(res.data.access);
-        console.log(res.data.refresh);
-        storeAccessToken(res.data.access);
-        storeRefreshToken(res.data.refresh);
+        login(res);
       }
     });
   }
