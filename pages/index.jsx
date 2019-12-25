@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
+import withLoggedIn from '~/components/global/auth/withLoggedIn';
 import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
@@ -11,7 +12,7 @@ import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 
 class HomePage extends Component {
-  static async getInitialProps(context) {
+  static async getInitialProps(ctx) {
     const res = await fetch(homeAPI());
     const content = await res.json();
     return { content };
@@ -37,4 +38,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withLoggedIn(HomePage);
