@@ -3,20 +3,23 @@ import { Container, Image, Header as H, Divider } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Header = styled(H)`
-  font-size: 30px;
+  font-size: ${(props) => props.fontSize};
   direction: rtl;
 `;
 
 const Text = styled.p`
   direction: rtl;
-  font-size: 13px;
+  font-size: ${(props) => props.fontSize};
 `;
 
-const GridExampleStretched = () => (
+const HeaderMobile = ({ fontSizeHeader, fontSizeContent }) => (
   <Container style={{ marginTop: '2rem' }}>
     <Image src="/images/blog.jpg" />
-    <Header as="h1"> فاز اول مسابقه </Header>
-    <Text>
+    <Header as="h1" fontSize={fontSizeHeader}>
+      {' '}
+      فاز اول مسابقه{' '}
+    </Header>
+    <Text fontSize={fontSizeContent}>
       لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
       چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
       مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
@@ -25,8 +28,8 @@ const GridExampleStretched = () => (
       صورت می توان امید داشت لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
       از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
     </Text>
-    <Divider fitted />
+    <Divider fitted style={{ marginBottom: '5rem', marginTop: '2rem' }} />
   </Container>
 );
 
-export default GridExampleStretched;
+export default HeaderMobile;

@@ -6,12 +6,12 @@ const Label = styled(Lb)`
   margin-left: 0.3rem !important;
 `;
 
-const TrialMobile = () => (
+const TrialMobile = ({ fontSize }) => (
   <>
     <Card style={{ width: '100%' }}>
       <Image src="/images/data-visual.jpg" wrapped style={{ width: '100%' }} />
       <Card.Content>
-        <Card.Header style={{ direction: 'rtl !important' }}>
+        <Card.Header style={{ direction: 'rtl', fontSize }}>
           پیش نیاز‌ها (pre-requirements)
         </Card.Header>
         <Card.Description>

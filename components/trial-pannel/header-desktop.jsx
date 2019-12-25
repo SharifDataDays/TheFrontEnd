@@ -22,8 +22,8 @@ const HeaderMobile = () => (
       marginBottom: '8rem',
       borderBottom: '1px solid grey',
       backgroundColor: '#505763',
-      maxHeight: '60vh',
-      minHeight: '40vh',
+      maxHeight: '500px',
+      minHeight: '300px',
     }}
     centered
   >
