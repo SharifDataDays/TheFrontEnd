@@ -1,50 +1,96 @@
 /* eslint-disable react/prefer-stateless-function */
 import fetch from 'isomorphic-unfetch';
-import Router from 'next/router';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import nextCookie from 'next-cookies';
-import { authAPI } from '~/redux/api/auth';
+import { login } from '~/utils/auth';
+import { authAPI, refreshAPI } from '~/redux/api/auth';
 import Container from '~/components/user/login/container';
+import Loading from '~/components/global/loading';
+
+async function getResponse(api, data) {
+  try {
+    const response = await fetch(api, data);
+
+    if (response.ok) {
+      const res = await response.json();
+      return res;
+    }
+    return { error: true };
+  } catch (error) {
+    return { error: true };
+  }
+}
 
 class LoginPage extends Component {
   static async getInitialProps(ctx) {
     const { token } = nextCookie(ctx);
 
-    const redirectOnError = () =>
-      typeof window !== 'undefined'
-        ? Router.push('/login')
-        : ctx.res.writeHead(302, { Location: '/login' }).end();
+    if (!token) {
+      return {
+        state: '',
+      };
+    }
 
-    try {
-      const response = await fetch(authAPI(), {
-        credentials: 'include',
-        headers: {
-          Authorization: JSON.stringify({
-            access: token.access,
-            refresh: token.refresh,
-          }),
-        },
+    const initialRes = await getResponse(authAPI(), {
+      headers: {
+        Authorization: `Bearer ${token.access}`,
+      },
+    });
+
+    if (initialRes.status_code !== 200) {
+      const newAccess = await getResponse(refreshAPI(), {
+        method: 'post',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          refresh: token.refresh,
+        }),
       });
 
-      if (response.ok) {
-        const js = await response.json();
-        return js;
+      if (newAccess.status_code === 200) {
+        return {
+          state: 'login',
+          token: {
+            refresh: token.refresh,
+            access: newAccess.access,
+          },
+        };
       }
-      return redirectOnError();
-    } catch (error) {
-      // Implementation or Network error
-      return redirectOnError();
+      return {
+        state: '',
+      };
+    }
+    return {
+      state: 'login',
+      token,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+
+  componentDidMount() {
+    const { state, token } = this.props;
+    if (state === 'login') {
+      login({ token });
+    } else {
+      this.setState({
+        loading: false,
+      });
     }
   }
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div>
         <Head>
           <title>ورود - DataDays 2020</title>
         </Head>
-        <Container />
+        {loading ? <Loading /> : <Container />}
       </div>
     );
   }

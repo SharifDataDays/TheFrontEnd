@@ -5,7 +5,7 @@ import LoginInput from '../input';
 import LoginButton from '../button';
 import check from './check';
 import { loginAPI } from '~/redux/api/auth';
-import { login } from '~/redux/utils/auth';
+import { login } from '~/utils/auth';
 
 export default class LoginFields extends Component {
   constructor(props) {
@@ -57,7 +57,12 @@ export default class LoginFields extends Component {
         });
         notify('unathenticated');
       } else {
-        login({ token: res.data });
+        login({
+          token: {
+            access: res.data.acess,
+            refresh: res.data.refresh,
+          },
+        });
       }
     });
   }
