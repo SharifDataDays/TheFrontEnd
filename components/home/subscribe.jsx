@@ -6,9 +6,9 @@ import { subscribeAPI } from '~/redux/api/home';
 
 const Segment = styled(Button)`
   position: absolute;
-  top: 90vh;
-  right: 5vh;
-  font-size: 1.5rem;
+  top: 80%;
+  right: 50%;
+  transform: translateX(50%);
 `;
 
 class Subscribe extends Component {
@@ -67,6 +67,7 @@ class Subscribe extends Component {
             اشتراک در خبرنامه
           </Segment>
         }
+        textAlign="center"
         open={modalOpen}
         onClose={this.handleClose}
         basic
