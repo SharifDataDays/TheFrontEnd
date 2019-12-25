@@ -29,7 +29,7 @@ const Text = styled.p`
   margin-bottom: 1rem;
 `;
 
-const SegmentExamplePiledSegments = () => (
+const TrialDesktop = () => (
   <Segment.Group
     basic
     raised
@@ -74,4 +74,4 @@ const SegmentExamplePiledSegments = () => (
   </Segment.Group>
 );
 
-export default SegmentExamplePiledSegments;
+export default TrialDesktop;
