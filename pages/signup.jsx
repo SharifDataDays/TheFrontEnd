@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import Head from 'next/head';
-import SignupContainer from '~/components/signup/signupContainer';
+import Container from '~/components/user/signup/container';
 
 class SignupPage extends Component {
   render() {
@@ -10,7 +10,7 @@ class SignupPage extends Component {
         <Head>
           <title>ثبت نام - DataDays 2020</title>
         </Head>
-        <SignupContainer />
+        <Container />
       </>
     );
   }

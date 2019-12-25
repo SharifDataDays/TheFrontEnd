@@ -1,11 +1,19 @@
-import React from 'react'
-import {Input, Form} from 'semantic-ui-react'
+import React from 'react';
+import { Form } from 'semantic-ui-react';
 
-const SignupInput = (props) => {
-    return(
-        <Form.Input error={props.error} onChange={props.onChange} type={props.type} name={props.name} value={props.value} label={props.label}
-        width={10} style={{marginBottom: 10}}/>
-    )
+function SignupInput({ error, onChange, type, name, value, label, width }) {
+  return (
+    <Form.Input
+      error={error}
+      onChange={onChange}
+      type={type}
+      name={name}
+      value={value}
+      label={label}
+      style={{ marginBottom: 10 }}
+      width={width || 10}
+    />
+  );
 }
 
-export default SignupInput
+export default SignupInput;

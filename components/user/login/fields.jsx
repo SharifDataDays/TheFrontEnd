@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Grid } from 'semantic-ui-react';
-import LoginInput from '../loginSignup/input';
-import LoginButton from '../loginSignup/button';
-import { preReqCheck, reqLogin } from '../../redux/utils/login';
-import { storeAccessToken, storeRefreshToken } from '../../redux/utils/auth';
+import LoginInput from '../input';
+import LoginButton from '../button';
+import { preReqCheck, reqLogin } from '~/redux/utils/login';
+import { storeAccessToken, storeRefreshToken } from '~/redux/utils/auth';
 
 export default class LoginFields extends Component {
   constructor(props) {

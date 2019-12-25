@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Form } from 'semantic-ui-react';
+
 import { DateInput } from 'semantic-ui-calendar-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import SignupInput from '../input';
 import SignupButton from '../button';
-import { preReqCheck, reqSignup } from '../../redux/utils/signup';
+import { preReqCheck, reqSignup } from '~/redux/utils/signup';
 
 export default class SignUpFields extends Component {
   constructor(props) {
@@ -36,13 +37,13 @@ export default class SignUpFields extends Component {
     };
   }
 
-  handleChange(event)  {
-      this.setState({
-        [event.target.name]: event.target.value
-      });
-  };
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
 
-  onSubmit() {
+  async onSubmit() {
     let res = preReqCheck(this.state);
     this.setState({ errors: res.newErrors });
     if (res.problem) {
@@ -50,7 +51,7 @@ export default class SignUpFields extends Component {
     } else {
       await reqSignup(this.state);
     }
-  };
+  }
 
   render() {
     const {
@@ -112,6 +113,7 @@ export default class SignUpFields extends Component {
                 value={university}
                 error={errors.university}
                 label="دانشگاه"
+                width={8}
               />
               <div>
                 <div style={{ marginBottom: 5 }}>
