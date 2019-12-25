@@ -18,7 +18,7 @@ const Header = styled(H)`
 `;
 
 const Label = styled(Lb)`
-  margin-left: 0.2rem !important;
+  margin-left: 0.1rem !important;
 `;
 
 const SegmentLabel = styled(Segment)`
@@ -33,7 +33,7 @@ const SegmentExamplePiledSegments = () => (
   <Segment.Group
     basic
     raised
-    style={{ width: '60vw', border: '0px solid', marginLeft: '20vw', display: 'flex' }}
+    style={{ width: '60vw', border: '0 !important', marginLeft: '20vw', display: 'flex' }}
   >
     <RowSegment>
       <Header>
@@ -51,25 +51,25 @@ const SegmentExamplePiledSegments = () => (
           </Label>
         </SegmentLabel>
       </Header>
-      <Image src="/images/pre-requirements.jpg" size="small" inline />
+      <Image src="/images/pre-requirements.jpg" size="small" />
     </RowSegment>
     <RowSegment>
       <Header>
         <Text>(Data Cleaning) تمیزکردن داده</Text>
       </Header>
-      <Image src="/images/data-cleaning.jpg" size="small" inline />
+      <Image src="/images/data-cleaning.jpg" size="small" />
     </RowSegment>
-    <RowSegment raised>
+    <RowSegment>
       <Header>
         <Text>(Data Visulisation) مصورسازی داده</Text>
       </Header>
-      <Image src="/images/data-visual.jpg" size="small" inline />
+      <Image src="/images/data-visual.jpg" size="small" />
     </RowSegment>
-    <RowSegment raised>
+    <RowSegment>
       <Header>
         <Text>(Regression) رگرسیون</Text>
       </Header>
-      <Image src="/images/linear-regression.jpeg" size="small" inline />
+      <Image src="/images/linear-regression.jpeg" size="small" />
     </RowSegment>
   </Segment.Group>
 );
