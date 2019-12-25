@@ -33,11 +33,10 @@ export default class LoginSignupContainer extends Component {
           width: '100vw',
           height: '100vh',
           position: 'absolute',
-          backgroundColor: 'white',
         }}
       >
         <Grid.Row style={{ height: '100%' }}>
-          <Grid.Column computer={8} tablet={0} mobile={0}>
+          <Grid.Column computer={8} only="computer">
             <a href="/">
               <Image
                 style={{ zIndex: 1, position: 'absolute', margin: 10 }}
@@ -55,7 +54,7 @@ export default class LoginSignupContainer extends Component {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '100vh',
+                height: '100%',
               }}
             />
           </Grid.Column>
