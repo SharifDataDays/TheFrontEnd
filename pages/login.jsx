@@ -6,7 +6,7 @@ function LoginPage() {
   return (
     <div>
       <Head>
-        <title>login</title>
+        <title>ورود - DataDays 2020</title>
       </Head>
       <Container />
     </div>
