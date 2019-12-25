@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
-import withLoggedIn from '~/components/global/auth/withLoggedIn';
+import withLogged from '~/components/global/auth/withLogged';
 import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
@@ -38,4 +38,4 @@ class HomePage extends Component {
   }
 }
 
-export default withLoggedIn(HomePage);
+export default withLogged(HomePage);

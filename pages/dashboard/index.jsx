@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withNotLogged from '~/components/global/auth/withNotLogged';
 import { logout } from '~/utils/auth';
 
 class DashboardPage extends Component {
@@ -7,4 +8,4 @@ class DashboardPage extends Component {
   }
 }
 
-export default DashboardPage;
+export default withNotLogged(DashboardPage);

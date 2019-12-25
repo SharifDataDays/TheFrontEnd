@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import nextCookie from 'next-cookies';
 import getResponse from './utils';
-import { login } from '~/utils/auth';
+import { logout } from '~/utils/auth';
 import { authAPI, refreshAPI } from '~/redux/api/auth';
 import Loading from '~/components/global/loading';
 
-function withLoggedIn(WrappedComponent) {
+function withNotLogged(WrappedComponent) {
   const Wrapper = (props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
       const { state, token } = props;
-      if (state === 'login') {
-        login({ token });
+      if (state === 'logout') {
+        logout({ token });
       } else {
         setLoading(false);
       }
@@ -29,7 +29,7 @@ function withLoggedIn(WrappedComponent) {
 
     if (!token) {
       return {
-        state: '',
+        state: 'logout',
       };
     }
 
@@ -58,7 +58,7 @@ function withLoggedIn(WrappedComponent) {
         };
       }
       return {
-        state: '',
+        state: 'logout',
       };
     }
     return {
@@ -70,4 +70,4 @@ function withLoggedIn(WrappedComponent) {
   return Wrapper;
 }
 
-export default withLoggedIn;
+export default withNotLogged;

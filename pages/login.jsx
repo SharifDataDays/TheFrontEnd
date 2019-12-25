@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import Head from 'next/head';
 import React, { Component } from 'react';
-import withLoggedIn from '~/components/global/auth/withLoggedIn';
+import withLogged from '~/components/global/auth/withLogged';
 import Container from '~/components/user/login/container';
 
 class LoginPage extends Component {
@@ -17,4 +17,4 @@ class LoginPage extends Component {
   }
 }
 
-export default withLoggedIn(LoginPage);
+export default withLogged(LoginPage);
