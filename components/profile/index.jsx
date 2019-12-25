@@ -232,6 +232,17 @@ class Profile extends Component {
             <Form.Button content="ذخیره‌ی تغییرات" color="black" floated="right" size="large" />
           </Form>
         </Fade>
+        {/* <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        /> */}
       </Container>
     );
   }

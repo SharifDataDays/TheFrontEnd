@@ -1,23 +1,21 @@
-import { colorStyle, gridAutoRows } from "styled-system";
-import {signupAPI} from '../api/profile';
+import { colorStyle, gridAutoRows } from 'styled-system';
+import { profileAPI } from '../api/profile';
 import validator from 'validator';
 import axios from 'axios';
+
+export async function getProfileData() {
+  axios
+    .get(profileAPI())
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => console.log(err));
+}
 
 export function preReqCheck(fields) {
   let res = {};
   let newErrors = {};
-  if (Object.entries(newErrors).length !== 0) {
-    res['problem'] = 'incompleteFields';
-    res['newErrors'] = newErrors;
-    return res;
-  }
-//   if (!validator.isEmail(fields['email'])) {
-//     console.log('hoooy')
-//     res['problem'] = 'invalidEmail';
-//     newErrors['email'] = true;
-//     res['newErrors'] = newErrors;
-//     return res;
-//   }
   if (fields['password'] !== fields['confirmPassword']) {
     res['problem'] = 'passwordsNotSame';
     newErrors['confirmPassword'] = true;
@@ -41,11 +39,11 @@ export function preReqCheck(fields) {
 }
 
 function reverseBirthDate(birthDate) {
-  let parts = birthDate.split("-")
-  parts.reverse()
-  let newBirthDate = parts[0] + "-" + parts[1] + "-" + parts[2]
+  let parts = birthDate.split('-');
+  parts.reverse();
+  let newBirthDate = parts[0] + '-' + parts[1] + '-' + parts[2];
 
-  return newBirthDate
+  return newBirthDate;
 }
 
 export async function profileUpdate(fields) {
@@ -55,14 +53,14 @@ export async function profileUpdate(fields) {
     password_1: fields['password'],
     password_2: fields['confirmPassword'],
     profile: {
-        firstname_fa: fields['nameFa'],
-        firstname_en: fields['lastNameFa'],
-        lastname_fa: fields['nameEn'],
-        lastname_en: fields['lastNameEn'],
-        birth_date: reverseBirthDate(fields['birthDate']),
-        university: fields['university']
-    }
-  }
+      firstname_fa: fields['nameFa'],
+      firstname_en: fields['lastNameFa'],
+      lastname_fa: fields['nameEn'],
+      lastname_en: fields['lastNameEn'],
+      birth_date: reverseBirthDate(fields['birthDate']),
+      university: fields['university'],
+    },
+  };
   // const res = await fetch(signupAPI(), {
   //   method : 'POST',
   //   headers : {
@@ -76,11 +74,10 @@ export async function profileUpdate(fields) {
   //   const res = await axios.post(signupAPI(), data)
 
   // } catch(e) {
-    
+
   // }
-  axios.post(signupAPI(), data)
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err))
-  
-  
+  axios
+    .post(profileAPI(), data)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 }
