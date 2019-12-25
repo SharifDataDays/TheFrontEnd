@@ -1,4 +1,3 @@
-
-const BASE_ADDR = 'http://185.215.113.54/api';
+const BASE_ADDR = 'https://datadays.sharif.edu/api';
 
 export default BASE_ADDR;
