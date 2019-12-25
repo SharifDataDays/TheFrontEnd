@@ -12,9 +12,9 @@ const profileData = {
   email: 'test@test.com',
   birthDate: '25-12-1990',
   university: 'شریف',
-  education: 'کارشناسی',
-  residence: 'ته',
-  callingNumber: '09190919091',
+  // education: 'کارشناسی',
+  // residence: 'ته',
+  // callingNumber: '09190919091',
 };
 
 async function fillProfileData() {

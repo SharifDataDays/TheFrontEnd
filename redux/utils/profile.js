@@ -62,8 +62,10 @@ export async function profileUpdate(fields) {
     data.password_1 = fields['password'];
     data.password_2 = fields['confirmPassword'];
   }
+  USER_TOKEN = '';
+  const AuthStr = 'Bearer '.concat(USER_TOKEN);
   axios
-    .put(profileAPI(), data)
+    .put(profileAPI(), data, { headers: { Authorization: AuthStr } })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 }
