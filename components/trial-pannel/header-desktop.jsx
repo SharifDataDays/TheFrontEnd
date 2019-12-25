@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Image, Header as H, Container } from 'semantic-ui-react';
+import { Grid, Segment, Image, Header as H } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Header = styled(H)`
@@ -15,7 +15,7 @@ const Text = styled.p`
   color: white;
 `;
 
-const GridExampleStretched = () => (
+const HeaderMobile = () => (
   <Grid
     columns={2}
     style={{
@@ -23,7 +23,7 @@ const GridExampleStretched = () => (
       borderBottom: '1px solid grey',
       backgroundColor: '#505763',
       maxHeight: '60vh',
-      minHeight: '40vh'
+      minHeight: '40vh',
     }}
     centered
   >
@@ -51,4 +51,4 @@ const GridExampleStretched = () => (
   </Grid>
 );
 
-export default GridExampleStretched;
+export default HeaderMobile;
