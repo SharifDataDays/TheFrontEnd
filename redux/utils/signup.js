@@ -1,4 +1,3 @@
-import { colorStyle, gridAutoRows } from "styled-system";
 import {signupAPI} from '../api/signup';
 import validator from 'validator';
 import axios from 'axios';
