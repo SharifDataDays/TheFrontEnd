@@ -65,7 +65,7 @@ class Resource extends Component {
               ) : (
                 <></>
               )}
-              {page <= content.sections.length ? (
+              {page < content.sections.length ? (
                 <Button onClick={this.nextPage} floated="right">
                   بعدی
                 </Button>
