@@ -2,19 +2,19 @@ import React from 'react';
 import Head from 'next/head';
 import Layout from '~/components/dashboard/layout';
 import withNotLogged from '~/components/global/auth/withNotLogged';
-import Trials from '~/components/dashboard/trials';
+import Tasks from '~/components/dashboard/tasks';
 
-function ResourcesPage() {
+function TaskPage() {
   return (
     <>
       <Head>
         <title>صفحه‌ ی پنل</title>
       </Head>
       <Layout>
-        <Trials />
+        <Tasks />
       </Layout>
     </>
   );
 }
 
-export default withNotLogged(ResourcesPage);
+export default withNotLogged(TaskPage);

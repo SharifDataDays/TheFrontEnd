@@ -8,17 +8,29 @@ import CodeBlock from './code';
 export default {
   h1: (props): Node => (
     <div dir="RTL">
-      <Header as="h1" style={{ fontSize: '3rem', lineHeight: 3 }} {...props} />
+      <Header
+        as="h1"
+        style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem' }}
+        {...props}
+      />
     </div>
   ),
   h2: (props): Node => (
     <div dir="RTL">
-      <Header as="h2" style={{ fontSize: '2.25rem', lineHeight: 2 }} {...props} />
+      <Header
+        as="h2"
+        style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '2rem' }}
+        {...props}
+      />
     </div>
   ),
   h3: (props): Node => (
     <div dir="RTL">
-      <Header as="h3" style={{ fontSize: '2rem', lineHeight: 1.75 }} {...props} />
+      <Header
+        as="h3"
+        style={{ fontSize: '2rem', lineHeight: 1.5, marginBottom: '1rem' }}
+        {...props}
+      />
     </div>
   ),
   p: (props): Node => (

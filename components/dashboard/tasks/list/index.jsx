@@ -4,7 +4,7 @@ import { Responsive } from 'semantic-ui-react';
 import Mobile from './mobile';
 import Desktop from './desktop';
 
-function TrialSection() {
+function ListSection() {
   return (
     <NoSSR>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
@@ -17,4 +17,4 @@ function TrialSection() {
   );
 }
 
-export default TrialSection;
+export default ListSection;

@@ -1,45 +1,5 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
 import Container from './container';
-
-/*
-import { Responsive } from 'semantic-ui-react';
-import SmallResources from './smallResource';
-import LargeResources from './largeResource';
-
-const ResponsiveResource = () => (
-  <>
-    <Responsive minWidth={320} maxWidth={600}>
-      <SmallResources width="80vw" />
-    </Responsive>
-    <Responsive minWidth={601} maxWidth={1000}>
-      <SmallResources width="36vw" />
-    </Responsive>
-    <Responsive minWidth={901}>
-      <LargeResources />
-    </Responsive>
-  </>
-);
-
-export default ResponsiveResource;
-*/
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    overflow: scroll;
-    overflow-x: hidden;
-  }
-  ::-webkit-scrollbar {
-    width: 0px !important;  
-    background: transparent;  /* Optional: just make scrollbar invisible */
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #FF0000;
-  }
-  div.item::before, a.item::before{
-    width: 0 !important
-  }
-`;
 
 const mdx = `
 # You Don't Know JS Yet (book series) - 2nd Edition
@@ -99,12 +59,7 @@ The materials herein are all &copy; 2019-2020 Kyle Simpson.
 `;
 
 function Resource() {
-  return (
-    <>
-      <GlobalStyle />
-      <Container content={mdx} />
-    </>
-  );
+  return <Container content={mdx} />;
 }
 
 export default Resource;

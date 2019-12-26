@@ -1,13 +1,13 @@
 import React from 'react';
 import HeaderSection from './header';
-import TrialSection from './trials';
+import ListSection from './list';
 
 function Trials() {
   return (
-    <div>
+    <>
       <HeaderSection />
-      <TrialSection />
-    </div>
+      <ListSection />
+    </>
   );
 }
 
