@@ -29,7 +29,13 @@ function TasksDesktop({ tasks }) {
     <Segment.Group
       basic
       raised
-      style={{ width: '60vw', border: '0 !important', marginLeft: '20vw', display: 'flex' }}
+      style={{
+        width: '60vw',
+        border: '0 !important',
+        marginLeft: '20vw',
+        display: 'flex',
+        marginBottom: '3rem',
+      }}
     >
       {_.map(tasks, (task) => {
         const { id, title_fa, description_fa, thumbnail } = task;

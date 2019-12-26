@@ -11,7 +11,7 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <div style={{ marginBottom: '3rem' }} dir="RTL">
+          <div style={{ marginBottom: '1rem' }} dir="RTL">
             {children}
           </div>
         );
@@ -39,7 +39,7 @@ export default htmlParser({
             as="h1"
             style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem', direction: 'rtl' }}
           >
-            {node.children[0].data.toUpperCase()}
+            {node.children[0].data}
           </Header>
         );
       },
@@ -54,7 +54,7 @@ export default htmlParser({
             as="h2"
             style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '3rem', direction: 'rtl' }}
           >
-            {node.children[0].data.toUpperCase()}
+            {node.children[0].data}
           </Header>
         );
       },
@@ -65,11 +65,20 @@ export default htmlParser({
       },
       processNode(node) {
         return (
-          <Header
-            as="h3"
-            style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '1rem', direction: 'rtl' }}
-          >
-            {node.children[0].data.toUpperCase()}
+          <Header as="h3" style={{ fontSize: '2rem', lineHeight: 1.5, marginBottom: '1rem' }}>
+            {node.children[0].data}
+          </Header>
+        );
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.name && node.name === 'h4';
+      },
+      processNode(node) {
+        return (
+          <Header as="h4" style={{ fontSize: '1.75rem', lineHeight: 1.5, marginBottom: '1rem' }}>
+            {node.children[0].data}
           </Header>
         );
       },
@@ -225,22 +234,36 @@ export default htmlParser({
     },
     {
       shouldProcessNode(node) {
+        return node.name && node.name === 'blockquote';
+      },
+      processNode(node, children) {
+        return (
+          <blockquote
+            style={{ color: 'grey', borderRight: '5px solid #e0e1e2', paddingRight: '2rem' }}
+          >
+            {children}
+          </blockquote>
+        );
+      },
+    },
+    {
+      shouldProcessNode(node) {
         return node.type && node.type === 'text';
       },
       processNode(node) {
-        const getStyle = (parent) => {
-          if (!parent || parent.tagName === 'div' || parent.tagName === 'font') {
-            return {
-              fontSize: '1.5rem',
-              lineHeight: 1.5,
-              marginBottom: '0.75rem',
-              direction: 'rtl',
-            };
-          }
-          return {};
-        };
         if (!node.parent || node.parent.tagName === 'div' || node.parent.tagName === 'font') {
-          return <span style={getStyle(node.parent)}>{node.nodeValue}</span>;
+          return (
+            <span
+              style={{
+                fontSize: '1.5rem',
+                lineHeight: 1.5,
+                marginBottom: '0.75rem',
+                direction: 'rtl',
+              }}
+            >
+              {node.nodeValue}
+            </span>
+          );
         }
         return <>{node.nodeValue}</>;
       },
