@@ -17,29 +17,24 @@ class Headers extends Component {
   render() {
     const { content } = this.props;
     const allHeaders = filterHeaders(content);
-    const headers1 = allHeaders.h1.map((x) => <Menu.Item as="a" href="./resources" name={x} />);
+    const headers = allHeaders.h1.map((x) => (
+      <Menu.Item as="a" href="./resources" name={x} style={{ color: 'black' }} />
+    ));
 
     return (
       <Grid style={{ position: 'relative' }}>
-        <Segment style={{ height: '1000px', paddingRight: '0', paddingLeft: '0', border: '0' }} />
+        <Segment style={{ height: '1000px' }} basic borderless />
         <Ref innerRef={this.contextRef}>
-          <Segment style={{ paddingRight: '0', paddingLeft: '0', border: '0' }}>
+          <Segment basic borderless>
             <Rail style={{ width: '400px' }}>
               <Sticky context={this.contextRef}>
                 <Menu
+                  inverted
+                  pointing
                   vertical
-                  style={{
-                    direction: 'rtl',
-                    borderLeft: '0',
-                    maxHeight: '700px',
-                    overflowY: 'scroll',
-                    position: 'absolute',
-                    borderRadius: '0',
-                    backgroundColor: '#f3f4f7',
-                    opacity: '0.75',
-                  }}
+                  style={{ backgroundColor: '#fff', borderRadius: '0' }}
                 >
-                  {headers1}
+                  {headers}
                 </Menu>
               </Sticky>
             </Rail>

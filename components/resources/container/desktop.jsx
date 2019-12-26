@@ -13,7 +13,7 @@ const getWidth = () => {
 function DesktopContainer({ children, content }) {
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-      <Grid style={{ marginTop: '1rem' }} centered>
+      <Grid centered>
         <Grid.Column computer={3} tablet={4}>
           <Headers content={content} />
         </Grid.Column>

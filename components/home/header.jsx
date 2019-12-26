@@ -13,6 +13,7 @@ const Image = styled(Im)`
     height: 100vh;
   }
   transform: translateX(-50%) translateY(-50%);
+  
   padding: 2rem;
 `;
 
