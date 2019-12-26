@@ -1,22 +1,120 @@
 import React from 'react';
-import { Image, Grid } from 'semantic-ui-react';
+import styled from 'styled-components';
+import { space } from 'styled-system';
+import NoSSR from 'react-no-ssr';
+import { Divider, Image, Grid, Header as H, Responsive } from 'semantic-ui-react';
+import { Zoom, Fade } from 'react-reveal';
 
-function Prize() {
+const Container = styled.div`
+  ${space};
+  background-color: #202020;
+`;
+
+const Header = styled(H)`
+  color: white;
+`;
+
+function Prize({ prizes }) {
+  const firstMain = prizes[3].prize_fa;
+  const secondMain = prizes[4].prize_fa;
+  const thirdMain = prizes[5].prize_fa;
   return (
-    <Grid
-      style={{ backgroundColor: '#06246D ', paddingTop: '7rem', paddingBottom: '7rem' }}
-      centered
-    >
-      <Grid.Column computer={4} tablet={5} style={{ paddingTop: '15rem' }}>
-        <Image size="medium" src="/images/second.png" />
-      </Grid.Column>
-      <Grid.Column computer={4} tablet={5}>
-        <Image size="medium" src="/images/first.png" />
-      </Grid.Column>
-      <Grid.Column computer={4} tablet={5} style={{ paddingTop: '15rem' }}>
-        <Image size="medium" src="/images/third.png" />
-      </Grid.Column>
-    </Grid>
+    <NoSSR>
+      <Container py={[5, 6, 6]}>
+        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+          <Grid dir="RTL" centered>
+            <Grid.Row>
+              <Grid.Column
+                style={{ marginTop: '10rem' }}
+                computer={4}
+                tablet={5}
+                mobile={14}
+                textAlign="center"
+              >
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="medium" src="/images/second.png" />
+                  <Header as="h2" style={{ margin: '1rem' }}>
+                    {secondMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+              <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="medium" src="/images/first.png" />
+                  <Header as="h2" style={{ margin: '1rem' }}>
+                    {firstMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+              <Grid.Column
+                style={{ marginTop: '10rem' }}
+                computer={4}
+                tablet={5}
+                mobile={14}
+                textAlign="center"
+              >
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="medium" src="/images/third.png" />
+                  <Header as="h2" style={{ margin: '1rem' }}>
+                    {thirdMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+            </Grid.Row>
+            <Divider hidden />
+            <Divider hidden />
+            <Divider hidden />
+            <Grid.Row>
+              <Fade>
+                <Header as="h3" style={{ margin: '1rem' }}>
+                  دو تیم از تیم‌های چهارم تا بیستم: هرکدام ۲ میلیون تومان
+                </Header>
+              </Fade>
+            </Grid.Row>
+          </Grid>
+        </Responsive>
+        <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+          <Grid dir="RTL" centered>
+            <Grid.Row>
+              <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/first.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
+                    {firstMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+              <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/second.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
+                    {secondMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+              <Grid.Column computer={4} tablet={5} mobile={14} textAlign="center">
+                <Zoom>
+                  <Image style={{ margin: 'auto' }} size="small" src="/images/third.png" />
+                  <Header as="h2" style={{ margin: '2rem' }}>
+                    {thirdMain}
+                  </Header>
+                </Zoom>
+              </Grid.Column>
+            </Grid.Row>
+            <Divider hidden />
+            <Divider hidden />
+            <Divider hidden />
+            <Grid.Row>
+              <Fade>
+                <Header as="h3" style={{ margin: '1rem', padding: '1.5rem' }}>
+                  دو تیم از تیم‌های چهارم تا بیستم: هرکدام ۲ میلیون تومان
+                </Header>
+              </Fade>
+            </Grid.Row>
+          </Grid>
+        </Responsive>
+      </Container>
+    </NoSSR>
   );
 }
 

@@ -1,15 +1,15 @@
 /* eslint-disable react/prefer-stateless-function */
-import Head from 'next/head';
 import React, { Component } from 'react';
+import Head from 'next/head';
 import withLogged from '~/components/global/auth/withLogged';
-import Container from '~/components/user/login/container';
+import Container from '~/components/user/signup/container';
 
-class LoginPage extends Component {
+class SignupPage extends Component {
   render() {
     return (
       <>
         <Head>
-          <title>ورود - DataDays 2020</title>
+          <title>ثبت نام - DataDays 2020</title>
         </Head>
         <Container />
       </>
@@ -17,4 +17,4 @@ class LoginPage extends Component {
   }
 }
 
-export default withLogged(LoginPage);
+export default withLogged(SignupPage);

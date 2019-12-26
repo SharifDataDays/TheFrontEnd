@@ -8,7 +8,7 @@ function change(color, visible) {
 }
 
 const Image = styled(Im)`
-  filter: ${(props) => (change(props.color, props.visible) ? 'grayscale(100%)' : 'none')};
+  filter: ${(props) => (change(props.color, props.visible) ? 'invert(1)' : 'invert(1)')};
   opacity: ${(props) => (change(props.color, props.visible) ? 0.66 : 1)};
   margin-left: auto;
   margin-right: auto;
@@ -38,14 +38,16 @@ class Logo extends Component {
     const { height, src, visible } = this.props;
     const { color } = this.state;
     return (
-      <Image
-        src={src}
-        height={height}
-        color={color}
-        visible={visible}
-        onMouseEnter={this.changeToColor}
-        onMouseLeave={this.changeToGray}
-      />
+      <a href={src.link} target="_blank" rel="noopener noreferrer">
+        <Image
+          src={src.image}
+          height={height}
+          color={color}
+          visible={visible}
+          onMouseEnter={this.changeToColor}
+          onMouseLeave={this.changeToGray}
+        />
+      </a>
     );
   }
 }

@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'IRANSans';
     src: local('IRANSans'),
-        url('fonts/IRANSans.woff2') format('woff2'),
-        url('fonts/IRANSans.woff') format('woff'),
-        url('fonts/IRANSans.ttf') format('truetype');
+        url('/fonts/IRANSans.woff2') format('woff2'),
+        url('/fonts/IRANSans.woff') format('woff'),
+        url('/fonts/IRANSans.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

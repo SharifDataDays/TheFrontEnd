@@ -1,6 +1,7 @@
 import React from 'react';
-import Document from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Font from '~/components/global/font';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -26,5 +27,29 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  componentDidMount() {
+    Font();
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="stylesheet" href="/fonts/font.css" />
+          <meta
+            id="viewport"
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

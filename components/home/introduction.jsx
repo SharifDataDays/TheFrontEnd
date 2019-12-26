@@ -1,37 +1,68 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Header as H, Image } from 'semantic-ui-react';
+import NoSSR from 'react-no-ssr';
+import { Grid, Header as H, Responsive } from 'semantic-ui-react';
+import { Fade } from 'react-reveal';
+import { typography, space } from 'styled-system';
+
+const Container = styled.div`
+  ${space};
+  color: white;
+  position: relative;
+  background-color: #1d93f7;
+`;
 
 const Header = styled(H)`
-  font-size: 3rem;
+  ${typography}
 `;
 
 const Text = styled.p`
-  font-size: 1.75rem;
-  line-height: 1.5;
+  ${typography};
+  direction: rtl;
 `;
 
 function Introduction({ header, content }) {
   return (
-    <div style={{ position: 'relative' }}>
-      <Grid stackable inverted centered>
-        <Grid.Row
+    <NoSSR>
+      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <Container
           style={{
-            padding: '12rem 2rem',
-            backgroundColor: '#06246D',
-            color: 'white',
+            backgroundImage: "url('/images/intro.png')",
+            backgroundSize: 'cover',
+            // backgroundPosition: 'center',
           }}
+          py={[5, 6, 6]}
         >
-          <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
-            <Image style={{ padding: '2rem' }} size="large" src="/images/logo.png" />
-          </Grid.Column>
-          <Grid.Column textAlign="center" verticalAlign="middle" width={7}>
-            <Header as="h1">{header}</Header>
-            <Text>{content}</Text>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </div>
+          <Grid stackable inverted centered>
+            <Grid.Column textAlign="center" verticalAlign="middle" width={6} />
+
+            <Grid.Column textAlign="center" verticalAlign="middle" width={6}>
+              <Fade right>
+                <Header as="h1" fontSize={(5, 6, 6)}>
+                  {header}
+                </Header>
+                <Text fontSize={[4, 5, 5]}>{content}</Text>
+              </Fade>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </Responsive>
+      <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+        <Container py={[5, 6, 6]}>
+          {/* <Image src="/images/timeline.png" /> */}
+          <Grid centered>
+            <Grid.Column textAlign="center" verticalAlign="middle" width={14}>
+              <Fade right>
+                <Header as="h1" fontSize={(5, 6, 6)}>
+                  {header}
+                </Header>
+                <Text fontSize={[4, 5, 5]}>{content}</Text>
+              </Fade>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </Responsive>
+    </NoSSR>
   );
 }
 

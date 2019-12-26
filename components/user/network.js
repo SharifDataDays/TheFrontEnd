@@ -1,60 +1,59 @@
 export default function neuralnet(canvas) {
-  var w = (canvas.width = 3 * window.innerWidth / 5 ),
-    h = (canvas.height = window.innerHeight),
-    ctx = canvas.getContext('2d'),
-    opts = {
-      range: 180,
-      baseConnections: 3,
-      addedConnections: 5,
-      baseSize: 5,
-      minSize: 1,
-      dataToConnectionSize: 0.4,
-      sizeMultiplier: 0.7,
-      allowedDist: 40,
-      baseDist: 40,
-      addedDist: 30,
-      connectionAttempts: 100,
+  let w = (canvas.width = (3 * window.innerWidth) / 5);
+  let h = (canvas.height = window.innerHeight);
+  const ctx = canvas.getContext('2d');
+  const opts = {
+    range: 180,
+    baseConnections: 3,
+    addedConnections: 5,
+    baseSize: 5,
+    minSize: 1,
+    dataToConnectionSize: 0.4,
+    sizeMultiplier: 0.7,
+    allowedDist: 40,
+    baseDist: 40,
+    addedDist: 30,
+    connectionAttempts: 60,
 
-      dataToConnections: 1,
-      baseSpeed: 0.04,
-      addedSpeed: 0.05,
-      baseGlowSpeed: 0.4,
-      addedGlowSpeed: 0.4,
+    dataToConnections: 1,
+    baseSpeed: 0.04,
+    addedSpeed: 0.05,
+    baseGlowSpeed: 0.4,
+    addedGlowSpeed: 0.4,
 
-      rotVelX: 0.003,
-      rotVelY: 0.002,
+    rotVelX: 0.003,
+    rotVelY: 0.002,
 
-      repaintColor: '#051838',
-      connectionColor: 'hsla(200,60%,light%,alp)',
-      rootColor: 'hsla(0,60%,light%,alp)',
-      endColor: 'hsla(160,20%,light%,alp)',
-      dataColor: 'hsla(40,80%,light%,alp)',
+    repaintColor: '#202020',
+    connectionColor: 'hsla(200,60%,light%,alp)',
+    rootColor: 'hsla(0,60%,light%,alp)',
+    endColor: 'hsla(160,20%,light%,alp)',
+    dataColor: 'hsla(40,80%,light%,alp)',
 
-      wireframeWidth: 0.1,
-      wireframeColor: '#88f',
+    wireframeWidth: 0.1,
+    wireframeColor: '#88f',
 
-      depth: 250,
-      focalLength: 250,
-      vanishPoint: {
-        x: w / 2,
-        y: h / 2,
-      },
+    depth: 250,
+    focalLength: 250,
+    vanishPoint: {
+      x: w / 2,
+      y: h / 2,
     },
-    squareRange = opts.range * opts.range,
-    squareAllowed = opts.allowedDist * opts.allowedDist,
-    mostDistant = opts.depth + opts.range,
-    sinX = 0,
-    sinY = 0,
-    cosX = 0,
-    cosY = 0,
-    connections = [],
-    toDevelop = [],
-    data = [],
-    all = [],
-    tick = 0,
-    totalProb = 0,
-    animating = false,
-    Tau = Math.PI * 2;
+  };
+  const squareRange = opts.range * opts.range;
+  const squareAllowed = opts.allowedDist * opts.allowedDist;
+  const mostDistant = opts.depth + opts.range;
+  let sinX = 0;
+  let sinY = 0;
+  let cosX = 0;
+  let cosY = 0;
+  const connections = [];
+  const toDevelop = [];
+  const data = [];
+  const all = [];
+  let tick = 0;
+  let animating = false;
+  const Tau = Math.PI * 2;
 
   ctx.fillStyle = '#222';
   ctx.fillRect(0, 0, w, h);
@@ -326,9 +325,9 @@ export default function neuralnet(canvas) {
   }
 
   window.addEventListener('resize', function() {
-    opts.vanishPoint.x = (w = canvas.width = 4 * window.innerWidth / 5) / 2;
+    opts.vanishPoint.x = (w = canvas.width = (4 * window.innerWidth) / 5) / 2;
     opts.vanishPoint.y = (h = canvas.height = window.innerHeight) / 2;
     ctx.fillRect(0, 0, w, h);
   });
-//   window.addEventListener('click', init);
+  //   window.addEventListener('click', init);
 }
