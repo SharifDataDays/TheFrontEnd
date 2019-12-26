@@ -1,10 +1,10 @@
 import React from 'react';
 import { Responsive, Segment } from 'semantic-ui-react';
+import NoSSR from 'react-no-ssr';
 import HeaderMobile from './header-mobile';
 import TrialMobile from './trials-mobile';
 import HeaderDesktop from './header-desktop';
 import TrialDesktop from './trials-desktop';
-import NoSSR from 'react-no-ssr';
 
 const Trials = () => (
   <NoSSR>

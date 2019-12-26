@@ -5,10 +5,10 @@ import { space, layout, color, border, typography } from 'styled-system';
 import { Header, Form, Responsive, Grid } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import { DateInput } from 'semantic-ui-calendar-react';
-import { preReqCheck, profileUpdate } from '../../redux/utils/profile';
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { preReqCheck, profileUpdate } from '../../redux/utils/profile';
 
 const fields = [
   // {
@@ -119,7 +119,6 @@ class Profile extends Component {
         password: false,
         confirmPassword: false,
       },
-
     };
   }
 
@@ -156,16 +155,14 @@ class Profile extends Component {
     let res = preReqCheck(this.state);
     this.setState({ errors: res.newErrors });
     if (res.problem) {
-      this.notify(res.problem); 
+      this.notify(res.problem);
     } else {
-      await profileUpdate(this.state)
+      await profileUpdate(this.state);
     }
-    
-    
   };
 
   formInput = (field) => {
-    const labelWidth = "170px"
+    const labelWidth = '170px';
     if (field.date) {
       return (
         <Form.Group inline>
@@ -181,7 +178,7 @@ class Profile extends Component {
             closeOnMouseLeave={false}
             readOnly={field.readOnly}
             width={6}
-            icon={<FontAwesomeIcon icon={faCalendar} color='black'/>}
+            icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
 
             // transparent={field.readOnly}
           />
@@ -209,7 +206,6 @@ class Profile extends Component {
   };
 
   render() {
-
     return (
       <Container
         px={[4, 5, 6]}
