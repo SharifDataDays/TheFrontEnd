@@ -178,7 +178,7 @@ export default htmlParser({
         return node.name && node.name === 'code';
       },
       processNode(node, children) {
-        return <code style={{ backgroundColor: '#eeeeee' }}>{children}</code>;
+        return <code style={{ backgroundColor: '#eeeeee', direction: 'ltr' }}>{children}</code>;
       },
     },
     {
