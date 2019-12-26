@@ -12,7 +12,7 @@ function TasksMobile({ tasks }) {
           return (
             <a href={`/dashboard/tasks/${id}/resource`}>
               <Card style={{ padding: '1rem', width: '100%' }}>
-                <Image src={`https://datadays.sharif.edu${thumbnail}`} />
+                <Image src={`${thumbnail}`} />
                 <Card.Content>
                   <Card.Header style={{ direction: 'rtl' }}>{title_fa}</Card.Header>
                 </Card.Content>

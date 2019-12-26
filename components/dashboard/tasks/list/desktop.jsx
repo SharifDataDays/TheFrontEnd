@@ -48,7 +48,7 @@ function TasksDesktop({ tasks }) {
                   <EllipsisText text={description_fa} length={200} />
                 </Text>
               </Header>
-              <Image size="small" src={`https://datadays.sharif.edu${thumbnail}`} />
+              <Image size="small" src={`${thumbnail}`} />
             </RowSegment>
           </a>
         );
