@@ -219,6 +219,9 @@ export default class SignUpFields extends Component {
                 label="تکرار گذرواژه"
               />
             </Form.Group>
+            <Form.Field dir="rtl">
+              <a href="/login">عضو هستید؟ وارد شوید!</a>
+            </Form.Field>
             <Button onClick={this.onSubmit} color="blue" text="ثبت نام" />
           </Form>
         </Grid.Column>
