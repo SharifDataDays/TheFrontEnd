@@ -91,9 +91,9 @@ export default class LoginFields extends Component {
                 error={errors.password}
               />
             </Form.Group>
-            <Form.Group textAlign="center" dir="rtl">
+            <Form.Field dir="rtl">
               <a href="/signup">عضو نیستید؟ حساب کاربری بسازید!</a>
-            </Form.Group>
+            </Form.Field>
             <LoginButton onClick={this.onSubmit} color="blue" text="ورود" />
           </Form>
         </Grid.Column>
