@@ -6,6 +6,12 @@ import { Header, Divider, List, Table, Image } from 'semantic-ui-react';
 import CodeBlock from './code';
 
 export default {
+  div: (props): Node => (
+    <div
+      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl' }}
+      {...props}
+    />
+  ),
   h1: (props): Node => (
     <div dir="RTL">
       <Header
@@ -34,9 +40,10 @@ export default {
     </div>
   ),
   p: (props): Node => (
-    <div dir="RTL">
-      <p style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem' }} {...props} />
-    </div>
+    <p
+      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl' }}
+      {...props}
+    />
   ),
   hr: (props): Node => <Divider {...props} />,
   ul: (props): Node => (

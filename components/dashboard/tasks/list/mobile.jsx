@@ -1,33 +1,24 @@
+import _ from 'lodash';
 import React from 'react';
-import { Card, Image, Label as Lb } from 'semantic-ui-react';
-import styled from 'styled-components';
+import { Card } from 'semantic-ui-react';
 
-const Label = styled(Lb)`
-  margin-left: 0.3rem !important;
-`;
+function TasksMobile({ tasks }) {
+  return (
+    <>
+      {_.map(tasks, (task) => {
+        const { id, title_fa } = task;
+        return (
+          <a href={`/dashboard/tasks/${id}/resource`}>
+            <Card style={{ width: '100%' }}>
+              <Card.Content>
+                <Card.Header style={{ direction: 'rtl' }}>{title_fa}</Card.Header>
+              </Card.Content>
+            </Card>
+          </a>
+        );
+      })}
+    </>
+  );
+}
 
-const TrialMobile = ({ fontSize }) => (
-  <>
-    <Card style={{ width: '100%' }}>
-      <Image src="/images/data-visual.jpg" style={{ width: '100%', height: '30vh' }} />
-      <Card.Content>
-        <Card.Header style={{ direction: 'rtl', fontSize }}>
-          پیش نیاز‌ها (pre-requirements)
-        </Card.Header>
-        <Card.Description>
-          <Label circular color="grey">
-            2
-          </Label>
-          <Label circular color="black">
-            1
-          </Label>
-          <Label circular color="violet">
-            3
-          </Label>
-        </Card.Description>
-      </Card.Content>
-    </Card>
-  </>
-);
-
-export default TrialMobile;
+export default TasksMobile;

@@ -9,7 +9,11 @@ const SyntaxHighlighter = styled(SH)`
 
 function CodeBlock({ children, className }) {
   const language = _.replace(className, /language-/, '');
-  return <SyntaxHighlighter language={language}>{children}</SyntaxHighlighter>;
+  return (
+    <SyntaxHighlighter language={language} useInlineStyles>
+      {children}
+    </SyntaxHighlighter>
+  );
 }
 
 export default CodeBlock;

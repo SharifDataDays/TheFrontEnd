@@ -2,11 +2,11 @@ import React from 'react';
 import HeaderSection from './header';
 import ListSection from './list';
 
-function Trials() {
+function Trials({ tasks }) {
   return (
     <>
       <HeaderSection />
-      <ListSection />
+      <ListSection tasks={tasks} />
     </>
   );
 }

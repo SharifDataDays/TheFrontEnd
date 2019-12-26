@@ -9,7 +9,7 @@ class DashboardPage extends Component {
     return (
       <>
         <Head>
-          <title>صفحه‌ ی پنل</title>
+          <title>DataDays 2020</title>
         </Head>
         <Layout>
           <p onClick={logout}>logout</p>

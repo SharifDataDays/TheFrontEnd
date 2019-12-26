@@ -1,5 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
-import { Segment, Image, Header as H, Label as Lb } from 'semantic-ui-react';
+import { Segment, Header as H } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const RowSegment = styled(Segment)`
@@ -17,61 +18,31 @@ const Header = styled(H)`
   text-align: right;
 `;
 
-const Label = styled(Lb)`
-  margin-left: 0.1rem !important;
-`;
-
-const SegmentLabel = styled(Segment)`
-  display: flex !important;
-`;
-
 const Text = styled.p`
   margin-bottom: 1rem;
 `;
 
-const TrialDesktop = () => (
-  <Segment.Group
-    basic
-    raised
-    style={{ width: '60vw', border: '0 !important', marginLeft: '20vw', display: 'flex' }}
-  >
-    <RowSegment>
-      <Header>
-        <Text>(pre-requirements) پیش نیاز‌ها</Text>
-        <SegmentLabel basic raised>
-          {' '}
-          <Label circular color="grey">
-            2
-          </Label>
-          <Label circular color="black">
-            1
-          </Label>
-          <Label circular color="violet">
-            3
-          </Label>
-        </SegmentLabel>
-      </Header>
-      <Image src="/images/pre-requirements.jpg" size="small" />
-    </RowSegment>
-    <RowSegment>
-      <Header>
-        <Text>(Data Cleaning) تمیزکردن داده</Text>
-      </Header>
-      <Image src="/images/data-cleaning.jpg" size="small" />
-    </RowSegment>
-    <RowSegment>
-      <Header>
-        <Text>(Data Visulisation) مصورسازی داده</Text>
-      </Header>
-      <Image src="/images/data-visual.jpg" size="small" />
-    </RowSegment>
-    <RowSegment>
-      <Header>
-        <Text>(Regression) رگرسیون</Text>
-      </Header>
-      <Image src="/images/linear-regression.jpeg" size="small" />
-    </RowSegment>
-  </Segment.Group>
-);
+function TasksDesktop({ tasks }) {
+  return (
+    <Segment.Group
+      basic
+      raised
+      style={{ width: '60vw', border: '0 !important', marginLeft: '20vw', display: 'flex' }}
+    >
+      {_.map(tasks, (task) => {
+        const { id, title_fa } = task;
+        return (
+          <a href={`/dashboard/tasks/${id}/resource`}>
+            <RowSegment>
+              <Header>
+                <Text>{title_fa}</Text>
+              </Header>
+            </RowSegment>
+          </a>
+        );
+      })}
+    </Segment.Group>
+  );
+}
 
-export default TrialDesktop;
+export default TasksDesktop;
