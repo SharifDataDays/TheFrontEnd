@@ -1,20 +1,28 @@
 import React from 'react';
-import { Icon, Menu, Sidebar } from 'semantic-ui-react';
+import { Menu, Sidebar } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faCog } from '@fortawesome/free-solid-svg-icons';
 
 function VerticalSidebar() {
   return (
-    <Sidebar as={Menu} direction="left" icon="labeled" inverted vertical visible>
-      <Menu.Item as="a">
-        <Icon name="home" />
-        Home
+    <Sidebar
+      style={{ width: '10%' }}
+      as={Menu}
+      direction="left"
+      icon="labeled"
+      inverted
+      vertical
+      visible
+    >
+      <Menu.Item as="a" href="/dashboard/trials">
+        <FontAwesomeIcon size="lg" icon={faBook} style={{ marginBottom: '0.5rem' }} />
+        <br />
+        منابع
       </Menu.Item>
-      <Menu.Item as="a">
-        <Icon name="gamepad" />
-        Games
-      </Menu.Item>
-      <Menu.Item as="a">
-        <Icon name="camera" />
-        Channels
+      <Menu.Item as="a" href="/dashboard/trials">
+        <FontAwesomeIcon size="lg" icon={faCog} style={{ marginBottom: '0.5rem' }} />
+        <br />
+        حساب کاربری
       </Menu.Item>
     </Sidebar>
   );

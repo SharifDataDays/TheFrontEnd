@@ -1,12 +1,11 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
-import Sidebar from './sidebar';
+import Navbar from './navbar';
 
 function Layout({ children }) {
   return (
     <>
-      <Sidebar />
-      <Segment basic>{children}</Segment>
+      <Navbar />
+      {children}
     </>
   );
 }
