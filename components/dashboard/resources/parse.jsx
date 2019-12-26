@@ -88,9 +88,11 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <Table style={{ marginBottom: '3rem' }} celled striped>
-            {children}
-          </Table>
+          <div style={{ marginBottom: '3rem', width: '100%', overflowX: 'scroll' }}>
+            <Table celled striped>
+              {children}
+            </Table>
+          </div>
         );
       },
     },
