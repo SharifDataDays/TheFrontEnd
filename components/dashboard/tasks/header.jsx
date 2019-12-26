@@ -25,7 +25,7 @@ function HeaderSection() {
     >
       <Grid.Column computer={4} tablet={4} mobile={15}>
         <Segment basic>
-          <Image src="/images/blog.jpg" size="big" verticalAlign="middle" centered />
+          <Image src="/images/header.jpg" size="big" verticalAlign="middle" centered />
         </Segment>
       </Grid.Column>
       <Grid.Column computer={7} tablet={7} mobile={15}>

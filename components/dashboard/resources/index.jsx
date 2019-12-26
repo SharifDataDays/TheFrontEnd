@@ -35,7 +35,10 @@ class Resource extends Component {
     const { page } = this.state;
     return (
       <>
-        <Grid style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)' }} centered>
+        <Grid
+          style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
+          centered
+        >
           <Grid.Row>
             <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
               <Header as="h1" style={{ textAlign: 'center' }}>
@@ -48,7 +51,7 @@ class Resource extends Component {
               >
                 دانلود منابع
               </a>
-              <Image src={`https://datadays.sharif.edu${content.thumbnail}`} />
+              <Image src="/images/header.jpg" />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -58,20 +61,22 @@ class Resource extends Component {
               ) : (
                 <Container content={content.sections[page - 1].markdown} />
               )}
-              {page > 0 ? (
-                <Button onClick={this.prevPage} floated="left">
-                  قبلی
-                </Button>
-              ) : (
-                <></>
-              )}
-              {page < content.sections.length ? (
-                <Button onClick={this.nextPage} floated="right">
-                  بعدی
-                </Button>
-              ) : (
-                <></>
-              )}
+              <div style={{ marginTop: '1rem' }}>
+                {page > 0 ? (
+                  <Button onClick={this.prevPage} floated="left">
+                    قبلی
+                  </Button>
+                ) : (
+                  <></>
+                )}
+                {page < content.sections.length ? (
+                  <Button onClick={this.nextPage} floated="right">
+                    بعدی
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>

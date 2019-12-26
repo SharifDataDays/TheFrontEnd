@@ -35,7 +35,10 @@ export default htmlParser({
       },
       processNode(node) {
         return (
-          <Header as="h1" style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem' }}>
+          <Header
+            as="h1"
+            style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem', direction: 'rtl' }}
+          >
             {node.children[0].data.toUpperCase()}
           </Header>
         );
@@ -47,7 +50,10 @@ export default htmlParser({
       },
       processNode(node) {
         return (
-          <Header as="h2" style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '3rem' }}>
+          <Header
+            as="h2"
+            style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '3rem', direction: 'rtl' }}
+          >
             {node.children[0].data.toUpperCase()}
           </Header>
         );
@@ -59,7 +65,10 @@ export default htmlParser({
       },
       processNode(node) {
         return (
-          <Header as="h3" style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '1rem' }}>
+          <Header
+            as="h3"
+            style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '1rem', direction: 'rtl' }}
+          >
             {node.children[0].data.toUpperCase()}
           </Header>
         );
@@ -183,6 +192,37 @@ export default htmlParser({
     },
     {
       shouldProcessNode(node) {
+        return node.name && node.name === 'p';
+      },
+      processNode(node, children) {
+        return (
+          <span
+            style={{
+              fontSize: '1.5rem',
+              lineHeight: 1.5,
+              marginBottom: '0.75rem',
+              direction: 'rtl',
+            }}
+          >
+            {children}
+          </span>
+        );
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.name && node.name === 'a';
+      },
+      processNode(node, children) {
+        return (
+          <a href={node.attribs.href} target="_blank" rel="noopener noreferrer">
+            {children}
+          </a>
+        );
+      },
+    },
+    {
+      shouldProcessNode(node) {
         return node.type && node.type === 'text';
       },
       processNode(node) {
@@ -197,8 +237,8 @@ export default htmlParser({
           }
           return {};
         };
-        if (!node.parent) {
-          return <p style={getStyle(node.parent)}>{node.nodeValue}</p>;
+        if (!node.parent || node.parent.tagName === 'div' || node.parent.tagName === 'font') {
+          return <span style={getStyle(node.parent)}>{node.nodeValue}</span>;
         }
         return <>{node.nodeValue}</>;
       },

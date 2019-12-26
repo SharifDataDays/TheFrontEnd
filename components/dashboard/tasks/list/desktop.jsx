@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Segment, Header as H, Image } from 'semantic-ui-react';
 import styled from 'styled-components';
+import EllipsisText from 'react-ellipsis-text';
 
 const RowSegment = styled(Segment)`
   padding: 0 !important;
@@ -37,7 +38,9 @@ function TasksDesktop({ tasks }) {
             <RowSegment>
               <Header>
                 <Text>{title_fa}</Text>
-                <Text style={{ fontSize: '1rem' }}>{description_fa}</Text>
+                <Text style={{ fontSize: '1rem' }}>
+                  <EllipsisText text={description_fa} length={200} />
+                </Text>
               </Header>
               <Image size="small" src={`https://datadays.sharif.edu${thumbnail}`} />
             </RowSegment>
