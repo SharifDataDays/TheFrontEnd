@@ -28,7 +28,7 @@ class CodeBlock extends React.PureComponent {
     const { language, value } = this.props;
     return (
       <pre style={{ textAlign: 'left', direction: 'ltr' }}>
-        {language === 'python' ? <p dir="LTR">In:</p> : <p dir="LTR">Out:</p>}
+        {language !== null ? <p dir="LTR">In:</p> : <p dir="LTR">Out:</p>}
         <code ref={this.setRef} className={`language-python`}>
           {value}
         </code>

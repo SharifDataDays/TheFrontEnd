@@ -248,6 +248,22 @@ export default htmlParser({
     },
     {
       shouldProcessNode(node) {
+        return node.name && node.name === 'strong';
+      },
+      processNode(node, children) {
+        return <strong>{children}</strong>;
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.name && node.name === 'em';
+      },
+      processNode(node, children) {
+        return <em>{children}</em>;
+      },
+    },
+    {
+      shouldProcessNode(node) {
         return node.type && node.type === 'text';
       },
       processNode(node) {

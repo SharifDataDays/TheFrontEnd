@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid, Header, Image } from 'semantic-ui-react';
+import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
 import Footer from '~/components/global/footer';
 
@@ -39,6 +39,33 @@ class Resource extends Component {
           style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
           centered
         >
+          <Grid.Row>
+            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+              <Progress
+                style={{ color: 'black' }}
+                value={page + 1}
+                total={content.sections.length + 1}
+                progress="ratio"
+                success
+              />
+              <div style={{ marginBottom: '3rem' }}>
+                {page > 0 ? (
+                  <Button onClick={this.prevPage} floated="left">
+                    قبلی
+                  </Button>
+                ) : (
+                  <></>
+                )}
+                {page < content.sections.length ? (
+                  <Button onClick={this.nextPage} floated="right">
+                    بعدی
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
               <Header as="h1" style={{ textAlign: 'center' }}>
