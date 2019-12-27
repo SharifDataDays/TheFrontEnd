@@ -9,6 +9,7 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import Input from '../input';
 import Button from '../button';
 import check from './check';
+import Terms from './terms';
 import { signupAPI } from '~/redux/api/auth';
 
 export default class SignUpFields extends Component {
@@ -122,6 +123,7 @@ export default class SignUpFields extends Component {
       password_2,
       errors,
     } = this.state;
+    const { terms } = this.props;
 
     return (
       <Grid>
@@ -222,7 +224,10 @@ export default class SignUpFields extends Component {
             <Form.Field dir="rtl">
               <a href="/login">عضو هستید؟ وارد شوید!</a>
             </Form.Field>
-            <Button onClick={this.onSubmit} color="blue" text="ثبت نام" />
+            <Form.Field dir="rtl">
+              <Terms terms={terms} />
+            </Form.Field>
+            <Button onClick={this.onSubmit} color="blue" text="موافقت با قوانین و ثبت نام" />
           </Form>
         </Grid.Column>
       </Grid>

@@ -50,13 +50,13 @@ function notify(choice) {
   }
 }
 
-function SignupContainer() {
+function SignupContainer({ terms }) {
   return (
     <Container>
       <Header as="h1" dividing>
         ثبت نام
       </Header>
-      <Fields notify={notify} />
+      <Fields terms={terms} notify={notify} />
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
