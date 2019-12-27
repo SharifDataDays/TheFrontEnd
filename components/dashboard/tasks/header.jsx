@@ -25,12 +25,12 @@ function HeaderSection() {
     >
       <Grid.Column computer={4} tablet={4} mobile={15}>
         <Segment basic>
-          <Image src="/images/header.jpg" size="big" verticalAlign="middle" centered />
+          <Image src="/images/tasks.png" size="big" verticalAlign="middle" centered />
         </Segment>
       </Grid.Column>
       <Grid.Column computer={7} tablet={7} mobile={15}>
         <Segment basic textAlign="right !important">
-          <Header as="h1">فاز اول مسابقه</Header>
+          <Header as="h1">گام اول مسابقه</Header>
           <Text>
             وادی علوم داده و داده‌کاوی پر است از دادگانی که اطلاعات ارزشمندی در آن نهفته‌است و
             پرسش‌های مهمی که می‌توان با استفاده از این دادگان یافت و به آنها‌ پاسخ داد. یک متخصص

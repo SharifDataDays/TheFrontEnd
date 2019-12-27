@@ -38,7 +38,6 @@ function notify(choice) {
       break;
     case 'success':
       toast.success('حساب شما با موفقیت ساخته شد.', options);
-      console.log('success');
       Router.push({
         pathname: '/login',
         query: {

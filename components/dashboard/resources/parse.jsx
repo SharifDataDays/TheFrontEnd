@@ -98,7 +98,7 @@ export default htmlParser({
       processNode(node, children) {
         return (
           <div style={{ marginBottom: '3rem', width: '100%', overflowX: 'scroll' }}>
-            <Table celled striped>
+            <Table celled striped stackable={false}>
               {children}
             </Table>
           </div>

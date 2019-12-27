@@ -9,7 +9,7 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import Input from '../input';
 import Button from '../button';
 import check from './check';
-import { signupAPI } from '~/redux/api/signup';
+import { signupAPI } from '~/redux/api/auth';
 
 export default class SignUpFields extends Component {
   constructor(props) {
