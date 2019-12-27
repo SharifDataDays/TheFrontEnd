@@ -34,7 +34,7 @@ function Navbar({ transparent }) {
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
-          <a href="/dashboard">
+          <a href="/dashboard/tasks">
             <Image
               style={{ marginRight: '1rem', marginTop: '2rem' }}
               size="mini"

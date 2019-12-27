@@ -5,7 +5,7 @@ import cookie from 'js-cookie';
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 });
-  Router.push('/dashboard');
+  Router.push('/dashboard/tasks');
 };
 
 export const auth = (ctx) => {

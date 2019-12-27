@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import Font from '~/components/global/font';
@@ -7,6 +8,9 @@ export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+
+    ReactGA.initialize('UA-155058832-1');
+    ReactGA.pageview(ctx.req.url);
 
     try {
       ctx.renderPage = () =>
@@ -37,7 +41,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="stylesheet" href="/fonts/font.css" />
           <meta
             id="viewport"

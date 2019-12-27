@@ -94,6 +94,9 @@ export default class LoginFields extends Component {
             <Form.Field dir="rtl">
               <a href="/signup">عضو نیستید؟ حساب کاربری بسازید!</a>
             </Form.Field>
+            <Form.Field dir="rtl">
+              <a href="/forgot/email">فراموشی رمز عبور</a>
+            </Form.Field>
             <LoginButton onClick={this.onSubmit} color="blue" text="ورود" />
           </Form>
         </Grid.Column>

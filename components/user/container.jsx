@@ -65,6 +65,7 @@ export default class LoginSignupContainer extends Component {
           </Grid.Column>
 
           <Grid.Column verticalAlign="middle" computer={8} tablet={8} mobile={14}>
+            <a href="/">بازگشت</a>
             {children}
           </Grid.Column>
         </Grid.Row>

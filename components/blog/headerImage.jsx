@@ -5,7 +5,7 @@ function HeaderImageContainer() {
   return (
     <Grid style={{ margin: 0, backgroundColor: '#FFF0EB', direction: 'rtl' }}>
       <Grid.Column floated="left" computer={5} tablet={5} mobile={15}>
-        <Image size="large" src="/images/blog.jpg" />
+        <Image size="large" src="/images/header.jpg" />
       </Grid.Column>
       <Grid.Column verticalAlign="bottom" floated="right" computer={5} tablet={5} mobile={15}>
         <Header as="h1" style={{ fontSize: '7rem' }}>
