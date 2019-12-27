@@ -36,7 +36,9 @@ class Terms extends Component {
         size="small"
       >
         <Modal.Content>
-          <Markdown source={terms.term} />
+          <div dir="RTL">
+            <Markdown source={terms.term} />
+          </div>
         </Modal.Content>
         <Modal.Actions>
           <Button primary onClick={this.handleClose}>
