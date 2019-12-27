@@ -85,6 +85,22 @@ export default htmlParser({
     },
     {
       shouldProcessNode(node) {
+        return node.name && node.name === 'figure';
+      },
+      processNode(node, children) {
+        return <figure style={{ textAlign: 'center' }}>{children}</figure>;
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.name && node.name === 'figcaption';
+      },
+      processNode(node, children) {
+        return <figcaption style={{ textAlign: 'center' }}>{children}</figcaption>;
+      },
+    },
+    {
+      shouldProcessNode(node) {
         return node.name && node.name === 'img';
       },
       processNode(node) {
