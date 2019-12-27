@@ -78,7 +78,7 @@ class Resource extends Component {
               >
                 دانلود منابع
               </a>
-              <Image src="/images/header.jpg" />
+              <Image size="large" style={{ margin: 'auto' }} src="/images/header.jpg" />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

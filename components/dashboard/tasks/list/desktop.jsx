@@ -48,7 +48,7 @@ function TasksDesktop({ tasks }) {
                   <EllipsisText text={description_fa} length={200} />
                 </Text>
               </Header>
-              <Image size="small" src={`${thumbnail}`} />
+              <Image style={{ maxWidth: 200, maxHeight: 200 }} size="small" src={`${thumbnail}`} />
             </RowSegment>
           </a>
         );
