@@ -11,8 +11,10 @@ import Button from '../button';
 import check from './check';
 import Terms from './terms';
 import { signupAPI } from '~/redux/api/auth';
+import { connect } from 'react-redux';
+import { signup } from '../../../redux/actions/signup';
 
-export default class SignUpFields extends Component {
+class SignUpFields extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,7 +79,7 @@ export default class SignUpFields extends Component {
       birth_date,
       university,
     } = this.state;
-    const { notify } = this.props;
+    const { notify, signupReq } = this.props;
 
     const data = {
       username,
@@ -93,22 +95,22 @@ export default class SignUpFields extends Component {
         birth_date: _.join(_.reverse(_.split(birth_date, '-')), '-'),
       },
     };
-
-    axios.post(signupAPI(), data).then((res) => {
-      const serverData = res.data;
-      console.log(serverData);
-      if (serverData.status_code !== 200) {
-        if (serverData.email) {
-          notify('A user with this email currently exists');
-        } else if (serverData.username) {
-          notify('usernameExists');
-        } else {
-          notify(serverData.error);
-        }
-      } else {
-        notify('success');
-      }
-    });
+    signupReq(data)
+    // axios.post(signupAPI(), data).then((res) => {
+    //   const serverData = res.data;
+    //   console.log(serverData);
+    //   if (serverData.status_code !== 200) {
+    //     if (serverData.email) {
+    //       notify('A user with this email currently exists');
+    //     } else if (serverData.username) {
+    //       notify('usernameExists');
+    //     } else {
+    //       notify(serverData.error);
+    //     }
+    //   } else {
+    //     notify('success');
+    //   }
+    // });
   }
 
   render() {
@@ -125,8 +127,8 @@ export default class SignUpFields extends Component {
       password_2,
       errors,
     } = this.state;
-    const { terms } = this.props;
-
+    const { terms, signup } = this.props;
+    console.log(signup)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
@@ -229,10 +231,27 @@ export default class SignUpFields extends Component {
             <Form.Field dir="rtl">
               <Terms terms={terms} />
             </Form.Field>
-            <Button onClick={this.onSubmit} color="blue" text="موافقت با قوانین و ثبت نام" />
+            <Button loading={signup.loading} onClick={this.onSubmit} color="blue" text="موافقت با قوانین و ثبت نام" />
           </Form>
         </Grid.Column>
       </Grid>
     );
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  const { signup } = state
+  return {
+    signup,
+  };
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    signupReq: (data) => {
+      dispatch(signup(data));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpFields)

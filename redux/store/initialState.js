@@ -1,7 +1,7 @@
 export default {
   signup : {
     loading : false,
-    error : false,
+    error : '',
     success : false
   },
   auth: {},
