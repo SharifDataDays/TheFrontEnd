@@ -1,10 +1,31 @@
+import _ from 'lodash';
 import axios from 'axios';
 import { loginAPI } from '../api/auth';
-import { LOGIN_LOAD, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../constants/auth';
+import {
+  LOGIN_REMOVE_ERROR,
+  LOGIN_LOAD,
+  LOGIN_UNLOAD,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGIN_CHECK,
+  LOGOUT,
+} from '../constants/auth';
+
+function loginRemoveErrorsAction() {
+  return {
+    type: LOGIN_REMOVE_ERROR,
+  };
+}
 
 function loginLoadAction() {
   return {
     type: LOGIN_LOAD,
+  };
+}
+
+function loginUnloadAction() {
+  return {
+    type: LOGIN_UNLOAD,
   };
 }
 
@@ -17,30 +38,45 @@ function loginSuccessAction(token) {
   };
 }
 
-function loginFailAction(error) {
+function loginFailAction(errors) {
   return {
     type: LOGIN_FAIL,
     payload: {
-      error,
+      errors,
+    },
+  };
+}
+
+export function loginCheckerAction(fields) {
+  return {
+    type: LOGIN_CHECK,
+    payload: {
+      fields,
     },
   };
 }
 
 export function loginAction(username, password) {
   return (dispatch, getState) => {
+    dispatch(loginRemoveErrorsAction());
     dispatch(loginLoadAction());
-    return axios.post(loginAPI(), { username, password }).then((res) => {
-      const { data } = res;
-      if (data.status_code === 200) {
-        const token = {
-          refresh: res.refresh,
-          access: res.access,
-        };
-        dispatch(loginSuccessAction(token));
-      } else {
-        dispatch(loginFailAction(data.detail));
-      }
-    });
+    dispatch(loginCheckerAction({ username, password }));
+    if (_.isEmpty(getState().auth.errors)) {
+      axios.post(loginAPI(), { username, password }).then((res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          const token = {
+            refresh: data.refresh,
+            access: data.access,
+          };
+          dispatch(loginSuccessAction(token));
+        } else {
+          dispatch(loginFailAction(data.detail));
+        }
+      });
+    } else {
+      dispatch(loginUnloadAction());
+    }
   };
 }
 

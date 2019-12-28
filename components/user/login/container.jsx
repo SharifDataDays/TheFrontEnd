@@ -1,8 +1,10 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Header, Dimmer } from 'semantic-ui-react';
+import { ClipLoader } from 'react-spinners';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '../container';
-import LoginFields from './fields';
+import Form from './form';
 import 'react-toastify/dist/ReactToastify.css';
 
 function notify(choice) {
@@ -30,26 +32,38 @@ function notify(choice) {
   }
 }
 
-function LoginContainer() {
+function LoginContainer({ auth }) {
   return (
-    <Container>
-      <Header dividing as="h1">
-        ورود
-      </Header>
-      <LoginFields notify={notify} />
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        pauseOnVisibilityChange
-        hideProgressBar
-        closeOnClick
-        pauseOnHover
-        draggable
-        newestOnTop
-        rtl
-      />
-    </Container>
+    <>
+      <Dimmer active={auth.loading}>
+        <ClipLoader size={75} color="#fff" loading={auth.loading} />
+      </Dimmer>
+      <Container>
+        <Header dividing as="h1">
+          ورود
+        </Header>
+        <Form notify={notify} />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          pauseOnVisibilityChange
+          hideProgressBar
+          closeOnClick
+          pauseOnHover
+          draggable
+          newestOnTop
+          rtl
+        />
+      </Container>
+    </>
   );
 }
 
-export default LoginContainer;
+function mapStateToProps(state, ownProps) {
+  const { auth } = state;
+  return {
+    auth,
+  };
+}
+
+export default connect(mapStateToProps)(LoginContainer);
