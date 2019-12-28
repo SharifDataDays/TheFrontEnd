@@ -58,7 +58,7 @@ export async function profileUpdate(fields) {
     data.password_1 = fields['password'];
     data.password_2 = fields['confirmPassword'];
   }
-  const USER_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTc3Mjk5NDY1LCJqdGkiOiIwNjcyZjgxYTJlZGM0MmRhOGRiMzcyNjlhMDE2NzRhNSIsInVzZXJfaWQiOjI2fQ.1ovssFOAlxQUMfEVrtfCyyuznPpeCqJRliOh3GYd_Xw';
+  const USER_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTc3NTQ1MDU1LCJqdGkiOiJiZDU2MTgyYTRiODY0M2VhYTAxMjliYmRjYTQ3MGQwNyIsInVzZXJfaWQiOjI2fQ.mX-1YtNhTXwy4-S8MSu2tPqTQQaIkM2C6mybaOWMGqk';
   const AuthStr = 'Bearer '.concat(USER_TOKEN);
   axios
     .put(profileAPI(), data, { headers: { Authorization: AuthStr } })
