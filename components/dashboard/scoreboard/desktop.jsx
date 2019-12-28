@@ -40,12 +40,12 @@ const GenerateMyRow = ({ name, score, rank }) => {
 
 const GenerateRows = () => {
   const rows = example.map((x) => {
-    let background = '#ebf4f6';
+    let background = '#f8f8fa';
     const rank = x.third;
     if (rank <= 3) background = '#fed766';
     else if (rank <= 6) background = '#bbbbbb';
     else if (rank <= 9) background = '#cd7f32';
-    const borderRight = `3px solid ${background}`
+    const borderRight = `3px solid ${background}`;
     return (
       <Table.Row style={{ background }}>
         <Table.Cell>{x.second}</Table.Cell>
@@ -58,6 +58,21 @@ const GenerateRows = () => {
   });
   return rows;
 };
+
+const Footer = () => (
+  <Table.Row>
+    <Table.Row>
+      <Pagination
+        defaultActivePage={1}
+        firstItem={null}
+        lastItem={null}
+        pointing
+        secondary
+        totalPages={10}
+      />
+    </Table.Row>
+  </Table.Row>
+);
 
 const ScoreBoard = () => (
   <>
@@ -80,19 +95,7 @@ const ScoreBoard = () => (
             <GenerateMyRow name='پویا معینی' score='100' rank='11' />
             <GenerateRows />
           </Table.Body>
-
-          <Table.Row>
-            <Table.Row>
-              <Pagination
-                defaultActivePage={1}
-                firstItem={null}
-                lastItem={null}
-                pointing
-                secondary
-                totalPages={10}
-              />
-            </Table.Row>
-          </Table.Row>
+          <Footer />
         </Table>
       </Grid.Column>
     </Grid>
