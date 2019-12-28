@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import React, { Component } from 'react';
+import nextCookie from 'next-cookies';
 import Head from 'next/head';
 import Layout from '~/components/dashboard/layout';
 import withNotLogged from '~/components/global/auth/withNotLogged';
@@ -8,7 +9,12 @@ import { taskAPI } from '~/redux/api/dashboard';
 
 class ResourcesPage extends Component {
   static async getInitialProps(ctx) {
-    const res = await fetch(taskAPI(ctx.query.id));
+    const { token } = nextCookie(ctx);
+    const res = await fetch(taskAPI(ctx.query.id), {
+      headers: {
+        Authorization: `Bearer ${token ? token.access : token}`,
+      },
+    });
     const content = await res.json();
     return { content };
   }
