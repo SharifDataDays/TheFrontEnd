@@ -13,11 +13,11 @@ export function signupAPI() {
 }
 
 export function forgotAPI() {
-  return `${BASE_ADDR}/accounts/rest-auth/password/reset/`;
+  return `${BASE_ADDR}/accounts/password/reset/`;
 }
 
 export function resetAPI() {
-  return `${BASE_ADDR}/accounts/rest-auth/password/reset/confirm/`;
+  return `${BASE_ADDR}/accounts/password/reset/confirm/`;
 }
 
 export function refreshAPI() {

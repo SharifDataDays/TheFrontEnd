@@ -29,7 +29,7 @@ function HeaderSection() {
         </Segment>
       </Grid.Column>
       <Grid.Column computer={7} tablet={7} mobile={15}>
-        <Segment basic textAlign="right !important">
+        <Segment basic style={{ textAlign: 'right !important' }}>
           <Header as="h1">گام اول</Header>
           <Text>
             وادی علوم داده و داده‌کاوی پر است از دادگانی که اطلاعات ارزشمندی در آن نهفته‌است و

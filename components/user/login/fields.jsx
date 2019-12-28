@@ -59,7 +59,7 @@ export default class LoginFields extends Component {
       } else {
         login({
           token: {
-            access: res.data.acess,
+            access: res.data.access,
             refresh: res.data.refresh,
           },
         });
