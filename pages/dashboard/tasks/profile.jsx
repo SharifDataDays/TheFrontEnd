@@ -13,18 +13,18 @@ export default class ProfilePage extends Component {
       },
     });
     const data = await res.json();
-    return { data };
+    return { data, token };
   }
 
   render() {
     const { data } = this.props;
-  
-    console.log(data)
+    const { token } = this.props;
+    console.log(data);
 
     return (
       <>
         <Navbar transparent />
-        <Profile profileData={data} />;
+        <Profile profileData={data} token={token} />;
       </>
     );
   }
