@@ -1,14 +1,12 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Form, Grid } from 'semantic-ui-react';
 import LoginInput from '../input';
 import LoginButton from '../button';
 import check from './check';
-import { loginAPI } from '~/redux/api/auth';
-// import { login } from '~/utils/auth';
-import { login } from '~/redux/services/user.service';
+import { loginAction } from '~/redux/actions/auth';
 
-export default class LoginFields extends Component {
+class LoginFields extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,35 +45,18 @@ export default class LoginFields extends Component {
 
   login() {
     const { username, password } = this.state;
-    const { notify } = this.props;
+    const { notify, login } = this.props;
     login(username, password);
-    /* axios.post(loginAPI(), { username, password }).then((res) => {
-      if (!res.data.access) {
-        this.setState({
-          errors: {
-            username: true,
-            password: true,
-          },
-        });
-        notify('unathenticated');
-      } else {
-        login({
-          token: {
-            access: res.data.access,
-            refresh: res.data.refresh,
-          },
-        });
-      }
-    }); */
   }
 
   render() {
-    const { username, password } = this.state;
-    const { errors } = this.state;
+    const { username, password, errors } = this.state;
+    const { auth } = this.props;
+    console.log(auth.loading);
     return (
       <Grid centered>
         <Grid.Column verticalAlign="middle">
-          <Form>
+          <Form onSubmit={this.onSubmit}>
             <Form.Group width={2} dir="rtl">
               <LoginInput
                 onChange={this.handleChange}
@@ -99,10 +80,27 @@ export default class LoginFields extends Component {
             <Form.Field dir="rtl">
               <a href="/forgot/email">فراموشی رمز عبور</a>
             </Form.Field>
-            <LoginButton onClick={this.onSubmit} color="blue" text="ورود" />
+            <LoginButton loading={auth.loading} type="submit" color="blue" text="ورود" />
           </Form>
         </Grid.Column>
       </Grid>
     );
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  const { auth } = state;
+  return {
+    auth,
+  };
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    login: (username, password) => {
+      dispatch(loginAction(username, password));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFields);
