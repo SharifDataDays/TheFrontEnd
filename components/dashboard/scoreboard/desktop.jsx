@@ -1,48 +1,102 @@
 import React from 'react';
-import { Grid, Menu, Table } from 'semantic-ui-react';
+import { Grid, Table, Pagination } from 'semantic-ui-react';
 import styled from 'styled-components';
+import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
 const TableHeader = styled(Table.HeaderCell)`
-  background: rgba(80, 87, 99, 0.75) !important;
+  background: rgba(80, 87, 99, 0.05) !important;
   border-radius: 0 !important;
   color: black !important;
 `;
 
-const TableExampleColumnWidth = () => (
-  <Grid centered>
-    <Grid.Column computer={11}>
-      <Table selectable size="small">
-        <Table.Header>
-          <Table.Row style={{ height: '5rem !important' }}>
-            <TableHeader>امتیاز</TableHeader>
-            <TableHeader>نام</TableHeader>
-          </Table.Row>
-        </Table.Header>
+const GenerateMyRow = ({ name, score, rank }) => {
+  const color = '#00000066';
+  const border = `1px solid ${color}`;
+  return (
+    <Table.Row>
+      <Table.Cell
+        style={{
+          borderTop: border,
+          borderBottom: border,
+          borderLeft: border,
+        }}
+      >
+        {score}
+      </Table.Cell>
+      <Table.Cell style={{ borderTop: border, borderBottom: border }}>{name}</Table.Cell>
+      <Table.Cell
+        style={{
+          borderTop: border,
+          borderBottom: border,
+          borderRight: border,
+        }}
+        textAlign='center'
+      >
+        {rank}
+      </Table.Cell>
+    </Table.Row>
+  );
+};
 
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>John</Table.Cell>
-            <Table.Cell>Approved</Table.Cell>
-          </Table.Row>
-        </Table.Body>
+const GenerateRows = () => {
+  const rows = example.map((x) => {
+    let background = '#ebf4f6';
+    const rank = x.third;
+    if (rank <= 3) background = '#fed766';
+    else if (rank <= 6) background = '#bbbbbb';
+    else if (rank <= 9) background = '#cd7f32';
+    const borderRight = `3px solid ${background}`
+    return (
+      <Table.Row style={{ background }}>
+        <Table.Cell>{x.second}</Table.Cell>
+        <Table.Cell>{x.first}</Table.Cell>
+        <Table.Cell textAlign='center' style={{ borderRight }}>
+          {x.third}
+        </Table.Cell>
+      </Table.Row>
+    );
+  });
+  return rows;
+};
 
-        <Table.Footer>
+const ScoreBoard = () => (
+  <>
+    <Grid centered>
+      <Grid.Column style={{ background: 'green', height: ' 20rem' }} computer={10}></Grid.Column>
+    </Grid>
+    <Grid centered style={{ marginTop: '40px' }}>
+      <Grid.Column computer={10}>
+        <Table selectable size='small' style={{ border: '0 !important' }}>
+          <Table.Header>
+            <Table.Row style={{ height: '4rem !important' }} verticalAlign='bottom'>
+              <TableHeader width={7}>امتیاز</TableHeader>
+              <TableHeader width={3}>نام</TableHeader>
+              <TableHeader width={1} textAlign='center'>
+                رتبه
+              </TableHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <GenerateMyRow name='پویا معینی' score='100' rank='11' />
+            <GenerateRows />
+          </Table.Body>
+
           <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
-                <Menu.Item as="a" icon></Menu.Item>
-                <Menu.Item as="a">1</Menu.Item>
-                <Menu.Item as="a">2</Menu.Item>
-                <Menu.Item as="a">3</Menu.Item>
-                <Menu.Item as="a">4</Menu.Item>
-                <Menu.Item as="a" icon></Menu.Item>
-              </Menu>
-            </Table.HeaderCell>
+            <Table.Row>
+              <Pagination
+                defaultActivePage={1}
+                firstItem={null}
+                lastItem={null}
+                pointing
+                secondary
+                totalPages={10}
+              />
+            </Table.Row>
           </Table.Row>
-        </Table.Footer>
-      </Table>
-    </Grid.Column>
-  </Grid>
+        </Table>
+      </Grid.Column>
+    </Grid>
+  </>
 );
 
-export default TableExampleColumnWidth;
+export default ScoreBoard;
