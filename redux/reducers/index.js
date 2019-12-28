@@ -4,7 +4,6 @@ import signupReducers from './signup'
 
 export default combineReducers({
   auth: authReducers,
-  answers: answersReducers,
   signup : signupReducers
 
 });
