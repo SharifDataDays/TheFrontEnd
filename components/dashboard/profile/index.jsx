@@ -91,6 +91,7 @@ class Profile extends Component {
       this.notify(res.problem);
     } else {
       const sent = await profileUpdate(this.state, this.props.token);
+      console.log(sent)
       if (sent === true) this.notify('success');
     }
   };
@@ -139,10 +140,6 @@ class Profile extends Component {
   };
 
   render() {
-    console.log('STATE');
-    console.log(this.state);
-    console.log('PROPS');
-    console.log(this.props);
     return (
       <Container
         px={[4, 5, 6]}
