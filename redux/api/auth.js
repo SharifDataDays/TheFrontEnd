@@ -8,10 +8,6 @@ export function loginAPI() {
   return `${BASE_ADDR}/accounts/login`;
 }
 
-export function signupAPI() {
-  return `${BASE_ADDR}/accounts/signup`;
-}
-
 export function forgotAPI() {
   return `${BASE_ADDR}/accounts/password/reset/`;
 }
