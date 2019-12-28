@@ -17,7 +17,7 @@ class Form extends Component {
     const { auth, login } = this.props;
     login(this.username.state.value, this.password.state.value);
     if (_.isEmpty(auth.errors)) {
-      Router.push('/dashboard/tasks');
+      Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
     }
   }
 
