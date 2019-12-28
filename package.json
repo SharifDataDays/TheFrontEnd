@@ -41,6 +41,7 @@
     "immer": "^5.0.2",
     "intersection-observer": "^0.7.0",
     "isomorphic-unfetch": "^3.0.0",
+    "jalali-moment": "^3.3.3",
     "jest": "^24.9.0",
     "js-cookie": "^2.2.1",
     "js-logger": "^1.6.0",

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Card, Item, Image } from 'semantic-ui-react';
+import {BASE} from '~/redux/api/index';
+import moment from 'jalali-moment';
 
-export function First({ title, description, date, image }) {
+export function First({ title, description, date, image, id }) {
   return (
-    <Card style={{ width: '100%' }}>
-      <Image src="https://react.semantic-ui.com/images/wireframe/image.png" wrapped ui={false} />
+    <Card href={"/blog/" + id} style={{ width: '100%' }}>
+      <Image src={BASE + image} wrapped ui={false}/>
       <Card.Content>
         <Card.Header>{title}</Card.Header>
-        <Card.Meta>{date}</Card.Meta>
+        <Card.Meta>{moment.from(date, 'en').locale('fa').fromNow()}</Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
     </Card>

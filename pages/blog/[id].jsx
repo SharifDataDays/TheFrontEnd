@@ -23,7 +23,7 @@ function PostPage({ post }) {
           date,
         }}
         content={_.replace(text_fa, '\r', '')}
-        comments={comments.length}
+        // comments={comments.length}
       />
       <Footer />
     </>
