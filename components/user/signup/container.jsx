@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import Router from 'next/router';
 import React from 'react';
+import NoSSR from 'react-no-ssr';
 import { Header } from 'semantic-ui-react';
 import { ToastContainer, toast } from 'react-toastify';
 import Container from '../container';
@@ -20,6 +21,8 @@ function notify(choice) {
     pauseOnVisibilityChange: true,
   };
 
+  console.log(choice);
+
   switch (choice) {
     case 'incompleteFields':
       toast.error('فیلد های مشخص شده باید کامل شوند', options);
@@ -33,17 +36,11 @@ function notify(choice) {
     case 'usernameExists':
       toast.error('نام کاربری وارد‌شده وجود دارد.', options);
       break;
-    case 'emailExists':
+    case 'A user with this email currently exists':
       toast.error('ایمیل وارد‌شده وجود دارد.', options);
       break;
     case 'success':
-      toast.success('حساب شما با موفقیت ساخته شد.', options);
-      Router.push({
-        pathname: '/login',
-        query: {
-          redirect: 'signup',
-        },
-      });
+      toast.success('حساب شما با موفقیت ساخته شد. لطفا ایمیل خود را چک کنید.', options);
       break;
     default:
       break;
@@ -52,23 +49,25 @@ function notify(choice) {
 
 function SignupContainer({ terms }) {
   return (
-    <Container>
-      <Header as="h1" dividing>
-        ثبت نام
-      </Header>
-      <Fields terms={terms} notify={notify} />
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        pauseOnVisibilityChange
-        hideProgressBar
-        closeOnClick
-        pauseOnHover
-        draggable
-        newestOnTop
-        rtl
-      />
-    </Container>
+    <NoSSR>
+      <Container>
+        <Header as="h1" dividing>
+          ثبت نام
+        </Header>
+        <Fields terms={terms} notify={notify} />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          pauseOnVisibilityChange
+          hideProgressBar
+          closeOnClick
+          pauseOnHover
+          draggable
+          newestOnTop
+          rtl
+        />
+      </Container>
+    </NoSSR>
   );
 }
 

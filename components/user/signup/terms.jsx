@@ -23,7 +23,6 @@ class Terms extends Component {
   render() {
     const { modalOpen } = this.state;
     const { terms } = this.props;
-    console.log(terms);
     return (
       <Modal
         trigger={

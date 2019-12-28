@@ -96,12 +96,14 @@ export default class SignUpFields extends Component {
 
     axios.post(signupAPI(), data).then((res) => {
       const serverData = res.data;
+      console.log(serverData);
       if (serverData.status_code !== 200) {
-        if (serverData.username) {
-          notify('usernameExists');
-        }
         if (serverData.email) {
-          notify('emailExists');
+          notify('A user with this email currently exists');
+        } else if (serverData.username) {
+          notify('usernameExists');
+        } else {
+          notify(serverData.error);
         }
       } else {
         notify('success');
