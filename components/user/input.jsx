@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
-function SignupInput({ error, onChange, type, name, value, label, width }) {
-  return (
-    <Form.Input
-      error={error}
-      onChange={onChange}
-      type={type}
-      name={name}
-      value={value}
-      label={label}
-      style={{ marginBottom: 10 }}
-      width={width || 10}
-    />
-  );
+class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value,
+    });
+  }
+
+  render() {
+    const { error, type, label, width } = this.props;
+    const { value } = this.state;
+    return (
+      <Form.Input
+        style={{ marginBottom: 10 }}
+        error={error}
+        type={type}
+        value={value}
+        label={label}
+        width={width || 8}
+        onChange={this.handleChange}
+      />
+    );
+  }
 }
 
-export default SignupInput;
+export default Input;

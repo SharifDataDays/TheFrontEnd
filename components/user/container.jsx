@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Image } from 'semantic-ui-react';
 import network from './network';
 
-export default class LoginSignupContainer extends Component {
+class Container extends Component {
   constructor(props) {
     super(props);
     this.renderCanvas = this.renderCanvas.bind(this);
@@ -73,3 +73,5 @@ export default class LoginSignupContainer extends Component {
     );
   }
 }
+
+export default Container;
