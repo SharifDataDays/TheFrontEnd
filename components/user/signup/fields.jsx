@@ -37,8 +37,8 @@ class SignUpFields extends Component {
         email: false,
         birth_date: false,
         university: false,
-        password: false,
-        confirmPassword: false,
+        password_1: false,
+        password_2: false,
       },
     };
     this.handleChange = this.handleChange.bind(this);
@@ -63,6 +63,9 @@ class SignUpFields extends Component {
   handleChange(event, { name, value }) {
     this.setState({
       [name]: value,
+      errors : {
+        [name] : false
+      }
     });
   }
 
@@ -112,6 +115,26 @@ class SignUpFields extends Component {
     //   }
     // });
   }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    this.handleServerResponse(nextProps)
+  }
+
+  handleServerResponse = (nextProps) => {
+    const {signup , notify} = nextProps
+    if(signup.error !== '') {
+      if(signup.error.username) {
+        notify('usernameExists');
+        this.setState({errors : {username : true}})
+      } else {
+        notify('A user with this email currently exists')
+        this.setState({errors : {email : true}})
+      }
+    }
+    else if(signup.success) {
+      notify('success')
+    }
+  }
 
   render() {
     const {
@@ -128,7 +151,6 @@ class SignUpFields extends Component {
       errors,
     } = this.state;
     const { terms, signup } = this.props;
-    console.log(signup)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">

@@ -16,15 +16,17 @@ function signupRequestSent() {
     type: SIGNUP_REQUEST,
   };
 }
-function signupSucces() {
+function signupSuccess() {
   return {
-    type: SIGNUP_SUCCES,
+    type: SIGNUP_SUCCESS,
   };
 }
 function signupError(error) {
   return {
     type: SIGNUP_REQ_ERROR,
-    error,
+    payload : {
+      error
+    },
   };
 }
 
@@ -33,10 +35,10 @@ export function signup(data) {
     dispatch(signupRequestSent());
     signupRequest(data).then((res) => {
       console.log(res.data)
-      if (res.status_code === 200) {
-          dispatch(signupSucces())
+      if (res.data.status_code == 200) {
+          dispatch(signupSuccess())
       } else {
-          dispatch(signupError(res.data.error))
+          dispatch(signupError(res.data.detail))
       }
     });
   };

@@ -10,6 +10,7 @@ function signupLoadingReducer(state = initialState.signup, action) {
   return produce(state, (draft) => {
     draft.loading = true;
     draft.error = ''
+    draft.success = false
     return draft;
   });
 }
@@ -18,6 +19,7 @@ function signupSuccessReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     draft.loading = false;
     draft.error = '';
+    draft.success = true
     return draft;
   });
 }
@@ -27,6 +29,7 @@ function signupErrorReducer(state = initialState.auth, action) {
     const { error } = action.payload;
     draft.loading = false;
     draft.error = error;
+    draft.success = false
     return draft;
   });
 }

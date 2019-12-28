@@ -8,14 +8,16 @@ class Input extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(event, {name , value}) {
     this.setState({
       value: event.target.value,
     });
+    if(this.props.onChange)
+      this.props.onChange(event, {name, value})
   }
 
   render() {
-    const { error, type, label, width } = this.props;
+    const { error, type, label, width, name } = this.props;
     const { value } = this.state;
     return (
       <Form.Input
@@ -25,6 +27,7 @@ class Input extends Component {
         value={value}
         label={label}
         width={width || 8}
+        name={name}
         onChange={this.handleChange}
       />
     );
