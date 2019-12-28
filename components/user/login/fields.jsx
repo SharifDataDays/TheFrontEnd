@@ -5,7 +5,8 @@ import LoginInput from '../input';
 import LoginButton from '../button';
 import check from './check';
 import { loginAPI } from '~/redux/api/auth';
-import { login } from '~/utils/auth';
+// import { login } from '~/utils/auth';
+import { login } from '~/redux/services/user.service';
 
 export default class LoginFields extends Component {
   constructor(props) {
@@ -47,7 +48,8 @@ export default class LoginFields extends Component {
   login() {
     const { username, password } = this.state;
     const { notify } = this.props;
-    axios.post(loginAPI(), { username, password }).then((res) => {
+    login(username, password);
+    /* axios.post(loginAPI(), { username, password }).then((res) => {
       if (!res.data.access) {
         this.setState({
           errors: {
@@ -64,7 +66,7 @@ export default class LoginFields extends Component {
           },
         });
       }
-    });
+    }); */
   }
 
   render() {

@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-import Router from 'next/router';
 import React from 'react';
 import NoSSR from 'react-no-ssr';
 import { Header } from 'semantic-ui-react';
@@ -20,8 +19,6 @@ function notify(choice) {
     rtl: true,
     pauseOnVisibilityChange: true,
   };
-
-  console.log(choice);
 
   switch (choice) {
     case 'incompleteFields':

@@ -1,4 +1,5 @@
 export default {
+  auth: {},
   answers: {
     'Q1.1': 1,
     'Q1.2': 'test',
