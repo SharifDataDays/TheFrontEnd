@@ -1,5 +1,4 @@
 import axios from 'axios';
-import nextCookie from 'next-cookies';
 import { profileAPI } from '~/redux/api/dashboard';
 
 export async function profileUpdate(fields, token) {
@@ -19,9 +18,6 @@ export async function profileUpdate(fields, token) {
     data.password_2 = fields.password_2;
   }
 
-  console.log(data);
-  console.log(token);
-  console.log(token ? token.access : token);
   axios
     .put(profileAPI(), data, {
       headers: {

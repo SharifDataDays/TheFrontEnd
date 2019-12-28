@@ -156,7 +156,7 @@ class Profile extends Component {
             <Form.Button primary content="ذخیره‌ی تغییرات" floated="right" size="large" />
           </Form>
         </Fade>
-        {/* <ToastContainer
+        <ToastContainer
           position="bottom-right"
           autoClose={5000}
           hideProgressBar
@@ -166,7 +166,7 @@ class Profile extends Component {
           pauseOnVisibilityChange
           draggable
           pauseOnHover
-        /> */}
+        />
       </Container>
     );
   }
