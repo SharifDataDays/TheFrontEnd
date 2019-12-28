@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { fields, reverseBirthDate, check as preReqCheck } from './utils';
-import { profileUpdate } from '~/components/dashboard/profile/update';
+import { profileUpdate } from '~/components/dashboard/profile/api';
 
 const Container = styled.div`
   ${space}
@@ -71,6 +71,8 @@ class Profile extends Component {
       case 'invalidEmail':
         toast.error('ایمیل وارد شده صحیح نیست', options);
         break;
+      case 'success':
+        toast.success('تغییرات با موفقیت ذخیره شد', options);
       default:
         break;
     }
@@ -88,7 +90,8 @@ class Profile extends Component {
     if (res.problem) {
       this.notify(res.problem);
     } else {
-      await profileUpdate(this.state, this.props.token);
+      const sent = await profileUpdate(this.state, this.props.token);
+      if (sent === true) this.notify('success');
     }
   };
 
@@ -110,6 +113,7 @@ class Profile extends Component {
             readOnly={field.readOnly}
             width={6}
             icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
+            hideMobileKeyboard
           />
         </Form.Group>
       );
@@ -135,7 +139,10 @@ class Profile extends Component {
   };
 
   render() {
+    console.log('STATE');
     console.log(this.state);
+    console.log('PROPS');
+    console.log(this.props);
     return (
       <Container
         px={[4, 5, 6]}

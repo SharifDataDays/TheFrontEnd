@@ -3,10 +3,12 @@ import nextCookie from 'next-cookies';
 import Profile from '~/components/dashboard/profile/index';
 import Navbar from '~/components/dashboard/navbar';
 import { profileAPI } from '~/redux/api/dashboard';
+import { getToken } from '~/components/dashboard/profile/api';
 
 export default class ProfilePage extends Component {
   static async getInitialProps(ctx) {
-    const { token } = nextCookie(ctx);
+    let { token } = nextCookie(ctx);
+    token = await getToken(token);
     const res = await fetch(profileAPI(), {
       headers: {
         Authorization: `Bearer ${token ? token.access : token}`,
@@ -19,7 +21,6 @@ export default class ProfilePage extends Component {
   render() {
     const { data } = this.props;
     const { token } = this.props;
-    console.log(data);
 
     return (
       <>

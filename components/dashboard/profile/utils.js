@@ -88,13 +88,9 @@ function check(fields) {
   };
 
   _.forEach(fields, (value, key) => {
-    console.log(value);
-    console.log(key);
     if ((value === undefined || value === '') && key !== 'password_1' && key != 'password_2') {
-      console.log('!!????');
       errors[key] = true;
       res.problem = 'incompleteFields';
-      console.log(errors);
     }
   });
 
