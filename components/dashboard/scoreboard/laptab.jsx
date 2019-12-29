@@ -87,7 +87,7 @@ const Scoreboard = () => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        <GenerateMyRow name='پویا معینی' score='100' rank='11' />
+        <GenerateMyRow name='پویا معینی' score='100' rank='0' />
         <GenerateRows />
       </Table.Body>
       <Footer />

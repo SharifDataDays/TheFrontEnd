@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Responsive } from 'semantic-ui-react';
+import { Grid, Responsive, Header } from 'semantic-ui-react';
 import NoSSR from 'react-no-ssr';
 import Laptab from './laptab';
 import Mobile from './mobile';
@@ -23,11 +23,23 @@ class ScoreBoard extends Component {
       <>
         <Grid centered>
           <Grid.Column
-            style={{ background: 'green', height: ' 20rem' }}
+            style={{ background: 'rgba(80, 87, 99, .55)', height: ' 17rem' }}
             computer={10}
             mobile={15}
             tablet={16}
-          ></Grid.Column>
+            textAlign='left'
+          >
+            {' '}
+            <p style={{ color: 'white', marginTop: '2rem', opacity: '0.8' }}>
+              انجمن علمی دانشکده مهندسی کامپیوتر
+            </p>
+            <Header as='h2' style={{ color: 'white', opacity: '0.85' }}>
+              Data days جدول رده‌بندی فاز اول دومین دوره از مسابقات{' '}
+            </Header>
+            <p style={{ color: 'white', marginTop: '4rem', opacity: '0.8' }}>
+              تعداد شرکت کننده‌ها : 763 نفر
+            </p>
+          </Grid.Column>
         </Grid>
         <Grid centered style={{ marginTop: '5rem' }}>
           <Grid.Column computer={10} mobile={15} tablet={16} style={{ padding }}>
