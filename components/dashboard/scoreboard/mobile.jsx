@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Pagination } from 'semantic-ui-react';
+import { Table, Pagination, Menu } from 'semantic-ui-react';
 import styled from 'styled-components';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
@@ -7,6 +7,10 @@ const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
   border-radius: 0 !important;
   color: black !important;
+`;
+
+const TableRow = styled(Table.Row)`
+  display: flex !important;
 `;
 
 const GenerateMyRow = ({ name, score, rank }) => {
@@ -76,34 +80,11 @@ const Footer = () => (
 
 const Scoreboard = () => {
   return (
-    <Table selectable size='small' style={{ border: '0 !important' }}>
-      <Table.Header fullWidth>
-        <Table.Row >
-          <Table.HeaderCell width={2}>Header</Table.HeaderCell>
-          <Table.HeaderCell width={2}>Header</Table.HeaderCell>
-          <Table.HeaderCell width={1}>Header</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-      </Table.Body>
-      <Footer />
-    </Table>
+    <Menu secondary pointing>
+      <Menu.Item header position="right" name='امتیاز' />
+      <Menu.Item name='نام' />
+      <Menu.Item name='رتبه' />
+    </Menu>
   );
 };
 
