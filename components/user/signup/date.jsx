@@ -22,7 +22,7 @@ class Date extends Component {
     return (
       <DateInput
         popupPosition="top center"
-        closeOnMouseLeave="false"
+        closeOnMouseLeave={false}
         icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
         iconPosition="right"
         label={label}

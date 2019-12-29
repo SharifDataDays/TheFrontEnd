@@ -2,9 +2,8 @@ import _ from 'lodash';
 import Router from 'next/router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form as F, Grid } from 'semantic-ui-react';
+import { Form as F, Grid, Button } from 'semantic-ui-react';
 import Input from '../input';
-import Button from '../button';
 import { loginAction } from '~/redux/actions/auth';
 
 class Form extends Component {
@@ -50,7 +49,9 @@ class Form extends Component {
             <F.Field dir="rtl">
               <a href="/forgot/email">فراموشی رمز عبور</a>
             </F.Field>
-            <Button type="submit" color="blue" text="ورود" />
+            <Button type="submit" primary>
+              ورود
+            </Button>
           </F>
         </Grid.Column>
       </Grid>

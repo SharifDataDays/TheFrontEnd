@@ -11,7 +11,7 @@ function SignupContainer({ terms, signup }) {
       <Dimmer active={signup.loading}>
         <ClipLoader size={75} color="#fff" loading={signup.loading} />
       </Dimmer>
-      <Container isSignup>
+      <Container>
         <Header as="h1" dividing>
           ثبت نام
         </Header>

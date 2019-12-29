@@ -2,17 +2,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Form, Message } from 'semantic-ui-react';
-import Button from '../button';
+import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from '../input';
 import Date from './date';
 import Terms from './terms';
 import { signupAction } from '~/redux/actions/signup';
 
-class SignUpFields extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = { success: false };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -33,22 +31,16 @@ class SignUpFields extends Component {
       },
     };
     request(fields);
-    if (signup.success) {
-      this.setState({
-        success: signup.success,
-      });
-    }
   }
 
   render() {
     const { terms, signup } = this.props;
-    const { success } = this.state;
-    const { errors } = signup;
+    const { success, errors } = signup;
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
-          <Form onSubmit={this.onSubmit}>
-            <Form.Group width={2} dir="rtl">
+          <F onSubmit={this.onSubmit}>
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.firstname_fa = c;
@@ -63,9 +55,9 @@ class SignUpFields extends Component {
                 error={errors.lastname_fa}
                 label="نام خانوادگی به فارسی"
               />
-            </Form.Group>
+            </F.Group>
 
-            <Form.Group width={2} dir="rtl">
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.firstname_en = c;
@@ -80,9 +72,9 @@ class SignUpFields extends Component {
                 error={errors.lastname_en}
                 label="نام خانوادگی به انگلیسی"
               />
-            </Form.Group>
+            </F.Group>
 
-            <Form.Group width={2} dir="rtl">
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.university = c;
@@ -99,8 +91,8 @@ class SignUpFields extends Component {
                 error={errors.birth_date}
                 label="تاریخ تولد"
               />
-            </Form.Group>
-            <Form.Group width={2} dir="rtl">
+            </F.Group>
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.username = c;
@@ -116,9 +108,9 @@ class SignUpFields extends Component {
                 error={errors.email}
                 label="ایمیل"
               />
-            </Form.Group>
+            </F.Group>
 
-            <Form.Group width={2} dir="rtl">
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.password_1 = c;
@@ -135,20 +127,22 @@ class SignUpFields extends Component {
                 error={errors.password_2}
                 label="تکرار گذرواژه"
               />
-            </Form.Group>
-            <Form.Field dir="rtl">
-              <Message visible={success} success>
+            </F.Group>
+            <F.Field dir="rtl">
+              <Message hidden={!success} positive>
                 ایمیل تایید برای شما ارسال شد.
               </Message>
-            </Form.Field>
-            <Form.Field dir="rtl">
+            </F.Field>
+            <F.Field dir="rtl">
               <a href="/login">عضو هستید؟ وارد شوید!</a>
-            </Form.Field>
-            <Form.Field dir="rtl">
+            </F.Field>
+            <F.Field dir="rtl">
               <Terms terms={terms} />
-            </Form.Field>
-            <Button color="blue" text="موافقت با قوانین و ثبت نام" />
-          </Form>
+            </F.Field>
+            <Button type="submit" primary>
+              موافقت با قوانین و ثبت نام
+            </Button>
+          </F>
         </Grid.Column>
       </Grid>
     );
@@ -170,4 +164,4 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpFields);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
