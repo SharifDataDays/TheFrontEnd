@@ -1,5 +1,5 @@
-
 import { refreshAPI } from '~/redux/api/auth';
+
 
 export async function getToken(token) {
   const newAccess = await fetch(refreshAPI(), {
@@ -10,7 +10,6 @@ export async function getToken(token) {
     }),
   });
   const newAccessJson = await newAccess.json();
-  
   token = {
     refresh: token.refresh,
     access: newAccessJson.access,

@@ -16,16 +16,29 @@ export default class dashboard extends Component {
         Authorization: `Bearer ${token ? token.access : token}`,
       },
     });
-    const milestones = await res.json();
-    return milestones;
+    let contest = await res.json();
+    contest = contest.contest;
+
+    let milestones = [];
+    for (let id = 0; id < contest.milestones.length; id++) {
+      const res = await fetch(milestoneTaskListAPI(1, contest.milestones[id]), {
+        headers: {
+          Authorization: `Bearer ${token ? token.access : token}`,
+        },
+      });
+      let milestone = await res.json();
+      milestone = milestone.milestone;
+      milestones.push(milestone);
+    }
+    return {contest, milestones};
   }
 
   render() {
-    const { milestones } = this.props;
+    const { milestones , contest} = this.props;
     return (
       <>
         <Navbar />
-        <Timeline milestones={milestones} />
+        <Timeline contest = {contest} milestones={milestones} />
       </>
     );
   }
