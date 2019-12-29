@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Router from 'next/router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form as F, Grid, Button } from 'semantic-ui-react';
+import { Form as F, Grid, Button, Message } from 'semantic-ui-react';
 import Input from '../input';
 import { loginAction } from '~/redux/actions/auth';
 
@@ -22,6 +22,8 @@ class Form extends Component {
 
   render() {
     const { auth } = this.props;
+    const { errors } = auth;
+    console.log(errors);
     return (
       <Grid centered>
         <Grid.Column verticalAlign="middle">
@@ -32,7 +34,7 @@ class Form extends Component {
                   this.username = c;
                 }}
                 label="نام کاربری"
-                error={auth.errors ? auth.errors.username : ''}
+                error={errors.username}
               />
               <Input
                 ref={(c) => {
@@ -40,9 +42,14 @@ class Form extends Component {
                 }}
                 label="گذرواژه"
                 type="password"
-                error={auth.errors ? auth.errors.password : ''}
+                error={errors.password}
               />
             </F.Group>
+            <F.Field dir="rtl">
+              <Message hidden={_.isEmpty(errors)} negative>
+                مشخصات وارد شده صحیح نمی‌باشد.
+              </Message>
+            </F.Field>
             <F.Field dir="rtl">
               <a href="/signup">عضو نیستید؟ حساب کاربری بسازید!</a>
             </F.Field>
