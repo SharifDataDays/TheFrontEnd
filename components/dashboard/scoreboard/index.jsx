@@ -47,7 +47,7 @@ class ScoreBoard extends Component {
           </Grid.Column>
         </Grid>
         <Grid centered style={{ marginTop: '5rem' }}>
-          <Grid.Column computer={10} mobile={15} tablet={16} style={{ padding }}>
+          <Grid.Column computer={10} mobile={15} tablet={15} style={{ padding }}>
             <NoSSR>
               <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <Mobile data={example} />

@@ -10,9 +10,9 @@ const GenerateRows = (props) => {
   const rows = props.data.map((x) => {
     let background = '';
     const rank = x.third;
-    if (rank <= 3) background = '#fed766';
-    else if (rank <= 6) background = '#bbbbbb';
-    else if (rank <= 9) background = '#cd7f32';
+    if (rank <= 3) background = '#fed76673';
+    else if (rank <= 6) background = '#bbbbbb73';
+    else if (rank <= 9) background = '#cd7f3273';
     return (
       <Menu secondary pointing style={{ background }}>
         <Menu.Item position='right' name={x.second} />

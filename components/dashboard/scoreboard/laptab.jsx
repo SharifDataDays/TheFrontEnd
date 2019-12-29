@@ -20,6 +20,7 @@ const GenerateMyRow = ({ name, score, rank }) => {
           borderBottom: border,
           borderLeft: border,
         }}
+        textAlign='right'
       >
         {score}
       </Table.Cell>
@@ -48,7 +49,9 @@ const GenerateRows = () => {
     const borderRight = `3px solid ${background} !important`;
     return (
       <Table.Row style={{ background }}>
-        <Table.Cell>{x.second}</Table.Cell>
+        <Table.Cell textAlign='right' style={{ marginLeft: '3rem !important' }}>
+          {x.second}
+        </Table.Cell>
         <Table.Cell>{x.first}</Table.Cell>
         <Table.Cell textAlign='center' style={{ borderRight }}>
           {x.third}
@@ -79,7 +82,9 @@ const Scoreboard = () => {
     <Table selectable size='small' style={{ border: '0 !important' }}>
       <Table.Header>
         <Table.Row style={{ height: '4rem !important' }} verticalAlign='bottom'>
-          <TableHeader width={7}>امتیاز</TableHeader>
+          <TableHeader textAlign='right' width={6}>
+            امتیاز
+          </TableHeader>
           <TableHeader width={3}>نام</TableHeader>
           <TableHeader width={1} textAlign='center'>
             رتبه
