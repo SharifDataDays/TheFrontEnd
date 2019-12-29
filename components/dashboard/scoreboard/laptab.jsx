@@ -42,10 +42,10 @@ const GenerateRows = () => {
   const rows = example.map((x) => {
     let background = '#f8f8fa';
     const rank = x.third;
-    if (rank <= 3) background = '#fed766';
-    else if (rank <= 6) background = '#bbbbbb';
-    else if (rank <= 9) background = '#cd7f32';
-    const borderRight = `3px solid ${background}`;
+    if (rank <= 3) background = '#fed76673';
+    else if (rank <= 6) background = '#bbbbbb73';
+    else if (rank <= 9) background = '#cd7f3273';
+    const borderRight = `3px solid ${background} !important`;
     return (
       <Table.Row style={{ background }}>
         <Table.Cell>{x.second}</Table.Cell>

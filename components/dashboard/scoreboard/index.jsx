@@ -23,20 +23,25 @@ class ScoreBoard extends Component {
       <>
         <Grid centered>
           <Grid.Column
-            style={{ background: 'rgba(80, 87, 99, .55)', height: ' 17rem' }}
+            style={{
+              background: 'url(/images/datas.jpeg)',
+              backgroundSize: 'cover',
+              height: ' 18rem',
+              opacity: '.9',
+            }}
             computer={10}
             mobile={15}
             tablet={16}
             textAlign='left'
           >
             {' '}
-            <p style={{ color: 'white', marginTop: '2rem', opacity: '0.8' }}>
+            <p style={{ color: 'white', marginTop: '2rem', opacity: '1' }}>
               انجمن علمی دانشکده مهندسی کامپیوتر
             </p>
-            <Header as='h2' style={{ color: 'white', opacity: '0.85' }}>
+            <Header as='h2' style={{ color: 'white', opacity: '1' }}>
               Data days جدول رده‌بندی فاز اول دومین دوره از مسابقات{' '}
             </Header>
-            <p style={{ color: 'white', marginTop: '4rem', opacity: '0.8' }}>
+            <p style={{ color: 'white', marginTop: '6rem', opacity: '1' }}>
               تعداد شرکت کننده‌ها : 763 نفر
             </p>
           </Grid.Column>
