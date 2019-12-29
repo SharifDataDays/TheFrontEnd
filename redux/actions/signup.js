@@ -22,7 +22,7 @@ function signupLoadAction() {
 
 function signupUnloadAction() {
   return {
-    type: SIGNUP_LOAD,
+    type: SIGNUP_UNLOAD,
   };
 }
 

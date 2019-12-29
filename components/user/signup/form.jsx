@@ -1,20 +1,18 @@
 /* eslint-disable camelcase */
-// import _ from 'lodash';
-// import Router from 'next/router';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Form } from 'semantic-ui-react';
-import { DateInput } from 'semantic-ui-calendar-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import Input from '../input';
+import { Grid, Form, Message } from 'semantic-ui-react';
 import Button from '../button';
+import Input from '../input';
+import Date from './date';
 import Terms from './terms';
 import { signupAction } from '~/redux/actions/signup';
 
 class SignUpFields extends Component {
   constructor(props) {
     super(props);
+    this.state = { success: false };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -31,16 +29,20 @@ class SignUpFields extends Component {
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
         university: this.university.state.value,
+        birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
     request(fields);
-    /* if (_.isEmpty(signup.errors)) {
-      Router.push('/login', '/login', { shallow: false });
-    } */
+    if (signup.success) {
+      this.setState({
+        success: signup.success,
+      });
+    }
   }
 
   render() {
     const { terms, signup } = this.props;
+    const { success } = this.state;
     const { errors } = signup;
     return (
       <Grid>
@@ -90,16 +92,13 @@ class SignUpFields extends Component {
                 width={8}
               />
 
-              {/* <DateInput
-                label="تاریخ تولد"
-                name="birth_date"
-                popupPosition="top center"
-                closeOnMouseLeave="false"
-                icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
-                iconPosition="right"
+              <Date
+                ref={(c) => {
+                  this.birth_date = c;
+                }}
                 error={errors.birth_date}
-                onChange={this.handleChange}
-              /> */}
+                label="تاریخ تولد"
+              />
             </Form.Group>
             <Form.Group width={2} dir="rtl">
               <Input
@@ -137,6 +136,11 @@ class SignUpFields extends Component {
                 label="تکرار گذرواژه"
               />
             </Form.Group>
+            <Form.Field dir="rtl">
+              <Message visible={success} success>
+                ایمیل تایید برای شما ارسال شد.
+              </Message>
+            </Form.Field>
             <Form.Field dir="rtl">
               <a href="/login">عضو هستید؟ وارد شوید!</a>
             </Form.Field>
