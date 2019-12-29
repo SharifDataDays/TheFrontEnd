@@ -1,6 +1,6 @@
 import React from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
-import { Card, Grid } from 'semantic-ui-react';
+import { Card, Grid, Transition } from 'semantic-ui-react';
 
 const VALUES = ['2018-03-22', '2018-03-23'];
 
@@ -8,68 +8,75 @@ const EXAMPLE = [
   {
     data: '2018-03-22',
     status: 'status',
-    info: 'first data',
+    info: '1',
   },
   {
     data: '2018-03-23',
     status: 'status',
-    info: 'second data',
+    info: '2',
   },
   {
     data: '2018-03-24',
     status: 'status',
-    info: 'third data',
+    info: '3',
   },
   {
     data: '2018-03-25',
     status: 'status',
-    info: '4 data',
+    info: '4',
   },
   {
     data: '2018-03-26',
     status: 'status',
-    info: '5 data',
+    info: '5',
   },
   {
     data: '2018-03-27',
     status: 'status',
-    info: '6 data',
+    info: '6',
   },
   {
     data: '2018-03-28',
     status: 'status',
-    info: '7 data',
+    info: '7',
   },
 ];
 
 export default class Timeline extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   curIdx: 0,
-    //   prevIdx: -1,
-    //   userIdx: 0,
-    //   infoShowing:''
-    // };
+
     this.state = {
-        curPhaseIdx: 0,
+        curPhaseIdx: 2,
         curIdx: 0,
-        infoShowing: ''
+        previdx: -1,
+        curVisibality: true,
+        prevVisibality: false
     }
   }
 
-  //state = { value: 0, previous: 0 };
+  toggleCurVisibility = () => {
+      let preVisibality = this.state.curVisibality
+      this.setState({curVisibality: !preVisibality})
+    //   this.setState({visibality: prevVisibality})
+      console.log("curVisibality:", this.state.curVisibality)
+  }
+
+  togglePreVisibility = () => {
+    let preVisibality = this.state.prevVisibality
+    this.setState({prevVisibality: !preVisibality})
+  //   this.setState({visibality: prevVisibality})
+    console.log("curVisibality:", this.state.prevVisibality)
+}
 
   render() {
     const { curIdx, prevIdx } = this.state;
-    const curStatus = EXAMPLE[curIdx].info;
+    const curStatus = prevIdx >= 0 ? EXAMPLE[curIdx].info : EXAMPLE[this.state.curPhaseIdx].info;
     const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
-    // const {curPhaseIdx, curIdx,}
     
 
     return (
       <div>
-        {/* Bounding box for the Timeline */}
         <div
           style={{
             width: '60%',
@@ -87,28 +94,36 @@ export default class Timeline extends React.Component {
             }}
             index={this.state.curPhaseIdx}
             indexClick={(index) => {
+                this.setState({prevIdx: this.state.curIdx})
                 this.setState({curIdx: index})
-            //   const curIdx = this.state.curIdx;
-            //   this.setState({ curIdx: index, prevIdx: curIdx });
-                
-            this.setState
+                this.toggleCurVisibility()
+                this.togglePreVisibility()
             }}
             values={EXAMPLE.map((x) => x.data)}
           />
         </div>
         <div>
           <Grid centered>
-            <Card>
-              <Card.Content>
-                <h1>{curStatus}</h1>
-              </Card.Content>
-            </Card>
+            <Transition animation="fly right" duration="1000" visible={this.state.curVisibality}>
+                <Card>
+                    <Card.Content>
+                        <h1>
+                            {curStatus}
+                        </h1>
+                    </Card.Content>
+                </Card>
+            </Transition>
+            <Transition animation="fly left" duration="1000" visible={this.state.prevVisibality}>
+                <Card>
+                    <Card.Content>
+                        <h1>
+                            {prevStatus}
+                        </h1>
+                    </Card.Content>
+                </Card>
+            </Transition>
           </Grid>
         </div>
-        {/* <div className="text-center"> */}
-        {/* any arbitrary component can go here */}
-        {/* {curStatus} */}
-        {/* </div> */}
       </div>
     );
   }
