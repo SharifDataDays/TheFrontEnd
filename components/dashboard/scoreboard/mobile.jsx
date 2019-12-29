@@ -3,47 +3,12 @@ import { Table, Pagination, Menu } from 'semantic-ui-react';
 import styled from 'styled-components';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
-const TableHeader = styled(Table.HeaderCell)`
-  background: rgba(80, 87, 99, 0.05) !important;
-  border-radius: 0 !important;
-  color: black !important;
+const MyRow = styled(Menu)`
+  border-bottom: 2px solid rgba(52, 136, 18, 0.25) !important;
 `;
 
-const TableRow = styled(Table.Row)`
-  display: flex !important;
-`;
-
-const GenerateMyRow = ({ name, score, rank }) => {
-  const color = '#00000066';
-  const border = `1px solid ${color}`;
-  return (
-    <Table.Row>
-      <Table.Cell
-        style={{
-          borderTop: border,
-          borderBottom: border,
-          borderLeft: border,
-        }}
-      >
-        {score}
-      </Table.Cell>
-      <Table.Cell style={{ borderTop: border, borderBottom: border }}>{name}</Table.Cell>
-      <Table.Cell
-        style={{
-          borderTop: border,
-          borderBottom: border,
-          borderRight: border,
-        }}
-        textAlign='center'
-      >
-        {rank}
-      </Table.Cell>
-    </Table.Row>
-  );
-};
-
-const GenerateRows = () => {
-  const rows = example.map((x) => {
+const GenerateRows = (props) => {
+  const rows = props.data.map((x) => {
     let background = '#f8f8fa';
     const rank = x.third;
     if (rank <= 3) background = '#fed766';
@@ -51,13 +16,11 @@ const GenerateRows = () => {
     else if (rank <= 9) background = '#cd7f32';
     const borderRight = `3px solid ${background}`;
     return (
-      <Table.Row style={{ background }}>
-        <Table.Cell>{x.second}</Table.Cell>
-        <Table.Cell>{x.first}</Table.Cell>
-        <Table.Cell textAlign='center' style={{ borderRight }}>
-          {x.third}
-        </Table.Cell>
-      </Table.Row>
+      <Menu secondary pointing style={{ background }}>
+        <Menu.Item position='right' name={x.second} />
+        <Menu.Item name={x.first} />
+        <Menu.Item name={x.third} />
+      </Menu>
     );
   });
   return rows;
@@ -78,13 +41,35 @@ const Footer = () => (
   </Table.Row>
 );
 
-const Scoreboard = () => {
+const Scoreboard = (props) => {
   return (
-    <Menu secondary pointing>
-      <Menu.Item header position="right" name='امتیاز' />
-      <Menu.Item name='نام' />
-      <Menu.Item name='رتبه' />
-    </Menu>
+    <>
+      <Menu
+        fluid
+        secondary
+        pointing
+        style={{
+          borderTop: '2px solid rgba(34,36,38,.45)',
+          borderBottom: '2px solid rgba(34,36,38,.45)',
+        }}
+      >
+        <Menu.Item header position='right' name='امتیاز' />
+        <Menu.Item header name='نام' />
+        <Menu.Item header name='رتبه' />
+      </Menu>
+      <MyRow secondary >
+        <Menu.Item position='right' name='80' />
+        <Menu.Item name='پویا معینی' />
+        <Menu.Item name='3' />
+      </MyRow>
+      <GenerateRows data={props.data} />
+      <Menu secondary pointing>
+        <Menu.Item position='right' name='10' />
+        <Menu.Item name='مریم مریمی' />
+        <Menu.Item name='20' />
+      </Menu>
+      <Footer />
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { Grid, Responsive } from 'semantic-ui-react';
 import NoSSR from 'react-no-ssr';
 import Laptab from './laptab';
 import Mobile from './mobile';
+import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
 class ScoreBoard extends Component {
   constructor (props) {
@@ -32,7 +33,7 @@ class ScoreBoard extends Component {
           <Grid.Column computer={10} mobile={15} tablet={16} style={{ padding }}>
             <NoSSR>
               <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-                <Mobile />
+                <Mobile data={example} />
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
                 <Laptab />
