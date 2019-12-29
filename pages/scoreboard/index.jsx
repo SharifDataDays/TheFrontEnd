@@ -1,5 +1,5 @@
 import React from 'react';
-import Scoreboard from '~/components/dashboard/scoreboard/desktop';
+import Scoreboard from '~/components/dashboard/scoreboard/index';
 import '~/.semantic/dist/semantic.rtl.min.css';
 import Layout from '~/components/global/layout';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Table, Pagination } from 'semantic-ui-react';
+import { Table, Pagination } from 'semantic-ui-react';
 import styled from 'styled-components';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
@@ -74,32 +74,37 @@ const Footer = () => (
   </Table.Row>
 );
 
-const ScoreBoard = () => (
-  <>
-    <Grid centered>
-      <Grid.Column style={{ background: 'green', height: ' 20rem' }} computer={10}></Grid.Column>
-    </Grid>
-    <Grid centered style={{ marginTop: '40px' }}>
-      <Grid.Column computer={10}>
-        <Table selectable size='small' style={{ border: '0 !important' }}>
-          <Table.Header>
-            <Table.Row style={{ height: '4rem !important' }} verticalAlign='bottom'>
-              <TableHeader width={7}>امتیاز</TableHeader>
-              <TableHeader width={3}>نام</TableHeader>
-              <TableHeader width={1} textAlign='center'>
-                رتبه
-              </TableHeader>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <GenerateMyRow name='پویا معینی' score='100' rank='11' />
-            <GenerateRows />
-          </Table.Body>
-          <Footer />
-        </Table>
-      </Grid.Column>
-    </Grid>
-  </>
-);
+const Scoreboard = () => {
+  return (
+    <Table selectable size='small' style={{ border: '0 !important' }}>
+      <Table.Header fullWidth>
+        <Table.Row >
+          <Table.HeaderCell width={2}>Header</Table.HeaderCell>
+          <Table.HeaderCell width={2}>Header</Table.HeaderCell>
+          <Table.HeaderCell width={1}>Header</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
 
-export default ScoreBoard;
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>Cell</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+      <Footer />
+    </Table>
+  );
+};
+
+export default Scoreboard;
