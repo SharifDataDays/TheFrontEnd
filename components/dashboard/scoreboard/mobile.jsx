@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Pagination, Menu } from 'semantic-ui-react';
 import styled from 'styled-components';
-import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
 const MyRow = styled(Menu)`
   border-bottom: 2px solid rgba(52, 136, 18, 0.25) !important;
@@ -9,12 +8,11 @@ const MyRow = styled(Menu)`
 
 const GenerateRows = (props) => {
   const rows = props.data.map((x) => {
-    let background = '#f8f8fa';
+    let background = '';
     const rank = x.third;
     if (rank <= 3) background = '#fed766';
     else if (rank <= 6) background = '#bbbbbb';
     else if (rank <= 9) background = '#cd7f32';
-    const borderRight = `3px solid ${background}`;
     return (
       <Menu secondary pointing style={{ background }}>
         <Menu.Item position='right' name={x.second} />
@@ -57,17 +55,12 @@ const Scoreboard = (props) => {
         <Menu.Item header name='نام' />
         <Menu.Item header name='رتبه' />
       </Menu>
-      <MyRow secondary >
+      <MyRow secondary>
         <Menu.Item position='right' name='80' />
         <Menu.Item name='پویا معینی' />
         <Menu.Item name='3' />
       </MyRow>
       <GenerateRows data={props.data} />
-      <Menu secondary pointing>
-        <Menu.Item position='right' name='10' />
-        <Menu.Item name='مریم مریمی' />
-        <Menu.Item name='20' />
-      </Menu>
       <Footer />
     </>
   );
