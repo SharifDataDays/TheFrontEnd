@@ -8,33 +8,54 @@ const EXAMPLE = [
   {
     data: '2018-03-22',
     status: 'status',
-    // statusB: "Ready for Dev",
-    // statusE: "In Progress"
     info: 'first data',
   },
   {
     data: '2018-03-23',
     status: 'status',
-    // statusB: "In Progress",
-    // statusE: "Done"
     info: 'second data',
   },
   {
     data: '2018-03-24',
     status: 'status',
-    // statusB: "After Progress",
-    // statusE: "Done"
     info: 'third data',
+  },
+  {
+    data: '2018-03-25',
+    status: 'status',
+    info: '4 data',
+  },
+  {
+    data: '2018-03-26',
+    status: 'status',
+    info: '5 data',
+  },
+  {
+    data: '2018-03-27',
+    status: 'status',
+    info: '6 data',
+  },
+  {
+    data: '2018-03-28',
+    status: 'status',
+    info: '7 data',
   },
 ];
 
 export default class Timeline extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   curIdx: 0,
+    //   prevIdx: -1,
+    //   userIdx: 0,
+    //   infoShowing:''
+    // };
     this.state = {
-      curIdx: 0,
-      prevIdx: -1,
-    };
+        curPhaseIdx: 0,
+        curIdx: 0,
+        infoShowing: ''
+    }
   }
 
   //state = { value: 0, previous: 0 };
@@ -43,6 +64,8 @@ export default class Timeline extends React.Component {
     const { curIdx, prevIdx } = this.state;
     const curStatus = EXAMPLE[curIdx].info;
     const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
+    // const {curPhaseIdx, curIdx,}
+    
 
     return (
       <div>
@@ -62,10 +85,13 @@ export default class Timeline extends React.Component {
               foreground: '#1A79AD',
               outline: '#dfdfdf',
             }}
-            index={this.state.curIdx}
+            index={this.state.curPhaseIdx}
             indexClick={(index) => {
-              const curIdx = this.state.curIdx;
-              this.setState({ curIdx: index, prevIdx: curIdx });
+                this.setState({curIdx: index})
+            //   const curIdx = this.state.curIdx;
+            //   this.setState({ curIdx: index, prevIdx: curIdx });
+                
+            this.setState
             }}
             values={EXAMPLE.map((x) => x.data)}
           />
