@@ -1,4 +1,4 @@
-const BASE_ADDR = 'https://datadays.sharif.edu/api';
+const BASE_ADDR = 'https://datadays.sharif.edu/test/api';
 export const BASE = 'https://datadays.sharif.edu'
 
 export function termsAPI() {
