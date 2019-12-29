@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Pagination } from 'semantic-ui-react';
 import styled from 'styled-components';
-import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
@@ -39,8 +38,8 @@ const GenerateMyRow = ({ name, score, rank }) => {
   );
 };
 
-const GenerateRows = () => {
-  const rows = example.map((x) => {
+const GenerateRows = ({ data }) => {
+  const rows = data.map((x) => {
     let background = '#f8f8fa';
     const rank = x.third;
     if (rank <= 3) background = '#fed76673';
@@ -69,15 +68,15 @@ const Footer = () => (
         defaultActivePage={1}
         firstItem={null}
         lastItem={null}
-        pointing
         secondary
         totalPages={10}
+        style={{ marginTop: '1.5rem' }}
       />
     </Table.Row>
   </Table.Row>
 );
 
-const Scoreboard = () => {
+const Scoreboard = ({ data }) => {
   return (
     <Table selectable size='small' style={{ border: '0 !important' }}>
       <Table.Header>
@@ -93,7 +92,7 @@ const Scoreboard = () => {
       </Table.Header>
       <Table.Body>
         <GenerateMyRow name='پویا معینی' score='100' rank='0' />
-        <GenerateRows />
+        <GenerateRows data={data} />
       </Table.Body>
       <Footer />
     </Table>

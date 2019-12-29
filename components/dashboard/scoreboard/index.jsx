@@ -53,7 +53,7 @@ class ScoreBoard extends Component {
                 <Mobile data={example} />
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                <Laptab />
+                <Laptab data={example} />
               </Responsive>
             </NoSSR>
           </Grid.Column>
