@@ -1,6 +1,5 @@
 import { refreshAPI } from '~/redux/api/auth';
 
-
 export async function getToken(token) {
   const newAccess = await fetch(refreshAPI(), {
     method: 'post',

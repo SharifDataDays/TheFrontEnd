@@ -12,10 +12,10 @@ export function taskAPI(id) {
   return `${BASE_ADDR}/resources/${id}`;
 }
 
-export function contestMilestoneListAPI(contestId){
-  return `${BASE_ADDR}/contest/${contestId}/`
+export function contestMilestoneListAPI(contestId) {
+  return `${BASE_ADDR}/contest/${contestId}/`;
 }
 
-export function milestoneTaskListAPI(contestId, milestoneId){
-  return `${BASE_ADDR}/contest/${contestId}/${milestoneId}/`
+export function milestoneTaskListAPI(contestId, milestoneId) {
+  return `${BASE_ADDR}/contest/${contestId}/${milestoneId}/`;
 }

@@ -30,15 +30,15 @@ export default class dashboard extends Component {
       milestone = milestone.milestone;
       milestones.push(milestone);
     }
-    return {contest, milestones};
+    return { contest, milestones };
   }
 
   render() {
-    const { milestones , contest} = this.props;
+    const { milestones, contest } = this.props;
     return (
       <>
         <Navbar />
-        <Timeline contest = {contest} milestones={milestones} />
+        <Timeline contest={contest} milestones={milestones} />
       </>
     );
   }
