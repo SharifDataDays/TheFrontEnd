@@ -2,17 +2,19 @@ import _ from 'lodash';
 import produce from 'immer';
 import cookie from 'js-cookie';
 import {
-  LOGIN_REMOVE_ERROR,
+  LOGIN_CLEAR,
   LOGIN_LOAD,
   LOGIN_UNLOAD,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGIN_CHECK,
-} from '../constants/auth';
+} from '../actions/auth';
 import initialState from '../store/initialState';
 
-function loginRemoveErrorsReducer(state = initialState.auth, action) {
+function loginClearReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
+    draft.loading = false;
+    draft.success = false;
     draft.errors = {};
     return draft;
   });
@@ -21,7 +23,6 @@ function loginRemoveErrorsReducer(state = initialState.auth, action) {
 function loginLoadReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     draft.loading = true;
-    draft.errors = {};
     return draft;
   });
 }
@@ -37,6 +38,7 @@ function loginSuccessReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { token } = action.payload;
     draft.loading = false;
+    draft.success = true;
     draft.errors = {};
     draft.token = token;
     cookie.set('token', token, { expires: 1 });
@@ -48,6 +50,7 @@ function loginFailReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { errors } = action.payload;
     draft.loading = false;
+    draft.success = false;
     draft.errors = errors;
     return draft;
   });
@@ -67,8 +70,8 @@ function loginCheckerReducer(state = initialState.auth, action) {
 
 function authReducers(state = initialState.auth, action) {
   switch (action.type) {
-    case LOGIN_REMOVE_ERROR:
-      return loginRemoveErrorsReducer(state, action);
+    case LOGIN_CLEAR:
+      return loginClearReducer(state, action);
     case LOGIN_LOAD:
       return loginLoadReducer(state, action);
     case LOGIN_UNLOAD:

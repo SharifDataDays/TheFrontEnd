@@ -1,172 +1,63 @@
 /* eslint-disable camelcase */
-import _ from 'lodash';
-import axios from 'axios';
+// import _ from 'lodash';
+// import Router from 'next/router';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Grid, Form } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import Input from '../input';
 import Button from '../button';
-import check from './check';
 import Terms from './terms';
-import { signupAPI } from '~/redux/api/auth';
-import { connect } from 'react-redux';
-import { signup } from '../../../redux/actions/signup';
+import { signupAction } from '~/redux/actions/signup';
 
 class SignUpFields extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      firstname_fa: '',
-      lastname_fa: '',
-      firstname_en: '',
-      lastname_en: '',
-      username: '',
-      email: '',
-      birth_date: '',
-      university: '',
-      password_1: '',
-      password_2: '',
-      errors: {
-        firstname_fa: false,
-        lastname_fa: false,
-        firstname_en: false,
-        lastname_en: false,
-        username: false,
-        email: false,
-        birth_date: false,
-        university: false,
-        password_1: false,
-        password_2: false,
-      },
-    };
-    this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit() {
-    this.setState((prevState) => {
-      const res = check(prevState);
-      if (res.problem) {
-        const { notify } = this.props;
-        notify(res.problem);
-      } else {
-        this.signup();
-      }
-      return {
-        errors: res.errors,
-      };
-    });
-  }
-
-  handleChange(event, { name, value }) {
-    this.setState({
-      [name]: value,
-      errors : {
-        [name] : false
-      }
-    });
-  }
-
-  signup() {
-    const {
-      username,
-      email,
-      password_1,
-      password_2,
-      firstname_fa,
-      firstname_en,
-      lastname_fa,
-      lastname_en,
-      birth_date,
-      university,
-    } = this.state;
-    const { notify, signupReq } = this.props;
-
-    const data = {
-      username,
-      email,
-      password_1,
-      password_2,
+    const { signup, request } = this.props;
+    const fields = {
+      username: this.username.state.value,
+      email: this.email.state.value,
+      password_1: this.password_1.state.value,
+      password_2: this.password_2.state.value,
       profile: {
-        firstname_fa,
-        firstname_en,
-        lastname_fa,
-        lastname_en,
-        university,
-        birth_date: _.join(_.reverse(_.split(birth_date, '-')), '-'),
+        firstname_fa: this.firstname_fa.state.value,
+        firstname_en: this.firstname_en.state.value,
+        lastname_fa: this.lastname_fa.state.value,
+        lastname_en: this.lastname_en.state.value,
+        university: this.university.state.value,
       },
     };
-    signupReq(data)
-    // axios.post(signupAPI(), data).then((res) => {
-    //   const serverData = res.data;
-    //   console.log(serverData);
-    //   if (serverData.status_code !== 200) {
-    //     if (serverData.email) {
-    //       notify('A user with this email currently exists');
-    //     } else if (serverData.username) {
-    //       notify('usernameExists');
-    //     } else {
-    //       notify(serverData.error);
-    //     }
-    //   } else {
-    //     notify('success');
-    //   }
-    // });
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    this.handleServerResponse(nextProps)
-  }
-
-  handleServerResponse = (nextProps) => {
-    const {signup , notify} = nextProps
-    if(signup.error !== '') {
-      if(signup.error.username) {
-        notify('usernameExists');
-        this.setState({errors : {username : true}})
-      } else {
-        notify('A user with this email currently exists')
-        this.setState({errors : {email : true}})
-      }
-    }
-    else if(signup.success) {
-      notify('success')
-    }
+    request(fields);
+    /* if (_.isEmpty(signup.errors)) {
+      Router.push('/login', '/login', { shallow: false });
+    } */
   }
 
   render() {
-    const {
-      firstname_fa,
-      lastname_fa,
-      firstname_en,
-      lastname_en,
-      username,
-      email,
-      birth_date,
-      university,
-      password_1,
-      password_2,
-      errors,
-    } = this.state;
     const { terms, signup } = this.props;
+    const { errors } = signup;
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
-          <Form>
+          <Form onSubmit={this.onSubmit}>
             <Form.Group width={2} dir="rtl">
               <Input
-                name="firstname_fa"
-                onChange={this.handleChange}
-                value={firstname_fa}
+                ref={(c) => {
+                  this.firstname_fa = c;
+                }}
                 error={errors.firstname_fa}
                 label="نام به فارسی"
               />
               <Input
-                name="lastname_fa"
-                onChange={this.handleChange}
-                value={lastname_fa}
+                ref={(c) => {
+                  this.lastname_fa = c;
+                }}
                 error={errors.lastname_fa}
                 label="نام خانوادگی به فارسی"
               />
@@ -174,16 +65,16 @@ class SignUpFields extends Component {
 
             <Form.Group width={2} dir="rtl">
               <Input
-                name="firstname_en"
-                onChange={this.handleChange}
-                value={firstname_en}
+                ref={(c) => {
+                  this.firstname_en = c;
+                }}
                 error={errors.firstname_en}
                 label="نام به انگلیسی"
               />
               <Input
-                name="lastname_en"
-                onChange={this.handleChange}
-                value={lastname_en}
+                ref={(c) => {
+                  this.lastname_en = c;
+                }}
                 error={errors.lastname_en}
                 label="نام خانوادگی به انگلیسی"
               />
@@ -191,38 +82,37 @@ class SignUpFields extends Component {
 
             <Form.Group width={2} dir="rtl">
               <Input
-                name="university"
-                onChange={this.handleChange}
-                value={university}
+                ref={(c) => {
+                  this.university = c;
+                }}
                 error={errors.university}
                 label="دانشگاه"
                 width={8}
               />
 
-              <DateInput
+              {/* <DateInput
                 label="تاریخ تولد"
                 name="birth_date"
                 popupPosition="top center"
                 closeOnMouseLeave="false"
                 icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
                 iconPosition="right"
-                value={birth_date}
                 error={errors.birth_date}
                 onChange={this.handleChange}
-              />
+              /> */}
             </Form.Group>
             <Form.Group width={2} dir="rtl">
               <Input
-                onChange={this.handleChange}
-                name="username"
-                value={username}
+                ref={(c) => {
+                  this.username = c;
+                }}
                 error={errors.username}
                 label="نام کاربری"
               />
               <Input
-                onChange={this.handleChange}
-                name="email"
-                value={email}
+                ref={(c) => {
+                  this.email = c;
+                }}
                 type="email"
                 error={errors.email}
                 label="ایمیل"
@@ -231,17 +121,17 @@ class SignUpFields extends Component {
 
             <Form.Group width={2} dir="rtl">
               <Input
-                onChange={this.handleChange}
-                name="password_1"
-                value={password_1}
+                ref={(c) => {
+                  this.password_1 = c;
+                }}
                 type="password"
                 error={errors.password_1}
                 label="گذرواژه"
               />
               <Input
-                onChange={this.handleChange}
-                name="password_2"
-                value={password_2}
+                ref={(c) => {
+                  this.password_2 = c;
+                }}
                 type="password"
                 error={errors.password_2}
                 label="تکرار گذرواژه"
@@ -253,7 +143,7 @@ class SignUpFields extends Component {
             <Form.Field dir="rtl">
               <Terms terms={terms} />
             </Form.Field>
-            <Button loading={signup.loading} onClick={this.onSubmit} color="blue" text="موافقت با قوانین و ثبت نام" />
+            <Button color="blue" text="موافقت با قوانین و ثبت نام" />
           </Form>
         </Grid.Column>
       </Grid>
@@ -262,7 +152,7 @@ class SignUpFields extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { signup } = state
+  const { signup } = state;
   return {
     signup,
   };
@@ -270,10 +160,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    signupReq: (data) => {
-      dispatch(signup(data));
+    request: (fields) => {
+      dispatch(signupAction(fields));
     },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpFields)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpFields);

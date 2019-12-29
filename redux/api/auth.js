@@ -1,11 +1,14 @@
+import axios from 'axios';
 import BASE_ADDR from '.';
 
 export function authAPI() {
   return `${BASE_ADDR}/accounts/profile`;
 }
 
-export function loginAPI() {
-  return `${BASE_ADDR}/accounts/login`;
+const LOGIN_API = `${BASE_ADDR}/accounts/login`;
+
+export function loginAPI(data) {
+  return axios.post(LOGIN_API, data);
 }
 
 export function forgotAPI() {

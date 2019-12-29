@@ -8,12 +8,10 @@ class Input extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event, {name , value}) {
+  handleChange(event) {
     this.setState({
       value: event.target.value,
     });
-    if(this.props.onChange)
-      this.props.onChange(event, {name, value})
   }
 
   render() {

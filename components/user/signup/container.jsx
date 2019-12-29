@@ -47,7 +47,7 @@ function notify(choice) {
 function SignupContainer({ terms }) {
   return (
     <NoSSR>
-      <Container isSignup={true}>
+      <Container isSignup>
         <Header as="h1" dividing>
           ثبت نام
         </Header>

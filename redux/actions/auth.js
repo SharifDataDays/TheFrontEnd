@@ -1,19 +1,17 @@
 import _ from 'lodash';
-import axios from 'axios';
 import { loginAPI } from '../api/auth';
-import {
-  LOGIN_REMOVE_ERROR,
-  LOGIN_LOAD,
-  LOGIN_UNLOAD,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGIN_CHECK,
-  LOGOUT,
-} from '../constants/auth';
 
-function loginRemoveErrorsAction() {
+export const LOGIN_CLEAR = 'LOGIN_CLEAR';
+export const LOGIN_LOAD = 'LOGIN_LOAD';
+export const LOGIN_UNLOAD = 'LOGIN_UNLOAD';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_CHECK = 'LOGIN_CHECK';
+export const LOGOUT = 'LOGOUT';
+
+function loginClearAction() {
   return {
-    type: LOGIN_REMOVE_ERROR,
+    type: LOGIN_CLEAR,
   };
 }
 
@@ -58,11 +56,11 @@ export function loginCheckerAction(fields) {
 
 export function loginAction(username, password) {
   return (dispatch, getState) => {
-    dispatch(loginRemoveErrorsAction());
+    dispatch(loginClearAction());
     dispatch(loginLoadAction());
     dispatch(loginCheckerAction({ username, password }));
     if (_.isEmpty(getState().auth.errors)) {
-      axios.post(loginAPI(), { username, password }).then((res) => {
+      loginAPI({ username, password }).then((res) => {
         const { data } = res;
         if (data.status_code === 200) {
           const token = {

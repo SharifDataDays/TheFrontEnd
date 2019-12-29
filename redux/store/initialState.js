@@ -1,13 +1,13 @@
 export default {
-  signup : {
-    loading : false,
-    error : '',
-    success : false
+  signup: {
+    loading: false,
+    errors: {},
+    success: false,
   },
-  auth: {},
   auth: {
     token: {},
     errors: {},
     loading: false,
+    success: false,
   },
 };

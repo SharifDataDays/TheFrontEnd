@@ -1,45 +1,70 @@
-import { signupRequest } from '../api/signup';
+import _ from 'lodash';
+import { signupAPI } from '../api/signup';
 
-export const CLEAR_SIGNUP = 'SIGNUP_CLEAR'
-export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_CLEAR = 'SIGNUP_CLEAR';
+export const SIGNUP_LOAD = 'SIGNUP_LOAD';
+export const SIGNUP_UNLOAD = 'SIGNUP_UNLOAD';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const SIGNUP_REQ_ERROR = 'SIGNUP_REQ_ERROR';
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';
+export const SIGNUP_CHECK = 'SIGNUP_CHECK';
 
-export function clearSignup() {
+function signupClearAction() {
   return {
-    type : CLEAR_SIGNUP
-  }
-}
-
-function signupRequestSent() {
-  return {
-    type: SIGNUP_REQUEST,
+    type: SIGNUP_CLEAR,
   };
 }
-function signupSuccess() {
+
+function signupLoadAction() {
+  return {
+    type: SIGNUP_LOAD,
+  };
+}
+
+function signupUnloadAction() {
+  return {
+    type: SIGNUP_LOAD,
+  };
+}
+
+function signupSuccessAction() {
   return {
     type: SIGNUP_SUCCESS,
   };
 }
-function signupError(error) {
+function signupFailAction(errors) {
   return {
-    type: SIGNUP_REQ_ERROR,
-    payload : {
-      error
+    type: SIGNUP_FAIL,
+    payload: {
+      errors,
     },
   };
 }
 
-export function signup(data) {
-  return (dispatch) => {
-    dispatch(signupRequestSent());
-    signupRequest(data).then((res) => {
-      console.log(res.data)
-      if (res.data.status_code == 200) {
-          dispatch(signupSuccess())
-      } else {
-          dispatch(signupError(res.data.detail))
-      }
-    });
+export function signupCheckerAction(fields) {
+  return {
+    type: SIGNUP_CHECK,
+    payload: {
+      fields,
+    },
+  };
+}
+
+export function signupAction(fields) {
+  return (dispatch, getState) => {
+    dispatch(signupClearAction());
+    dispatch(signupLoadAction());
+    dispatch(signupCheckerAction(fields));
+    if (_.isEmpty(getState().signup.errors)) {
+      signupAPI(fields).then((res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          dispatch(signupSuccessAction());
+        } else {
+          dispatch(signupFailAction(data.detail));
+        }
+      });
+    } else {
+      dispatch(signupUnloadAction());
+    }
   };
 }
