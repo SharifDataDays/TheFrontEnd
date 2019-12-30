@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/dashboard/layout';
 import Resources from '~/components/dashboard/resources';
+import NotFound from '~/components/dashboard/resources/notFound';
 import { loadTaskAction } from '~/redux/actions/tasks';
 
 class ResourcesPage extends Component {
@@ -24,7 +26,7 @@ class ResourcesPage extends Component {
           <title>DataDays 2020</title>
         </Head>
         <Layout>
-          <Resources content={tasks.current} />
+          {_.isEmpty(tasks.current) ? <NotFound /> : <Resources content={tasks.current} />}
         </Layout>
       </>
     );
