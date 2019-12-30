@@ -2,7 +2,7 @@ import React from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
 import { Card, Grid, Transition, Label } from 'semantic-ui-react';
 
-const VALUES = ['2018-03-22', '2018-03-23'];
+// const VALUES = ['2018-03-22', '2018-03-23'];
 
 const EXAMPLE = [
   {
@@ -52,6 +52,9 @@ export default class Timeline extends React.Component {
       prevIdx: -1,
       curVisibality: true,
       prevVisibality: false,
+
+      //milestones: id, title, start_time, end_time, tasks
+      milestones: props.milestones,
     };
   }
 
@@ -88,8 +91,12 @@ export default class Timeline extends React.Component {
 
   render() {
     const { curIdx, prevIdx } = this.state;
-    const curStatus = prevIdx >= 0 ? EXAMPLE[curIdx].info : EXAMPLE[this.state.curPhaseIdx].info;
-    const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
+    const milestones = this.state.milestones;
+    // const curStatus = prevIdx >= 0 ? EXAMPLE[curIdx].info : EXAMPLE[this.state.curPhaseIdx].info;
+    // const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
+    const curStatus =
+      prevIdx >= 0 ? milestones[curIdx].title : milestones[this.state.curPhaseIdx].title;
+    const prevStatus = prevIdx >= 0 ? milestones[prevIdx].title : '';
 
     return (
       <div>
@@ -115,23 +122,17 @@ export default class Timeline extends React.Component {
               this.toggleCurVisibility();
               this.togglePreVisibility();
             }}
-            values={EXAMPLE.map((x) => x.data)}
+            values={milestones.map((x) => x.start_time)}
           />
         </div>
         <div>
           <Grid centered>
             <Card style={{ width: '50%', height: '100%' }}>
               <Card.Content>
-                <Card.Header>
-                  {curStatus}
-                </Card.Header>
-                <Card.Description width={10}>
-                qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
+                <Card.Header>{curStatus}</Card.Header>
+                <Card.Description>
                   qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
                   qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
-                  qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
-                  qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
-                  qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjf
                 </Card.Description>
               </Card.Content>
             </Card>
