@@ -1,6 +1,10 @@
-import styled from 'styled-components';
 import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { logoutAction } from '~/redux/actions/auth';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -19,20 +23,30 @@ const Image = styled(Im)`
   transform: translateY(-50%);
 `;
 
-function Navbar({ transparent }) {
+function Navbar({ logout, transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
-        <a href="/login">
-          <Button primary>ورود</Button>
-        </a>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            logout();
+          }}
+          primary
+        >
+          خروج
+        </Button>
       </Menu.Item>
-      {/* <Menu.Item>
+      <Menu.Item>
+        <a href="/dashboard/tasks">منابع</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
+      </Menu.Item>
+      <Menu.Item>
         <a href="/blog">بلاگ</a>
-      </Menu.Item> */}
+      </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
-          <a href="/">
+          <a href="/dashboard/tasks">
             <Image
               style={{ marginRight: '1rem', marginTop: '2rem' }}
               size="mini"
@@ -45,4 +59,10 @@ function Navbar({ transparent }) {
   );
 }
 
-export default Navbar;
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    logout: () => dispatch(logoutAction()),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Navbar);

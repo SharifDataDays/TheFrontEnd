@@ -36,6 +36,9 @@ function withAuth(loggedIn) {
             </>
           );
         }
+        if (_.isUndefined(loggedIn)) {
+          return <WrappedComponent {...this.props} />;
+        }
         if (_.isEmpty(auth.token) && loggedIn) {
           Router.push('/login');
         }

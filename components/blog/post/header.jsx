@@ -4,7 +4,6 @@ import type { Node } from 'react';
 import { Divider, Header as Heading } from 'semantic-ui-react';
 import moment from 'jalali-moment';
 
-
 type PropsType = {
   title: string,
   desc: string,
@@ -19,14 +18,21 @@ const DefaultProps = {
   rtl: true,
 };
 
-function Header({ title, desc, date, rtl }: PropsType = DefaultProps): Node {
-  const direction = rtl ? 'right' : 'left';
-
+function Header({ title, desc, date }: PropsType = DefaultProps): Node {
   return (
     <>
-      <Heading as="h2">{desc}</Heading>
-      <Heading as="h1">{title}</Heading>
-      <Heading as="h4">{moment.from(date, 'en').locale('fa').fromNow()}</Heading>
+      <Heading style={{ direction: 'rtl' }} as="h2">
+        {desc}
+      </Heading>
+      <Heading style={{ direction: 'rtl' }} as="h1">
+        {title}
+      </Heading>
+      <Heading style={{ direction: 'rtl' }} as="h4">
+        {moment
+          .from(date, 'en')
+          .locale('fa')
+          .fromNow()}
+      </Heading>
       <Divider />
     </>
   );

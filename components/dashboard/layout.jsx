@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './navbar';
+import Navbar from '~/components/global/navbar/auth';
 
 function Layout({ children }) {
   return (

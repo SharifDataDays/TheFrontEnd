@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
+import withAuth from '~/components/global/withAuth';
 import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
@@ -20,7 +21,6 @@ class HomePage extends Component {
   render() {
     const { content } = this.props;
     const { intro, timeline, prizes } = content;
-    console.log(content);
     return (
       <>
         <Head>
@@ -38,4 +38,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withAuth(false)(HomePage);
