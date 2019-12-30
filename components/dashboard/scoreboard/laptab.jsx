@@ -8,37 +8,34 @@ const TableHeader = styled(Table.HeaderCell)`
   color: black !important;
 `;
 
-const GenerateMyRow = ({ name, score, rank }) => {
+const TableCell = styled(Table.Cell)`
+  border-top: ${(props) => props.border} !important;
+  border-bottom: ${(props) => props.border} !important;
+`;
+
+const Info = styled.p`
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+`;
+
+const GenerateMyRow = ({ name, score, rank, display }) => {
   const color = '#00000066';
   const border = `1px solid ${color}`;
   return (
-    <Table.Row>
-      <Table.Cell
-        style={{
-          borderTop: border,
-          borderBottom: border,
-          borderLeft: border,
-        }}
-        textAlign='right'
-      >
+    <Table.Row style={{ display }}>
+      <TableCell textAlign='right' border={border}>
         {score}
-      </Table.Cell>
-      <Table.Cell style={{ borderTop: border, borderBottom: border }}>{name}</Table.Cell>
-      <Table.Cell
-        style={{
-          borderTop: border,
-          borderBottom: border,
-          borderRight: border,
-        }}
-        textAlign='center'
-      >
+      </TableCell>
+      <TableCell border={border}>{name}</TableCell>
+      <TableCell border={border} textAlign='center'>
         {rank}
-      </Table.Cell>
+      </TableCell>
     </Table.Row>
   );
 };
 
-const GenerateRows = ({ data }) => {
+const GenerateRows = ({ data, myName }) => {
   const rows = data.map((x) => {
     let background = '#f8f8fa';
     const rank = x.third;
@@ -46,6 +43,8 @@ const GenerateRows = ({ data }) => {
     else if (rank <= 6) background = '#bbbbbb73';
     else if (rank <= 9) background = '#cd7f3273';
     const borderRight = `3px solid ${background} !important`;
+    if (x.first === myName) return <GenerateMyRow name={x.first} score={x.second} rank={x.third} />;
+
     return (
       <Table.Row style={{ background }}>
         <Table.Cell textAlign='right' style={{ marginLeft: '3rem !important' }}>
@@ -62,21 +61,26 @@ const GenerateRows = ({ data }) => {
 };
 
 const Footer = () => (
-  <Table.Row>
+  <>
+    <Info>رتبه‌های 1 الی 20</Info>
     <Table.Row>
-      <Pagination
-        defaultActivePage={1}
-        firstItem={null}
-        lastItem={null}
-        secondary
-        totalPages={10}
-        style={{ marginTop: '1.5rem' }}
-      />
+      <Table.Row>
+        <Pagination
+          defaultActivePage={1}
+          firstItem={null}
+          lastItem={null}
+          secondary
+          totalPages={10}
+          style={{ marginTop: '0.5rem' }}
+        />
+      </Table.Row>
     </Table.Row>
-  </Table.Row>
+  </>
 );
 
 const Scoreboard = ({ data }) => {
+  const myName = 'پویا معینی';
+  const display = data.some((x) => x.first === myName) ? 'none' : '';
   return (
     <Table selectable size='small' style={{ border: '0 !important' }}>
       <Table.Header>
@@ -91,8 +95,8 @@ const Scoreboard = ({ data }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        <GenerateMyRow name='پویا معینی' score='100' rank='0' />
-        <GenerateRows data={data} />
+        <GenerateMyRow name={myName} score='100' rank='0' display={display} />
+        <GenerateRows data={data} myName={myName} />
       </Table.Body>
       <Footer />
     </Table>
