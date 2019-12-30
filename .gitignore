@@ -11,13 +11,6 @@ package-lock.json
 # testing
 /coverage
 
-# next.js
-/out/
-
-# production
-/build
-
-
 # misc
 .DS_Store
 .env*
