@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBlog } from '@fortawesome/free-solid-svg-icons';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -29,6 +31,7 @@ function Navbar({ transparent }) {
       </Menu.Item>
       <Menu.Item>
         <a href="/blog">بلاگ</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>

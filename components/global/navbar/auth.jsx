@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBlog } from '@fortawesome/free-solid-svg-icons';
 import { logoutAction } from '~/redux/actions/auth';
 
 const Menu = styled(M)`
@@ -43,6 +43,7 @@ function Navbar({ logout, transparent }) {
       </Menu.Item>
       <Menu.Item>
         <a href="/blog">بلاگ</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
