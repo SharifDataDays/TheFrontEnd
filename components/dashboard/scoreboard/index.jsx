@@ -1,9 +1,37 @@
 import React, { Component } from 'react';
 import { Grid, Responsive, Header } from 'semantic-ui-react';
 import NoSSR from 'react-no-ssr';
+import styled from 'styled-components';
 import Laptab from './laptab';
 import Mobile from './mobile';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
+
+const Text = styled.p`
+  color: white;
+  margin-top: ${(props) => props.marginTop} !important;
+`;
+
+const HeaderScoreBoard = () => (
+  <Grid.Column
+    style={{
+      background: 'url(/images/datas.jpeg)',
+      backgroundSize: 'cover',
+      height: ' 18rem',
+      opacity: '.9',
+    }}
+    computer={10}
+    mobile={15}
+    tablet={16}
+    textAlign='left'
+  >
+    {' '}
+    <Text marginTop='2rem'>انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف</Text>
+    <Header as='h2' style={{ color: 'white' }}>
+      Data days جدول رده‌بندی فاز اول از دومین دوره‌ی مسابقات{' '}
+    </Header>
+    <Text marginTop="6rem">تعداد سابمیت‌کننده‌ها : 763 نفر</Text>
+  </Grid.Column>
+);
 
 class ScoreBoard extends Component {
   constructor (props) {
@@ -22,29 +50,7 @@ class ScoreBoard extends Component {
     return (
       <>
         <Grid centered>
-          <Grid.Column
-            style={{
-              background: 'url(/images/datas.jpeg)',
-              backgroundSize: 'cover',
-              height: ' 18rem',
-              opacity: '.9',
-            }}
-            computer={10}
-            mobile={15}
-            tablet={16}
-            textAlign='left'
-          >
-            {' '}
-            <p style={{ color: 'white', marginTop: '2rem', opacity: '1' }}>
-              انجمن علمی دانشکده مهندسی کامپیوتر
-            </p>
-            <Header as='h2' style={{ color: 'white', opacity: '1' }}>
-              Data days جدول رده‌بندی فاز اول دومین دوره از مسابقات{' '}
-            </Header>
-            <p style={{ color: 'white', marginTop: '6rem', opacity: '1' }}>
-              تعداد شرکت کننده‌ها : 763 نفر
-            </p>
-          </Grid.Column>
+          <HeaderScoreBoard />
         </Grid>
         <Grid centered style={{ marginTop: '5rem' }}>
           <Grid.Column computer={10} mobile={15} tablet={15} style={{ padding }}>
