@@ -2,7 +2,7 @@
 import fetch from 'isomorphic-unfetch';
 import React, { Component } from 'react';
 import Head from 'next/head';
-import withLogged from '~/components/global/auth/withLogged';
+import withAuth from '~/components/global/withAuth';
 import Container from '~/components/user/signup/container';
 import { termsAPI } from '~/redux/api';
 
@@ -26,4 +26,4 @@ class SignupPage extends Component {
   }
 }
 
-export default withLogged(SignupPage);
+export default withAuth(false)(SignupPage);

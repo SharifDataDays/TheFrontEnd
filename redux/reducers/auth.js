@@ -8,13 +8,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_CHECK,
   SET_TOKEN,
+  LOGOUT,
 } from '../actions/auth';
 import initialState from '../store/initialState';
 
 function loginClearReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     draft.loading = false;
-    draft.success = false;
     draft.errors = {};
     return draft;
   });
@@ -38,7 +38,6 @@ function loginSuccessReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { token } = action.payload;
     draft.loading = false;
-    draft.success = true;
     draft.errors = {};
     draft.token = token;
     return draft;
@@ -71,6 +70,15 @@ function setTokenReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { token } = action.payload;
     draft.token = token;
+    draft.loading = false;
+    return draft;
+  });
+}
+
+function logoutReducer(state = initialState.auth, action) {
+  return produce(state, (draft) => {
+    draft.token = {};
+    draft.loading = false;
     return draft;
   });
 }
@@ -91,6 +99,8 @@ function authReducers(state = initialState.auth, action) {
       return loginCheckerReducer(state, action);
     case SET_TOKEN:
       return setTokenReducer(state, action);
+    case LOGOUT:
+      return logoutReducer(state, action);
     default:
       return state;
   }

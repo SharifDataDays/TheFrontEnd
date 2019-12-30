@@ -1,8 +1,10 @@
-import styled from 'styled-components';
 import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { logoutAction } from '~/redux/actions/auth';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -21,11 +23,19 @@ const Image = styled(Im)`
   transform: translateY(-50%);
 `;
 
-function Navbar({ transparent }) {
+function Navbar({ logout, transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
-        <Button primary>خروج</Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            logout();
+          }}
+          primary
+        >
+          خروج
+        </Button>
       </Menu.Item>
       <Menu.Item>
         <a href="/dashboard/tasks">منابع</a>
@@ -46,4 +56,10 @@ function Navbar({ transparent }) {
   );
 }
 
-export default Navbar;
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    logout: () => dispatch(logoutAction()),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Navbar);

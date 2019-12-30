@@ -25,7 +25,6 @@ const Text = styled.p`
 `;
 
 function TasksDesktop({ tasks }) {
-  console.log(tasks);
   return (
     <Segment.Group
       basic

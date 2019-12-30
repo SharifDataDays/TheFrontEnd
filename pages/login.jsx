@@ -1,26 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import _ from 'lodash';
 import Head from 'next/head';
-import Router from 'next/router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import withAuth from '~/components/global/withAuth';
 import Container from '~/components/user/login/container';
 import { loginAction } from '~/redux/actions/auth';
-import { authorizeAction } from '~/redux/actions/auth';
 
 class LoginPage extends Component {
-  static async getInitialProps({ store }) {
-    store.dispatch(authorizeAction(store.getState().auth.token));
-    return {};
-  }
-
-  componentDidMount() {
-    const { auth } = this.props;
-    if (!_.isEmpty(auth.token)) {
-      Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
-    }
-  }
-
   render() {
     const { auth, login } = this.props;
     return (
@@ -47,4 +34,4 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default withAuth(false)(connect(mapStateToProps, mapDispatchToProps)(LoginPage));

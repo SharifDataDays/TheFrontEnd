@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/dashboard/layout';
 import Resources from '~/components/dashboard/resources';
 import { loadTaskAction } from '~/redux/actions/tasks';
-import { authorizeAction } from '~/redux/actions/auth';
 
 class ResourcesPage extends Component {
   static async getInitialProps(ctx) {
@@ -12,8 +12,7 @@ class ResourcesPage extends Component {
   }
 
   componentDidMount() {
-    const { authorize, load, id } = this.props;
-    authorize();
+    const { load, id } = this.props;
     load(id);
   }
 
@@ -33,18 +32,16 @@ class ResourcesPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { auth, tasks } = state;
+  const { tasks } = state;
   return {
-    auth,
     tasks,
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    authorize: () => dispatch(authorizeAction()),
     load: (id) => dispatch(loadTaskAction(id)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResourcesPage);
+export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(ResourcesPage));

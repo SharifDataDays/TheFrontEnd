@@ -24,7 +24,7 @@ function loginLoadAction() {
   };
 }
 
-function loginUnloadAction() {
+export function loginUnloadAction() {
   return {
     type: LOGIN_UNLOAD,
   };
@@ -93,6 +93,7 @@ function setTokenAction(token) {
 export function authorizeAction() {
   return (dispatch, getState) => {
     const { token } = getState().auth;
+    dispatch(loginLoadAction());
     authAPI(token).then((authRes) => {
       if (authRes.data.status_code !== 200) {
         refreshAPI(token).then((refreshRes) => {
@@ -106,6 +107,8 @@ export function authorizeAction() {
             dispatch(setTokenAction(newToken));
           }
         });
+      } else {
+        dispatch(setTokenAction(token));
       }
     });
   };
