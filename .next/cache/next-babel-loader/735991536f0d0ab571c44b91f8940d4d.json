@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { combineReducers } from 'redux';\nimport authReducers from './auth';\nimport signupReducers from './signup';\nimport tasksReducers from './tasks';\nexport default combineReducers({\n  auth: authReducers,\n  signup: signupReducers,\n  tasks: tasksReducers\n});","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default {\n  signup: {\n    errors: {},\n    loading: false,\n    success: false\n  },\n  auth: {\n    token: {},\n    errors: {},\n    loading: false,\n    success: false\n  },\n  tasks: {\n    list: [],\n    current: {}\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

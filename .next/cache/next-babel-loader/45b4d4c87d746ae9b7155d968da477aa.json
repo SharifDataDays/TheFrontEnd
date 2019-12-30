@@ -1,0 +1,1 @@
+{"ast":null,"code":"import BASE_ADDR from '.';\nexport function subscribeAPI() {\n  return `${BASE_ADDR}/subscribe/email`;\n}\nexport default function homeAPI() {\n  return `${BASE_ADDR}/`;\n}","map":null,"metadata":{},"sourceType":"module"}

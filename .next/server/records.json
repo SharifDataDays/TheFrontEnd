@@ -1,0 +1,67 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/_app.jsx": 0,
+      "multi private-next-pages/_document.jsx": 1,
+      "multi private-next-pages/blog/[id].jsx": 2,
+      "multi private-next-pages/blog/index.jsx": 3,
+      "multi private-next-pages/dashboard/tasks/[id]/resource.jsx": 4,
+      "multi private-next-pages/dashboard/tasks/index.jsx": 5,
+      "multi private-next-pages/forgot/email.jsx": 6,
+      "multi private-next-pages/forgot/reset.jsx": 7,
+      "multi private-next-pages/index.jsx": 8,
+      "multi private-next-pages/login.jsx": 9,
+      "multi private-next-pages/signup.jsx": 10,
+      "multi next/dist/pages/_error": 11
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11
+    }
+  },
+  "chunks": {
+    "byName": {
+      "init-server.js": 0,
+      "on-error-server.js": 1,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/_app.js": 2,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/_document.js": 3,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/_error.js": 4,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/blog.js": 5,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/blog/[id].js": 6,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/dashboard/tasks.js": 7,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/dashboard/tasks/[id]/resource.js": 8,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/forgot/email.js": 9,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/forgot/reset.js": 10,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/index.js": 11,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/login.js": 12,
+      "static/QIDY2zkvi9VRJOrNwWVkz/pages/signup.js": 13
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}

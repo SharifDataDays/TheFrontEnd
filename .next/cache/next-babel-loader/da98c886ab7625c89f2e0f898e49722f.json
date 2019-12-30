@@ -1,0 +1,1 @@
+{"ast":null,"code":"var BASE_ADDR = 'https://datadays.sharif.edu/api';\nexport var BASE = 'https://datadays.sharif.edu';\nexport function termsAPI() {\n  return \"\".concat(BASE_ADDR, \"/terms\");\n}\nexport default BASE_ADDR;","map":null,"metadata":{},"sourceType":"module"}

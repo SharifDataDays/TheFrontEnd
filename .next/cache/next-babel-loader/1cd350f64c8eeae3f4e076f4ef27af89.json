@@ -1,0 +1,1 @@
+{"ast":null,"code":"import BASE_ADDR from '.';\nexport function blogHomeAPI() {\n  return `${BASE_ADDR}/blog`;\n}\nexport function postAPI(id) {\n  return `${BASE_ADDR}/blog/${id}`;\n}","map":null,"metadata":{},"sourceType":"module"}
