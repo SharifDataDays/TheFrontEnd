@@ -68,15 +68,15 @@ export default class Timeline extends React.Component {
         <div
           style={{
             width: '80%',
-            height: '100px',
+            height: '150px',
             margin: '0 auto',
-            marginTop: '20px',
+            marginTop: '70px',
             fontSize: '15px',
           }}
         >
           <HorizontalTimeline
             styles={{
-              background: '#f8f8f8',
+              background: 'white',
               foreground: '#1A79AD',
               outline: '#dfdfdf',
             }}
@@ -97,7 +97,7 @@ export default class Timeline extends React.Component {
         </div>
         <div>
           <Grid centered style={{height: '200', foreground: 'red'}}>
-            <Card style={{ width: '50%', height: '100%', outline: 'red'}}>
+            <Card style={{ width: '50%', height: '100%'}} foreground="red">
               <Card.Content textAlign="left">
                 <Card.Header>{curIdx + 1} فاز</Card.Header>
               </Card.Content>
