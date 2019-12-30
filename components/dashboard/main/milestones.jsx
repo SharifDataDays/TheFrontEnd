@@ -2,46 +2,6 @@ import React from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
 import { Card, Grid, Transition, Label } from 'semantic-ui-react';
 
-// const VALUES = ['2018-03-22', '2018-03-23'];
-
-const EXAMPLE = [
-  {
-    data: '2018-03-22',
-    status: 'status',
-    info: '1',
-  },
-  {
-    data: '2018-03-23',
-    status: 'status',
-    info: '2',
-  },
-  {
-    data: '2018-03-24',
-    status: 'status',
-    info: '3',
-  },
-  {
-    data: '2018-03-25',
-    status: 'status',
-    info: '4',
-  },
-  {
-    data: '2018-03-26',
-    status: 'status',
-    info: '5',
-  },
-  {
-    data: '2018-03-27',
-    status: 'status',
-    info: '6',
-  },
-  {
-    data: '2018-03-28',
-    status: 'status',
-    info: '7',
-  },
-];
-
 export default class Timeline extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +16,9 @@ export default class Timeline extends React.Component {
       //milestones: id, title, start_time, end_time, tasks
       milestones: props.milestones,
     };
+
   }
+
 
   toggleCurVisibility = () => {
     let preVisibality = this.state.curVisibality;
@@ -89,9 +51,12 @@ export default class Timeline extends React.Component {
     }
   };
 
+  changeDates
+
   render() {
     const { curIdx, prevIdx } = this.state;
     const milestones = this.state.milestones;
+  
     // const curStatus = prevIdx >= 0 ? EXAMPLE[curIdx].info : EXAMPLE[this.state.curPhaseIdx].info;
     // const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
     const curStatus =
@@ -102,7 +67,7 @@ export default class Timeline extends React.Component {
       <div>
         <div
           style={{
-            width: '60%',
+            width: '80%',
             height: '100px',
             margin: '0 auto',
             marginTop: '20px',
@@ -123,30 +88,35 @@ export default class Timeline extends React.Component {
               this.togglePreVisibility();
             }}
             values={milestones.map((x) => x.start_time)}
+            getLabel={function(date, index) {
+              return milestones[index].title
+            }}
+            minEventPadding="120"
+            maxEventPadding="120"
           />
         </div>
         <div>
-          <Grid centered>
-            <Card style={{ width: '50%', height: '100%' }}>
+          <Grid centered style={{height: '200', foreground: 'red'}}>
+            <Card style={{ width: '50%', height: '100%', outline: 'red'}}>
+              <Card.Content textAlign="left">
+                <Card.Header>{curIdx + 1} فاز</Card.Header>
+              </Card.Content>
               <Card.Content>
-                <Card.Header>{curStatus}</Card.Header>
-                <Card.Description>
-                  qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
-                  qqwkefjnqkwjfbkqwjbfjwbfjkbkjkqjwkejbfkqjbewkfjbwkjbkejbjbjbfjwebfkwjbnfwjfkwjebfkwjbekjfadldjnkfjbeknfkejnfqluherboquhlbfluehbfjewhfblwqjhfilqwejbfliweqhbflwejblwqjnlqwjknljwnbjbwjlwbjlewhbjflwhbfwjehbfjwbqfjhwbjhqbjwehfbjqwhebfjwhbefjqhwbejfhqwbjefbq
+                <Card.Description textAlign="left">
+                  {curStatus}
                 </Card.Description>
               </Card.Content>
             </Card>
+
             {/* <Transition animation="fly right" duration="1000" visible={this.state.curVisibality}>
               <Card>
                 <Card.Content>
-                    {
-                        console.log()
-                    }
                   <h1>{this.state.curVisibality ? curStatus : prevStatus}</h1>
                 </Card.Content>
               </Card>
-            </Transition> */}
-            {/* <Transition animation="fly left" duration="1000" visible={this.state.prevVisibality}>
+            </Transition>
+
+            <Transition animation="fly right" duration="1000" visible={this.state.prevVisibality}>
               <Card>
                 <Card.Content>
                   <h1>{this.state.curVisibality ? prevStatus : curStatus}</h1>
