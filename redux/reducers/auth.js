@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import produce from 'immer';
-import cookie from 'js-cookie';
 import {
   LOGIN_CLEAR,
   LOGIN_LOAD,
@@ -8,6 +7,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGIN_CHECK,
+  SET_TOKEN,
 } from '../actions/auth';
 import initialState from '../store/initialState';
 
@@ -41,7 +41,6 @@ function loginSuccessReducer(state = initialState.auth, action) {
     draft.success = true;
     draft.errors = {};
     draft.token = token;
-    cookie.set('token', token, { expires: 1 });
     return draft;
   });
 }
@@ -68,6 +67,14 @@ function loginCheckerReducer(state = initialState.auth, action) {
   });
 }
 
+function setTokenReducer(state = initialState.auth, action) {
+  return produce(state, (draft) => {
+    const { token } = action.payload;
+    draft.token = token;
+    return draft;
+  });
+}
+
 function authReducers(state = initialState.auth, action) {
   switch (action.type) {
     case LOGIN_CLEAR:
@@ -82,6 +89,8 @@ function authReducers(state = initialState.auth, action) {
       return loginSuccessReducer(state, action);
     case LOGIN_CHECK:
       return loginCheckerReducer(state, action);
+    case SET_TOKEN:
+      return setTokenReducer(state, action);
     default:
       return state;
   }

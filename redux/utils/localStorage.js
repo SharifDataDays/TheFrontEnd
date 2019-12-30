@@ -4,9 +4,9 @@ import initialState from '../store/initialState';
 /*
  * Load state from local storage.
  */
-export function loadState() {
+export function loadState(item) {
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem(item);
     if (serializedState) {
       return JSON.parse(serializedState);
     }
@@ -22,10 +22,10 @@ export function loadState() {
  *
  * @param state {StateType} - The state of the program to be saved in local storage.
  */
-export function saveState(state) {
+export function saveState(state, item) {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem(item, serializedState);
   } catch (err) {
     Logger.error(err);
   }

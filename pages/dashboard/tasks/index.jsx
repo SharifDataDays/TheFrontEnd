@@ -1,38 +1,46 @@
-import fetch from 'isomorphic-unfetch';
-import React, { Component } from 'react';
-import nextCookie from 'next-cookies';
 import Head from 'next/head';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Layout from '~/components/dashboard/layout';
-import withNotLogged from '~/components/global/auth/withNotLogged';
 import Tasks from '~/components/dashboard/tasks';
-import { taskListAPI } from '~/redux/api/dashboard';
+import { loadTaskListAction } from '~/redux/actions/tasks';
+import { authorizeAction } from '~/redux/actions/auth';
 
 class TaskPage extends Component {
-  static async getInitialProps(ctx) {
-    const { token } = nextCookie(ctx);
-    const res = await fetch(taskListAPI(), {
-      headers: {
-        Authorization: `Bearer ${token ? token.access : token}`,
-      },
-    });
-    const tasks = await res.json();
-    return { tasks };
+  componentDidMount() {
+    const { authorize, load } = this.props;
+    authorize();
+    load();
   }
 
   render() {
     const { tasks } = this.props;
-    const { documents } = tasks;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
         <Layout>
-          <Tasks tasks={documents} />
+          <Tasks tasks={tasks.list} />
         </Layout>
       </>
     );
   }
 }
 
-export default withNotLogged(TaskPage);
+function mapStateToProps(state, ownProps) {
+  const { auth, tasks } = state;
+  return {
+    auth,
+    tasks,
+  };
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    authorize: () => dispatch(authorizeAction()),
+    load: () => dispatch(loadTaskListAction()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskPage);

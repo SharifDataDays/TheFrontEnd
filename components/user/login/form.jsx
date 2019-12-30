@@ -1,10 +1,8 @@
 import _ from 'lodash';
 import Router from 'next/router';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Form as F, Grid, Button, Message } from 'semantic-ui-react';
 import Input from '../input';
-import { loginAction } from '~/redux/actions/auth';
 
 class Form extends Component {
   constructor(props) {
@@ -15,15 +13,15 @@ class Form extends Component {
   onSubmit() {
     const { auth, login } = this.props;
     login(this.username.state.value, this.password.state.value);
-    if (_.isEmpty(auth.errors)) {
+    console.log(_.isEmpty(auth.errors));
+    /* if (_.isEmpty(auth.errors)) {
       Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
-    }
+    } */
   }
 
   render() {
     const { auth } = this.props;
     const { errors } = auth;
-    console.log(errors);
     return (
       <Grid centered>
         <Grid.Column verticalAlign="middle">
@@ -66,19 +64,4 @@ class Form extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { auth } = state;
-  return {
-    auth,
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    login: (username, password) => {
-      dispatch(loginAction(username, password));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default Form;

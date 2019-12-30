@@ -3,7 +3,6 @@ import React from 'react';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { logout } from '~/utils/auth';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -25,7 +24,7 @@ const Image = styled(Im)`
 function Navbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Item onClick={logout}>
+      <Menu.Item>
         <Button primary>خروج</Button>
       </Menu.Item>
       <Menu.Item>

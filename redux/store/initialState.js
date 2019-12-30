@@ -1,7 +1,7 @@
 export default {
   signup: {
-    loading: false,
     errors: {},
+    loading: false,
     success: false,
   },
   auth: {
@@ -9,5 +9,9 @@ export default {
     errors: {},
     loading: false,
     success: false,
+  },
+  tasks: {
+    list: [],
+    current: {},
   },
 };

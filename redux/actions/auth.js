@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { loginAPI } from '../api/auth';
+import { loginAPI, authAPI, refreshAPI } from '../api/auth';
 
 export const LOGIN_CLEAR = 'LOGIN_CLEAR';
 export const LOGIN_LOAD = 'LOGIN_LOAD';
@@ -7,6 +7,9 @@ export const LOGIN_UNLOAD = 'LOGIN_UNLOAD';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGIN_CHECK = 'LOGIN_CHECK';
+
+export const SET_TOKEN = 'SET_TOKEN';
+
 export const LOGOUT = 'LOGOUT';
 
 function loginClearAction() {
@@ -75,6 +78,36 @@ export function loginAction(username, password) {
     } else {
       dispatch(loginUnloadAction());
     }
+  };
+}
+
+function setTokenAction(token) {
+  return {
+    type: SET_TOKEN,
+    payload: {
+      token,
+    },
+  };
+}
+
+export function authorizeAction() {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    authAPI(token).then((authRes) => {
+      if (authRes.data.status_code !== 200) {
+        refreshAPI(token).then((refreshRes) => {
+          if (refreshRes.data.status_code !== 200) {
+            dispatch(setTokenAction({}));
+          } else {
+            const newToken = {
+              refresh: token.refresh,
+              access: refreshRes.data.access,
+            };
+            dispatch(setTokenAction(newToken));
+          }
+        });
+      }
+    });
   };
 }
 

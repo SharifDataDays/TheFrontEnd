@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Header, Dimmer } from 'semantic-ui-react';
 import { ClipLoader } from 'react-spinners';
 import Container from '../container';
 import Form from './form';
 
-function LoginContainer({ auth }) {
+function LoginContainer({ auth, login }) {
   return (
     <>
       <Dimmer active={auth.loading}>
@@ -15,17 +14,10 @@ function LoginContainer({ auth }) {
         <Header dividing as="h1">
           ورود
         </Header>
-        <Form />
+        <Form auth={auth} login={login} />
       </Container>
     </>
   );
 }
 
-function mapStateToProps(state, ownProps) {
-  const { auth } = state;
-  return {
-    auth,
-  };
-}
-
-export default connect(mapStateToProps)(LoginContainer);
+export default LoginContainer;
