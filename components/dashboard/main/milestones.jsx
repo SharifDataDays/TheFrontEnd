@@ -10,55 +10,31 @@ export default class Timeline extends React.Component {
       curPhaseIdx: 2,
       curIdx: 0,
       prevIdx: -1,
-      curVisibality: true,
-      prevVisibality: false,
+      visibality: true,
 
       //milestones: id, title, start_time, end_time, tasks
       milestones: props.milestones,
     };
-
   }
 
-
-  toggleCurVisibility = () => {
-    let preVisibality = this.state.curVisibality;
-    this.setState({ curVisibality: !preVisibality });
+  toggleVisibality = () => {
+    let preVisibality = this.state.visibality;
+    this.setState({ visibality: !preVisibality });
 
     if (preVisibality) {
       setTimeout(
         function() {
-          this.setState({ prevVisibality: !preVisibality });
+          this.setState({ visibality: preVisibality });
         }.bind(this),
         1000,
       );
-    } else {
-      this.setState({ prevVisibality: !preVisibality });
     }
-  };
+  }
 
-  togglePreVisibility = () => {
-    let preVisibality = this.state.prevVisibality;
-
-    if (!preVisibality) {
-      setTimeout(
-        function() {
-          this.setState({ prevVisibality: !preVisibality });
-        }.bind(this),
-        1000,
-      );
-    } else {
-      this.setState({ prevVisibality: !preVisibality });
-    }
-  };
-
-  changeDates
 
   render() {
     const { curIdx, prevIdx } = this.state;
     const milestones = this.state.milestones;
-  
-    // const curStatus = prevIdx >= 0 ? EXAMPLE[curIdx].info : EXAMPLE[this.state.curPhaseIdx].info;
-    // const prevStatus = prevIdx >= 0 ? EXAMPLE[prevIdx].info : '';
     const curStatus =
       prevIdx >= 0 ? milestones[curIdx].title : milestones[this.state.curPhaseIdx].title;
     const prevStatus = prevIdx >= 0 ? milestones[prevIdx].title : '';
@@ -84,45 +60,30 @@ export default class Timeline extends React.Component {
             indexClick={(index) => {
               this.setState({ prevIdx: this.state.curIdx });
               this.setState({ curIdx: index });
-              this.toggleCurVisibility();
-              this.togglePreVisibility();
+              this.toggleVisibality();
             }}
             values={milestones.map((x) => x.start_time)}
             getLabel={function(date, index) {
-              return milestones[index].title
+              return milestones[index].title;
             }}
             minEventPadding="120"
             maxEventPadding="120"
           />
         </div>
         <div>
-          <Grid centered style={{height: '200', foreground: 'red'}}>
-            <Card style={{ width: '50%', height: '100%'}} foreground="red">
-              <Card.Content textAlign="left">
-                <Card.Header>{curIdx + 1} فاز</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <Card.Description textAlign="left">
-                  {curStatus}
-                </Card.Description>
-              </Card.Content>
-            </Card>
+          <Grid centered style={{ height: '200', foreground: 'red' }}>
 
-            {/* <Transition animation="fly right" duration="1000" visible={this.state.curVisibality}>
-              <Card>
+            <Transition animation="fly right" duration="1000" visible={this.state.visibality}>
+              <Card style={{ width: '50%', height: '100%' }} foreground="red">
+                <Card.Content textAlign="left">
+                  <Card.Header>{this.state.visibality ? curIdx+1 : prevIdx+1} فاز</Card.Header>
+                </Card.Content>
                 <Card.Content>
-                  <h1>{this.state.curVisibality ? curStatus : prevStatus}</h1>
+                  <Card.Description textAlign="left">{this.state.visibality ? curStatus : prevStatus}</Card.Description>
                 </Card.Content>
               </Card>
+
             </Transition>
-
-            <Transition animation="fly right" duration="1000" visible={this.state.prevVisibality}>
-              <Card>
-                <Card.Content>
-                  <h1>{this.state.curVisibality ? prevStatus : curStatus}</h1>
-                </Card.Content>
-              </Card>
-            </Transition> */}
           </Grid>
         </div>
       </div>
