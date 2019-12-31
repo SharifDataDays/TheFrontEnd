@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Pagination } from 'semantic-ui-react';
+import { Table, Pagination, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const TableHeader = styled(Table.HeaderCell)`
