@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -138,26 +138,36 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       author,
       date,
       content,
-      isReply = false
+      isReply = false,
+      hasReply = false
     } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply ? 'none' : 'auto';
     const {
       displayReply
     } = this.state;
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
       style: {
-        marginRight
+        display
       },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 27
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
+      style: {
+        marginRight
+      },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 28
+      },
+      __self: this
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Author, {
@@ -167,19 +177,19 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 30
       },
       __self: this
     }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Metadata, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 33
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 34
       },
       __self: this
     }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Text, {
@@ -190,7 +200,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 35
+        lineNumber: 36
       },
       __self: this
     }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Actions, {
@@ -200,14 +210,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 41
       },
       __self: this
     }, __jsx("a", {
       onClick: this.toReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 42
       },
       __self: this
     }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
@@ -217,7 +227,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 44
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
@@ -226,7 +236,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 45
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -238,19 +248,10 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.doneReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
-    }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
-      style: {
-        display
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 51
-      },
-      __self: this
-    }));
+    }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
   }
 
 }
@@ -866,14 +867,14 @@ const PostPage = props => {
 /*!******************************************!*\
   !*** ./public/static/comments-test.json ***!
   \******************************************/
-/*! exports provided: 0, 1, 2, default */
+/*! exports provided: 0, 1, 2, 3, 4, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"author\":\"پویا معینی\",\"date\":\"امروز ۱۲:۳۰\",\"content\":\"شهرها و کشورهای مختلفی در سرتاسر جهان اعمال مالیات را بر نوشیدنی‌های قندی آغاز کرده‌اند. اما آیا افزایش قیمت این نوشیدنی‌ها واقعا می‌تواند از چاقی، دیابت و دیگر بیماری‌ها ممانعت کند؟\"},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"},{\"author\":\"سهراب بیات\",\"date\":\"۳ روز پیش\",\"content\":\"چیزی که ما در طی ۲۰ سال اخیر یاد گرفته‌ایم، آن است که آنچه می‌نوشید روی چیزی که می‌خورید، تاثیری ندارد\"}]");
+module.exports = JSON.parse("[{\"author\":\"پویا معینی\",\"date\":\"امروز ۱۲:۳۰\",\"content\":\"شهرها و کشورهای مختلفی در سرتاسر جهان اعمال مالیات را بر نوشیدنی‌های قندی آغاز کرده‌اند. اما آیا افزایش قیمت این نوشیدنی‌ها واقعا می‌تواند از چاقی، دیابت و دیگر بیماری‌ها ممانعت کند؟\"},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"},{\"author\":\"سهراب بیات\",\"date\":\"۳ روز پیش\",\"content\":\"چیزی که ما در طی ۲۰ سال اخیر یاد گرفته‌ایم، آن است که آنچه می‌نوشید روی چیزی که می‌خورید، تاثیری ندارد\",\"hasReply\":true},{\"author\":\"مصطفی مهدوی\",\"date\":\"۳ روز پیش\",\"content\":\"او گفت که آمریکا شکست سختی در طرح‌های مخرب خود متحمل شده است و امروز با تمام توان برای نابودی عراق تلاش می‌کند و برای این منظور به استفاده از همه روش‌ها متوسل می‌شود چرا که شکوفایی عراق را نمی‌خواهد\",\"isReply\":true},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"}]");
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/test.jsx ***!
   \******************************/

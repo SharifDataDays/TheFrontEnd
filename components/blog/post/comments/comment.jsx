@@ -18,12 +18,13 @@ class CommentComp extends Component {
   }
 
   render () {
-    const { author, date, content, isReply = false } = this.props;
+    const { author, date, content, isReply = false, hasReply = false } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
-    const display = isReply ? 'none' : 'auto';
+    const display = isReply  ? 'none' : 'auto';
     const { displayReply } = this.state;
     return (
       <>
+      <Divider style={{ display }} />
         <Comment style={{ marginRight }}>
           <Comment.Content>
             <Comment.Author as='a' style={{ float: 'right' }}>
@@ -48,7 +49,7 @@ class CommentComp extends Component {
             </Form>
           </Comment.Content>
         </Comment>
-        <Divider style={{ display }} />
+       
       </>
     );
   }
