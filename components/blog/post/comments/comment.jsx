@@ -18,7 +18,7 @@ class CommentComp extends Component {
   }
 
   render () {
-    const { author, date, content, isReply = false, hasReply = false } = this.props;
+    const { author, date, content, isReply = false } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply  ? 'none' : 'auto';
     const { displayReply } = this.state;

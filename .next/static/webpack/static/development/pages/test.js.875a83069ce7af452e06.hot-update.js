@@ -1,0 +1,215 @@
+webpackHotUpdate("static/development/pages/test.js",{
+
+/***/ "./components/blog/post/comments/comment.jsx":
+/*!***************************************************!*\
+  !*** ./components/blog/post/comments/comment.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var styled_system__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! styled-system */ "./node_modules/styled-system/dist/index.esm.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+/* harmony import */ var react_autosize_textarea__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-autosize-textarea */ "./node_modules/react-autosize-textarea/lib/index.js");
+/* harmony import */ var react_autosize_textarea__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_11__);
+
+
+
+
+
+
+
+var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/comment.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  ", ";\n  width: 100%;\n  height: 100%;\n  outline: 0;\n  border: 0;\n  resize: none;\n  direction: auto;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+
+
+
+
+var TextArea = Object(styled_components__WEBPACK_IMPORTED_MODULE_8__["default"])(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_11___default.a)(_templateObject(), styled_system__WEBPACK_IMPORTED_MODULE_9__["typography"]);
+
+var CommentComp =
+/*#__PURE__*/
+function (_Component) {
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(CommentComp, _Component);
+
+  function CommentComp(props) {
+    var _this;
+
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, CommentComp);
+
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(CommentComp).call(this, props));
+    _this.state = {
+      displayReply: 'none'
+    };
+    _this.toReply = _this.toReply.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    _this.doneReply = _this.doneReply.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    return _this;
+  }
+
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(CommentComp, [{
+    key: "toReply",
+    value: function toReply() {
+      this.setState({
+        displayReply: 'block'
+      });
+    }
+  }, {
+    key: "doneReply",
+    value: function doneReply() {
+      this.setState({
+        displayReply: 'none'
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          author = _this$props.author,
+          date = _this$props.date,
+          content = _this$props.content,
+          _this$props$isReply = _this$props.isReply,
+          isReply = _this$props$isReply === void 0 ? false : _this$props$isReply;
+      var marginRight = isReply ? '2rem' : 'auto';
+      var display = isReply ? 'none' : 'auto';
+      var displayReply = this.state.displayReply;
+      return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Divider"], {
+        style: {
+          display: display
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40
+        },
+        __self: this
+      }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"], {
+        style: {
+          marginRight: marginRight
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"].Content, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42
+        },
+        __self: this
+      }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"].Author, {
+        as: "a",
+        style: {
+          "float": 'right'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43
+        },
+        __self: this
+      }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"].Metadata, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46
+        },
+        __self: this
+      }, __jsx("span", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
+        },
+        __self: this
+      }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"].Text, {
+        style: {
+          display: 'flex',
+          justifyContent: 'flex-end',
+          textAlign: 'right'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 49
+        },
+        __self: this
+      }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Comment"].Actions, {
+        style: {
+          display: 'flex',
+          justifyContent: 'flex-end'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 54
+        },
+        __self: this
+      }, __jsx("a", {
+        onClick: this.toReply,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 55
+        },
+        __self: this
+      }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Form"], {
+        reply: true,
+        style: {
+          display: displayReply
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        },
+        __self: this
+      }, __jsx(TextArea, {
+        style: {
+          height: '5em'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58
+        },
+        __self: this
+      }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Button"], {
+        secondary: true,
+        positive: true,
+        style: {
+          marginBottom: '1rem'
+        },
+        onClick: this.doneReply,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59
+        },
+        __self: this
+      }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
+    }
+  }]);
+
+  return CommentComp;
+}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (CommentComp);
+
+/***/ })
+
+})
+//# sourceMappingURL=test.js.875a83069ce7af452e06.hot-update.js.map

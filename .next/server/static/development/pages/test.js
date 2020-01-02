@@ -138,8 +138,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       author,
       date,
       content,
-      isReply = false,
-      hasReply = false
+      isReply = false
     } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply ? 'none' : 'auto';
