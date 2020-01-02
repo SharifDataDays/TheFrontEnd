@@ -1,30 +1,57 @@
-import React from 'react';
-import { Comment, Divider } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Comment, Divider, Form, Button } from 'semantic-ui-react';
 
-const CommentComp = ({ author, date, content, isReply = false }) => {
-  const marginRight = isReply ? '2rem' : 'auto';
-  const display = isReply ? 'none' : 'auto';
-  return (
-    <>
-      <Comment style={{ marginRight }}>
-        <Comment.Content>
-          <Comment.Author as='a' style={{ float: 'right' }}>
-            {author}
-          </Comment.Author>
-          <Comment.Metadata>
-            <span>{date}</span>
-          </Comment.Metadata>
-          <Comment.Text style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'right' }}>
-            {content}
-          </Comment.Text>
-          <Comment.Actions style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <a>پاسخ دادن</a>
-          </Comment.Actions>
-        </Comment.Content>
-      </Comment>
-      <Divider style={{ display }} />
-    </>
-  );
-};
+class CommentComp extends Component {
+  constructor (props) {
+    super(props);
+    this.state = { displayReply: 'none' };
+    this.toReply = this.toReply.bind(this);
+    this.doneReply = this.doneReply.bind(this);
+  }
+
+  toReply () {
+    this.setState({ displayReply: 'block' });
+  }
+
+  doneReply () {
+    this.setState({ displayReply: 'none' });
+  }
+
+  render () {
+    const { author, date, content, isReply = false } = this.props;
+    const marginRight = isReply ? '2rem' : 'auto';
+    const display = isReply ? 'none' : 'auto';
+    const { displayReply } = this.state;
+    return (
+      <>
+        <Comment style={{ marginRight }}>
+          <Comment.Content>
+            <Comment.Author as='a' style={{ float: 'right' }}>
+              {author}
+            </Comment.Author>
+            <Comment.Metadata>
+              <span>{date}</span>
+            </Comment.Metadata>
+            <Comment.Text
+              style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'right' }}
+            >
+              {content}
+            </Comment.Text>
+            <Comment.Actions style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a onClick={this.toReply}>پاسخ دادن</a>
+            </Comment.Actions>
+            <Form reply style={{ display: displayReply }}>
+              <Form.TextArea style={{ height: '5em' }} />
+              <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
+                ثبت پاسخ
+              </Button>
+            </Form>
+          </Comment.Content>
+        </Comment>
+        <Divider style={{ display }} />
+      </>
+    );
+  }
+}
 
 export default CommentComp;
