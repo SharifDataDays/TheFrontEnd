@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -23,7 +24,43 @@ const Image = styled(Im)`
   transform: translateY(-50%);
 `;
 
-function Navbar({ logout, transparent }) {
+function NoAuthNavbar({ transparent }) {
+  return (
+    <Menu size="huge" transparent={transparent} secondary>
+      <Menu.Item>
+        <a href="/login">
+          <Button primary>ورود</Button>
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="/blog">بلاگ</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
+      </Menu.Item>
+      <Menu.Menu position="left">
+        <Menu.Header>
+          <a href="/">
+            <Image
+              style={{ marginRight: '1rem', marginTop: '2rem' }}
+              size="mini"
+              src="/images/logo.png"
+            />
+          </a>
+        </Menu.Header>
+      </Menu.Menu>
+    </Menu>
+  );
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    logout: () => dispatch(logoutAction()),
+  };
+}
+
+const AuthNavbar = connect(
+  null,
+  mapDispatchToProps,
+)(({ logout, transparent }) => {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
@@ -58,12 +95,13 @@ function Navbar({ logout, transparent }) {
       </Menu.Menu>
     </Menu>
   );
+});
+
+function Navbar({ token, transparent }) {
+  if (_.isEmpty(token)) {
+    return <NoAuthNavbar transparent={transparent} />;
+  }
+  return <AuthNavbar transparent={transparent} />;
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    logout: () => dispatch(logoutAction()),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Navbar);
+export default Navbar;

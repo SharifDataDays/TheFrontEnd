@@ -1,8 +1,7 @@
-import _ from 'lodash';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
-import Layout from '~/components/dashboard/layout';
+import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
 import { taskAPI } from '~/redux/api/dashboard';

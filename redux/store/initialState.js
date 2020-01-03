@@ -11,8 +11,4 @@ export default {
     loading: false,
     success: false,
   },
-  tasks: {
-    list: [],
-    current: {},
-  },
 };
