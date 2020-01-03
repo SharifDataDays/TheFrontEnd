@@ -10,21 +10,24 @@ class CommentComp extends Component {
   }
 
   toReply () {
+    const { displayReply } = this.state;
+    if (displayReply === 'block') return this.doneReply();
     this.setState({ displayReply: 'block' });
   }
 
   doneReply () {
+    // post data
     this.setState({ displayReply: 'none' });
   }
 
   render () {
     const { author, date, content, isReply = false } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
-    const display = isReply  ? 'none' : 'auto';
+    const display = isReply ? 'none' : 'auto';
     const { displayReply } = this.state;
     return (
       <>
-      <Divider style={{ display }} />
+        <Divider style={{ display }} />
         <Comment style={{ marginRight }}>
           <Comment.Content>
             <Comment.Author as='a' style={{ float: 'right' }}>
@@ -49,7 +52,6 @@ class CommentComp extends Component {
             </Form>
           </Comment.Content>
         </Comment>
-       
       </>
     );
   }

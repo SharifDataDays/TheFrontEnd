@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Form, Header, Divider, Comment as CMT } from 'semantic-ui-react';
 import { typography } from 'styled-system';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -19,19 +19,28 @@ const TextArea = styled(TextareaAutosize)`
 
 const GenerateComments = ({ data }) => data.map((x) => <Comment {...x} />);
 
-const CommentExampleMinimal = () => (
-  <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-    <Divider horizontal>
-      <Header as='h3'>نظرات</Header>
-    </Divider>
-    <Form reply>
-      <TextArea />
-      <Button secondary positive style={{ marginBottom: '1rem' }}>
-        ثبت نظر
-      </Button>
-    </Form>
-    <GenerateComments data={samples} />
-  </CMT.Group>
-);
+class CommentsPage extends Component {
+  reply () {
+    // should handle post
+    this.setState({});
+  }
 
-export default CommentExampleMinimal;
+  render () {
+    return (
+      <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
+        <Divider horizontal>
+          <Header as='h3'>نظرات</Header>
+        </Divider>
+        <Form reply>
+          <TextArea />
+          <Button secondary positive style={{ marginBottom: '1rem' }}>
+            ثبت نظر
+          </Button>
+        </Form>
+        <GenerateComments data={samples} />
+      </CMT.Group>
+    );
+  }
+}
+
+export default CommentsPage;

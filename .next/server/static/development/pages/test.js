@@ -122,12 +122,17 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   }
 
   toReply() {
+    const {
+      displayReply
+    } = this.state;
+    if (displayReply === 'block') return this.doneReply();
     this.setState({
       displayReply: 'block'
     });
   }
 
   doneReply() {
+    // post data
     this.setState({
       displayReply: 'none'
     });
@@ -151,7 +156,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 30
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
@@ -160,13 +165,13 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 28
+        lineNumber: 31
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 32
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Author, {
@@ -176,19 +181,19 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 33
       },
       __self: this
     }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Metadata, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 36
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 37
       },
       __self: this
     }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Text, {
@@ -199,7 +204,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 39
       },
       __self: this
     }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Actions, {
@@ -209,14 +214,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 44
       },
       __self: this
     }, __jsx("a", {
       onClick: this.toReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 45
       },
       __self: this
     }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
@@ -226,7 +231,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 47
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
@@ -236,7 +241,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 48
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -248,7 +253,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.doneReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 49
       },
       __self: this
     }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
@@ -293,16 +298,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5___default()(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4___default.a)`
-  ${styled_system__WEBPACK_IMPORTED_MODULE_3__["typography"]};
-  width: 100%;
-  height: 100%;
-  outline: 0;
-  border: 0;
-  resize: none;
-  direction: rtl;
-  margin-bottom: 1rem !important;
-`;
+const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5___default()(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4___default.a).withConfig({
+  displayName: "comments__TextArea",
+  componentId: "sc-1sc0g24-0"
+})(["", ";width:100%;height:100%;outline:0;border:0;resize:none;direction:rtl;margin-bottom:1rem !important;"], styled_system__WEBPACK_IMPORTED_MODULE_3__["typography"]);
 
 const GenerateComments = ({
   data
@@ -314,64 +313,74 @@ const GenerateComments = ({
   __self: undefined
 })));
 
-const CommentExampleMinimal = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
-  style: {
-    marginTop: '5rem',
-    marginBottom: '5rem'
-  },
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 23
-  },
-  __self: undefined
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
-  horizontal: true,
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 24
-  },
-  __self: undefined
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
-  as: "h3",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 25
-  },
-  __self: undefined
-}, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
-  reply: true,
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 27
-  },
-  __self: undefined
-}, __jsx(TextArea, {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 28
-  },
-  __self: undefined
-}), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-  secondary: true,
-  positive: true,
-  style: {
-    marginBottom: '1rem'
-  },
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 29
-  },
-  __self: undefined
-}, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
-  data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__,
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 33
-  },
-  __self: undefined
-}));
+class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
+  reply() {
+    // should handle post
+    this.setState({});
+  }
 
-/* harmony default export */ __webpack_exports__["default"] = (CommentExampleMinimal);
+  render() {
+    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
+      style: {
+        marginTop: '5rem',
+        marginBottom: '5rem'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      },
+      __self: this
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
+      horizontal: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: this
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
+      as: "h3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: this
+    }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+      reply: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34
+      },
+      __self: this
+    }, __jsx(TextArea, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 35
+      },
+      __self: this
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      secondary: true,
+      positive: true,
+      style: {
+        marginBottom: '1rem'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
+      data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 40
+      },
+      __self: this
+    }));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (CommentsPage);
 
 /***/ }),
 
@@ -889,7 +898,7 @@ const PostPage = props => {
 /*! exports provided: 0, 1, 2, 3, 4, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"author\":\"پویا معینی\",\"date\":\"امروز ۱۲:۳۰\",\"content\":\"شهرها و کشورهای مختلفی در سرتاسر جهان اعمال مالیات را بر نوشیدنی‌های قندی آغاز کرده‌اند. اما آیا افزایش قیمت این نوشیدنی‌ها واقعا می‌تواند از چاقی، دیابت و دیگر بیماری‌ها ممانعت کند؟\"},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"},{\"author\":\"سهراب بیات\",\"date\":\"۳ روز پیش\",\"content\":\"چیزی که ما در طی ۲۰ سال اخیر یاد گرفته‌ایم، آن است که آنچه می‌نوشید روی چیزی که می‌خورید، تاثیری ندارد\",\"hasReply\":true},{\"author\":\"مصطفی مهدوی\",\"date\":\"۳ روز پیش\",\"content\":\"او گفت که آمریکا شکست سختی در طرح‌های مخرب خود متحمل شده است و امروز با تمام توان برای نابودی عراق تلاش می‌کند و برای این منظور به استفاده از همه روش‌ها متوسل می‌شود چرا که شکوفایی عراق را نمی‌خواهد\",\"isReply\":true},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"}]");
+module.exports = JSON.parse("[{\"author\":\"پویا معینی\",\"date\":\"امروز ۱۲:۳۰\",\"content\":\"شهرها و کشورهای مختلفی در سرتاسر جهان اعمال مالیات را بر نوشیدنی‌های قندی آغاز کرده‌اند. اما آیا افزایش قیمت این نوشیدنی‌ها واقعا می‌تواند از چاقی، دیابت و دیگر بیماری‌ها ممانعت کند؟\"},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"},{\"author\":\"سهراب بیات\",\"date\":\"۳ روز پیش\",\"content\":\"😄چیزی که ما در طی ۲۰ سال اخیر یاد گرفته‌ایم، آن است که آنچه می‌نوشید روی چیزی که می‌خورید، تاثیری ندارد\",\"hasReply\":true},{\"author\":\"مصطفی مهدوی\",\"date\":\"۳ روز پیش\",\"content\":\"او گفت که آمریکا شکست سختی در طرح‌های مخرب خود متحمل شده است و امروز با تمام توان برای نابودی عراق تلاش می‌کند و برای این منظور به استفاده از همه روش‌ها متوسل می‌شود چرا که شکوفایی عراق را نمی‌خواهد\",\"isReply\":true},{\"author\":\"احمد احمدیان\",\"date\":\"دیروز ۱۱:۴۹\",\"content\":\"بنابراین برای مشاهده‌ی هرگونه مزیت سلامتی حاصل از اعمال مالیات، باید سال‌ها منتظر ماند\"}]");
 
 /***/ }),
 
