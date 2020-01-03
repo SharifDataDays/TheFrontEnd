@@ -1602,14 +1602,13 @@ function signupAction(fields) {
 /*!***************************!*\
   !*** ./redux/api/auth.js ***!
   \***************************/
-/*! exports provided: loginAPI, authAPI, refreshAPI, forgotAPI, resetAPI */
+/*! exports provided: loginAPI, authAPI, forgotAPI, resetAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginAPI", function() { return loginAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authAPI", function() { return authAPI; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "refreshAPI", function() { return refreshAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forgotAPI", function() { return forgotAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetAPI", function() { return resetAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
@@ -1619,7 +1618,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const LOGIN = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/login`;
 const AUTH = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
-const REFRESH = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/refresh`;
+const FORGOT = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/`;
+const RESET = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/confirm/`;
 function loginAPI(data) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(LOGIN, data);
 }
@@ -1630,16 +1630,11 @@ function authAPI(token) {
     }
   });
 }
-function refreshAPI(token) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(REFRESH, {
-    refresh: token.refresh
-  });
+function forgotAPI(email) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(FORGOT, email);
 }
-function forgotAPI() {
-  return `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/`;
-}
-function resetAPI() {
-  return `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/confirm/`;
+function resetAPI(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(RESET, data);
 }
 
 /***/ }),

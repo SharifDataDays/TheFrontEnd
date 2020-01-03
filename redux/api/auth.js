@@ -3,7 +3,8 @@ import BASE_ADDR from '.';
 
 const LOGIN = `${BASE_ADDR}/accounts/login`;
 const AUTH = `${BASE_ADDR}/accounts/profile`;
-const REFRESH = `${BASE_ADDR}/accounts/refresh`;
+const FORGOT = `${BASE_ADDR}/accounts/password/reset/`;
+const RESET = `${BASE_ADDR}/accounts/password/reset/confirm/`;
 
 export function loginAPI(data) {
   return axios.post(LOGIN, data);
@@ -17,16 +18,10 @@ export function authAPI(token) {
   });
 }
 
-export function refreshAPI(token) {
-  return axios.post(REFRESH, {
-    refresh: token.refresh,
-  });
+export function forgotAPI(email) {
+  return axios.post(FORGOT, email);
 }
 
-export function forgotAPI() {
-  return `${BASE_ADDR}/accounts/password/reset/`;
-}
-
-export function resetAPI() {
-  return `${BASE_ADDR}/accounts/password/reset/confirm/`;
+export function resetAPI(data) {
+  return axios.post(RESET, data);
 }
