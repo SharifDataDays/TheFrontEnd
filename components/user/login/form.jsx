@@ -13,7 +13,6 @@ class Form extends Component {
   onSubmit() {
     const { auth, login } = this.props;
     login(this.username.state.value, this.password.state.value);
-    console.log(_.isEmpty(auth.errors));
     /* if (_.isEmpty(auth.errors)) {
       Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
     } */

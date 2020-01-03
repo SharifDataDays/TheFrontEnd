@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import Head from 'next/head';
 import Router from 'next/router';
+import cookie from 'js-cookie';
+import nextCookie from 'next-cookies';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dimmer } from 'semantic-ui-react';
@@ -11,6 +13,12 @@ function withAuth(loggedIn) {
   return (WrappedComponent) => {
     class Wrapper extends Component {
       static async getInitialProps(ctx) {
+        /* const { store, isServer, query, req } = ctx;
+        if (isServer) {
+          console.log(isServer, req.headers.cookie);
+        } else {
+          console.log(cookie.get('token'));
+        } */
         const pageProps =
           (await WrappedComponent.getInitialProps) && (await WrappedComponent.getInitialProps(ctx));
         return { ...pageProps };

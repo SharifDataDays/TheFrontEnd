@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-import _ from 'lodash';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';

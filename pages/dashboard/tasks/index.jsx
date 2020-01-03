@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import nextCookie from 'next-cookies';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';

@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport Navbar from \"../global/navbar/auth\";\n\nfunction Layout(_ref) {\n  var children = _ref.children;\n  return __jsx(React.Fragment, null, __jsx(Navbar, null), children);\n}\n\nexport default Layout;","map":null,"metadata":{},"sourceType":"module"}

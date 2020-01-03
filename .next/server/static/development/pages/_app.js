@@ -1291,14 +1291,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! immer */ "immer");
 /* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(immer__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/auth */ "./redux/actions/auth.js");
-/* harmony import */ var _store_initialState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/initialState */ "./redux/store/initialState.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/auth */ "./redux/actions/auth.js");
+/* harmony import */ var _store_initialState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/initialState */ "./redux/store/initialState.js");
 
 
 
 
 
-function loginClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+
+function loginClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     draft.loading = false;
     draft.errors = {};
@@ -1306,21 +1309,21 @@ function loginClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_
   });
 }
 
-function loginLoadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function loginLoadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     draft.loading = true;
     return draft;
   });
 }
 
-function loginUnloadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function loginUnloadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     draft.loading = false;
     return draft;
   });
 }
 
-function loginSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function loginSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     const {
       token
@@ -1328,11 +1331,14 @@ function loginSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODUL
     draft.loading = false;
     draft.errors = {};
     draft.token = token;
+    js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('token', token.access, {
+      expires: 1
+    });
     return draft;
   });
 }
 
-function loginFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function loginFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     const {
       errors
@@ -1344,7 +1350,7 @@ function loginFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3
   });
 }
 
-function loginCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function loginCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     const {
       fields
@@ -1360,7 +1366,7 @@ function loginCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MODUL
   });
 }
 
-function setTokenReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function setTokenReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     const {
       token
@@ -1371,38 +1377,39 @@ function setTokenReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3_
   });
 }
 
-function logoutReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function logoutReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     draft.token = {};
     draft.loading = false;
+    js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('token');
     return draft;
   });
 }
 
-function authReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_3__["default"].auth, action) {
+function authReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   switch (action.type) {
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_CLEAR"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_CLEAR"]:
       return loginClearReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_LOAD"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_LOAD"]:
       return loginLoadReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_UNLOAD"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_UNLOAD"]:
       return loginUnloadReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_FAIL"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_FAIL"]:
       return loginFailReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_SUCCESS"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_SUCCESS"]:
       return loginSuccessReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGIN_CHECK"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_CHECK"]:
       return loginCheckerReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["SET_TOKEN"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["SET_TOKEN"]:
       return setTokenReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_2__["LOGOUT"]:
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGOUT"]:
       return logoutReducer(state, action);
 
     default:
@@ -1867,6 +1874,17 @@ module.exports = require("core-js/library/fn/promise");
 /***/ (function(module, exports) {
 
 module.exports = require("immer");
+
+/***/ }),
+
+/***/ "js-cookie":
+/*!****************************!*\
+  !*** external "js-cookie" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 
