@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -231,7 +231,8 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
       style: {
-        height: '5em'
+        height: '5em',
+        direction: 'rtl'
       },
       __source: {
         fileName: _jsxFileName,
@@ -273,9 +274,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./comment */ "./components/blog/post/comments/comment.jsx");
-/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json");
-var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
+/* harmony import */ var styled_system__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-system */ "styled-system");
+/* harmony import */ var styled_system__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_system__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-autosize-textarea */ "react-autosize-textarea");
+/* harmony import */ var react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./comment */ "./components/blog/post/comments/comment.jsx");
+/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json");
+var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
 
 var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/index.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
@@ -284,12 +291,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
+
+
+const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5___default()(react_autosize_textarea__WEBPACK_IMPORTED_MODULE_4___default.a)`
+  ${styled_system__WEBPACK_IMPORTED_MODULE_3__["typography"]};
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  border: 0;
+  resize: none;
+  direction: rtl;
+  margin-bottom: 1rem !important;
+`;
+
 const GenerateComments = ({
   data
-}) => _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_4__.map(x => __jsx(_comment__WEBPACK_IMPORTED_MODULE_3__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, x, {
+}) => data.map(x => __jsx(_comment__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, x, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6
+    lineNumber: 20
   },
   __self: undefined
 })));
@@ -301,34 +321,34 @@ const CommentExampleMinimal = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MO
   },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 23
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
   horizontal: true,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 10
+    lineNumber: 24
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
   as: "h3",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 11
+    lineNumber: 25
   },
   __self: undefined
 }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
   reply: true,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 13
+    lineNumber: 27
   },
   __self: undefined
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].TextArea, {
+}, __jsx(TextArea, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 14
+    lineNumber: 28
   },
   __self: undefined
 }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -339,14 +359,14 @@ const CommentExampleMinimal = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MO
   },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 15
+    lineNumber: 29
   },
   __self: undefined
 }, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
-  data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_4__,
+  data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 19
+    lineNumber: 33
   },
   __self: undefined
 }));
@@ -873,7 +893,7 @@ module.exports = JSON.parse("[{\"author\":\"پویا معینی\",\"date\":\"ا�
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/test.jsx ***!
   \******************************/
@@ -962,6 +982,17 @@ module.exports = require("react");
 
 /***/ }),
 
+/***/ "react-autosize-textarea":
+/*!******************************************!*\
+  !*** external "react-autosize-textarea" ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-autosize-textarea");
+
+/***/ }),
+
 /***/ "semantic-ui-react":
 /*!************************************!*\
   !*** external "semantic-ui-react" ***!
@@ -981,6 +1012,17 @@ module.exports = require("semantic-ui-react");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-components");
+
+/***/ }),
+
+/***/ "styled-system":
+/*!********************************!*\
+  !*** external "styled-system" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-system");
 
 /***/ })
 

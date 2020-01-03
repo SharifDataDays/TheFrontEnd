@@ -42,7 +42,7 @@ class CommentComp extends Component {
               <a onClick={this.toReply}>پاسخ دادن</a>
             </Comment.Actions>
             <Form reply style={{ display: displayReply }}>
-              <Form.TextArea style={{ height: '5em' }} />
+              <Form.TextArea style={{ height: '5em', direction: 'rtl' }} />
               <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
                 ثبت پاسخ
               </Button>
