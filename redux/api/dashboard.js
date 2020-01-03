@@ -11,7 +11,7 @@ const TASK_LIST = `${BASE_ADDR}/resources`;
 export function taskListAPI(token) {
   return axios.get(TASK_LIST, {
     headers: {
-      Authorization: `Bearer ${token.access}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 }
@@ -19,7 +19,7 @@ export function taskListAPI(token) {
 export function taskAPI(id, token) {
   return axios.get(TASK(id), {
     headers: {
-      Authorization: `Bearer ${token.access}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 }

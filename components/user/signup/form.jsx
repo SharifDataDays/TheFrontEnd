@@ -1,12 +1,10 @@
 /* eslint-disable camelcase */
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from '../input';
 import Date from './date';
 import Terms from './terms';
-import { signupAction } from '~/redux/actions/signup';
 
 class Form extends Component {
   constructor(props) {
@@ -149,19 +147,4 @@ class Form extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { signup } = state;
-  return {
-    signup,
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    request: (fields) => {
-      dispatch(signupAction(fields));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default Form;

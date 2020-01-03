@@ -4,9 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Container from '~/components/user/login/container';
-import { loginAction } from '~/redux/actions/auth';
+import { loginClearAction, loginAction } from '~/redux/actions/auth';
 
 class LoginPage extends Component {
+  componentDidMount() {
+    const { clear } = this.props;
+    clear();
+  }
+
   render() {
     const { auth, login } = this.props;
     return (
@@ -29,6 +34,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
+    clear: () => dispatch(loginClearAction()),
     login: (username, password) => dispatch(loginAction(username, password)),
   };
 }

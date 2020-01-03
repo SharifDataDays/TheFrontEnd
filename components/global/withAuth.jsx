@@ -2,75 +2,75 @@ import _ from 'lodash';
 import Head from 'next/head';
 import Router from 'next/router';
 import cookie from 'js-cookie';
-import nextCookie from 'next-cookies';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dimmer } from 'semantic-ui-react';
 import { ClipLoader } from 'react-spinners';
 import { authorizeAction } from '~/redux/actions/auth';
 
+function getSSRToken(headerCookies) {
+  let token = '';
+  _.forEach(_.split(headerCookies, ' '), (headerCookie) => {
+    const key = headerCookie.split('=')[0];
+    const value = _.replace(headerCookie.split('=')[1], ';', '');
+    if (key === 'token' && value !== '%5Bobject%20Object%5D') {
+      token = value;
+    }
+  });
+  return token;
+}
+
 function withAuth(loggedIn) {
   return (WrappedComponent) => {
     class Wrapper extends Component {
       static async getInitialProps(ctx) {
-        /* const { store, isServer, query, req } = ctx;
-        if (isServer) {
-          console.log(isServer, req.headers.cookie);
-        } else {
-          console.log(cookie.get('token'));
-        } */
-        const pageProps =
-          (await WrappedComponent.getInitialProps) && (await WrappedComponent.getInitialProps(ctx));
-        return { ...pageProps };
-      }
+        const { store, isServer, req } = ctx;
+        const token = isServer ? getSSRToken(req.headers.cookie) : cookie.get('token');
 
-      componentDidMount() {
-        const { authorize } = this.props;
-        authorize();
+        await store.dispatch(authorizeAction(token));
+
+        const pageProps =
+          (await WrappedComponent.getInitialProps) &&
+          (await WrappedComponent.getInitialProps(ctx, token));
+        return { ...pageProps, isServer };
       }
 
       render() {
-        const { auth } = this.props;
-
-        if (auth.loading) {
-          return (
-            <>
-              <Head>
-                <title>DataDays 2020</title>
-              </Head>
-              <Dimmer active={auth.loading}>
-                <ClipLoader size={75} color="#fff" loading={auth.loading} />
-              </Dimmer>
-            </>
-          );
-        }
+        const { page, auth } = this.props;
+        const pageLoading =
+          page.loading || (auth.authorized && !loggedIn) || (!auth.authorized && loggedIn);
         if (_.isUndefined(loggedIn)) {
           return <WrappedComponent {...this.props} />;
         }
-        if (_.isEmpty(auth.token) && loggedIn) {
-          Router.push('/login');
+        if (!auth.authorized && loggedIn) {
+          Router.push('/login', '/login', { shallow: false });
         }
-        if (!_.isEmpty(auth.token) && !loggedIn) {
-          Router.push('/dashboard/tasks');
+        if (auth.authorized && !loggedIn) {
+          Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
         }
-        return <WrappedComponent {...this.props} />;
+        return (
+          <>
+            <Head>
+              <title>DataDays 2020</title>
+            </Head>
+            <Dimmer active={pageLoading}>
+              <ClipLoader size={75} color="#fff" loading={pageLoading} />
+            </Dimmer>
+            <WrappedComponent {...this.props} />
+          </>
+        );
       }
     }
 
     function mapStateToProps(state, ownProps) {
-      const { auth } = state;
+      const { page, auth } = state;
       return {
+        page,
         auth,
       };
     }
 
-    function mapDispatchToProps(dispatch, ownProps) {
-      return {
-        authorize: () => dispatch(authorizeAction()),
-      };
-    }
-
-    return connect(mapStateToProps, mapDispatchToProps)(Wrapper);
+    return connect(mapStateToProps, null)(Wrapper);
   };
 }
 

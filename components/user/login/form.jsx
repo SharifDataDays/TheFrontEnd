@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Router from 'next/router';
 import React, { Component } from 'react';
 import { Form as F, Grid, Button, Message } from 'semantic-ui-react';
 import Input from '../input';
@@ -13,9 +12,6 @@ class Form extends Component {
   onSubmit() {
     const { auth, login } = this.props;
     login(this.username.state.value, this.password.state.value);
-    /* if (_.isEmpty(auth.errors)) {
-      Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
-    } */
   }
 
   render() {

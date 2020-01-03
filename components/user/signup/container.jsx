@@ -1,31 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Header, Dimmer } from 'semantic-ui-react';
-import { ClipLoader } from 'react-spinners';
+import { Header } from 'semantic-ui-react';
 import Container from '../container';
 import Form from './form';
 
-function SignupContainer({ terms, signup }) {
+function SignupContainer({ terms, signup, request }) {
   return (
-    <>
-      <Dimmer active={signup.loading}>
-        <ClipLoader size={75} color="#fff" loading={signup.loading} />
-      </Dimmer>
-      <Container>
-        <Header as="h1" dividing>
-          ثبت نام
-        </Header>
-        <Form terms={terms} />
-      </Container>
-    </>
+    <Container>
+      <Header as="h1" dividing>
+        ثبت نام
+      </Header>
+      <Form request={request} signup={signup} terms={terms} />
+    </Container>
   );
 }
 
-function mapStateToProps(state, ownProps) {
-  const { signup } = state;
-  return {
-    signup,
-  };
-}
-
-export default connect(mapStateToProps)(SignupContainer);
+export default SignupContainer;

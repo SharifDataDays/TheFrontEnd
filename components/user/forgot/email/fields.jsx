@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, Grid } from 'semantic-ui-react';
 import Input from '../../input';
@@ -10,41 +9,30 @@ export default class ForgotFields extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
       errors: {
         email: false,
       },
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.email = this.email.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
   }
 
   onSubmit() {
-    this.setState((prevState) => {
-      const res = check(prevState);
-      if (res.problem) {
-        const { notify } = this.props;
-        notify(res.problem);
-      } else {
-        this.email();
-      }
-      return {
-        errors: res.errors,
-      };
-    });
-  }
-
-  handleChange(event, { name, value }) {
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  email() {
-    const { email } = this.state;
     const { notify } = this.props;
-    axios.post(forgotAPI(), { email }).then((res) => {
+    const res = check({ email: this.email.state.value });
+    if (res.problem) {
+      notify(res.problem);
+    } else {
+      this.sendEmail();
+    }
+    this.setState({
+      errors: res.errors,
+    });
+  }
+
+  sendEmail() {
+    const { notify } = this.props;
+    forgotAPI(this.email.state.value).then((res) => {
       const serverData = res.data;
       if (serverData.status_code !== 200) {
         notify('emailNotExists');
@@ -55,18 +43,18 @@ export default class ForgotFields extends Component {
   }
 
   render() {
-    const { email, errors } = this.state;
+    const { errors } = this.state;
     return (
       <Grid centered>
         <Grid.Column verticalAlign="middle">
           <Form>
             <Form.Group dir="rtl">
               <Input
+                ref={(c) => {
+                  this.email = c;
+                }}
                 width={16}
-                onChange={this.handleChange}
-                name="email"
                 label="ایمیل"
-                value={email}
                 error={errors.email}
               />
             </Form.Group>
