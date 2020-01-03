@@ -48,19 +48,17 @@ function withAuth(loggedIn) {
         if (auth.authorized && !loggedIn) {
           Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
         }
-        if (pageLoading) {
-          return (
-            <>
-              <Head>
-                <title>DataDays 2020</title>
-              </Head>
-              <Dimmer active={pageLoading}>
-                <ClipLoader size={75} color="#fff" loading={pageLoading} />
-              </Dimmer>
-            </>
-          );
-        }
-        return <WrappedComponent {...this.props} />;
+        return (
+          <>
+            <Head>
+              <title>DataDays 2020</title>
+            </Head>
+            <Dimmer active={pageLoading}>
+              <ClipLoader size={75} color="#fff" loading={pageLoading} />
+            </Dimmer>
+            <WrappedComponent {...this.props} />
+          </>
+        );
       }
     }
 

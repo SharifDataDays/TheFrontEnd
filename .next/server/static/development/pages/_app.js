@@ -1368,7 +1368,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
 /*!*******************************!*\
   !*** ./redux/actions/auth.js ***!
   \*******************************/
-/*! exports provided: LOGIN_CLEAR, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_AUTH, LOGOUT, loginCheckerAction, loginAction, authorizeAction, logoutAction */
+/*! exports provided: LOGIN_CLEAR, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_AUTH, LOGOUT, loginClearAction, loginCheckerAction, loginAction, authorizeAction, logoutAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1379,6 +1379,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_CHECK", function() { return LOGIN_CHECK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_AUTH", function() { return SET_AUTH; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginClearAction", function() { return loginClearAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginCheckerAction", function() { return loginCheckerAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginAction", function() { return loginAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authorizeAction", function() { return authorizeAction; });
@@ -1396,7 +1397,6 @@ const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGIN_CHECK = 'LOGIN_CHECK';
 const SET_AUTH = 'SET_AUTH';
 const LOGOUT = 'LOGOUT';
-
 function loginClearAction() {
   return {
     type: LOGIN_CLEAR
@@ -1518,46 +1518,32 @@ function pageLoadingAction(loading) {
 /*!*********************************!*\
   !*** ./redux/actions/signup.js ***!
   \*********************************/
-/*! exports provided: SIGNUP_CLEAR, SIGNUP_LOAD, SIGNUP_UNLOAD, SIGNUP_SUCCESS, SIGNUP_FAIL, SIGNUP_CHECK, signupCheckerAction, signupAction */
+/*! exports provided: SIGNUP_CLEAR, SIGNUP_SUCCESS, SIGNUP_FAIL, SIGNUP_CHECK, signupClearAction, signupCheckerAction, signupAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_CLEAR", function() { return SIGNUP_CLEAR; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_LOAD", function() { return SIGNUP_LOAD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_UNLOAD", function() { return SIGNUP_UNLOAD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_SUCCESS", function() { return SIGNUP_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_FAIL", function() { return SIGNUP_FAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGNUP_CHECK", function() { return SIGNUP_CHECK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signupClearAction", function() { return signupClearAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signupCheckerAction", function() { return signupCheckerAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signupAction", function() { return signupAction; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/signup */ "./redux/api/signup.js");
+/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page */ "./redux/actions/page.js");
+
 
 
 const SIGNUP_CLEAR = 'SIGNUP_CLEAR';
-const SIGNUP_LOAD = 'SIGNUP_LOAD';
-const SIGNUP_UNLOAD = 'SIGNUP_UNLOAD';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 const SIGNUP_FAIL = 'SIGNUP_FAIL';
 const SIGNUP_CHECK = 'SIGNUP_CHECK';
-
 function signupClearAction() {
   return {
     type: SIGNUP_CLEAR
-  };
-}
-
-function signupLoadAction() {
-  return {
-    type: SIGNUP_LOAD
-  };
-}
-
-function signupUnloadAction() {
-  return {
-    type: SIGNUP_UNLOAD
   };
 }
 
@@ -1586,8 +1572,8 @@ function signupCheckerAction(fields) {
 }
 function signupAction(fields) {
   return (dispatch, getState) => {
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(true));
     dispatch(signupClearAction());
-    dispatch(signupLoadAction());
     dispatch(signupCheckerAction(fields));
 
     if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(getState().signup.errors)) {
@@ -1598,12 +1584,14 @@ function signupAction(fields) {
 
         if (data.status_code === 200) {
           dispatch(signupSuccessAction());
+          dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
         } else {
           dispatch(signupFailAction(data.detail));
+          dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
         }
       });
     } else {
-      dispatch(signupUnloadAction());
+      dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
     }
   };
 }
@@ -1660,17 +1648,19 @@ function resetAPI() {
 /*!****************************!*\
   !*** ./redux/api/index.js ***!
   \****************************/
-/*! exports provided: BASE, termsAPI, default */
+/*! exports provided: termsAPI, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BASE", function() { return BASE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 const BASE_ADDR = 'https://datadays.sharif.edu/api';
-const BASE = 'https://datadays.sharif.edu';
+const TERMS = `${BASE_ADDR}/terms`;
 function termsAPI() {
-  return `${BASE_ADDR}/terms`;
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TERMS);
 }
 /* harmony default export */ __webpack_exports__["default"] = (BASE_ADDR);
 
@@ -1939,30 +1929,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function signupClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_10__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_8___default()(state, draft => {
-    draft.loading = false;
     draft.success = false;
     draft.errors = {};
     return draft;
   });
 }
 
-function signupLoadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_10__["default"].signup, action) {
-  return immer__WEBPACK_IMPORTED_MODULE_8___default()(state, draft => {
-    draft.loading = true;
-    return draft;
-  });
-}
-
-function signupUnloadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_10__["default"].signup, action) {
-  return immer__WEBPACK_IMPORTED_MODULE_8___default()(state, draft => {
-    draft.loading = false;
-    return draft;
-  });
-}
-
 function signupSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_10__["default"].signup, action) {
   return immer__WEBPACK_IMPORTED_MODULE_8___default()(state, draft => {
-    draft.loading = false;
     draft.success = true;
     draft.error = {};
     return draft;
@@ -1974,7 +1948,6 @@ function signupFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_
     const {
       errors
     } = action.payload;
-    draft.loading = false;
     draft.success = false;
     draft.errors = errors;
     return draft;
@@ -2012,12 +1985,6 @@ function signupReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_10_
   switch (action.type) {
     case _actions_signup__WEBPACK_IMPORTED_MODULE_11__["SIGNUP_CLEAR"]:
       return signupClearReducer(state, action);
-
-    case _actions_signup__WEBPACK_IMPORTED_MODULE_11__["SIGNUP_LOAD"]:
-      return signupLoadReducer(state, action);
-
-    case _actions_signup__WEBPACK_IMPORTED_MODULE_11__["SIGNUP_UNLOAD"]:
-      return signupUnloadReducer(state, action);
 
     case _actions_signup__WEBPACK_IMPORTED_MODULE_11__["SIGNUP_FAIL"]:
       return signupFailReducer(state, action);

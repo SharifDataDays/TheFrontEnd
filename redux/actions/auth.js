@@ -11,7 +11,7 @@ export const SET_AUTH = 'SET_AUTH';
 
 export const LOGOUT = 'LOGOUT';
 
-function loginClearAction() {
+export function loginClearAction() {
   return {
     type: LOGIN_CLEAR,
   };
