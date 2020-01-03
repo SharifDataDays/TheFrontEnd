@@ -106,8 +106,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./components/blog/post/comments/modal.jsx");
 var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/comment.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -115,10 +117,27 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
-      displayReply: 'none'
+      displayReply: 'none',
+      open: false
     };
     this.toReply = this.toReply.bind(this);
     this.doneReply = this.doneReply.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  onInput() {
+    // handle logged in
+    this.setState({
+      open: true
+    });
+  }
+
+  doneReply() {
+    // post data
+    this.setState({
+      displayReply: 'none'
+    });
   }
 
   toReply() {
@@ -138,11 +157,11 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
   }
 
-  doneReply() {
-    // post data
+  closeModal() {
     this.setState({
-      displayReply: 'none'
+      open: false
     });
+    this.doneReply();
   }
 
   render() {
@@ -155,15 +174,24 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply ? 'none' : 'auto';
     const {
-      displayReply
+      displayReply,
+      open
     } = this.state;
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      open: open,
+      handle: this.closeModal,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: this
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
       style: {
         display
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 47
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
@@ -172,13 +200,13 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 48
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 35
+        lineNumber: 49
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Author, {
@@ -188,19 +216,19 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 50
       },
       __self: this
     }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Metadata, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 53
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 54
       },
       __self: this
     }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Text, {
@@ -211,7 +239,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 56
       },
       __self: this
     }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Actions, {
@@ -221,14 +249,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 61
       },
       __self: this
     }, __jsx("a", {
       onClick: this.toReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 62
       },
       __self: this
     }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
@@ -236,9 +264,10 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       style: {
         display: displayReply
       },
+      onClick: this.onInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 64
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
@@ -248,7 +277,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 65
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -260,7 +289,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.doneReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 66
       },
       __self: this
     }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
@@ -293,11 +322,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./comment */ "./components/blog/post/comments/comment.jsx");
-/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json");
-var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal */ "./components/blog/post/comments/modal.jsx");
+/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json");
+var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
 
 var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/index.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -315,7 +346,7 @@ const GenerateComments = ({
 }) => data.map(x => __jsx(_comment__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, x, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 20
+    lineNumber: 21
   },
   __self: undefined
 })));
@@ -325,16 +356,36 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
     super(props);
     this.reply = this.reply.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.state = {
+      open: false
+    };
   }
+
+  onInput() {
+    this.setState({
+      open: true
+    });
+  }
+
+  checkLoggedIn() {}
 
   reply() {
     // should handle post
     this.setState({});
   }
 
-  checkLoggedIn() {}
+  closeModal() {
+    this.setState({
+      open: false
+    });
+  }
 
   render() {
+    const {
+      open
+    } = this.state;
     return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
       style: {
         marginTop: '5rem',
@@ -342,65 +393,44 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 51
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-      trigger: __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 40
-        },
-        __self: this
-      }, "Show Modal"),
-      content: __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
-        as: "a",
-        href: ".",
-        style: {
-          float: 'right'
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 41
-        },
-        __self: this
-      }, ".\u0628\u0631\u0627\u06CC \u062B\u0628\u062A \u0646\u0638\u0631 \u0628\u0627\u06CC\u062F \u0648\u0631\u0648\u062F \u06A9\u0646\u06CC\u062F"),
-      actions: ['Snooze', {
-        key: 'done',
-        content: 'Done',
-        positive: true
-      }],
+    }, __jsx(_modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      open: open,
+      handle: this.closeModal,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 52
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
       horizontal: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 53
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
       as: "h3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 54
       },
       __self: this
     }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       reply: true,
+      onClick: this.onInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 56
       },
       __self: this
     }, __jsx(TextArea, {
-      onInput: () => console.log('hello world'),
+      onInput: this.onInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 57
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -411,14 +441,14 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 58
       },
       __self: this
     }, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
-      data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__,
+      data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 62
       },
       __self: this
     }));
@@ -427,6 +457,98 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (CommentsPage);
+
+/***/ }),
+
+/***/ "./components/blog/post/comments/modal.jsx":
+/*!*************************************************!*\
+  !*** ./components/blog/post/comments/modal.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/modal.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const Text = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.p.withConfig({
+  displayName: "modal__Text",
+  componentId: "sc-1elnyk7-0"
+})(["text-align:center;font-size 1.5rem;"]);
+
+const Alert = ({
+  open,
+  handle
+}) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+  basic: true,
+  open: open,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 11
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+  as: "h1",
+  content: "\u062B\u0628\u062A \u0646\u0638\u0631",
+  style: {
+    paddingBottom: '0',
+    textAlign: 'center'
+  },
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 12
+  },
+  __self: undefined
+}), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Content, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 13
+  },
+  __self: undefined
+}, __jsx(Text, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 14
+  },
+  __self: undefined
+}, "\u0628\u0631\u0627\u06CC \u062B\u0628\u062A \u0646\u0638\u0631 \u0628\u0627\u06CC\u062F \u062F\u0631 \u0633\u0627\u06CC\u062A  ", __jsx("a", {
+  href: "/test",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 14
+  },
+  __self: undefined
+}, " \u0648\u0627\u0631\u062F \u0634\u0648\u06CC\u062F "))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Actions, {
+  style: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 16
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  color: "green",
+  inverted: true,
+  onClick: handle,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 17
+  },
+  __self: undefined
+}, "\u0641\u0647\u0645\u06CC\u062F\u0645")));
+
+/* harmony default export */ __webpack_exports__["default"] = (Alert);
 
 /***/ }),
 

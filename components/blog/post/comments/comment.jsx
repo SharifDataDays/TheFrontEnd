@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import { Comment, Divider, Form, Button } from 'semantic-ui-react';
+import Modal from './modal';
 
 class CommentComp extends Component {
   constructor (props) {
     super(props);
-    this.state = { displayReply: 'none' };
+    this.state = { displayReply: 'none', open: false };
     this.toReply = this.toReply.bind(this);
     this.doneReply = this.doneReply.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  onInput () {
+    // handle logged in
+    this.setState({ open: true });
+  }
+
+  doneReply () {
+    // post data
+    this.setState({ displayReply: 'none' });
   }
 
   toReply () {
@@ -18,18 +31,19 @@ class CommentComp extends Component {
     this.setState({ displayReply: 'block' });
   }
 
-  doneReply () {
-    // post data
-    this.setState({ displayReply: 'none' });
+  closeModal () {
+    this.setState({ open: false });
+    this.doneReply();
   }
 
   render () {
     const { author, date, content, isReply = false } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply ? 'none' : 'auto';
-    const { displayReply } = this.state;
+    const { displayReply, open } = this.state;
     return (
       <>
+        <Modal open={open} handle={this.closeModal} />
         <Divider style={{ display }} />
         <Comment style={{ marginRight }}>
           <Comment.Content>
@@ -47,7 +61,7 @@ class CommentComp extends Component {
             <Comment.Actions style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <a onClick={this.toReply}>پاسخ دادن</a>
             </Comment.Actions>
-            <Form reply style={{ display: displayReply }}>
+            <Form reply style={{ display: displayReply }} onClick={this.onInput}>
               <Form.TextArea style={{ height: '5em', direction: 'rtl' }} />
               <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
                 ثبت پاسخ
