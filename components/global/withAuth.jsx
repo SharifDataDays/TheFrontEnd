@@ -37,26 +37,28 @@ function withAuth(loggedIn) {
 
       render() {
         const { page, auth } = this.props;
-        if (page.loading) {
+        const pageLoading =
+          page.loading || (auth.authorized && !loggedIn) || (!auth.authorized && loggedIn);
+        if (_.isUndefined(loggedIn)) {
+          return <WrappedComponent {...this.props} />;
+        }
+        if (!auth.authorized && loggedIn) {
+          Router.push('/login', '/login', { shallow: false });
+        }
+        if (auth.authorized && !loggedIn) {
+          Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
+        }
+        if (pageLoading) {
           return (
             <>
               <Head>
                 <title>DataDays 2020</title>
               </Head>
-              <Dimmer active={page.loading}>
-                <ClipLoader size={75} color="#fff" loading={page.loading} />
+              <Dimmer active={pageLoading}>
+                <ClipLoader size={75} color="#fff" loading={pageLoading} />
               </Dimmer>
             </>
           );
-        }
-        if (_.isUndefined(loggedIn)) {
-          return <WrappedComponent {...this.props} />;
-        }
-        if (!auth.authorized && loggedIn) {
-          Router.push('/login');
-        }
-        if (auth.authorized && !loggedIn) {
-          Router.push('/dashboard/tasks');
         }
         return <WrappedComponent {...this.props} />;
       }
