@@ -125,7 +125,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const {
       displayReply
     } = this.state;
-    if (displayReply === 'block') return this.doneReply();
+
+    if (displayReply === 'block') {
+      this.setState({
+        displayReply: 'none'
+      });
+      return;
+    }
+
     this.setState({
       displayReply: 'block'
     });
@@ -156,7 +163,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 33
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
@@ -165,13 +172,13 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 34
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 35
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Author, {
@@ -181,19 +188,19 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 36
       },
       __self: this
     }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Metadata, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 39
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 40
       },
       __self: this
     }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Text, {
@@ -204,7 +211,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 42
       },
       __self: this
     }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Actions, {
@@ -214,14 +221,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 47
       },
       __self: this
     }, __jsx("a", {
       onClick: this.toReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 48
       },
       __self: this
     }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
@@ -231,7 +238,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 50
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
@@ -241,7 +248,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 51
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -253,7 +260,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.doneReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 52
       },
       __self: this
     }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
@@ -314,10 +321,18 @@ const GenerateComments = ({
 })));
 
 class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
+  constructor(props) {
+    super(props);
+    this.reply = this.reply.bind(this);
+    this.checkLoggedIn = this.checkLoggedIn.bind(this);
+  }
+
   reply() {
     // should handle post
     this.setState({});
   }
+
+  checkLoggedIn() {}
 
   render() {
     return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
@@ -327,34 +342,65 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 38
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+      trigger: __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40
+        },
+        __self: this
+      }, "Show Modal"),
+      content: __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
+        as: "a",
+        href: ".",
+        style: {
+          float: 'right'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, ".\u0628\u0631\u0627\u06CC \u062B\u0628\u062A \u0646\u0638\u0631 \u0628\u0627\u06CC\u062F \u0648\u0631\u0648\u062F \u06A9\u0646\u06CC\u062F"),
+      actions: ['Snooze', {
+        key: 'done',
+        content: 'Done',
+        positive: true
+      }],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 39
+      },
+      __self: this
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
       horizontal: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 44
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
       as: "h3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 45
       },
       __self: this
     }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       reply: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 47
       },
       __self: this
     }, __jsx(TextArea, {
+      onInput: () => console.log('hello world'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 35
+        lineNumber: 48
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -365,14 +411,14 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 49
       },
       __self: this
     }, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
       data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_7__,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 53
       },
       __self: this
     }));
