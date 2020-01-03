@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1018,19 +1018,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! js-cookie */ "js-cookie");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var next_cookies__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! next-cookies */ "next-cookies");
-/* harmony import */ var next_cookies__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_cookies__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-spinners */ "react-spinners");
-/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-spinners */ "react-spinners");
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
 
 
 
@@ -1040,7 +1036,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "/Users/parsa/Desktop/everything/projects/ongoing/DataDays/TheFrontEnd/components/global/withAuth.jsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1055,18 +1051,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-
-
 function withAuth(loggedIn) {
   return WrappedComponent => {
-    class Wrapper extends react__WEBPACK_IMPORTED_MODULE_13__["Component"] {
+    class Wrapper extends react__WEBPACK_IMPORTED_MODULE_11__["Component"] {
       static async getInitialProps(ctx) {
-        /* const { store, isServer, query, req } = ctx;
-        if (isServer) {
-          console.log(isServer, req.headers.cookie);
-        } else {
-          console.log(cookie.get('token'));
-        } */
         const pageProps = (await WrappedComponent.getInitialProps) && (await WrappedComponent.getInitialProps(ctx));
         return _objectSpread({}, pageProps);
       }
@@ -1084,32 +1072,32 @@ function withAuth(loggedIn) {
         } = this.props;
 
         if (auth.loading) {
-          return __jsx(react__WEBPACK_IMPORTED_MODULE_13___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_9___default.a, {
+          return __jsx(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_9___default.a, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 38
+              lineNumber: 30
             },
             __self: this
           }, __jsx("title", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 39
+              lineNumber: 31
             },
             __self: this
-          }, "DataDays 2020")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_15__["Dimmer"], {
+          }, "DataDays 2020")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_13__["Dimmer"], {
             active: auth.loading,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 41
+              lineNumber: 33
             },
             __self: this
-          }, __jsx(react_spinners__WEBPACK_IMPORTED_MODULE_16__["ClipLoader"], {
+          }, __jsx(react_spinners__WEBPACK_IMPORTED_MODULE_14__["ClipLoader"], {
             size: 75,
             color: "#fff",
             loading: auth.loading,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 42
+              lineNumber: 34
             },
             __self: this
           })));
@@ -1119,7 +1107,7 @@ function withAuth(loggedIn) {
           return __jsx(WrappedComponent, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_6__["default"])({}, this.props, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48
+              lineNumber: 40
             },
             __self: this
           }));
@@ -1136,7 +1124,7 @@ function withAuth(loggedIn) {
         return __jsx(WrappedComponent, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_6__["default"])({}, this.props, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 56
+            lineNumber: 48
           },
           __self: this
         }));
@@ -1155,11 +1143,11 @@ function withAuth(loggedIn) {
 
     function mapDispatchToProps(dispatch, ownProps) {
       return {
-        authorize: () => dispatch(Object(_redux_actions_auth__WEBPACK_IMPORTED_MODULE_17__["authorizeAction"])())
+        authorize: () => dispatch(Object(_redux_actions_auth__WEBPACK_IMPORTED_MODULE_15__["authorizeAction"])())
       };
     }
 
-    return Object(react_redux__WEBPACK_IMPORTED_MODULE_14__["connect"])(mapStateToProps, mapDispatchToProps)(Wrapper);
+    return Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(mapStateToProps, mapDispatchToProps)(Wrapper);
   };
 }
 
@@ -1742,7 +1730,7 @@ function termsAPI() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!***********************************************!*\
   !*** multi ./pages/dashboard/tasks/index.jsx ***!
   \***********************************************/
@@ -1872,17 +1860,6 @@ module.exports = require("core-js/library/fn/object/get-own-property-symbols");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/keys");
-
-/***/ }),
-
-/***/ "js-cookie":
-/*!****************************!*\
-  !*** external "js-cookie" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("js-cookie");
 
 /***/ }),
 
