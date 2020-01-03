@@ -11,7 +11,10 @@ class CommentComp extends Component {
 
   toReply () {
     const { displayReply } = this.state;
-    if (displayReply === 'block') return this.doneReply();
+    if (displayReply === 'block') {
+      this.setState({ displayReply: 'none' });
+      return;
+    }
     this.setState({ displayReply: 'block' });
   }
 
