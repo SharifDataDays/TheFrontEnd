@@ -3,8 +3,6 @@ import produce from 'immer';
 import cookie from 'js-cookie';
 import {
   LOGIN_CLEAR,
-  LOGIN_LOAD,
-  LOGIN_UNLOAD,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGIN_CHECK,
@@ -15,23 +13,8 @@ import initialState from '../store/initialState';
 
 function loginClearReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
-    draft.loading = false;
     draft.authorized = false;
     draft.errors = {};
-    return draft;
-  });
-}
-
-function loginLoadReducer(state = initialState.auth, action) {
-  return produce(state, (draft) => {
-    draft.loading = true;
-    return draft;
-  });
-}
-
-function loginUnloadReducer(state = initialState.auth, action) {
-  return produce(state, (draft) => {
-    draft.loading = false;
     return draft;
   });
 }
@@ -39,7 +22,6 @@ function loginUnloadReducer(state = initialState.auth, action) {
 function loginSuccessReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { token } = action.payload;
-    draft.loading = false;
     draft.authorized = true;
     draft.errors = {};
     cookie.set('token', token, { expires: 1 });
@@ -50,7 +32,6 @@ function loginSuccessReducer(state = initialState.auth, action) {
 function loginFailReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { errors } = action.payload;
-    draft.loading = false;
     draft.authorized = false;
     draft.errors = errors;
     return draft;
@@ -72,7 +53,6 @@ function loginCheckerReducer(state = initialState.auth, action) {
 function setAuthReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
     const { auth } = action.payload;
-    draft.loading = false;
     draft.authorized = auth;
     return draft;
   });
@@ -80,7 +60,6 @@ function setAuthReducer(state = initialState.auth, action) {
 
 function logoutReducer(state = initialState.auth, action) {
   return produce(state, (draft) => {
-    draft.loading = false;
     draft.authorized = false;
     cookie.remove('token');
     return draft;
@@ -91,10 +70,6 @@ function authReducers(state = initialState.auth, action) {
   switch (action.type) {
     case LOGIN_CLEAR:
       return loginClearReducer(state, action);
-    case LOGIN_LOAD:
-      return loginLoadReducer(state, action);
-    case LOGIN_UNLOAD:
-      return loginUnloadReducer(state, action);
     case LOGIN_FAIL:
       return loginFailReducer(state, action);
     case LOGIN_SUCCESS:

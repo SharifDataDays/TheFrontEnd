@@ -36,15 +36,15 @@ function withAuth(loggedIn) {
       }
 
       render() {
-        const { auth } = this.props;
-        if (auth.loading) {
+        const { page, auth } = this.props;
+        if (page.loading) {
           return (
             <>
               <Head>
                 <title>DataDays 2020</title>
               </Head>
-              <Dimmer active={auth.loading}>
-                <ClipLoader size={75} color="#fff" loading={auth.loading} />
+              <Dimmer active={page.loading}>
+                <ClipLoader size={75} color="#fff" loading={page.loading} />
               </Dimmer>
             </>
           );
@@ -63,19 +63,14 @@ function withAuth(loggedIn) {
     }
 
     function mapStateToProps(state, ownProps) {
-      const { auth } = state;
+      const { page, auth } = state;
       return {
+        page,
         auth,
       };
     }
 
-    function mapDispatchToProps(dispatch, ownProps) {
-      return {
-        authorize: () => dispatch(authorizeAction()),
-      };
-    }
-
-    return connect(mapStateToProps, mapDispatchToProps)(Wrapper);
+    return connect(mapStateToProps, null)(Wrapper);
   };
 }
 

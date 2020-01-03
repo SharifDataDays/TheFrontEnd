@@ -829,20 +829,17 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
 /*!*******************************!*\
   !*** ./redux/actions/auth.js ***!
   \*******************************/
-/*! exports provided: LOGIN_CLEAR, LOGIN_LOAD, LOGIN_UNLOAD, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_AUTH, LOGOUT, loginUnloadAction, loginCheckerAction, loginAction, authorizeAction, logoutAction */
+/*! exports provided: LOGIN_CLEAR, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_AUTH, LOGOUT, loginCheckerAction, loginAction, authorizeAction, logoutAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_CLEAR", function() { return LOGIN_CLEAR; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_LOAD", function() { return LOGIN_LOAD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_UNLOAD", function() { return LOGIN_UNLOAD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_SUCCESS", function() { return LOGIN_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FAIL", function() { return LOGIN_FAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_CHECK", function() { return LOGIN_CHECK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_AUTH", function() { return SET_AUTH; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUnloadAction", function() { return loginUnloadAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginCheckerAction", function() { return loginCheckerAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginAction", function() { return loginAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authorizeAction", function() { return authorizeAction; });
@@ -850,11 +847,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/auth */ "./redux/api/auth.js");
+/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page */ "./redux/actions/page.js");
+
 
 
 const LOGIN_CLEAR = 'LOGIN_CLEAR';
-const LOGIN_LOAD = 'LOGIN_LOAD';
-const LOGIN_UNLOAD = 'LOGIN_UNLOAD';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGIN_CHECK = 'LOGIN_CHECK';
@@ -864,18 +861,6 @@ const LOGOUT = 'LOGOUT';
 function loginClearAction() {
   return {
     type: LOGIN_CLEAR
-  };
-}
-
-function loginLoadAction() {
-  return {
-    type: LOGIN_LOAD
-  };
-}
-
-function loginUnloadAction() {
-  return {
-    type: LOGIN_UNLOAD
   };
 }
 
@@ -907,8 +892,8 @@ function loginCheckerAction(fields) {
 }
 function loginAction(username, password) {
   return (dispatch, getState) => {
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(true));
     dispatch(loginClearAction());
-    dispatch(loginLoadAction());
     dispatch(loginCheckerAction({
       username,
       password
@@ -925,12 +910,14 @@ function loginAction(username, password) {
 
         if (data.status_code === 200) {
           dispatch(loginSuccessAction(data.access));
+          dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
         } else {
           dispatch(loginFailAction(data.detail));
+          dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
         }
       });
     } else {
-      dispatch(loginUnloadAction());
+      dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_2__["pageLoadingAction"])(false));
     }
   };
 }
@@ -960,6 +947,29 @@ function authorizeAction(token) {
 function logoutAction() {
   return {
     type: LOGOUT
+  };
+}
+
+/***/ }),
+
+/***/ "./redux/actions/page.js":
+/*!*******************************!*\
+  !*** ./redux/actions/page.js ***!
+  \*******************************/
+/*! exports provided: PAGE_LOADING, pageLoadingAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PAGE_LOADING", function() { return PAGE_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pageLoadingAction", function() { return pageLoadingAction; });
+const PAGE_LOADING = 'PAGE_LOADING';
+function pageLoadingAction(loading) {
+  return {
+    type: PAGE_LOADING,
+    payload: {
+      loading
+    }
   };
 }
 
@@ -1287,23 +1297,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function loginClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
-    draft.loading = false;
     draft.authorized = false;
     draft.errors = {};
-    return draft;
-  });
-}
-
-function loginLoadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
-  return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
-    draft.loading = true;
-    return draft;
-  });
-}
-
-function loginUnloadReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
-  return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
-    draft.loading = false;
     return draft;
   });
 }
@@ -1313,7 +1308,6 @@ function loginSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODUL
     const {
       token
     } = action.payload;
-    draft.loading = false;
     draft.authorized = true;
     draft.errors = {};
     js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('token', token, {
@@ -1328,7 +1322,6 @@ function loginFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4
     const {
       errors
     } = action.payload;
-    draft.loading = false;
     draft.authorized = false;
     draft.errors = errors;
     return draft;
@@ -1356,7 +1349,6 @@ function setAuthReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__
     const {
       auth
     } = action.payload;
-    draft.loading = false;
     draft.authorized = auth;
     return draft;
   });
@@ -1364,7 +1356,6 @@ function setAuthReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__
 
 function logoutReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
-    draft.loading = false;
     draft.authorized = false;
     js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('token');
     return draft;
@@ -1375,12 +1366,6 @@ function authReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["
   switch (action.type) {
     case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_CLEAR"]:
       return loginClearReducer(state, action);
-
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_LOAD"]:
-      return loginLoadReducer(state, action);
-
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_UNLOAD"]:
-      return loginUnloadReducer(state, action);
 
     case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_FAIL"]:
       return loginFailReducer(state, action);
@@ -1417,18 +1402,62 @@ function authReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./redux/reducers/auth.js");
-/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup */ "./redux/reducers/signup.js");
-/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tasks */ "./redux/reducers/tasks.js");
+/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page */ "./redux/reducers/page.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./redux/reducers/auth.js");
+/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signup */ "./redux/reducers/signup.js");
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tasks */ "./redux/reducers/tasks.js");
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  auth: _auth__WEBPACK_IMPORTED_MODULE_1__["default"],
-  signup: _signup__WEBPACK_IMPORTED_MODULE_2__["default"],
-  tasks: _tasks__WEBPACK_IMPORTED_MODULE_3__["default"]
+  page: _page__WEBPACK_IMPORTED_MODULE_1__["default"],
+  auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
+  signup: _signup__WEBPACK_IMPORTED_MODULE_3__["default"],
+  tasks: _tasks__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
+
+/***/ }),
+
+/***/ "./redux/reducers/page.js":
+/*!********************************!*\
+  !*** ./redux/reducers/page.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! immer */ "immer");
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(immer__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/page */ "./redux/actions/page.js");
+/* harmony import */ var _store_initialState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/initialState */ "./redux/store/initialState.js");
+
+
+
+
+function pageLoadingReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_2__["default"].page, action) {
+  return immer__WEBPACK_IMPORTED_MODULE_0___default()(state, draft => {
+    const {
+      loading
+    } = action.payload;
+    draft.loading = loading;
+    return draft;
+  });
+}
+
+function pageReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_2__["default"].page, action) {
+  switch (action.type) {
+    case _actions_page__WEBPACK_IMPORTED_MODULE_1__["PAGE_LOADING"]:
+      return pageLoadingReducer(state, action);
+
+    default:
+      return state;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (pageReducers);
 
 /***/ }),
 
@@ -1696,15 +1725,17 @@ function makeStore(initialState, {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  page: {
+    loading: false
+  },
+  auth: {
+    errors: {},
+    authorized: false
+  },
   signup: {
     errors: {},
     loading: false,
     success: false
-  },
-  auth: {
-    errors: {},
-    loading: false,
-    authorized: false
   },
   tasks: {
     list: [],
