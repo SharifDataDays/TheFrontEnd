@@ -420,7 +420,6 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       __self: this
     }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       reply: true,
-      onClick: this.onInput,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 56
@@ -428,6 +427,7 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       __self: this
     }, __jsx(TextArea, {
       onInput: this.onInput,
+      onClick: this.onInput,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 57

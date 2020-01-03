@@ -53,8 +53,8 @@ class CommentsPage extends Component {
         <Divider horizontal>
           <Header as='h3'>نظرات</Header>
         </Divider>
-        <Form reply onClick={this.onInput}>
-          <TextArea onInput={this.onInput} />
+        <Form reply>
+          <TextArea onInput={this.onInput} onClick={this.onInput} />
           <Button secondary positive style={{ marginBottom: '1rem' }}>
             ثبت نظر
           </Button>
