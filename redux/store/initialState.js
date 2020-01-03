@@ -14,4 +14,7 @@ export default {
     list: [],
     current: {},
   },
+  trials: {
+    answers: '',
+  },
 };
