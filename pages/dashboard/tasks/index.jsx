@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import nextCookie from 'next-cookies';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
@@ -8,9 +7,9 @@ import Tasks from '~/components/dashboard/tasks';
 import { loadTaskListAction } from '~/redux/actions/tasks';
 
 class TaskPage extends Component {
-  componentDidMount() {
-    const { load } = this.props;
-    load();
+  static async getInitialProps(ctx, token) {
+    console.log(token);
+    return { token };
   }
 
   render() {
@@ -20,9 +19,7 @@ class TaskPage extends Component {
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>
-          <Tasks tasks={tasks.list} />
-        </Layout>
+        <Layout>{/* <Tasks tasks={tasks.list} /> */}</Layout>
       </>
     );
   }

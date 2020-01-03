@@ -5,10 +5,9 @@ export default {
     success: false,
   },
   auth: {
-    token: {},
     errors: {},
     loading: false,
-    success: false,
+    authorized: false,
   },
   tasks: {
     list: [],

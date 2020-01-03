@@ -829,7 +829,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
 /*!*******************************!*\
   !*** ./redux/actions/auth.js ***!
   \*******************************/
-/*! exports provided: LOGIN_CLEAR, LOGIN_LOAD, LOGIN_UNLOAD, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_TOKEN, LOGOUT, loginUnloadAction, loginCheckerAction, loginAction, authorizeAction, logoutAction */
+/*! exports provided: LOGIN_CLEAR, LOGIN_LOAD, LOGIN_UNLOAD, LOGIN_SUCCESS, LOGIN_FAIL, LOGIN_CHECK, SET_AUTH, LOGOUT, loginUnloadAction, loginCheckerAction, loginAction, authorizeAction, logoutAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -840,7 +840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_SUCCESS", function() { return LOGIN_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FAIL", function() { return LOGIN_FAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_CHECK", function() { return LOGIN_CHECK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TOKEN", function() { return SET_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_AUTH", function() { return SET_AUTH; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUnloadAction", function() { return loginUnloadAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginCheckerAction", function() { return loginCheckerAction; });
@@ -858,7 +858,7 @@ const LOGIN_UNLOAD = 'LOGIN_UNLOAD';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGIN_CHECK = 'LOGIN_CHECK';
-const SET_TOKEN = 'SET_TOKEN';
+const SET_AUTH = 'SET_AUTH';
 const LOGOUT = 'LOGOUT';
 
 function loginClearAction() {
@@ -924,11 +924,7 @@ function loginAction(username, password) {
         } = res;
 
         if (data.status_code === 200) {
-          const token = {
-            refresh: data.refresh,
-            access: data.access
-          };
-          dispatch(loginSuccessAction(token));
+          dispatch(loginSuccessAction(data.access));
         } else {
           dispatch(loginFailAction(data.detail));
         }
@@ -939,37 +935,25 @@ function loginAction(username, password) {
   };
 }
 
-function setTokenAction(token) {
+function setAuthAction(auth) {
   return {
-    type: SET_TOKEN,
+    type: SET_AUTH,
     payload: {
-      token
+      auth
     }
   };
 }
 
-function authorizeAction() {
-  return (dispatch, getState) => {
-    const {
-      token
-    } = getState().auth;
-    dispatch(loginLoadAction());
-    Object(_api_auth__WEBPACK_IMPORTED_MODULE_1__["authAPI"])(token).then(authRes => {
-      if (authRes.data.status_code !== 200) {
-        Object(_api_auth__WEBPACK_IMPORTED_MODULE_1__["refreshAPI"])(token).then(refreshRes => {
-          if (refreshRes.data.status_code !== 200) {
-            dispatch(setTokenAction({}));
-          } else {
-            const newToken = {
-              refresh: token.refresh,
-              access: refreshRes.data.access
-            };
-            dispatch(setTokenAction(newToken));
-          }
-        });
-      } else {
-        dispatch(setTokenAction(token));
+function authorizeAction(token) {
+  return dispatch => {
+    return Object(_api_auth__WEBPACK_IMPORTED_MODULE_1__["authAPI"])(token).then(res => {
+      if (res.data.status_code !== 200) {
+        dispatch(setAuthAction(false));
+        return false;
       }
+
+      dispatch(setAuthAction(true));
+      return true;
     });
   };
 }
@@ -1173,7 +1157,7 @@ function loginAPI(data) {
 function authAPI(token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(AUTH, {
     headers: {
-      Authorization: `Bearer ${token.access}`
+      Authorization: `Bearer ${token}`
     }
   });
 }
@@ -1304,6 +1288,7 @@ __webpack_require__.r(__webpack_exports__);
 function loginClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     draft.loading = false;
+    draft.authorized = false;
     draft.errors = {};
     return draft;
   });
@@ -1329,9 +1314,9 @@ function loginSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODUL
       token
     } = action.payload;
     draft.loading = false;
+    draft.authorized = true;
     draft.errors = {};
-    draft.token = token;
-    js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('token', token.access, {
+    js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('token', token, {
       expires: 1
     });
     return draft;
@@ -1344,7 +1329,7 @@ function loginFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4
       errors
     } = action.payload;
     draft.loading = false;
-    draft.success = false;
+    draft.authorized = false;
     draft.errors = errors;
     return draft;
   });
@@ -1366,21 +1351,21 @@ function loginCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MODUL
   });
 }
 
-function setTokenReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
+function setAuthReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
     const {
-      token
+      auth
     } = action.payload;
-    draft.token = token;
     draft.loading = false;
+    draft.authorized = auth;
     return draft;
   });
 }
 
 function logoutReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["default"].auth, action) {
   return immer__WEBPACK_IMPORTED_MODULE_1___default()(state, draft => {
-    draft.token = {};
     draft.loading = false;
+    draft.authorized = false;
     js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('token');
     return draft;
   });
@@ -1406,8 +1391,8 @@ function authReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_4__["
     case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGIN_CHECK"]:
       return loginCheckerReducer(state, action);
 
-    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["SET_TOKEN"]:
-      return setTokenReducer(state, action);
+    case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["SET_AUTH"]:
+      return setAuthReducer(state, action);
 
     case _actions_auth__WEBPACK_IMPORTED_MODULE_3__["LOGOUT"]:
       return logoutReducer(state, action);
@@ -1717,10 +1702,9 @@ __webpack_require__.r(__webpack_exports__);
     success: false
   },
   auth: {
-    token: {},
     errors: {},
     loading: false,
-    success: false
+    authorized: false
   },
   tasks: {
     list: [],

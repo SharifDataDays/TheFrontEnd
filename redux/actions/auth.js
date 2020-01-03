@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { loginAPI, authAPI, refreshAPI } from '../api/auth';
+import { loginAPI, authAPI } from '../api/auth';
 
 export const LOGIN_CLEAR = 'LOGIN_CLEAR';
 export const LOGIN_LOAD = 'LOGIN_LOAD';
@@ -8,7 +8,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGIN_CHECK = 'LOGIN_CHECK';
 
-export const SET_TOKEN = 'SET_TOKEN';
+export const SET_AUTH = 'SET_AUTH';
 
 export const LOGOUT = 'LOGOUT';
 
@@ -66,11 +66,7 @@ export function loginAction(username, password) {
       loginAPI({ username, password }).then((res) => {
         const { data } = res;
         if (data.status_code === 200) {
-          const token = {
-            refresh: data.refresh,
-            access: data.access,
-          };
-          dispatch(loginSuccessAction(token));
+          dispatch(loginSuccessAction(data.access));
         } else {
           dispatch(loginFailAction(data.detail));
         }
@@ -81,35 +77,24 @@ export function loginAction(username, password) {
   };
 }
 
-function setTokenAction(token) {
+function setAuthAction(auth) {
   return {
-    type: SET_TOKEN,
+    type: SET_AUTH,
     payload: {
-      token,
+      auth,
     },
   };
 }
 
-export function authorizeAction() {
-  return (dispatch, getState) => {
-    const { token } = getState().auth;
-    dispatch(loginLoadAction());
-    authAPI(token).then((authRes) => {
-      if (authRes.data.status_code !== 200) {
-        refreshAPI(token).then((refreshRes) => {
-          if (refreshRes.data.status_code !== 200) {
-            dispatch(setTokenAction({}));
-          } else {
-            const newToken = {
-              refresh: token.refresh,
-              access: refreshRes.data.access,
-            };
-            dispatch(setTokenAction(newToken));
-          }
-        });
-      } else {
-        dispatch(setTokenAction(token));
+export function authorizeAction(token) {
+  return (dispatch) => {
+    return authAPI(token).then((res) => {
+      if (res.data.status_code !== 200) {
+        dispatch(setAuthAction(false));
+        return false;
       }
+      dispatch(setAuthAction(true));
+      return true;
     });
   };
 }

@@ -12,7 +12,7 @@ export function loginAPI(data) {
 export function authAPI(token) {
   return axios.get(AUTH, {
     headers: {
-      Authorization: `Bearer ${token.access}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 }
