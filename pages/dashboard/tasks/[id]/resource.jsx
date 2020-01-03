@@ -1,49 +1,30 @@
 import _ from 'lodash';
 import Head from 'next/head';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/dashboard/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
-import { loadTaskAction } from '~/redux/actions/tasks';
+import { taskAPI } from '~/redux/api/dashboard';
 
 class ResourcesPage extends Component {
-  static async getInitialProps(ctx) {
-    return { id: ctx.query.id };
-  }
-
-  componentDidMount() {
-    const { load, id } = this.props;
-    load(id);
+  static async getInitialProps({ query }, token) {
+    const res = await taskAPI(query.id, token);
+    const task = res.data;
+    return { task };
   }
 
   render() {
-    const { tasks } = this.props;
+    const { task } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>
-          {_.isEmpty(tasks.current) ? <NotFound /> : <Resources content={tasks.current} />}
-        </Layout>
+        <Layout>{task.status_code !== 200 ? <NotFound /> : <Resources content={task} />}</Layout>
       </>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { tasks } = state;
-  return {
-    tasks,
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    load: (id) => dispatch(loadTaskAction(id)),
-  };
-}
-
-export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(ResourcesPage));
+export default withAuth(true)(ResourcesPage);

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/dashboard/layout';
 import Tasks from '~/components/dashboard/tasks';
