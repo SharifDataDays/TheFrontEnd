@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/dashboard/layout';
 import Tasks from '~/components/dashboard/tasks';
-import { loadTaskListAction } from '~/redux/actions/tasks';
+import { taskListAPI } from '~/redux/api/dashboard';
 
 class TaskPage extends Component {
   static async getInitialProps(ctx, token) {
-    console.log(token);
-    return { token };
+    const res = await taskListAPI(token);
+    const { documents } = res.data;
+    return { tasks: documents };
   }
 
   render() {
@@ -19,23 +20,12 @@ class TaskPage extends Component {
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>{/* <Tasks tasks={tasks.list} /> */}</Layout>
+        <Layout>
+          <Tasks tasks={tasks} />
+        </Layout>
       </>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { tasks } = state;
-  return {
-    tasks,
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    load: () => dispatch(loadTaskListAction()),
-  };
-}
-
-export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(TaskPage));
+export default withAuth(true)(TaskPage);

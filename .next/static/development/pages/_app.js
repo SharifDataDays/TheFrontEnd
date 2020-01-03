@@ -89831,14 +89831,14 @@ var TASK_LIST = "".concat(___WEBPACK_IMPORTED_MODULE_1__["default"], "/resources
 function taskListAPI(token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TASK_LIST, {
     headers: {
-      Authorization: "Bearer ".concat(token.access)
+      Authorization: "Bearer ".concat(token)
     }
   });
 }
 function taskAPI(id, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TASK(id), {
     headers: {
-      Authorization: "Bearer ".concat(token.access)
+      Authorization: "Bearer ".concat(token)
     }
   });
 }
