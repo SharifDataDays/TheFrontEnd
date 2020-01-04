@@ -168,7 +168,17 @@ export default htmlParser({
       processNode(node, children) {
         return (
           <div style={{ margin: '2rem' }} dir="RTL">
-            <List bulleted>{children}</List>
+            <List
+              bulleted
+              style={{
+                fontSize: '1.5rem',
+                lineHeight: 1.5,
+                marginBottom: '0.75rem',
+                direction: 'rtl',
+              }}
+            >
+              {children}
+            </List>
           </div>
         );
       },
@@ -180,7 +190,17 @@ export default htmlParser({
       processNode(node, children) {
         return (
           <div style={{ margin: '2rem' }} dir="RTL">
-            <List ordered>{children}</List>
+            <List
+              ordered
+              style={{
+                fontSize: '1.5rem',
+                lineHeight: 1.5,
+                marginBottom: '0.75rem',
+                direction: 'rtl',
+              }}
+            >
+              {children}
+            </List>
           </div>
         );
       },

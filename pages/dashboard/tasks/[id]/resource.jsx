@@ -10,17 +10,19 @@ class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
     const res = await taskAPI(query.id, token);
     const task = res.data;
-    return { task };
+    return { task, token };
   }
 
   render() {
-    const { task } = this.props;
+    const { task, token } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>{task.status_code !== 200 ? <NotFound /> : <Resources content={task} />}</Layout>
+        <Layout token={token} hasNavbar hasFooter>
+          {task.status_code !== 200 ? <NotFound /> : <Resources content={task} />}
+        </Layout>
       </>
     );
   }

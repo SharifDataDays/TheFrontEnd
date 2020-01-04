@@ -1,7 +1,28 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
-import Footer from '~/components/global/footer';
+
+function Pagination({ page, prevPage, nextPage, content }) {
+  return (
+    <div style={{ marginBottom: '3rem' }}>
+      {page > 0 ? (
+        <Button onClick={prevPage} floated="left">
+          قبلی
+        </Button>
+      ) : (
+        <></>
+      )}
+      {page < content.sections.length ? (
+        <Button onClick={nextPage} floated="right">
+          بعدی
+        </Button>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+}
 
 class Resource extends Component {
   constructor(props) {
@@ -48,22 +69,12 @@ class Resource extends Component {
                 progress="ratio"
                 success
               />
-              <div style={{ marginBottom: '3rem' }}>
-                {page > 0 ? (
-                  <Button onClick={this.prevPage} floated="left">
-                    قبلی
-                  </Button>
-                ) : (
-                  <></>
-                )}
-                {page < content.sections.length ? (
-                  <Button onClick={this.nextPage} floated="right">
-                    بعدی
-                  </Button>
-                ) : (
-                  <></>
-                )}
-              </div>
+              <Pagination
+                page={page}
+                content={content}
+                prevPage={this.prevPage}
+                nextPage={this.nextPage}
+              />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -71,13 +82,29 @@ class Resource extends Component {
               <Header as="h1" style={{ textAlign: 'center' }}>
                 {content.title_fa}
               </Header>
-              <a
-                style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
-                href={content.file}
-                download
-              >
-                دانلود منابع
-              </a>
+              <Header as="h4" style={{ textAlign: 'center' }}>
+                زمان مطالعه: {content.time_to_read} دقیقه
+              </Header>
+              {!_.isEmpty(content.file) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.file}
+                  download
+                >
+                  دانلود منابع
+                </a>
+              )}
+              <br />
+              {page > 0 && !_.isEmpty(content.sections[page - 1].link_to_colab) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.sections[page - 1].link_to_colab}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  مشاهده در Google Colab
+                </a>
+              )}
               <Image size="large" style={{ margin: 'auto' }} src="/images/header.jpg" />
             </Grid.Column>
           </Grid.Row>
@@ -88,26 +115,15 @@ class Resource extends Component {
               ) : (
                 <Container content={content.sections[page - 1].markdown} />
               )}
-              <div style={{ marginTop: '1rem' }}>
-                {page > 0 ? (
-                  <Button onClick={this.prevPage} floated="left">
-                    قبلی
-                  </Button>
-                ) : (
-                  <></>
-                )}
-                {page < content.sections.length ? (
-                  <Button onClick={this.nextPage} floated="right">
-                    بعدی
-                  </Button>
-                ) : (
-                  <></>
-                )}
-              </div>
+              <Pagination
+                page={page}
+                content={content}
+                prevPage={this.prevPage}
+                nextPage={this.nextPage}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Footer />
       </>
     );
   }
