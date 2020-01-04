@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { Image } from 'semantic-ui-react';\nimport { BASE } from \"../../../redux/api/index\";\n\nfunction HeaderImage({\n  url\n}) {\n  return __jsx(Image, {\n    src: BASE + url,\n    fluid: true\n  });\n}\n\nexport default HeaderImage;","map":null,"metadata":{},"sourceType":"module"}

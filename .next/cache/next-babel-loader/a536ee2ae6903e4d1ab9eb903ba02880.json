@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nconst BASE_ADDR = 'https://datadays.sharif.edu/api';\nconst TERMS = `${BASE_ADDR}/terms`;\nexport const BASE = 'https://datadays.sharif.edu';\nexport function termsAPI() {\n  return axios.get(TERMS);\n}\nexport default BASE_ADDR;","map":null,"metadata":{},"sourceType":"module"}
