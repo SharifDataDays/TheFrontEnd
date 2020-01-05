@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var PAGE_LOADING = 'PAGE_LOADING';\nexport function pageLoadingAction(loading) {\n  return {\n    type: PAGE_LOADING,\n    payload: {\n      loading: loading\n    }\n  };\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { Button } from 'semantic-ui-react';\n\nvar SignupButton = function SignupButton(props) {\n  return __jsx(Button, {\n    onClick: props.onClick,\n    color: props.color\n  }, props.text);\n};\n\nexport default SignupButton;","map":null,"metadata":{},"sourceType":"module"}

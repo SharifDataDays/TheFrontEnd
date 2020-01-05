@@ -1,6 +1,11 @@
-import styled from 'styled-components';
+import _ from 'lodash';
 import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faBlog } from '@fortawesome/free-solid-svg-icons';
+import { logoutAction } from '~/redux/actions/auth';
 
 const Menu = styled(M)`
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
@@ -19,7 +24,7 @@ const Image = styled(Im)`
   transform: translateY(-50%);
 `;
 
-function Navbar({ transparent }) {
+function NoAuthNavbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
@@ -27,9 +32,10 @@ function Navbar({ transparent }) {
           <Button primary>ورود</Button>
         </a>
       </Menu.Item>
-      {/* <Menu.Item>
+      <Menu.Item>
         <a href="/blog">بلاگ</a>
-      </Menu.Item> */}
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
+      </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
           <a href="/">
@@ -43,6 +49,59 @@ function Navbar({ transparent }) {
       </Menu.Menu>
     </Menu>
   );
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    logout: () => dispatch(logoutAction()),
+  };
+}
+
+const AuthNavbar = connect(
+  null,
+  mapDispatchToProps,
+)(({ logout, transparent }) => {
+  return (
+    <Menu size="huge" transparent={transparent} secondary>
+      <Menu.Item>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            logout();
+          }}
+          primary
+        >
+          خروج
+        </Button>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="/dashboard/tasks">منابع</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
+      </Menu.Item>
+      <Menu.Item>
+        <a href="/blog">بلاگ</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
+      </Menu.Item>
+      <Menu.Menu position="left">
+        <Menu.Header>
+          <a href="/dashboard/tasks">
+            <Image
+              style={{ marginRight: '1rem', marginTop: '2rem' }}
+              size="mini"
+              src="/images/logo.png"
+            />
+          </a>
+        </Menu.Header>
+      </Menu.Menu>
+    </Menu>
+  );
+});
+
+function Navbar({ token, transparent }) {
+  if (_.isEmpty(token)) {
+    return <NoAuthNavbar transparent={transparent} />;
+  }
+  return <AuthNavbar transparent={transparent} />;
 }
 
 export default Navbar;

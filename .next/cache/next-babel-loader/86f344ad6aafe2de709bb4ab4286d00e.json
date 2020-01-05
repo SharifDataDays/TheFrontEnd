@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport BASE_ADDR from '.';\nconst SIGNUP_API = `${BASE_ADDR}/accounts/signup`;\nexport function signupAPI(data) {\n  return axios.post(SIGNUP_API, data, {\n    headers: {\n      'Accept-Language': 'fa'\n    }\n  });\n}","map":null,"metadata":{},"sourceType":"module"}
