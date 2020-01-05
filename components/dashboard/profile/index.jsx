@@ -8,78 +8,8 @@ import { DateInput } from 'semantic-ui-calendar-react';
 import { ToastContainer, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { preReqCheck, profileUpdate } from '../../redux/utils/profile';
-
-const fields = [
-  // {
-  //   en: 'userName',
-  //   fa: 'نام کاربری',
-  //   readOnly: true,
-  // },
-  {
-    en: 'nameFa',
-    fa: 'نام به فارسی',
-    readOnly: false,
-  },
-  {
-    en: 'lastNameFa',
-    fa: 'نام خانوادگی به فارسی',
-    readOnly: false,
-  },
-  {
-    en: 'nameEn',
-    fa: 'نام به انگلیسی',
-    readOnly: false,
-  },
-  {
-    en: 'lastNameEn',
-    fa: 'نام خانوادگی به انگلیسی',
-    readOnly: false,
-  },
-  // {
-  //   en: 'email',
-  //   fa: 'ایمیل',
-  //   readOnly: true,
-  // },
-  {
-    en: 'birthDate',
-    fa: 'تاریخ تولد',
-    readOnly: false,
-    date: true,
-  },
-  {
-    en: 'university',
-    fa: 'دانشگاه',
-    readOnly: false,
-  },
-  // {
-  //   en: 'education',
-  //   fa: 'تحصیلات',
-  //   readOnly: true,
-  // },
-  // {
-  //   en: 'residence',
-  //   fa: 'محل اقامت',
-  //   readOnly: true,
-  // },
-  // {
-  //   en: 'callingNumber',
-  //   fa: 'تلفن همراه',
-  //   readOnly: true,
-  // },
-  {
-    en: 'password',
-    fa: 'رمز عبور',
-    readOnly: false,
-    pass: true,
-  },
-  {
-    en: 'confirmPassword',
-    fa: 'تکرار رمز عبور',
-    readOnly: false,
-    pass: true,
-  },
-];
+import { fields, reverseBirthDate, check as preReqCheck } from './utils';
+import { profileUpdate } from '~/components/dashboard/profile/api';
 
 const Container = styled.div`
   ${space}
@@ -97,27 +27,27 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameFa: this.props.profileData.nameFa,
-      lastNameFa: this.props.profileData.lastNameFa,
-      nameEn: this.props.profileData.nameEn,
-      lastNameEn: this.props.profileData.lastNameEn,
-      userName: this.props.profileData.userName,
-      email: this.props.profileData.email,
-      birthDate: this.props.profileData.birthDate,
+      firstname_fa: this.props.profileData.firstname_fa,
+      lastname_fa: this.props.profileData.lastname_fa,
+      firstname_en: this.props.profileData.firstname_en,
+      lastname_en: this.props.profileData.lastname_en,
+      // username: this.props.profileData.username,
+      // email: this.props.profileData.email,
+      birth_date: reverseBirthDate(this.props.profileData.birth_date),
       university: this.props.profileData.university,
-      password: '',
-      confirmPassword: '',
+      password_1: '',
+      password_2: '',
       errors: {
-        nameFa: false,
-        lastNameFa: false,
-        nameEn: false,
-        lastNameEn: false,
-        userName: false,
+        firstname_fa: false,
+        lastname_fa: false,
+        firstname_en: false,
+        lastname_en: false,
+        username: false,
         email: false,
-        birthDate: false,
+        birth_date: false,
         university: false,
-        password: false,
-        confirmPassword: false,
+        password_1: false,
+        password_2: false,
       },
     };
   }
@@ -141,6 +71,8 @@ class Profile extends Component {
       case 'invalidEmail':
         toast.error('ایمیل وارد شده صحیح نیست', options);
         break;
+      case 'success':
+        toast.success('تغییرات با موفقیت ذخیره شد', options);
       default:
         break;
     }
@@ -151,13 +83,16 @@ class Profile extends Component {
       this.setState({ [name]: value });
     }
   };
+
   onSubmit = async () => {
     let res = preReqCheck(this.state);
-    this.setState({ errors: res.newErrors });
+    this.setState({ errors: res.errors });
     if (res.problem) {
       this.notify(res.problem);
     } else {
-      await profileUpdate(this.state);
+      const sent = await profileUpdate(this.state, this.props.token);
+      console.log(sent)
+      if (sent === true) this.notify('success');
     }
   };
 
@@ -172,15 +107,14 @@ class Profile extends Component {
           <DateInput
             placeholder={field.fa}
             name={field.en}
-            value={this.state[field.en]}
+            value={reverseBirthDate(this.state[field.en])}
             onChange={this.handleChange}
             popupPosition="top center"
             closeOnMouseLeave={false}
             readOnly={field.readOnly}
             width={6}
             icon={<FontAwesomeIcon icon={faCalendar} color="black" />}
-
-            // transparent={field.readOnly}
+            hideMobileKeyboard
           />
         </Form.Group>
       );
@@ -223,10 +157,10 @@ class Profile extends Component {
             {_.map(fields, (field) => {
               return this.formInput(field);
             })}
-            <Form.Button content="ذخیره‌ی تغییرات" color="black" floated="right" size="large" />
+            <Form.Button primary content="ذخیره‌ی تغییرات" floated="right" size="large" />
           </Form>
         </Fade>
-        {/* <ToastContainer
+        <ToastContainer
           position="bottom-right"
           autoClose={5000}
           hideProgressBar
@@ -236,7 +170,7 @@ class Profile extends Component {
           pauseOnVisibilityChange
           draggable
           pauseOnHover
-        /> */}
+        />
       </Container>
     );
   }
