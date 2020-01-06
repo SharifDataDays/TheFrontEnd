@@ -1,88 +1,32 @@
 {
-  "devFiles": [],
+  "devFiles": [
+    "static/development/dll/dll_d6a88dbe3071bd165157.js",
+    "static/development/dll/dll_d6a88dbe3071bd165157.js.map"
+  ],
   "pages": {
-    "/": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
     "/_app": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/css/styles.962260a1.chunk.css",
-      "static/chunks/styles.b60b6fe30c239ae17877.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
+      "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
+      "static/runtime/main.js"
     ],
     "/_error": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills-9aadb830bb6ada9ed220.js"
-    ],
-    "/blog": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/blog/[id]": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
+      "static/runtime/polyfills.js",
+      "static/runtime/polyfills.js.map"
     ],
     "/dashboard/tasks": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/dashboard/tasks/[id]/resource": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/css/styles.962260a1.chunk.css",
-      "static/chunks/styles.b60b6fe30c239ae17877.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/forgot/email": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/css/styles.962260a1.chunk.css",
-      "static/chunks/styles.b60b6fe30c239ae17877.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/forgot/reset": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/css/styles.962260a1.chunk.css",
-      "static/chunks/styles.b60b6fe30c239ae17877.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/index": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
+      "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
+      "static/runtime/main.js"
     ],
     "/login": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
-    ],
-    "/signup": [
-      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
-      "static/css/commons.0b1e6505.chunk.css",
-      "static/chunks/commons.000353efdd631566fdb5.js",
-      "static/runtime/main-388b19e7ba47d07a7556.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

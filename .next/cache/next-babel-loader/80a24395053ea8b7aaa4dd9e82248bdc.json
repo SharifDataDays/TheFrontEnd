@@ -1,1 +1,0 @@
-{"ast":null,"code":"import axios from 'axios';\nimport BASE_ADDR from '.';\nvar HOME = \"\".concat(BASE_ADDR, \"/\");\nexport function subscribeAPI() {\n  return \"\".concat(BASE_ADDR, \"/subscribe/email\");\n}\nexport default function homeAPI() {\n  return axios.get(HOME);\n}","map":null,"metadata":{},"sourceType":"module"}
