@@ -38,7 +38,6 @@ class Stats extends React.Component {
 
       for (let i = 0; i <= this.state.participants; i++) {
         await sleep(30);
-        console.log(i);
         this.setState({
           num: i,
         });

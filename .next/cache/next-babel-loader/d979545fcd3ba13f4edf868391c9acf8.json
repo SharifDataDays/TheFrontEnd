@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default {\n  page: {\n    loading: false\n  },\n  auth: {\n    errors: {},\n    authorized: false\n  },\n  signup: {\n    errors: {},\n    loading: false,\n    success: false\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

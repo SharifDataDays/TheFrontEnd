@@ -24,10 +24,21 @@ export function taskAPI(id, token) {
   });
 }
 
-export function contestMilestoneListAPI(contestId) {
-  return `${BASE_ADDR}/contest/${contestId}/`;
+const CONTEST = (id) => `${BASE_ADDR}/contest/${id}`;
+const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
+
+export function contestAPI(contestId, token) {
+  return axios.get(CONTEST(contestId), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }
 
-export function milestoneTaskListAPI(contestId, milestoneId) {
-  return `${BASE_ADDR}/contest/${contestId}/${milestoneId}/`;
+export function milestoneAPI(contestID, milestoneID, token) {
+  return axios.get(MILESTONE(contestID, milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }
