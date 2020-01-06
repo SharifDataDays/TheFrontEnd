@@ -71,3 +71,4 @@ const fields = [
     pass: true,
   },
 ];
+export {fields};

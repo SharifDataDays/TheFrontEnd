@@ -4,6 +4,7 @@ import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
 import { connect } from 'react-redux';
 import { profileUpdateAction, profileClearAction } from '~/redux/actions/profile';
+import Layout from '~/components/global/layout';
 
 class ProfilePage extends Component {
   static async getInitialProps(ctx, token) {
@@ -22,8 +23,9 @@ class ProfilePage extends Component {
 
     return (
       <>
-        {/* <Navbar transparent /> */}
+        <Layout token={token} hasNavbar>
         <Container profile={profile} profileData={profileData} token={token} update={update} />;
+        </Layout>
       </>
     );
   }
