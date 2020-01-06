@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
-import Profile from '~/components/dashboard/profile/index';
-import Navbar from '~/components/dashboard/navbar';
+import Container from '~/components/dashboard/profile/Container';
 import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
+import { connect } from 'react-redux';
+import { profileUpdateAction } from '~/redux/actions/profile';
 
 class ProfilePage extends Component {
   static async getInitialProps(ctx, token) {
     const res = await profileAPI(token);
-    const data = await res.data;
-    return { data, token };
+    const profileData = await res.data;
+    return { profileData, token };
   }
 
   render() {
-    const { data } = this.props;
-    const { token } = this.props;
+    const { profileData, token, update, profile } = this.props;
 
     return (
       <>
-        <Navbar transparent />
-        <Profile profileData={data} token={token} />;
+        {/* <Navbar transparent /> */}
+        <Container profile={profile} profileData={profileData} token={token} update={update} />;
       </>
     );
   }
 }
 
-export default withAuth(true)(ProfilePage)
+function mapStateToProps(state, ownProps) {
+  const { profile } = state;
+  return {
+    profile,
+  };
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    update: (fields) => {
+      dispatch(profileUpdateAction(fields));
+    },
+  };
+}
+
+export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(ProfilePage));
