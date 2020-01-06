@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import nextCookie from 'next-cookies';
 import Profile from '~/components/dashboard/profile/index';
 import Navbar from '~/components/dashboard/navbar';
 import { profileAPI } from '~/redux/api/dashboard';
-import { getToken } from '~/components/dashboard/profile/api';
+import withAuth from '~/components/global/withAuth';
 
-export default class ProfilePage extends Component {
-  static async getInitialProps(ctx) {
-    let { token } = nextCookie(ctx);
-    token = await getToken(token);
-    const res = await fetch(profileAPI(), {
-      headers: {
-        Authorization: `Bearer ${token ? token.access : token}`,
-      },
-    });
-    const data = await res.json();
+class ProfilePage extends Component {
+  static async getInitialProps(ctx, token) {
+    const res = await profileAPI(token);
+    const data = await res.data;
     return { data, token };
   }
 
@@ -30,3 +23,5 @@ export default class ProfilePage extends Component {
     );
   }
 }
+
+export default withAuth(true)(ProfilePage)

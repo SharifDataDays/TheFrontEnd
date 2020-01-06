@@ -1514,6 +1514,78 @@ function pageLoadingAction(loading) {
 
 /***/ }),
 
+/***/ "./redux/actions/profile.js":
+/*!**********************************!*\
+  !*** ./redux/actions/profile.js ***!
+  \**********************************/
+/*! exports provided: PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, profileCheckerAction, profileSuccessAction, profileFailAction, profileUpdateAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROFILE_CHECK", function() { return PROFILE_CHECK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROFILE_SUCCESS", function() { return PROFILE_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROFILE_FAIL", function() { return PROFILE_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileCheckerAction", function() { return profileCheckerAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileSuccessAction", function() { return profileSuccessAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileFailAction", function() { return profileFailAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAction", function() { return profileUpdateAction; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page */ "./redux/actions/page.js");
+/* harmony import */ var _api_dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api/dashboard */ "./redux/api/dashboard.js");
+
+
+
+const PROFILE_CHECK = 'PROFILE_CHECK';
+const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
+const PROFILE_FAIL = 'PROFILE_FAIL';
+function profileCheckerAction(fields) {
+  return {
+    type: PROFILE_CHECK,
+    payload: {
+      fields
+    }
+  };
+}
+function profileSuccessAction() {
+  return {
+    type: PROFILE_SUCCESS
+  };
+}
+function profileFailAction(errors) {
+  return {
+    type: PROFILE_FAIL,
+    payload: {
+      errors
+    }
+  };
+}
+function profileUpdateAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_1__["pageLoadingAction"])(true));
+    dispatch(profileCheckerAction(fields));
+
+    if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(getState().profile.errors)) {
+      Object(_api_dashboard__WEBPACK_IMPORTED_MODULE_2__["profileUpdateAPI"])(fields, token).then(res => {
+        const {
+          data
+        } = res;
+
+        if (data.status_code === 200) {
+          dispatch(profileSuccessAction());
+        } else {
+          dispatch(profileFailAction(data.detail));
+        }
+      });
+    }
+
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_1__["pageLoadingAction"])(false));
+  };
+}
+
+/***/ }),
+
 /***/ "./redux/actions/signup.js":
 /*!*********************************!*\
   !*** ./redux/actions/signup.js ***!
@@ -1639,6 +1711,82 @@ function resetAPI(data) {
 
 /***/ }),
 
+/***/ "./redux/api/dashboard.js":
+/*!********************************!*\
+  !*** ./redux/api/dashboard.js ***!
+  \********************************/
+/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAPI", function() { return profileUpdateAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileAPI", function() { return profileAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskListAPI", function() { return taskListAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskAPI", function() { return taskAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contestAPI", function() { return contestAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "milestoneAPI", function() { return milestoneAPI; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./redux/api/index.js");
+
+
+const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+function profileUpdateAPI(data, token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
+    headers: {
+      'Accept-Language': 'fa',
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+function profileAPI(token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(PROFILE_API, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+const TASK = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources/${id}`;
+
+const TASK_LIST = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources`;
+function taskListAPI(token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TASK_LIST, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+function taskAPI(id, token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TASK(id), {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+const CONTEST = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${id}`;
+
+const MILESTONE = (contestID, milestoneID) => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}/${milestoneID}/`;
+
+function contestAPI(contestId, token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(CONTEST(contestId), {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+function milestoneAPI(contestID, milestoneID, token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(MILESTONE(contestID, milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./redux/api/index.js":
 /*!****************************!*\
   !*** ./redux/api/index.js ***!
@@ -1653,7 +1801,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-const BASE_ADDR = 'https://datadays.sharif.edu/api';
+const BASE_ADDR = 'http://37.152.190.92/test/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {
@@ -1822,6 +1970,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page */ "./redux/reducers/page.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./redux/reducers/auth.js");
 /* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signup */ "./redux/reducers/signup.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile */ "./redux/reducers/profile.js");
+
 
 
 
@@ -1829,7 +1979,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   page: _page__WEBPACK_IMPORTED_MODULE_1__["default"],
   auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
-  signup: _signup__WEBPACK_IMPORTED_MODULE_3__["default"]
+  signup: _signup__WEBPACK_IMPORTED_MODULE_3__["default"],
+  profile: _profile__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
 
 /***/ }),
@@ -1872,6 +2023,56 @@ function pageReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_2__["
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (pageReducers);
+
+/***/ }),
+
+/***/ "./redux/reducers/profile.js":
+/*!***********************************!*\
+  !*** ./redux/reducers/profile.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return profileReducers; });
+/* harmony import */ var _actions_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profile */ "./redux/actions/profile.js");
+/* harmony import */ var _store_initialState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/initialState */ "./redux/store/initialState.js");
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "immer");
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(immer__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+function profileCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_1__["default"].profile, action) {
+  return immer__WEBPACK_IMPORTED_MODULE_2___default()(state, draft => {
+    const {
+      fields
+    } = action.payload; // todo
+  });
+} // todo
+
+
+function profileFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_1__["default"].profile, action) {} // todo
+
+
+function profileSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_1__["default"].profile, action) {}
+
+function profileReducers(state = _store_initialState__WEBPACK_IMPORTED_MODULE_1__["default"].profile, action) {
+  switch (action.type) {
+    case _actions_profile__WEBPACK_IMPORTED_MODULE_0__["PROFILE_CHECK"]:
+      return profileCheckerReducer(state, action);
+
+    case _actions_profile__WEBPACK_IMPORTED_MODULE_0__["PROFILE_FAIL"]:
+      return profileFailReducer(state, action);
+
+    case _actions_profile__WEBPACK_IMPORTED_MODULE_0__["PROFILE_SUCCESS"]:
+      return profileSuccessReducer(state, action);
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -2073,6 +2274,9 @@ __webpack_require__.r(__webpack_exports__);
     errors: {},
     loading: false,
     success: false
+  },
+  profile: {
+    errors: {}
   }
 });
 

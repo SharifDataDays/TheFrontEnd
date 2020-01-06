@@ -1809,11 +1809,12 @@ function resetAPI(data) {
 /*!********************************!*\
   !*** ./redux/api/dashboard.js ***!
   \********************************/
-/*! exports provided: profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAPI", function() { return profileUpdateAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileAPI", function() { return profileAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskListAPI", function() { return taskListAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskAPI", function() { return taskAPI; });
@@ -1824,8 +1825,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./redux/api/index.js");
 
 
-function profileAPI() {
-  return `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+function profileUpdateAPI(data, token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
+    headers: {
+      'Accept-Language': 'fa',
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+function profileAPI(token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(PROFILE_API, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 }
 
 const TASK = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources/${id}`;
@@ -1881,7 +1895,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-const BASE_ADDR = 'https://datadays.sharif.edu/api';
+const BASE_ADDR = 'http://37.152.190.92/test/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {

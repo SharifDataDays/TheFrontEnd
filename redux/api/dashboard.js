@@ -1,8 +1,23 @@
 import axios from 'axios';
 import BASE_ADDR from '.';
 
-export function profileAPI() {
-  return `${BASE_ADDR}/accounts/profile`;
+const PROFILE_API = `${BASE_ADDR}/accounts/profile`;
+
+export function profileUpdateAPI(data, token) {
+  return axios.put(PROFILE_API, data, {
+    headers: {
+      'Accept-Language': 'fa',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function profileAPI(token) {
+  return axios.get(PROFILE_API, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }
 
 const TASK = (id) => `${BASE_ADDR}/resources/${id}`;

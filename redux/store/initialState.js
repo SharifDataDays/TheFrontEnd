@@ -11,4 +11,7 @@ export default {
     loading: false,
     success: false,
   },
+  profile: {
+    errors: {},
+  }
 };
