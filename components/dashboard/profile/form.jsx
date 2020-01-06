@@ -3,7 +3,6 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from './input';
-import Date from './date';
 import { fields } from './utils';
 
 class Form extends Component {
@@ -13,7 +12,7 @@ class Form extends Component {
   }
 
   onSubmit() {
-    const { update } = this.props;
+    const { update, token } = this.props;
     const new_fields = {
       //   username: this.username.state.value,
       //   email: this.email.state.value,
@@ -28,23 +27,18 @@ class Form extends Component {
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
-    update(new_fields);
+    console.log(new_fields)
+    update(new_fields, token);
   }
 
   render() {
     const { success, errors } = this.props.profile;
     const profileData = {...this.props.profileData, ...this.props.profileData.profile};
-    console.log(profileData)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
-              {console.log(field)
-              console.log(this[field.en])
-              console.log(errors[field.en])
-              console.log(profileData[field.en])
-              }
               return(
               <Input
                 ref={(c) => {

@@ -4,9 +4,10 @@ import BASE_ADDR from '.';
 const PROFILE_API = `${BASE_ADDR}/accounts/profile`;
 
 export function profileUpdateAPI(data, token) {
+  console.log("#$%#%^%^#^#")
+  console.log(data)
   return axios.put(PROFILE_API, data, {
     headers: {
-      'Accept-Language': 'fa',
       Authorization: `Bearer ${token}`,
     },
   });
