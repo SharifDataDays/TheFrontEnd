@@ -14,6 +14,7 @@ const Container = styled.div`
 
 
 export default function ProfileContainer({ profile, profileData, token, update }) {
+  console.log(profile)
   return (
     <Container
       px={[4, 5, 6]}
@@ -27,7 +28,7 @@ export default function ProfileContainer({ profile, profileData, token, update }
       </Header>
 
       <Fade up>
-        <Form profile={profile} profileData={profileData} token={token} update={update} />;
+        <Form profile={profile} profileData={profileData} token={token} update={update} />
       </Fade>
     </Container>
   );

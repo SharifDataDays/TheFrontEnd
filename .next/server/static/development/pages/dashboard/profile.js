@@ -135,6 +135,7 @@ function ProfileContainer({
   token,
   update
 }) {
+  console.log(profile);
   return __jsx(Container, {
     px: [4, 5, 6],
     py: 5,
@@ -143,7 +144,7 @@ function ProfileContainer({
     borderRadius: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: this
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Header"], {
@@ -152,14 +153,14 @@ function ProfileContainer({
     dir: "RTL",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 26
     },
     __self: this
   }, "\u067E\u0631\u0648\u0641\u0627\u06CC\u0644"), __jsx(react_reveal__WEBPACK_IMPORTED_MODULE_5__["Fade"], {
     up: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 30
     },
     __self: this
   }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -169,10 +170,10 @@ function ProfileContainer({
     update: update,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 31
     },
     __self: this
-  }), ";"));
+  })));
 }
 
 /***/ }),
@@ -266,17 +267,41 @@ class Date extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./input */ "./components/dashboard/profile/input.jsx");
-/* harmony import */ var _date__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./date */ "./components/dashboard/profile/date.jsx");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./components/dashboard/profile/utils.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./input */ "./components/dashboard/profile/input.jsx");
+/* harmony import */ var _date__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./date */ "./components/dashboard/profile/date.jsx");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./utils */ "./components/dashboard/profile/utils.js");
+
+
+
+
+
+
+
 var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/form.jsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
 /* eslint-disable camelcase */
 
@@ -286,7 +311,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-class Form extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
+class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
@@ -307,7 +332,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
         university: this.university.state.value,
-        birth_date: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.join(lodash__WEBPACK_IMPORTED_MODULE_0___default.a.reverse(lodash__WEBPACK_IMPORTED_MODULE_0___default.a.split(this.birth_date.state.value, '-')), '-')
+        birth_date: lodash__WEBPACK_IMPORTED_MODULE_7___default.a.join(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.reverse(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.split(this.birth_date.state.value, '-')), '-')
       }
     };
     update(new_fields);
@@ -318,30 +343,39 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       success,
       errors
     } = this.props.profile;
-    const profileData = this.props.profileData;
-    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 38
-      },
-      __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
-      verticalAlign: "middle",
+
+    const profileData = _objectSpread({}, this.props.profileData, {}, this.props.profileData.profile);
+
+    console.log(profileData);
+    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Grid"], {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 39
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
-      onSubmit: this.onSubmit,
-      dir: "RTL",
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Grid"].Column, {
+      verticalAlign: "middle",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 40
       },
       __self: this
-    }, lodash__WEBPACK_IMPORTED_MODULE_0___default.a.map(_utils__WEBPACK_IMPORTED_MODULE_5__["fields"], field => {
-      __jsx(_input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"], {
+      onSubmit: this.onSubmit,
+      dir: "RTL",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41
+      },
+      __self: this
+    }, lodash__WEBPACK_IMPORTED_MODULE_7___default.a.map(_utils__WEBPACK_IMPORTED_MODULE_12__["fields"], field => {
+      {
+        console.log(field);
+        console.log(this[field.en]);
+        console.log(errors[field.en]);
+        console.log(profileData[field.en]);
+      }
+      return __jsx(_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
         ref: c => {
           this[field.en] = c;
         },
@@ -350,26 +384,26 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
         initial: profileData[field.en],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 49
         },
         __self: this
       });
-    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Message"], {
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Message"], {
       hidden: !success,
       positive: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 58
       },
       __self: this
-    }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(Form.Button, {
+    }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"].Button, {
       primary: true,
       content: "\u0630\u062E\u06CC\u0631\u0647\u200C\u06CC \u062A\u063A\u06CC\u06CC\u0631\u0627\u062A",
       floated: "right",
       size: "large",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 61
       },
       __self: this
     }))));
@@ -398,8 +432,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var styled_system__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-system */ "styled-system");
 /* harmony import */ var styled_system__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_system__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var semantic_ui_calendar_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! semantic-ui-calendar-react */ "semantic-ui-calendar-react");
+/* harmony import */ var semantic_ui_calendar_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_calendar_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/input.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
 
 
 
@@ -413,15 +456,25 @@ const Label = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.label`
 class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      value: this.props.initial
+      value: this.props.field.date ? _.join(_.reverse(_.split(this.props.initial, '-')), '-') : this.props.initial
     };
     this.handleChange = this.handleChange.bind(this);
+    this.dateHandleChange = this.dateHandleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       value: event.target.value
+    });
+  }
+
+  dateHandleChange(event, {
+    value
+  }) {
+    this.setState({
+      value
     });
   }
 
@@ -433,14 +486,59 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const {
       value
     } = this.state;
-    console.log(field);
-    console.log(error);
-    console.log(value);
+    const labelWidth = '170px';
+
+    if (field.date) {
+      return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+        inline: true,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 48
+        },
+        __self: this
+      }, __jsx(Label, {
+        py: 2,
+        style: {
+          width: labelWidth
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 49
+        },
+        __self: this
+      }, field.fa, ":"), __jsx(semantic_ui_calendar_react__WEBPACK_IMPORTED_MODULE_4__["DateInput"], {
+        placeholder: field.fa,
+        name: field.en,
+        value: _.join(_.reverse(_.split(value, '-')), '-'),
+        onChange: this.dateHandleChange,
+        popupPosition: "top center",
+        closeOnMouseLeave: false,
+        readOnly: field.readOnly,
+        width: 6,
+        error: error,
+        icon: __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faCalendar"],
+          color: "black",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62
+          },
+          __self: this
+        }),
+        hideMobileKeyboard: true,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52
+        },
+        __self: this
+      }));
+    }
+
     return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 69
       },
       __self: this
     }, __jsx(Label, {
@@ -450,7 +548,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 70
       },
       __self: this
     }, field.fa, ":"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Input, {
@@ -465,7 +563,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 73
       },
       __self: this
     }));
@@ -1365,8 +1463,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // const BASE_ADDR = 'http://37.152.190.92/test/api';
 
-const BASE_ADDR = 'http://37.152.190.92/test/api';
+const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {

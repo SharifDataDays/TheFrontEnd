@@ -33,12 +33,19 @@ class Form extends Component {
 
   render() {
     const { success, errors } = this.props.profile;
-    const profileData = this.props.profileData;
+    const profileData = {...this.props.profileData, ...this.props.profileData.profile};
+    console.log(profileData)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
+              {console.log(field)
+              console.log(this[field.en])
+              console.log(errors[field.en])
+              console.log(profileData[field.en])
+              }
+              return(
               <Input
                 ref={(c) => {
                   this[field.en] = c;
@@ -46,12 +53,12 @@ class Form extends Component {
                 field={field}
                 error={errors[field.en]}
                 initial={profileData[field.en]}
-              ></Input>;
+              ></Input>)
             })}
             <Message hidden={!success} positive>
               تغییرات با موفقیت ذخیره شد.
             </Message>
-            <Form.Button primary content="ذخیره‌ی تغییرات" floated="right" size="large" />
+            <F.Button primary content="ذخیره‌ی تغییرات" floated="right" size="large" />
           </F>
         </Grid.Column>
       </Grid>

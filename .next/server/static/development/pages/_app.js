@@ -1800,8 +1800,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // const BASE_ADDR = 'http://37.152.190.92/test/api';
 
-const BASE_ADDR = 'http://37.152.190.92/test/api';
+const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {
@@ -2276,7 +2277,8 @@ __webpack_require__.r(__webpack_exports__);
     success: false
   },
   profile: {
-    errors: {}
+    errors: {},
+    success: false
   }
 });
 
