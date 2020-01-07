@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/footer.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/footer.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -387,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer */ "./components/global/footer.jsx");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme */ "./theme.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/layout.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/layout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -472,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/navbar.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/navbar.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1310,7 +1310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/store */ "./redux/store/index.js");
 /* harmony import */ var _components_global_layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/global/layout */ "./components/global/layout.jsx");
 
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/pages/_app.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/pages/_app.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
 
@@ -1838,9 +1838,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ //const BASE_ADDR = 'http://37.152.190.92/test/api';
 
-const BASE_ADDR = 'http://37.152.190.92/test/api'; // const BASE_ADDR = 'https://datadays.sharif.edu/api';
-
+const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {

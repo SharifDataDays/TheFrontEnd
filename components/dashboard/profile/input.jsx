@@ -76,7 +76,7 @@ class Input extends Component {
           value={value}
           onChange={this.handleChange}
           readOnly={field.readOnly}
-          width={error? 8:6}
+          width={6}
           error={error}
           type={field.pass === true ? 'password' : 'none'}
           // transparent={field.readOnly}

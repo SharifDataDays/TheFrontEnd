@@ -116,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_reveal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-reveal */ "react-reveal");
 /* harmony import */ var react_reveal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_reveal__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./form */ "./components/dashboard/profile/form.jsx");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/Container.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/Container.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -215,7 +215,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/form.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/form.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -351,7 +351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/input.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/input.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -469,7 +469,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: value,
       onChange: this.handleChange,
       readOnly: field.readOnly,
-      width: error ? 8 : 6,
+      width: 6,
       error: error,
       type: field.pass === true ? 'password' : 'none' // transparent={field.readOnly}
       ,
@@ -589,7 +589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/footer.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/footer.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -851,7 +851,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer */ "./components/global/footer.jsx");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme */ "./theme.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/layout.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/layout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -936,7 +936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/navbar.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/navbar.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1245,7 +1245,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/withAuth.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/withAuth.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1551,7 +1551,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _redux_actions_profile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/actions/profile */ "./redux/actions/profile.js");
 /* harmony import */ var _components_global_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/global/layout */ "./components/global/layout.jsx");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/pages/dashboard/profile.jsx";
+var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/pages/dashboard/profile.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -1564,7 +1564,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 class ProfilePage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   static async getInitialProps(ctx, token) {
     const res = await Object(_redux_api_dashboard__WEBPACK_IMPORTED_MODULE_2__["profileAPI"])(token);
-    const profileData = await res.data;
+    const profileData = res.data;
     return {
       profileData,
       token
@@ -1588,6 +1588,7 @@ class ProfilePage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_global_layout__WEBPACK_IMPORTED_MODULE_6__["default"], {
       token: token,
       hasNavbar: true,
+      hasFooter: true,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 26
@@ -2022,9 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ //const BASE_ADDR = 'http://37.152.190.92/test/api';
 
-const BASE_ADDR = 'http://37.152.190.92/test/api'; // const BASE_ADDR = 'https://datadays.sharif.edu/api';
-
+const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {
@@ -2066,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/Saba/Desktop/Front2/TheFrontEnd/pages/dashboard/profile.jsx */"./pages/dashboard/profile.jsx");
+module.exports = __webpack_require__(/*! /Users/bahar/Desktop/TheFrontEnd/pages/dashboard/profile.jsx */"./pages/dashboard/profile.jsx");
 
 
 /***/ }),

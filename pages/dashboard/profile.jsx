@@ -9,7 +9,7 @@ import Layout from '~/components/global/layout';
 class ProfilePage extends Component {
   static async getInitialProps(ctx, token) {
     const res = await profileAPI(token);
-    const profileData = await res.data;
+    const profileData = res.data;
     return { profileData, token };
   }
 
@@ -23,7 +23,7 @@ class ProfilePage extends Component {
 
     return (
       <>
-        <Layout token={token} hasNavbar>
+        <Layout token={token} hasNavbar hasFooter>
         <Container profile={profile} profileData={profileData} token={token} update={update} />;
         </Layout>
       </>
