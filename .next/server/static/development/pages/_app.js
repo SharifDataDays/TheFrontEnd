@@ -1752,7 +1752,7 @@ function resetAPI(data) {
 /*!********************************!*\
   !*** ./redux/api/dashboard.js ***!
   \********************************/
-/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI, scoreboardAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1763,6 +1763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskAPI", function() { return taskAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contestAPI", function() { return contestAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "milestoneAPI", function() { return milestoneAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scoreboardAPI", function() { return scoreboardAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./redux/api/index.js");
@@ -1822,6 +1823,22 @@ function milestoneAPI(contestID, milestoneID, token) {
     }
   });
 }
+const SCOREBOARD_BASE_ADD = "http://81.31.170.5:8000";
+
+const SCOREBOARD = (start_index, end_index, ms_id) => `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}
+&end_index=${end_index}&ms_id=${ms_id}`;
+
+function scoreboardAPI(startIndex, endIndex, milestoneID, token) {
+  console.log("start_index", startIndex);
+  console.log("end_index:", endIndex);
+  console.log("ms_id:", milestoneID); // return `${BASE_ADDR}/scoreboard/team_score`;
+
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(SCOREBOARD(startIndex, endIndex, milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 
 /***/ }),
 
@@ -1838,9 +1855,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- //const BASE_ADDR = 'http://37.152.190.92/test/api';
 
-const BASE_ADDR = 'https://datadays.sharif.edu/api';
+const BASE_ADDR = 'http://37.152.190.92/test/api'; // const BASE_ADDR = 'https://datadays.sharif.edu/api';
+
 const TERMS = `${BASE_ADDR}/terms`;
 const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {

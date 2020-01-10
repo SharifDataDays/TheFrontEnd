@@ -11,7 +11,6 @@ class Dashboard extends Component {
     const res = await contestAPI(contestNumber, token);
     const { contest } = res.data;
     console.log(res);
-    console.log('##@#%@$^#%^#%^#');
     console.log(contest);
     let milestones = [];
     for (let id = 0; id < contest.milestones.length; id++) {
@@ -20,6 +19,7 @@ class Dashboard extends Component {
       console.log(milestone);
       milestones.push(milestone);
     }
+    console.log(milestones)
     return { contest, milestones, token };
   }
 

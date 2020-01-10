@@ -58,3 +58,20 @@ export function milestoneAPI(contestID, milestoneID, token) {
     },
   });
 }
+
+const SCOREBOARD_BASE_ADD = "http://81.31.170.5:8000"
+const SCOREBOARD = (start_index, end_index, ms_id) => `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}
+&end_index=${end_index}&ms_id=${ms_id}`
+
+export function scoreboardAPI (startIndex, endIndex, milestoneID, token) {
+  console.log("start_index", startIndex)
+  console.log("end_index:", endIndex)
+  console.log("ms_id:", milestoneID)
+  // return `${BASE_ADDR}/scoreboard/team_score`;
+  return axios.get(SCOREBOARD(startIndex, endIndex, milestoneID), {
+    headers: {
+     Authorization: `Bearer ${token}`
+    }
+  })
+  
+}
