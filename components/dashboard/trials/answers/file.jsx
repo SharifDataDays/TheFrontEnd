@@ -1,10 +1,10 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import persianJs from 'persianjs';
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import Content from '~/components/global/mdx';
 
-class FieldAnswer extends Component {
+class FileAnswer extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -13,16 +13,17 @@ class FieldAnswer extends Component {
   handleChange(e) {
     e.preventDefault();
     const { id, qtype, changeAnswer } = this.props;
+    const file = e.target.files[0];
     changeAnswer({
       id,
       qtype,
-      number: e.target.name,
-      value: e.target.value,
+      number: 0,
+      value: e.target.files[0],
     });
   }
 
   render() {
-    const { content, number, count, type, saved } = this.props;
+    const { content, number } = this.props;
     return (
       <>
         <Content
@@ -32,18 +33,7 @@ class FieldAnswer extends Component {
         />
         <Form>
           <Form.Group width={2} dir="rtl">
-            {_.map(_.range(count), (i) => {
-              return (
-                <Form.Input
-                  key={i}
-                  name={i}
-                  value={_.get(saved, `n${i}.value`, '')}
-                  type={type}
-                  width={8}
-                  onChange={this.handleChange}
-                />
-              );
-            })}
+            <input type="file" onChange={this.handleChange} />
           </Form.Group>
         </Form>
       </>
@@ -51,4 +41,4 @@ class FieldAnswer extends Component {
   }
 }
 
-export default FieldAnswer;
+export default FileAnswer;

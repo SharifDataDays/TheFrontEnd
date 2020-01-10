@@ -11,4 +11,5 @@ export default {
     loading: false,
     success: false,
   },
+  trials: {},
 };

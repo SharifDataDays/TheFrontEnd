@@ -7,30 +7,22 @@ import Content from '~/components/global/mdx';
 class ChoiceAnswer extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: [] };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e, { value }) {
+  handleChange(e, { name, value }) {
     e.preventDefault();
-    const { count } = this.props;
-    const currentValue = this.state.value;
-    let newValue;
-    if (count === 1) {
-      newValue = [value];
-    } else if (_.includes(currentValue, value)) {
-      newValue = _.filter(currentValue, (choice) => choice !== value);
-    } else {
-      newValue = _.concat(currentValue, value);
-    }
-    this.setState({
-      value: newValue,
+    const { id, qtype, changeAnswer } = this.props;
+    changeAnswer({
+      id,
+      qtype,
+      value,
+      number: 0,
     });
   }
 
   render() {
-    const { content, number, count, choices } = this.props;
-    const { value } = this.state;
+    const { content, number, count, choices, saved } = this.props;
     return (
       <>
         <Content
@@ -43,10 +35,9 @@ class ChoiceAnswer extends Component {
             {_.map(choices, (choice, i) => (
               <Form.Field
                 key={i}
-                name={i}
                 label={choice.body}
                 value={choice.label}
-                checked={_.includes(value, choice.label)}
+                checked={_.includes(_.get(saved, `n0.value`, []), choice.label)}
                 control={count === 1 ? Radio : Checkbox}
                 width={8}
                 onChange={this.handleChange}
