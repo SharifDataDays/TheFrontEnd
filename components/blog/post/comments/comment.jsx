@@ -5,16 +5,15 @@ import Modal from './modal';
 class CommentComp extends Component {
   constructor (props) {
     super(props);
-    this.state = { displayReply: 'none', open: false };
+    this.state = { displayReply: 'none', open: false, value: '' };
     this.toReply = this.toReply.bind(this);
     this.doneReply = this.doneReply.bind(this);
-    this.onInput = this.onInput.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onInput () {
-    // handle logged in
-    this.setState({ open: true });
+  handleChange (event) {
+    this.setState({ value: event.target.value });
   }
 
   doneReply () {
@@ -43,7 +42,6 @@ class CommentComp extends Component {
     const { displayReply, open } = this.state;
     return (
       <>
-        <Modal open={open} handle={this.closeModal} />
         <Divider style={{ display }} />
         <Comment style={{ marginRight }}>
           <Comment.Content>
@@ -62,7 +60,10 @@ class CommentComp extends Component {
               <a onClick={this.toReply}>پاسخ دادن</a>
             </Comment.Actions>
             <Form reply style={{ display: displayReply }} onClick={this.onInput}>
-              <Form.TextArea style={{ height: '5em', direction: 'rtl' }} />
+              <Form.TextArea
+                style={{ height: '5em', direction: 'rtl' }}
+                onChange={this.handleChange}
+              />
               <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
                 ثبت پاسخ
               </Button>

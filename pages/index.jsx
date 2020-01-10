@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
 import Head from 'next/head';
-import fetch from 'isomorphic-unfetch';
+import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
-import homeAPI from '~/redux/api/home';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
 import Header from '~/components/home/header';
@@ -10,11 +8,12 @@ import Sponsers from '~/components/home/sponsors';
 import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
+import homeAPI from '~/redux/api/home';
 
 class HomePage extends Component {
   static async getInitialProps(ctx) {
-    const res = await fetch(homeAPI());
-    const content = await res.json();
+    const res = await homeAPI();
+    const content = res.data;
     return { content };
   }
 

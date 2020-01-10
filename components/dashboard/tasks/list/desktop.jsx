@@ -37,10 +37,10 @@ function TasksDesktop({ tasks }) {
         marginBottom: '3rem',
       }}
     >
-      {_.map(tasks, (task) => {
+      {_.map(tasks, (task, i) => {
         const { id, title_fa, description_fa, thumbnail } = task;
         return (
-          <a href={`/dashboard/tasks/${id}/resource`}>
+          <a key={i} href={`/dashboard/tasks/${id}/resource`}>
             <RowSegment>
               <Header>
                 <Text>{title_fa}</Text>

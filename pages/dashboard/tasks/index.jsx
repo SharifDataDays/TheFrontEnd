@@ -1,43 +1,30 @@
 import Head from 'next/head';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
-import Layout from '~/components/dashboard/layout';
+import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
-import { loadTaskListAction } from '~/redux/actions/tasks';
+import { taskListAPI } from '~/redux/api/dashboard';
 
 class TaskPage extends Component {
-  componentDidMount() {
-    const { load } = this.props;
-    load();
+  static async getInitialProps(ctx, token) {
+    const res = await taskListAPI(token);
+    const { documents } = res.data;
+    return { tasks: documents, token };
   }
 
   render() {
-    const { tasks } = this.props;
+    const { tasks, token } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>
-          <Tasks tasks={tasks.list} />
+        <Layout token={token} hasNavbar>
+          <Tasks tasks={tasks} />
         </Layout>
       </>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { tasks } = state;
-  return {
-    tasks,
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    load: () => dispatch(loadTaskListAction()),
-  };
-}
-
-export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(TaskPage));
+export default withAuth(true)(TaskPage);

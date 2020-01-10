@@ -25,13 +25,17 @@ class CommentsPage extends Component {
     super(props);
     this.reply = this.reply.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
-    this.onInput = this.onInput.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = { open: false };
   }
 
   onInput () {
-    this.setState({ open: true });
+    // this.setState({ open: true, value: '' });
+  }
+
+  handleChange (event) {
+    this.setState({ value: event.target.value });
   }
 
   checkLoggedIn () {}
@@ -49,12 +53,12 @@ class CommentsPage extends Component {
     const { open } = this.state;
     return (
       <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-        <Modal open={open} handle={this.closeModal} />
+        <Modal open={false} handle={this.closeModal} />
         <Divider horizontal>
           <Header as='h3'>نظرات</Header>
         </Divider>
         <Form reply>
-          <TextArea onInput={this.onInput} onClick={this.onInput} />
+          <TextArea onClick={this.onInput} onChange={this.handleChange} />
           <Button secondary positive style={{ marginBottom: '1rem' }}>
             ثبت نظر
           </Button>

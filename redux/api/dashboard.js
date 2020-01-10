@@ -1,25 +1,33 @@
 import axios from 'axios';
 import BASE_ADDR from '.';
 
-export function profileAPI() {
+export function profileAPI () {
   return `${BASE_ADDR}/accounts/profile`;
 }
 
 const TASK = (id) => `${BASE_ADDR}/resources/${id}`;
 const TASK_LIST = `${BASE_ADDR}/resources`;
 
-export function taskListAPI(token) {
-  return axios.get(TASK_LIST, {
+export function getProfileApi (token) {
+  return axios.get(profileAPI(), {
     headers: {
-      Authorization: `Bearer ${token.access}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 }
 
-export function taskAPI(id, token) {
+export function taskListAPI (token) {
+  return axios.get(TASK_LIST, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function taskAPI (id, token) {
   return axios.get(TASK(id), {
     headers: {
-      Authorization: `Bearer ${token.access}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 }
