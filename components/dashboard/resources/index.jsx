@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
+import { contentFinished } from '~/redux/api/dashboard.js';
 
 function Pagination({ page, prevPage, nextPage, content, trial }) {
   return (
@@ -32,6 +33,7 @@ class Resource extends Component {
     this.state = { page: 0 };
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
+    this.trial = this.trial.bind(this);
   }
 
   nextPage(event) {
@@ -54,7 +56,8 @@ class Resource extends Component {
   }
 
   trial(event) {
-    console.log("Pedassag")
+    console.log(this.props);
+    contentFinished(this.props.content.id, this.props.taskId, this.props.milestoneId);
   }
 
   render() {

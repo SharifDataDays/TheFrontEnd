@@ -21,7 +21,7 @@ class ResourcesPage extends Component {
           <title>DataDays 2020</title>
         </Head>
         <Layout token={token} hasNavbar hasFooter>
-          {task.status_code !== 200 ? <NotFound /> : <Resources content={task} />}
+          {task.status_code !== 200 ? <NotFound /> : <Resources content={task} taskId={0} milestoneId={1} />}
         </Layout>
       </>
     );
