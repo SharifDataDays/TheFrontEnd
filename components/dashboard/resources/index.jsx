@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
 
-function Pagination({ page, prevPage, nextPage, content }) {
+function Pagination({ page, prevPage, nextPage, content, trial }) {
   return (
     <div style={{ marginBottom: '3rem' }}>
       {page > 0 ? (
@@ -18,7 +18,9 @@ function Pagination({ page, prevPage, nextPage, content }) {
           بعدی
         </Button>
       ) : (
-        <></>
+        <Button primary onClick={trial} floated="right">
+          بریم تست کنیم
+        </Button>
       )}
     </div>
   );
@@ -51,6 +53,10 @@ class Resource extends Component {
     });
   }
 
+  trial(event) {
+    console.log("Pedassag")
+  }
+
   render() {
     const { content } = this.props;
     const { page } = this.state;
@@ -74,6 +80,7 @@ class Resource extends Component {
                 content={content}
                 prevPage={this.prevPage}
                 nextPage={this.nextPage}
+                trial={this.trial}
               />
             </Grid.Column>
           </Grid.Row>
