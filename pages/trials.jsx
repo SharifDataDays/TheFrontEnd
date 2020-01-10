@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
-import Questions from '~/components/dashboard/trials/questions';
+import Trials from '~/components/dashboard/trials';
 
-class Trials extends Component {
+class TrialsPage extends Component {
   static async getInitialProps(ctx, token) {
     return { token };
   }
@@ -13,10 +13,10 @@ class Trials extends Component {
     const { token } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
-        <Questions />
+        <Trials />
       </Layout>
     );
   }
 }
 
-export default withAuth(true)(Trials);
+export default withAuth(true)(TrialsPage);

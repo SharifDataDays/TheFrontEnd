@@ -19,7 +19,7 @@ class TaskPage extends Component {
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout token={token} hasNavbar>
+        <Layout token={token} hasNavbar hasFooter>
           <Tasks tasks={tasks} />
         </Layout>
       </>
