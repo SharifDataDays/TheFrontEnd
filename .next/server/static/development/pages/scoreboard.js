@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -368,6 +368,10 @@ const GenerateRows = ({
   teams
 }) => {
   const rows = teams.map(x => {
+    let scoresSum = 0;
+    x.scores.map(score => {
+      scoresSum = scoresSum + score;
+    });
     let background = '#f8f8fa';
     const rank = x.rank;
     if (rank <= 3) background = '#fed76673';else if (rank <= 6) background = '#bbbbbb73';else if (rank <= 9) background = '#cd7f3273';
@@ -378,7 +382,7 @@ const GenerateRows = ({
       rank: x.rank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 53
       },
       __self: undefined
     });
@@ -388,7 +392,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 56
       },
       __self: undefined
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -398,15 +402,15 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 57
       },
       __self: undefined
-    }, "points"), x.scores.map(score => {
+    }, scoresSum), x.scores.map(score => {
       return __jsx(TableCell, {
         textAlign: "center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 63
         },
         __self: undefined
       }, score);
@@ -414,7 +418,7 @@ const GenerateRows = ({
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 70
       },
       __self: undefined
     }, x.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -424,7 +428,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 71
       },
       __self: undefined
     }, x.rank));
@@ -435,19 +439,19 @@ const GenerateRows = ({
 const Footer = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(Info, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 76
+    lineNumber: 82
   },
   __self: undefined
 }, "\u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC 1 \u0627\u0644\u06CC 20"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 77
+    lineNumber: 83
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 78
+    lineNumber: 84
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Pagination"], {
@@ -461,7 +465,7 @@ const Footer = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment
   },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 79
+    lineNumber: 85
   },
   __self: undefined
 }))));
@@ -478,26 +482,26 @@ const Scoreboard = ({
     celled: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 117
+      lineNumber: 123
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 118
+      lineNumber: 124
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 119
+      lineNumber: 125
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 120
+      lineNumber: 126
     },
     __self: undefined
   }, "\u0627\u0645\u062A\u06CC\u0627\u0632"), tasks.map(x => {
@@ -505,7 +509,7 @@ const Scoreboard = ({
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 122
+        lineNumber: 128
       },
       __self: undefined
     }, x.name);
@@ -513,20 +517,20 @@ const Scoreboard = ({
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 124
+      lineNumber: 130
     },
     __self: undefined
   }, "\u0646\u0627\u0645"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 125
+      lineNumber: 131
     },
     __self: undefined
   }, "\u0631\u062A\u0628\u0647"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 129
+      lineNumber: 135
     },
     __self: undefined
   }, __jsx(GenerateMyRow, {
@@ -536,7 +540,7 @@ const Scoreboard = ({
     display: display,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 130
+      lineNumber: 136
     },
     __self: undefined
   }), __jsx(GenerateRows, {
@@ -545,10 +549,16 @@ const Scoreboard = ({
     teams: teams,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 137
     },
     __self: undefined
-  }))));
+  }))), __jsx(Footer, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 140
+    },
+    __self: undefined
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Scoreboard);
@@ -2169,7 +2179,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************************!*\
   !*** multi ./pages/scoreboard/index.jsx ***!
   \******************************************/

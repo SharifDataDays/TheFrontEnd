@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Pagination, Segment, TableRow, Tab, Header } from 'semantic-ui-react';
+import { Table, Pagination, Segment, TableRow, Tab, Header, Menu, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { width } from 'dom-helpers';
 
@@ -38,6 +38,12 @@ const GenerateMyRow = ({ name, score, rank, display }) => {
 
 const GenerateRows = ({ data, myName, teams }) => {
   const rows = teams.map((x) => {
+    let scoresSum = 0;
+    x.scores.map((score) => {
+      scoresSum = scoresSum + score
+    })
+
+
     let background = '#f8f8fa';
     const rank = x.rank;
     if (rank <= 3) background = '#fed76673';
@@ -49,7 +55,7 @@ const GenerateRows = ({ data, myName, teams }) => {
     return (
       <Table.Row style={{ background }}>
         <Table.Cell textAlign="right" style={{ marginLeft: '3rem !important' }}>
-          points
+          {scoresSum}
         </Table.Cell>
 
         {x.scores.map((score) => {
@@ -131,6 +137,8 @@ const Scoreboard = ({ data, milestone, teams, tasks }) => {
           <GenerateRows data={data} myName={myName} teams={teams} />
         </Table.Body>
       </Table>
+      <Footer />
+
     </>
   );
 };
