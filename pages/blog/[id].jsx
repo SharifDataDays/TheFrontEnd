@@ -20,10 +20,15 @@ class PostPage extends Component {
   }
 
   render () {
-    const { post, token } = this.props;
+    const { post, token, profileAPI } = this.props;
+    const { profile } = profileAPI;
+    const { firstname_fa, lastname_fa } =
+      profile !== undefined ? profile : { firstname_fa: '', lastname_fa: '' };
     const { image, date, title_fa, text_fa, comments } = post;
     const isLoggedIn = token !== '';
-    const profProps = { isLoggedIn };
+    const name = firstname_fa.concat(' ').concat(lastname_fa);
+    console.log(name);
+    const profProps = { isLoggedIn, name };
     return (
       <>
         <Head>

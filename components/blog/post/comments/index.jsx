@@ -24,7 +24,6 @@ class CommentsPage extends Component {
   constructor (props) {
     super(props);
     this.reply = this.reply.bind(this);
-    this.checkLoggedIn = this.checkLoggedIn.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = { open: false };
@@ -38,8 +37,6 @@ class CommentsPage extends Component {
     }
     this.setState({ value: event.target.value });
   }
-
-  checkLoggedIn () {}
 
   reply () {
     // should handle post
@@ -59,7 +56,7 @@ class CommentsPage extends Component {
           <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
             <Modal open={open} handle={this.closeModal} />
             <Divider horizontal>
-              <Header as='h3'>نظرات</Header>
+              <Header as='h3'> نظرات </Header>
             </Divider>
             <Form reply>
               <TextArea onClick={this.onInput} onChange={this.handleChange} value={value} />

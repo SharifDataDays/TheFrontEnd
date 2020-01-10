@@ -11,7 +11,7 @@ const Alert = ({ open, handle }) => (
   <Modal basic open={open}>
     <Header as='h1' content='ثبت نظر' style={{ paddingBottom: '0', textAlign: 'center' }} />
     <Modal.Content>
-      <Text>برای ثبت نظر باید در سایت  <a href="/test"> وارد شوید </a></Text>
+      <Text>برای ثبت نظر باید در سایت  <a href="/login"> وارد شوید </a></Text>
     </Modal.Content>
     <Modal.Actions style={{ display: 'flex', justifyContent: 'center' }}>
       <Button color='green' inverted onClick={handle}>
