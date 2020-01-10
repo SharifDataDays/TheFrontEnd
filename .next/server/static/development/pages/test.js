@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,7 +145,6 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   }
 
   doneReply() {
-    // post data
     this.setState({
       displayReply: 'none'
     });
@@ -195,7 +194,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 49
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"], {
@@ -204,7 +203,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: this
     }, __jsx(_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -212,13 +211,13 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       handle: this.closeModal,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 51
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Content, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 52
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Author, {
@@ -228,19 +227,19 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 53
       },
       __self: this
     }, author), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Metadata, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 56
       },
       __self: this
     }, __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58
+        lineNumber: 57
       },
       __self: this
     }, date)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Text, {
@@ -251,7 +250,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 59
       },
       __self: this
     }, content), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Comment"].Actions, {
@@ -261,14 +260,14 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 64
       },
       __self: this
     }, __jsx("a", {
       onClick: this.toReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 65
       },
       __self: this
     }, "\u067E\u0627\u0633\u062E \u062F\u0627\u062F\u0646")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
@@ -279,7 +278,7 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.onInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 67
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
@@ -291,22 +290,24 @@ class CommentComp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 68
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       secondary: true,
       positive: true,
       style: {
-        marginBottom: '1rem'
+        marginBottom: '1rem',
+        marginRight: '95%',
+        backgroundColor: '#21ba45'
       },
       onClick: this.doneReply,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 74
+        lineNumber: 73
       },
       __self: this
-    }, "\u062B\u0628\u062A \u067E\u0627\u0633\u062E")))));
+    }, "\u062B\u0628\u062A")))));
   }
 
 }
@@ -337,12 +338,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./comment */ "./components/blog/post/comments/comment.jsx");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal */ "./components/blog/post/comments/modal.jsx");
-/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json");
-var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
 
 var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/components/blog/post/comments/index.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
 
 
 
@@ -356,8 +354,10 @@ const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5___default()(react_
 })(["", ";width:100%;height:100%;outline:0;border:0;resize:none;direction:rtl;margin-bottom:1rem !important;"], styled_system__WEBPACK_IMPORTED_MODULE_3__["typography"]);
 
 const GenerateComments = ({
-  data
+  data,
+  isLoggedIn
 }) => data.map(x => __jsx(_comment__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, x, {
+  isLoggedIn: isLoggedIn,
   __source: {
     fileName: _jsxFileName,
     lineNumber: 21
@@ -413,14 +413,34 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       open,
       value
     } = this.state;
-    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
+    const {
+      comments,
+      isLoggedIn
+    } = this.props;
+    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], {
+      centered: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: this
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
+      computer: 7,
+      tablet: 10,
+      mobile: 15,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58
+      },
+      __self: this
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Comment"].Group, {
       style: {
         marginTop: '5rem',
         marginBottom: '5rem'
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 59
       },
       __self: this
     }, __jsx(_modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -428,28 +448,28 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       handle: this.closeModal,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 60
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
       horizontal: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58
+        lineNumber: 61
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], {
       as: "h3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 62
       },
       __self: this
     }, "\u0646\u0638\u0631\u0627\u062A")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       reply: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61
+        lineNumber: 64
       },
       __self: this
     }, __jsx(TextArea, {
@@ -458,28 +478,31 @@ class CommentsPage extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       value: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 62
+        lineNumber: 65
       },
       __self: this
     }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
       secondary: true,
       positive: true,
       style: {
-        marginBottom: '1rem'
+        marginBottom: '1rem',
+        marginRight: '95%',
+        backgroundColor: '#21ba45'
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 66
       },
       __self: this
-    }, "\u062B\u0628\u062A \u0646\u0638\u0631")), __jsx(GenerateComments, {
-      data: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__,
+    }, "\u062B\u0628\u062A")), __jsx(GenerateComments, {
+      data: comments,
+      isLoggedIn: isLoggedIn,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 74
       },
       __self: this
-    }));
+    }))));
   }
 
 }
@@ -1176,8 +1199,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_global_navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/global/navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _components_global_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/global/footer */ "./components/global/footer.jsx");
 /* harmony import */ var _components_blog_post_comments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/blog/post/comments */ "./components/blog/post/comments/index.jsx");
+/* harmony import */ var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../public/static/comments-test.json */ "./public/static/comments-test.json");
+var _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../public/static/comments-test.json */ "./public/static/comments-test.json", 1);
 var _jsxFileName = "/Users/pooya/Desktop/FrontEndMaster/TheFrontEnd/pages/test.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
+
 
 
 
@@ -1191,26 +1217,26 @@ const PostPage = props => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 15
     },
     __self: undefined
   }, "`\u0628\u0644\u0627\u06AF DataDays`")), __jsx(_components_global_navbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 17
     },
     __self: undefined
   }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
     centered: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
@@ -1219,19 +1245,20 @@ const PostPage = props => {
     mobile: 16,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: undefined
   }, __jsx(_components_blog_post_comments__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    comments: _public_static_comments_test_json__WEBPACK_IMPORTED_MODULE_8__,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: undefined
   }))), __jsx(_components_global_footer__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 23
     },
     __self: undefined
   }));
@@ -1467,7 +1494,7 @@ function termsAPI() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/test.jsx ***!
   \******************************/

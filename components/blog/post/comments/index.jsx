@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Form, Header, Divider, Comment as CMT } from 'semantic-ui-react';
+import { Button, Form, Header, Divider, Comment as CMT, Grid } from 'semantic-ui-react';
 import { typography } from 'styled-system';
 import TextareaAutosize from 'react-autosize-textarea';
 import styled from 'styled-components';
 import Comment from './comment';
 import Modal from './modal';
-import samples from '~/public/static/comments-test.json';
 
 const TextArea = styled(TextareaAutosize)`
   ${typography};
@@ -18,7 +17,8 @@ const TextArea = styled(TextareaAutosize)`
   margin-bottom: 1rem !important;
 `;
 
-const GenerateComments = ({ data }) => data.map((x) => <Comment {...x} />);
+const GenerateComments = ({ data, isLoggedIn }) =>
+  data.map((x) => <Comment {...x} isLoggedIn={isLoggedIn} />);
 
 class CommentsPage extends Component {
   constructor (props) {
@@ -52,20 +52,29 @@ class CommentsPage extends Component {
 
   render () {
     const { open, value } = this.state;
+    const { comments, isLoggedIn } = this.props;
     return (
-      <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-        <Modal open={open} handle={this.closeModal} />
-        <Divider horizontal>
-          <Header as='h3'>نظرات</Header>
-        </Divider>
-        <Form reply>
-          <TextArea onClick={this.onInput} onChange={this.handleChange} value={value}/>
-          <Button secondary positive style={{ marginBottom: '1rem' }}>
-            ثبت نظر
-          </Button>
-        </Form>
-        <GenerateComments data={samples} />
-      </CMT.Group>
+      <Grid centered>
+        <Grid.Column computer={7} tablet={10} mobile={15}>
+          <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
+            <Modal open={open} handle={this.closeModal} />
+            <Divider horizontal>
+              <Header as='h3'>نظرات</Header>
+            </Divider>
+            <Form reply>
+              <TextArea onClick={this.onInput} onChange={this.handleChange} value={value} />
+              <Button
+                secondary
+                positive
+                style={{ marginBottom: '1rem', marginRight: '95%', backgroundColor: '#21ba45' }}
+              >
+                ثبت
+              </Button>
+            </Form>
+            <GenerateComments data={comments} isLoggedIn={isLoggedIn} />
+          </CMT.Group>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

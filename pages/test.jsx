@@ -6,6 +6,7 @@ import { Grid } from 'semantic-ui-react';
 import Navbar from '~/components/global/navbar';
 import Footer from '~/components/global/footer';
 import Comments from '~/components/blog/post/comments';
+import samples from '~/public/static/comments-test.json';
 
 const PostPage = (props) => {
   return (
@@ -16,7 +17,7 @@ const PostPage = (props) => {
       <Navbar />
       <Grid centered>
         <Grid.Column computer={8} tablet={10} mobile={16}>
-          <Comments />
+          <Comments comments={samples} />
         </Grid.Column>
       </Grid>
       <Footer />

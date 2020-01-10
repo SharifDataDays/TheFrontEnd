@@ -6,6 +6,8 @@ import Layout from '~/components/global/layout';
 import Post from '~/components/blog/post';
 import { blogPostAPI } from '~/redux/api/blog';
 import { getProfileApi } from '~/redux/api/dashboard';
+import Comments from '~/components/blog/post/comments';
+import samples from '~/public/static/comments-test.json';
 
 class PostPage extends Component {
   static async getInitialProps ({ query }, token) {
@@ -18,10 +20,10 @@ class PostPage extends Component {
   }
 
   render () {
-    const { post, token, profileAPI } = this.props;
+    const { post, token } = this.props;
     const { image, date, title_fa, text_fa, comments } = post;
-    const { profile } = profileAPI;
-    const { firstname_fa, lastname_fa } = profile;
+    const isLoggedIn = token !== '';
+    const profProps = { isLoggedIn };
     return (
       <>
         <Head>
@@ -37,6 +39,7 @@ class PostPage extends Component {
             }}
             content={_.replace(text_fa, '\r', '')}
           />
+          <Comments comments={samples} {...profProps} />
         </Layout>
       </>
     );

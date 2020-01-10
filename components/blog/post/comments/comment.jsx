@@ -22,7 +22,6 @@ class CommentComp extends Component {
   }
 
   doneReply () {
-    // post data
     this.setState({ displayReply: 'none' });
   }
 
@@ -71,8 +70,17 @@ class CommentComp extends Component {
                 onChange={this.handleChange}
                 value={value}
               />
-              <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
-                ثبت پاسخ
+              <Button
+                secondary
+                positive
+                style={{
+                  marginBottom: '1rem',
+                  marginRight: '95%',
+                  backgroundColor: '#21ba45',
+                }}
+                onClick={this.doneReply}
+              >
+                ثبت 
               </Button>
             </Form>
           </Comment.Content>
