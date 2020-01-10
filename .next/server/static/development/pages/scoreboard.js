@@ -139,7 +139,7 @@ const Text = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.p.withConf
   componentId: "iajoqr-0"
 })(["color:white;margin-top:", " !important;"], props => props.marginTop);
 
-const HeaderScoreBoard = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+const HeaderScoreBoard = props => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
   style: {
     background: 'url(/images/datas.jpeg)',
     backgroundSize: 'cover',
@@ -172,7 +172,7 @@ const HeaderScoreBoard = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_
     lineNumber: 29
   },
   __self: undefined
-}, "Data days \u062C\u062F\u0648\u0644 \u0631\u062F\u0647\u200C\u0628\u0646\u062F\u06CC \u0641\u0627\u0632 \u0627\u0648\u0644 \u0627\u0632 \u062F\u0648\u0645\u06CC\u0646 \u062F\u0648\u0631\u0647\u200C\u06CC \u0645\u0633\u0627\u0628\u0642\u0627\u062A", ' '), __jsx(Text, {
+}, "Data days \u0627\u0632 \u062F\u0648\u0645\u06CC\u0646 \u062F\u0648\u0631\u0647\u200C\u06CC \u0645\u0633\u0627\u0628\u0642\u0627\u062A ", props.milestone.name, " \u062C\u062F\u0648\u0644 \u0631\u062F\u0647\u200C\u0628\u0646\u062F\u06CC \u0641\u0627\u0632"), __jsx(Text, {
   marginTop: "6rem",
   __source: {
     fileName: _jsxFileName,
@@ -209,6 +209,7 @@ class ScoreBoard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx(HeaderScoreBoard, {
+      milestone: this.props.milestone,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 53
@@ -297,8 +298,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers */ "dom-helpers");
+/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(dom_helpers__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/scoreboard/laptab.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -329,7 +333,7 @@ const GenerateMyRow = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 27
     },
     __self: undefined
   }, __jsx(TableCell, {
@@ -337,14 +341,14 @@ const GenerateMyRow = ({
     border: border,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: undefined
   }, score), __jsx(TableCell, {
     border: border,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 31
     },
     __self: undefined
   }, name), __jsx(TableCell, {
@@ -352,7 +356,7 @@ const GenerateMyRow = ({
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 32
     },
     __self: undefined
   }, rank));
@@ -360,20 +364,21 @@ const GenerateMyRow = ({
 
 const GenerateRows = ({
   data,
-  myName
+  myName,
+  teams
 }) => {
-  const rows = data.map(x => {
+  const rows = teams.map(x => {
     let background = '#f8f8fa';
-    const rank = x.third;
+    const rank = x.rank;
     if (rank <= 3) background = '#fed76673';else if (rank <= 6) background = '#bbbbbb73';else if (rank <= 9) background = '#cd7f3273';
     const borderRight = `3px solid ${background} !important`;
-    if (x.first === myName) return __jsx(GenerateMyRow, {
-      name: x.first,
-      score: x.second,
-      rank: x.third,
+    if (x.name === myName) return __jsx(GenerateMyRow, {
+      name: x.name,
+      score: "10",
+      rank: x.rank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 47
       },
       __self: undefined
     });
@@ -383,7 +388,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 50
       },
       __self: undefined
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -393,26 +398,36 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 51
       },
       __self: undefined
-    }, x.second), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
+    }, "points"), x.scores.map(score => {
+      return __jsx(TableCell, {
+        textAlign: "center",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        },
+        __self: undefined
+      }, score);
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
+      textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 64
       },
       __self: undefined
-    }, x.first), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
-      textAlign: "left",
+    }, x.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
+      textAlign: "center",
       style: {
         borderRight
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 65
       },
       __self: undefined
-    }, x.third));
+    }, x.rank));
   });
   return rows;
 };
@@ -420,19 +435,19 @@ const GenerateRows = ({
 const Footer = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(Info, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 65
+    lineNumber: 76
   },
   __self: undefined
 }, "\u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC 1 \u0627\u0644\u06CC 20"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 66
+    lineNumber: 77
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 67
+    lineNumber: 78
   },
   __self: undefined
 }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Pagination"], {
@@ -446,7 +461,7 @@ const Footer = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment
   },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 68
+    lineNumber: 79
   },
   __self: undefined
 }))));
@@ -460,71 +475,58 @@ const Scoreboard = ({
   const myName = 'پویا معینی';
   const display = data.some(x => x.first === myName) ? 'none' : '';
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
-    selectable: true,
-    size: "small",
-    style: {
-      border: '0 !important'
-    },
+    celled: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 117
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 118
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
-    style: {
-      height: '4rem !important'
-    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 119
     },
     __self: undefined
-  }, __jsx(TableHeader, {
-    textAlign: "right",
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
+    textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 120
     },
     __self: undefined
   }, "\u0627\u0645\u062A\u06CC\u0627\u0632"), tasks.map(x => {
-    return __jsx(TableHeader, {
+    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 122
       },
       __self: undefined
     }, x.name);
-  }), __jsx(TableHeader, {
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 93
+      lineNumber: 124
     },
     __self: undefined
-  }, "\u0646\u0627\u0645"), __jsx(TableHeader, {
+  }, "\u0646\u0627\u0645"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
     textAlign: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 125
     },
     __self: undefined
-  }, "\u0631\u062A\u0628\u0647")))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
+  }, "\u0631\u062A\u0628\u0647"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
-    },
-    __self: undefined
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 101
+      lineNumber: 129
     },
     __self: undefined
   }, __jsx(GenerateMyRow, {
@@ -534,24 +536,19 @@ const Scoreboard = ({
     display: display,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 130
     },
     __self: undefined
   }), __jsx(GenerateRows, {
     data: data,
     myName: myName,
+    teams: teams,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 103
+      lineNumber: 131
     },
     __self: undefined
-  }))), __jsx(Footer, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 106
-    },
-    __self: undefined
-  }));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Scoreboard);
@@ -2302,6 +2299,17 @@ module.exports = require("core-js/library/fn/object/get-own-property-symbols");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/keys");
+
+/***/ }),
+
+/***/ "dom-helpers":
+/*!******************************!*\
+  !*** external "dom-helpers" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("dom-helpers");
 
 /***/ }),
 

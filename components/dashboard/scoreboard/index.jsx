@@ -11,7 +11,7 @@ const Text = styled.p`
   margin-top: ${(props) => props.marginTop} !important;
 `;
 
-const HeaderScoreBoard = () => (
+const HeaderScoreBoard = (props) => (
   <Grid.Column
     style={{
       background: 'url(/images/datas.jpeg)',
@@ -27,7 +27,7 @@ const HeaderScoreBoard = () => (
     {' '}
     <Text marginTop='2rem'>انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف</Text>
     <Header as='h2' style={{ color: 'white' }}>
-      Data days جدول رده‌بندی فاز اول از دومین دوره‌ی مسابقات{' '}
+      Data days از دومین دوره‌ی مسابقات {props.milestone.name} جدول رده‌بندی فاز
     </Header>
     <Text marginTop="6rem">تعداد سابمیت‌کننده‌ها : 763 نفر</Text>
   </Grid.Column>
@@ -50,7 +50,7 @@ class ScoreBoard extends Component {
     return (
       <>
         <Grid centered>
-          <HeaderScoreBoard />
+          <HeaderScoreBoard milestone={this.props.milestone} />
         </Grid>
         <Grid centered style={{ marginTop: '5rem' }}>
           <Grid.Column computer={10} mobile={15} tablet={15} style={{ padding }}>

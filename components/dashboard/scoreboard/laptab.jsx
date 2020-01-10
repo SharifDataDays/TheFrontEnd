@@ -1,6 +1,7 @@
 import React from 'react';
-import { Table, Pagination, Segment, TableRow } from 'semantic-ui-react';
+import { Table, Pagination, Segment, TableRow, Tab, Header } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { width } from 'dom-helpers';
 
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
@@ -35,24 +36,34 @@ const GenerateMyRow = ({ name, score, rank, display }) => {
   );
 };
 
-const GenerateRows = ({ data, myName }) => {
-  const rows = data.map((x) => {
+const GenerateRows = ({ data, myName, teams }) => {
+  const rows = teams.map((x) => {
     let background = '#f8f8fa';
-    const rank = x.third;
+    const rank = x.rank;
     if (rank <= 3) background = '#fed76673';
     else if (rank <= 6) background = '#bbbbbb73';
     else if (rank <= 9) background = '#cd7f3273';
     const borderRight = `3px solid ${background} !important`;
-    if (x.first === myName) return <GenerateMyRow name={x.first} score={x.second} rank={x.third} />;
+    if (x.name === myName) return <GenerateMyRow name={x.name} score="10" rank={x.rank} />;
 
     return (
       <Table.Row style={{ background }}>
         <Table.Cell textAlign="right" style={{ marginLeft: '3rem !important' }}>
-          {x.second}
+          points
         </Table.Cell>
-        <Table.Cell>{x.first}</Table.Cell>
-        <Table.Cell textAlign="left" style={{ borderRight }}>
-          {x.third}
+
+        {x.scores.map((score) => {
+          return (
+            <TableCell textAlign="center">
+              {score}
+              {/* score */}
+            </TableCell>
+          );
+        })}
+
+        <Table.Cell textAlign="center">{x.name}</Table.Cell>
+        <Table.Cell textAlign="center" style={{ borderRight }}>
+          {x.rank}
         </Table.Cell>
       </Table.Row>
     );
@@ -83,7 +94,7 @@ const Scoreboard = ({ data, milestone, teams, tasks }) => {
   const display = data.some((x) => x.first === myName) ? 'none' : '';
   return (
     <>
-      <Table selectable size="small" style={{ border: '0 !important' }}>
+      {/* <Table selectable size="small" style={{ border: '0 !important' }}>
         <Table.Header>
           <Table.Row style={{ height: '4rem !important' }}>
             <TableHeader textAlign="right">امتیاز</TableHeader>
@@ -94,17 +105,32 @@ const Scoreboard = ({ data, milestone, teams, tasks }) => {
             <TableHeader textAlign="center">رتبه</TableHeader>
           </Table.Row>
         </Table.Header>
-        
-        
       </Table>
       <Table>
-      <Table.Body>
-        <GenerateMyRow name={myName} score='100' rank='0' display={display} />
-        <GenerateRows data={data} myName={myName} />
-      </Table.Body>
+        <Table.Body>
+          <GenerateMyRow name={myName} score="100" rank="0" display={display} />
+          <GenerateRows data={data} myName={myName} teams={teams} />
+        </Table.Body>
       </Table>
-      <Footer />
-      
+      <Footer /> */}
+
+      <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
+            {tasks.map((x) => {
+              return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
+            })}
+            <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          <GenerateMyRow name={myName} score="100" rank="0" display={display} />
+          <GenerateRows data={data} myName={myName} teams={teams} />
+        </Table.Body>
+      </Table>
     </>
   );
 };
