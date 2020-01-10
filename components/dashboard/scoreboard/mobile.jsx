@@ -54,7 +54,7 @@ const Footer = () => (
   </Table.Row>
 );
 
-const Scoreboard = ({ data }) => {
+const Scoreboard = ({ data, milestone, teams, tasks }) => {
   const myName = 'پویا معینی';
   const display = data.some((x) => x.first === myName) ? 'none' : '';
   return (
