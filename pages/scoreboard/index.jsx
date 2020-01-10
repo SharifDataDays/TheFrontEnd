@@ -25,8 +25,6 @@ class MainScoreboard extends Component {
 
   render() {
     const { milestone, scoreboard, tasks } = this.props;
-    console.log("^^^%^%^%^%^%^%^")
-    console.log("milestone:", milestone)
     return (
       <Layout>
         <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks}/>

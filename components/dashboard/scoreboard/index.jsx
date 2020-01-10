@@ -37,8 +37,6 @@ class ScoreBoard extends Component {
   constructor (props) {
     super(props);
     this.state = { padding: '0px !important' };
-    console.log("oyyyyyyyyyyyyyyyyy")
-    console.log(props.teams)
   }
 
   componentDidMount () {
@@ -61,7 +59,7 @@ class ScoreBoard extends Component {
                 <Mobile data={example} />
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                <Laptab data={example} />
+                <Laptab data={example} milestone={this.props.milestone} teams={this.props.teams} tasks={this.props.tasks} />
               </Responsive>
             </NoSSR>
           </Grid.Column>

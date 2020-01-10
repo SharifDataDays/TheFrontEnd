@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Pagination, Segment } from 'semantic-ui-react';
+import { Table, Pagination, Segment, TableRow } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const TableHeader = styled(Table.HeaderCell)`
@@ -24,11 +24,11 @@ const GenerateMyRow = ({ name, score, rank, display }) => {
   const border = `1px solid ${color}`;
   return (
     <Table.Row style={{ display }}>
-      <TableCell textAlign='right' border={border}>
+      <TableCell textAlign="right" border={border}>
         {score}
       </TableCell>
       <TableCell border={border}>{name}</TableCell>
-      <TableCell border={border} textAlign='center'>
+      <TableCell border={border} textAlign="center">
         {rank}
       </TableCell>
     </Table.Row>
@@ -47,11 +47,11 @@ const GenerateRows = ({ data, myName }) => {
 
     return (
       <Table.Row style={{ background }}>
-        <Table.Cell textAlign='right' style={{ marginLeft: '3rem !important' }}>
+        <Table.Cell textAlign="right" style={{ marginLeft: '3rem !important' }}>
           {x.second}
         </Table.Cell>
         <Table.Cell>{x.first}</Table.Cell>
-        <Table.Cell textAlign='center' style={{ borderRight }}>
+        <Table.Cell textAlign="left" style={{ borderRight }}>
           {x.third}
         </Table.Cell>
       </Table.Row>
@@ -78,28 +78,34 @@ const Footer = () => (
   </>
 );
 
-const Scoreboard = ({ data }) => {
+const Scoreboard = ({ data, milestone, teams, tasks }) => {
   const myName = 'پویا معینی';
   const display = data.some((x) => x.first === myName) ? 'none' : '';
   return (
-    <Table selectable size='small' style={{ border: '0 !important' }}>
-      <Table.Header>
-        <Table.Row style={{ height: '4rem !important' }} verticalAlign='bottom'>
-          <TableHeader textAlign='right' width={6}>
-            امتیاز
-          </TableHeader>
-          <TableHeader width={3}>نام</TableHeader>
-          <TableHeader width={1} textAlign='center'>
-            رتبه
-          </TableHeader>
-        </Table.Row>
-      </Table.Header>
+    <>
+      <Table selectable size="small" style={{ border: '0 !important' }}>
+        <Table.Header>
+          <Table.Row style={{ height: '4rem !important' }}>
+            <TableHeader textAlign="right">امتیاز</TableHeader>
+            {tasks.map((x) => {
+              return <TableHeader textAlign="center">{x.name}</TableHeader>;
+            })}
+            <TableHeader textAlign="center">نام</TableHeader>
+            <TableHeader textAlign="center">رتبه</TableHeader>
+          </Table.Row>
+        </Table.Header>
+        
+        
+      </Table>
+      <Table>
       <Table.Body>
         <GenerateMyRow name={myName} score='100' rank='0' display={display} />
         <GenerateRows data={data} myName={myName} />
       </Table.Body>
+      </Table>
       <Footer />
-    </Table>
+      
+    </>
   );
 };
 
