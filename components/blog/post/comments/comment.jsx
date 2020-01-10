@@ -13,6 +13,11 @@ class CommentComp extends Component {
   }
 
   handleChange (event) {
+    const { isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      this.setState({ open: true });
+      return;
+    }
     this.setState({ value: event.target.value });
   }
 
@@ -39,11 +44,12 @@ class CommentComp extends Component {
     const { author, date, content, isReply = false } = this.props;
     const marginRight = isReply ? '2rem' : 'auto';
     const display = isReply ? 'none' : 'auto';
-    const { displayReply, open } = this.state;
+    const { displayReply, open, value } = this.state;
     return (
       <>
         <Divider style={{ display }} />
         <Comment style={{ marginRight }}>
+          <Modal open={open} handle={this.closeModal} />
           <Comment.Content>
             <Comment.Author as='a' style={{ float: 'right' }}>
               {author}
@@ -63,6 +69,7 @@ class CommentComp extends Component {
               <Form.TextArea
                 style={{ height: '5em', direction: 'rtl' }}
                 onChange={this.handleChange}
+                value={value}
               />
               <Button secondary positive style={{ marginBottom: '1rem' }} onClick={this.doneReply}>
                 ثبت پاسخ

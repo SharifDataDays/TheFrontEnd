@@ -30,11 +30,12 @@ class CommentsPage extends Component {
     this.state = { open: false };
   }
 
-  onInput () {
-    // this.setState({ open: true, value: '' });
-  }
-
   handleChange (event) {
+    const { isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      this.setState({ open: true, value: '' });
+      return;
+    }
     this.setState({ value: event.target.value });
   }
 
@@ -50,15 +51,15 @@ class CommentsPage extends Component {
   }
 
   render () {
-    const { open } = this.state;
+    const { open, value } = this.state;
     return (
       <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-        <Modal open={false} handle={this.closeModal} />
+        <Modal open={open} handle={this.closeModal} />
         <Divider horizontal>
           <Header as='h3'>نظرات</Header>
         </Divider>
         <Form reply>
-          <TextArea onClick={this.onInput} onChange={this.handleChange} />
+          <TextArea onClick={this.onInput} onChange={this.handleChange} value={value}/>
           <Button secondary positive style={{ marginBottom: '1rem' }}>
             ثبت نظر
           </Button>
