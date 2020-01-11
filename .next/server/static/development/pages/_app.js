@@ -683,7 +683,7 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
     },
     __self: undefined
   }, __jsx("a", {
-    href: "/dashboard/tasks",
+    href: "/dashboard",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 87
@@ -1778,8 +1778,7 @@ const ALL_CONTESTS = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/conte
 
 const CONTEST = contestID => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}`;
 
-const MILESTONE = (contestID, milestoneID) => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}/${milestoneID}/`; // const TASKS = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
-
+const MILESTONE = (contestID, milestoneID) => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}/${milestoneID}/`;
 
 function profileUpdateAPI(data, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {

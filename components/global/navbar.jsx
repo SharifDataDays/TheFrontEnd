@@ -84,7 +84,7 @@ const AuthNavbar = connect(
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
-          <a href="/dashboard/tasks">
+          <a href="/dashboard">
             <Image
               style={{ marginRight: '1rem', marginTop: '2rem' }}
               size="mini"

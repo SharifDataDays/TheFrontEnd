@@ -8,7 +8,8 @@ import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard'
 class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
     const allRes = await allContestsAPI(token);
-    const contest = allRes.data.contests[0];
+    const { contests } = allRes.data;
+    const contest = contests[0];
     const contestRes = await contestAPI(contest.id, token);
     const milestones = await Promise.all(
       _.map(contestRes.data.contest.milestones, async (id) => {
