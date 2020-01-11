@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Container from '~/components/dashboard/profile/Container';
 import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
-import { connect } from 'react-redux';
 import { profileUpdateAction, profileClearAction } from '~/redux/actions/profile';
 import Layout from '~/components/global/layout';
 
@@ -20,11 +20,10 @@ class ProfilePage extends Component {
 
   render() {
     const { profileData, token, update, profile } = this.props;
-
     return (
       <>
         <Layout token={token} hasNavbar hasFooter>
-        <Container profile={profile} profileData={profileData} token={token} update={update} />;
+          <Container profile={profile} profileData={profileData} token={token} update={update} />;
         </Layout>
       </>
     );
@@ -45,7 +44,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     clear: () => {
       dispatch(profileClearAction());
-    }
+    },
   };
 }
 

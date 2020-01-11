@@ -1,24 +1,20 @@
 import React from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
-import { Card, Grid, Transition, Label } from 'semantic-ui-react';
+import { Card, Grid, Transition } from 'semantic-ui-react';
 
 export default class Timeline extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       curPhaseIdx: 2,
       curIdx: 0,
       prevIdx: -1,
       visibality: true,
-
-      //milestones: id, title, start_time, end_time, tasks
-      milestones: props.milestones,
     };
   }
 
   toggleVisibality = () => {
-    let preVisibality = this.state.visibality;
+    const preVisibality = this.state.visibality;
     this.setState({ visibality: !preVisibality });
 
     if (preVisibality) {
@@ -29,18 +25,16 @@ export default class Timeline extends React.Component {
         1000,
       );
     }
-  }
-
+  };
 
   render() {
+    const { milestones } = this.props;
     const { curIdx, prevIdx } = this.state;
-    const milestones = this.state.milestones;
-    const curStatus =
-      prevIdx >= 0 ? milestones[curIdx].title : milestones[this.state.curPhaseIdx].title;
+    const curStatus = milestones[curIdx].title;
     const prevStatus = prevIdx >= 0 ? milestones[prevIdx].title : '';
 
     return (
-      <div>
+      <>
         <div
           style={{
             width: '80%',
@@ -56,14 +50,14 @@ export default class Timeline extends React.Component {
               foreground: '#1A79AD',
               outline: '#dfdfdf',
             }}
-            index={this.state.curPhaseIdx}
+            index={curIdx}
             indexClick={(index) => {
-              this.setState({ prevIdx: this.state.curIdx });
+              this.setState({ prevIdx: curIdx });
               this.setState({ curIdx: index });
               this.toggleVisibality();
             }}
             values={milestones.map((x) => x.start_time)}
-            getLabel={function(date, index) {
+            getLabel={(date, index) => {
               return milestones[index].title;
             }}
             minEventPadding="120"
@@ -72,21 +66,21 @@ export default class Timeline extends React.Component {
         </div>
         <div>
           <Grid centered style={{ height: '200', foreground: 'red' }}>
-
             <Transition animation="fly right" duration="1000" visible={this.state.visibality}>
               <Card style={{ width: '50%', height: '100%' }} foreground="red">
                 <Card.Content textAlign="left">
-                  <Card.Header>{this.state.visibality ? curIdx+1 : prevIdx+1} فاز</Card.Header>
+                  <Card.Header>{this.state.visibality ? curIdx + 1 : prevIdx + 1} فاز</Card.Header>
                 </Card.Content>
                 <Card.Content>
-                  <Card.Description textAlign="left">{this.state.visibality ? curStatus : prevStatus}</Card.Description>
+                  <Card.Description textAlign="left">
+                    {this.state.visibality ? curStatus : prevStatus}
+                  </Card.Description>
                 </Card.Content>
               </Card>
-
             </Transition>
           </Grid>
         </div>
-      </div>
+      </>
     );
   }
 }
