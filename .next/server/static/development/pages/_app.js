@@ -1836,19 +1836,17 @@ function milestoneAPI(contestID, milestoneID, token) {
 /*!****************************!*\
   !*** ./redux/api/index.js ***!
   \****************************/
-/*! exports provided: BASE, termsAPI, default */
+/*! exports provided: termsAPI, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BASE", function() { return BASE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
-const BASE = 'https://datadays.sharif.edu';
 function termsAPI() {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TERMS);
 }
