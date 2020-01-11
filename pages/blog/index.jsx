@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Head from 'next/head';
-import fetch from 'isomorphic-unfetch';
-import { blogHomeAPI } from '~/redux/api/blog';
-import Navbar from '~/components/global/navbar';
-import Footer from '~/components/global/footer';
+import withAuth from '~/components/global/withAuth';
+import Layout from '~/components/global/layout';
 import Posts from '~/components/blog/posts';
 import HeaderImage from '~/components/blog/headerImage';
+import { blogHomeAPI } from '~/redux/api/blog';
 
-function Blog({ posts }) {
-  return (
-    <>
-      <Head>
-        <title>بلاگ DataDays</title>
-      </Head>
-      <Navbar />
-      <HeaderImage />
-      <Posts posts={posts} />
-      <Footer />
-    </>
-  );
+class Blog extends Component {
+  static async getInitialProps(ctx, token) {
+    const res = await blogHomeAPI();
+    const posts = res.data;
+    return { posts, token };
+  }
+
+  render() {
+    const { posts, token } = this.props;
+    return (
+      <>
+        <Head>
+          <title>بلاگ DataDays</title>
+        </Head>
+        <Layout token={token} hasNavbar hasFooter>
+          <HeaderImage />
+          <Posts posts={posts} />
+        </Layout>
+      </>
+    );
+  }
 }
 
-Blog.getInitialProps = async (context) => {
-  const res = await fetch(blogHomeAPI());
-  const posts = await res.json();
-  return { posts };
-};
-
-export default Blog;
+export default withAuth()(Blog);

@@ -1,31 +1,19 @@
 import _ from 'lodash';
-import axios from 'axios';
-import { loginAPI } from '../api/auth';
-import {
-  LOGIN_REMOVE_ERROR,
-  LOGIN_LOAD,
-  LOGIN_UNLOAD,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGIN_CHECK,
-  LOGOUT,
-} from '../constants/auth';
+import { loginAPI, authAPI } from '../api/auth';
+import { pageLoadingAction } from './page';
 
-function loginRemoveErrorsAction() {
-  return {
-    type: LOGIN_REMOVE_ERROR,
-  };
-}
+export const LOGIN_CLEAR = 'LOGIN_CLEAR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_CHECK = 'LOGIN_CHECK';
 
-function loginLoadAction() {
-  return {
-    type: LOGIN_LOAD,
-  };
-}
+export const SET_AUTH = 'SET_AUTH';
 
-function loginUnloadAction() {
+export const LOGOUT = 'LOGOUT';
+
+export function loginClearAction() {
   return {
-    type: LOGIN_UNLOAD,
+    type: LOGIN_CLEAR,
   };
 }
 
@@ -58,25 +46,45 @@ export function loginCheckerAction(fields) {
 
 export function loginAction(username, password) {
   return (dispatch, getState) => {
-    dispatch(loginRemoveErrorsAction());
-    dispatch(loginLoadAction());
+    dispatch(pageLoadingAction(true));
+    dispatch(loginClearAction());
     dispatch(loginCheckerAction({ username, password }));
     if (_.isEmpty(getState().auth.errors)) {
-      axios.post(loginAPI(), { username, password }).then((res) => {
+      loginAPI({ username, password }).then((res) => {
         const { data } = res;
         if (data.status_code === 200) {
-          const token = {
-            refresh: data.refresh,
-            access: data.access,
-          };
-          dispatch(loginSuccessAction(token));
+          dispatch(loginSuccessAction(data.access));
+          dispatch(pageLoadingAction(false));
         } else {
           dispatch(loginFailAction(data.detail));
+          dispatch(pageLoadingAction(false));
         }
       });
     } else {
-      dispatch(loginUnloadAction());
+      dispatch(pageLoadingAction(false));
     }
+  };
+}
+
+function setAuthAction(auth) {
+  return {
+    type: SET_AUTH,
+    payload: {
+      auth,
+    },
+  };
+}
+
+export function authorizeAction(token) {
+  return (dispatch) => {
+    return authAPI(token).then((res) => {
+      if (res.data.status_code !== 200) {
+        dispatch(setAuthAction(false));
+        return false;
+      }
+      dispatch(setAuthAction(true));
+      return true;
+    });
   };
 }
 

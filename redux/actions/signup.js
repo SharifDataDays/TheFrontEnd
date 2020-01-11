@@ -1,45 +1,59 @@
-import { signupRequest } from '../api/signup';
+import _ from 'lodash';
+import { signupAPI } from '../api/signup';
+import { pageLoadingAction } from './page';
 
-export const CLEAR_SIGNUP = 'SIGNUP_CLEAR'
-export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_CLEAR = 'SIGNUP_CLEAR';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const SIGNUP_REQ_ERROR = 'SIGNUP_REQ_ERROR';
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';
+export const SIGNUP_CHECK = 'SIGNUP_CHECK';
 
-export function clearSignup() {
+export function signupClearAction() {
   return {
-    type : CLEAR_SIGNUP
-  }
-}
-
-function signupRequestSent() {
-  return {
-    type: SIGNUP_REQUEST,
+    type: SIGNUP_CLEAR,
   };
 }
-function signupSuccess() {
+
+function signupSuccessAction() {
   return {
     type: SIGNUP_SUCCESS,
   };
 }
-function signupError(error) {
+function signupFailAction(errors) {
   return {
-    type: SIGNUP_REQ_ERROR,
-    payload : {
-      error
+    type: SIGNUP_FAIL,
+    payload: {
+      errors,
     },
   };
 }
 
-export function signup(data) {
-  return (dispatch) => {
-    dispatch(signupRequestSent());
-    signupRequest(data).then((res) => {
-      console.log(res.data)
-      if (res.data.status_code == 200) {
-          dispatch(signupSuccess())
-      } else {
-          dispatch(signupError(res.data.detail))
-      }
-    });
+export function signupCheckerAction(fields) {
+  return {
+    type: SIGNUP_CHECK,
+    payload: {
+      fields,
+    },
+  };
+}
+
+export function signupAction(fields) {
+  return (dispatch, getState) => {
+    dispatch(pageLoadingAction(true));
+    dispatch(signupClearAction());
+    dispatch(signupCheckerAction(fields));
+    if (_.isEmpty(getState().signup.errors)) {
+      signupAPI(fields).then((res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          dispatch(signupSuccessAction());
+          dispatch(pageLoadingAction(false));
+        } else {
+          dispatch(signupFailAction(data.detail));
+          dispatch(pageLoadingAction(false));
+        }
+      });
+    } else {
+      dispatch(pageLoadingAction(false));
+    }
   };
 }

@@ -1,37 +1,31 @@
-import fetch from 'isomorphic-unfetch';
-import React, { Component } from 'react';
-import nextCookie from 'next-cookies';
 import Head from 'next/head';
-import Layout from '~/components/dashboard/layout';
-import withNotLogged from '~/components/global/auth/withNotLogged';
+import React, { Component } from 'react';
+import withAuth from '~/components/global/withAuth';
+import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
+import NotFound from '~/components/dashboard/resources/notFound';
 import { taskAPI } from '~/redux/api/dashboard';
 
 class ResourcesPage extends Component {
-  static async getInitialProps(ctx) {
-    const { token } = nextCookie(ctx);
-    const res = await fetch(taskAPI(ctx.query.id), {
-      headers: {
-        Authorization: `Bearer ${token ? token.access : token}`,
-      },
-    });
-    const content = await res.json();
-    return { content };
+  static async getInitialProps({ query }, token) {
+    const res = await taskAPI(query.id, token);
+    const task = res.data;
+    return { task, token };
   }
 
   render() {
-    const { content } = this.props;
+    const { task, token } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>
-          <Resources content={content} />
+        <Layout token={token} hasNavbar hasFooter>
+          {task.status_code !== 200 ? <NotFound /> : <Resources content={task} />}
         </Layout>
       </>
     );
   }
 }
 
-export default withNotLogged(ResourcesPage);
+export default withAuth(true)(ResourcesPage);

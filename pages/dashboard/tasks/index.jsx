@@ -1,38 +1,30 @@
-import fetch from 'isomorphic-unfetch';
-import React, { Component } from 'react';
-import nextCookie from 'next-cookies';
 import Head from 'next/head';
-import Layout from '~/components/dashboard/layout';
-import withNotLogged from '~/components/global/auth/withNotLogged';
+import React, { Component } from 'react';
+import withAuth from '~/components/global/withAuth';
+import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
 import { taskListAPI } from '~/redux/api/dashboard';
 
 class TaskPage extends Component {
-  static async getInitialProps(ctx) {
-    const { token } = nextCookie(ctx);
-    const res = await fetch(taskListAPI(), {
-      headers: {
-        Authorization: `Bearer ${token ? token.access : token}`,
-      },
-    });
-    const tasks = await res.json();
-    return { tasks };
+  static async getInitialProps(ctx, token) {
+    const res = await taskListAPI(token);
+    const { documents } = res.data;
+    return { tasks: documents, token };
   }
 
   render() {
-    const { tasks } = this.props;
-    const { documents } = tasks;
+    const { tasks, token } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout>
-          <Tasks tasks={documents} />
+        <Layout token={token} hasNavbar>
+          <Tasks tasks={tasks} />
         </Layout>
       </>
     );
   }
 }
 
-export default withNotLogged(TaskPage);
+export default withAuth(true)(TaskPage);

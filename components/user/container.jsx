@@ -27,7 +27,7 @@ class Container extends Component {
   }
 
   render() {
-    const { children, isSignup } = this.props;
+    const { children } = this.props;
     return (
       <Grid
         celled
@@ -36,7 +36,7 @@ class Container extends Component {
         style={{
           padding: 0,
           width: '100vw',
-          height: isSignup ? undefined : '100vh',
+          height: '100vh',
           position: 'absolute',
         }}
       >
