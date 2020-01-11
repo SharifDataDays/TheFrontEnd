@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
-import Timeline from '~/components/dashboard/milestones';
+import Milestones from '~/components/dashboard/milestones';
 import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard';
 
 class Dashboard extends Component {
@@ -24,7 +24,7 @@ class Dashboard extends Component {
     const { milestones, contest, token } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
-        <Timeline contest={contest} milestones={milestones} />
+        <Milestones contest={contest} milestones={milestones} />
       </Layout>
     );
   }

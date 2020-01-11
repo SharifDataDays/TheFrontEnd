@@ -1,86 +1,41 @@
+import _ from 'lodash';
 import React from 'react';
-import HorizontalTimeline from 'react-horizontal-timeline';
-import { Card, Grid, Transition } from 'semantic-ui-react';
+import moment from 'jalali-moment';
+import { Grid, Card, Image } from 'semantic-ui-react';
 
-export default class Timeline extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      curPhaseIdx: 2,
-      curIdx: 0,
-      prevIdx: -1,
-      visibality: true,
-    };
-  }
-
-  toggleVisibality = () => {
-    const preVisibality = this.state.visibality;
-    this.setState({ visibality: !preVisibality });
-
-    if (preVisibality) {
-      setTimeout(
-        function() {
-          this.setState({ visibality: preVisibality });
-        }.bind(this),
-        1000,
-      );
-    }
-  };
-
-  render() {
-    const { milestones } = this.props;
-    const { curIdx, prevIdx } = this.state;
-    const curStatus = milestones[curIdx].title;
-    const prevStatus = prevIdx >= 0 ? milestones[prevIdx].title : '';
-
-    return (
-      <>
-        <div
-          style={{
-            width: '80%',
-            height: '150px',
-            margin: '0 auto',
-            marginTop: '70px',
-            fontSize: '15px',
-          }}
-        >
-          <HorizontalTimeline
-            styles={{
-              background: 'white',
-              foreground: '#1A79AD',
-              outline: '#dfdfdf',
-            }}
-            index={curIdx}
-            indexClick={(index) => {
-              this.setState({ prevIdx: curIdx });
-              this.setState({ curIdx: index });
-              this.toggleVisibality();
-            }}
-            values={milestones.map((x) => x.start_time)}
-            getLabel={(date, index) => {
-              return milestones[index].title;
-            }}
-            minEventPadding="120"
-            maxEventPadding="120"
-          />
-        </div>
-        <div>
-          <Grid centered style={{ height: '200', foreground: 'red' }}>
-            <Transition animation="fly right" duration="1000" visible={this.state.visibality}>
-              <Card style={{ width: '50%', height: '100%' }} foreground="red">
-                <Card.Content textAlign="left">
-                  <Card.Header>{this.state.visibality ? curIdx + 1 : prevIdx + 1} فاز</Card.Header>
-                </Card.Content>
-                <Card.Content>
-                  <Card.Description textAlign="left">
-                    {this.state.visibality ? curStatus : prevStatus}
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </Transition>
-          </Grid>
-        </div>
-      </>
-    );
-  }
+function Milestones({ contest, milestones }) {
+  return (
+    <Grid centered>
+      <Grid.Column computer={10} tablet={12} mobile={14}>
+        <Card.Group>
+          {_.map(milestones, (milestone) => {
+            const { id, title, description, image, start_time, end_time } = milestone;
+            return (
+              <a href={`/dashboard/${contest.id}/${id}`}>
+                <Card dir="rtl" style={{ margin: '2rem auto' }} fluid>
+                  <Card.Content>
+                    <Card.Header>{title}</Card.Header>
+                    <Image size="medium" src={image} />
+                    <Card.Description>{description}</Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>
+                    <div>{`شروع گام: ${moment
+                      .from(start_time, 'en')
+                      .locale('fa')
+                      .fromNow()}`}</div>
+                    <div>{`پایان گام: ${moment
+                      .from(end_time, 'en')
+                      .locale('fa')
+                      .fromNow()}`}</div>
+                  </Card.Content>
+                </Card>
+              </a>
+            );
+          })}
+        </Card.Group>
+      </Grid.Column>
+    </Grid>
+  );
 }
+
+export default Milestones;

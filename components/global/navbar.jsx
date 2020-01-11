@@ -75,7 +75,7 @@ const AuthNavbar = connect(
         </Button>
       </Menu.Item>
       <Menu.Item>
-        <a href="/dashboard/tasks">منابع</a>
+        <a href="/dashboard">گام‌ها</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
       </Menu.Item>
       <Menu.Item>

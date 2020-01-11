@@ -46,7 +46,7 @@ function withAuth(loggedIn) {
           Router.push('/login', '/login', { shallow: false });
         }
         if (auth.authorized && !loggedIn) {
-          Router.push('/dashboard/tasks', '/dashboard/tasks', { shallow: false });
+          Router.push('/dashboard', '/dashboard', { shallow: false });
         }
         return (
           <>

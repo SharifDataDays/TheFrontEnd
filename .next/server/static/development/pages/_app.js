@@ -427,7 +427,7 @@ function Layout({
     style: {
       width: '100% !important',
       margin: '0 !important',
-      minHeight: '100vh'
+      minHeight: 'calc(100vh - 333px)'
     },
     fluid: true,
     __source: {
@@ -438,7 +438,7 @@ function Layout({
   }, children), hasFooter && __jsx(_footer__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 24
     },
     __self: this
   }));
@@ -626,13 +626,13 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
     },
     __self: undefined
   }, __jsx("a", {
-    href: "/dashboard/tasks",
+    href: "/dashboard",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 78
     },
     __self: undefined
-  }, "\u0645\u0646\u0627\u0628\u0639"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+  }, "\u06AF\u0627\u0645\u200C\u0647\u0627"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
     style: {
       marginLeft: '0.5rem'
     },
