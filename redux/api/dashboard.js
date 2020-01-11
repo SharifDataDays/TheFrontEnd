@@ -30,7 +30,7 @@ export function submitTrialAPI(data, token, contestId, milestoneId, taskId, tria
   return axios.post(SUBMIT_TRIAL(contestId, milestoneId, taskId, trialId), {
     data,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTc4NzM1NTgyLCJqdGkiOiI0ZjUwZjI3MzU5MTA0YTFiYjU2NmU1Yjc0NDk0NTQ2ZCIsInVzZXJfaWQiOjJ9.oAHTLQxp3HhfPBz1IYefk8H5J5PaAr6wCbN1q9pNHlM`,
     },
   });
 }
