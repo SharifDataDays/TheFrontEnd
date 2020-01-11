@@ -7,17 +7,12 @@ import Layout from '~/components/global/layout';
 class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
     const contestNumber = 3;
-    console.log(token);
     const res = await contestAPI(contestNumber, token);
     const { contest } = res.data;
-    console.log(res);
-    console.log('##@#%@$^#%^#%^#');
-    console.log(contest);
     let milestones = [];
     for (let id = 0; id < contest.milestones.length; id++) {
       const res = await milestoneAPI(contestNumber, contest.milestones[id], token);
       const { milestone } = res.data;
-      console.log(milestone);
       milestones.push(milestone);
     }
     return { contest, milestones, token };

@@ -47,7 +47,7 @@ const pass_fields = [
   },
   {
     en: 'old_password',
-    fa: 'رمز عبور قبلی',
+    fa: 'رمز عبور فعلی',
     readOnly: false,
     pass: true,
   },

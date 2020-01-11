@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -128,12 +128,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const panes = [{
-  menuItem: 'پروفایل',
+  menuItem: 'مشخصات',
   render: props => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Tab"].Pane, {
     attached: false,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     },
     __self: undefined
   }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -142,10 +142,11 @@ const panes = [{
     token: props.token,
     update: props.update,
     fields: _utils__WEBPACK_IMPORTED_MODULE_7__["prof_fields"],
+    password_update: props.password_update,
     type: "profile",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 14
     },
     __self: undefined
   }))
@@ -155,7 +156,7 @@ const panes = [{
     attached: false,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 29
     },
     __self: undefined
   }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -164,10 +165,11 @@ const panes = [{
     token: props.token,
     update: props.update,
     fields: _utils__WEBPACK_IMPORTED_MODULE_7__["pass_fields"],
+    password_update: props.password_update,
     type: "password",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 30
     },
     __self: undefined
   }))
@@ -177,12 +179,13 @@ const Container = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.w
   componentId: "ikk20b-0"
 })(["", " ", " ", ""], styled_system__WEBPACK_IMPORTED_MODULE_3__["space"], styled_system__WEBPACK_IMPORTED_MODULE_3__["color"], styled_system__WEBPACK_IMPORTED_MODULE_3__["border"]);
 function ProfileContainer({
+  password_update,
+  clear,
   profile,
   profileData,
   token,
   update
 }) {
-  console.log(profile);
   return __jsx(Container, {
     px: [4, 5, 6],
     py: 5,
@@ -191,14 +194,22 @@ function ProfileContainer({
     borderRadius: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 51
     },
     __self: this
-  }, __jsx(react_reveal__WEBPACK_IMPORTED_MODULE_5__["Fade"], {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Header"], {
+    size: "huge",
+    dir: "RTL",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  }, "\u067E\u0631\u0648\u0641\u0627\u06CC\u0644"), __jsx(react_reveal__WEBPACK_IMPORTED_MODULE_5__["Fade"], {
     up: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 62
     },
     __self: this
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Tab"], {
@@ -212,9 +223,11 @@ function ProfileContainer({
     profileData: profileData,
     token: token,
     update: update,
+    password_update: password_update,
+    onTabChange: clear,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 63
     },
     __self: this
   })));
@@ -280,7 +293,8 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
   onSubmit() {
     const {
       update,
-      token
+      token,
+      password_update
     } = this.props;
 
     if (this.props.type === 'profile') {
@@ -305,7 +319,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
         }
       };
       console.log(new_fields);
-      update(new_fields, token);
+      password_update(new_fields, token);
     }
   }
 
@@ -353,6 +367,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
         ref: c => {
           this[field.en] = c;
         },
+        key: field.en,
         field: field,
         error: errors[field.en],
         initial: profileData[field.en],
@@ -367,7 +382,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       positive: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 68
       },
       __self: this
     }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Message"], {
@@ -375,7 +390,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       negative: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 71
       },
       __self: this
     }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u062F\u0648\u0646 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"].Button, {
@@ -385,7 +400,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       size: "large",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 74
       },
       __self: this
     }))));
@@ -606,7 +621,7 @@ const pass_fields = [{
   pass: true
 }, {
   en: 'old_password',
-  fa: 'رمز عبور قبلی',
+  fa: 'رمز عبور فعلی',
   readOnly: false,
   pass: true
 }];
@@ -1629,7 +1644,9 @@ class ProfilePage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       profileData,
       token,
       update,
-      profile
+      profile,
+      clear,
+      password_update
     } = this.props;
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_global_layout__WEBPACK_IMPORTED_MODULE_6__["default"], {
       token: token,
@@ -1637,7 +1654,7 @@ class ProfilePage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       hasFooter: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 30
       },
       __self: this
     }, __jsx(_components_dashboard_profile_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1645,9 +1662,11 @@ class ProfilePage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       profileData: profileData,
       token: token,
       update: update,
+      clear: clear,
+      password_update: password_update,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 31
       },
       __self: this
     }), ";"));
@@ -1668,6 +1687,9 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     update: (fields, token) => {
       dispatch(Object(_redux_actions_profile__WEBPACK_IMPORTED_MODULE_5__["profileUpdateAction"])(fields, token));
+    },
+    password_update: (fields, token) => {
+      dispatch(Object(_redux_actions_profile__WEBPACK_IMPORTED_MODULE_5__["passwordUpdateAction"])(fields, token));
     },
     clear: () => {
       dispatch(Object(_redux_actions_profile__WEBPACK_IMPORTED_MODULE_5__["profileClearAction"])());
@@ -1944,23 +1966,22 @@ function passwordUpdateAction(fields, token) {
     dispatch(profileCheckerAction(fields));
     fields = _objectSpread({}, fields.password);
 
-    if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors) && fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
-      console.log(fields);
-      console.log(token);
-      passwordUpdateAction(fields, token).then(res => {
-        const {
-          data
-        } = res;
-        console.log(data);
+    if (fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
+      if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors)) {
+        Object(_api_dashboard__WEBPACK_IMPORTED_MODULE_9__["passwordUpdateAPI"])(fields, token).then(res => {
+          const {
+            data
+          } = res;
 
-        if (data.status_code === 200) {
-          dispatch(profileSuccessAction());
-        } else {
-          dispatch(profileFailAction(data.detail));
-        }
-      });
-    } else {
-      dispatch(profileFailAction({}));
+          if (data.status_code === 200) {
+            dispatch(profileSuccessAction());
+          } else {
+            dispatch(profileFailAction(data.detail));
+          }
+        });
+      } else {
+        dispatch(profileFailAction({}));
+      }
     }
 
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
@@ -2034,8 +2055,6 @@ __webpack_require__.r(__webpack_exports__);
 const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
 const PASSWORD_RESET_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/change/`;
 function passwordUpdateAPI(data, token) {
-  console.log("!!!!426262!!");
-  console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(PASSWORD_RESET_API, data, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -2043,8 +2062,6 @@ function passwordUpdateAPI(data, token) {
   });
 }
 function profileUpdateAPI(data, token) {
-  console.log('#$%#%^%^#^#');
-  console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -2148,7 +2165,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*******************************************!*\
   !*** multi ./pages/dashboard/profile.jsx ***!
   \*******************************************/

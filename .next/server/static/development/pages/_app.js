@@ -1629,23 +1629,22 @@ function passwordUpdateAction(fields, token) {
     dispatch(profileCheckerAction(fields));
     fields = _objectSpread({}, fields.password);
 
-    if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors) && fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
-      console.log(fields);
-      console.log(token);
-      passwordUpdateAction(fields, token).then(res => {
-        const {
-          data
-        } = res;
-        console.log(data);
+    if (fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
+      if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors)) {
+        Object(_api_dashboard__WEBPACK_IMPORTED_MODULE_9__["passwordUpdateAPI"])(fields, token).then(res => {
+          const {
+            data
+          } = res;
 
-        if (data.status_code === 200) {
-          dispatch(profileSuccessAction());
-        } else {
-          dispatch(profileFailAction(data.detail));
-        }
-      });
-    } else {
-      dispatch(profileFailAction({}));
+          if (data.status_code === 200) {
+            dispatch(profileSuccessAction());
+          } else {
+            dispatch(profileFailAction(data.detail));
+          }
+        });
+      } else {
+        dispatch(profileFailAction({}));
+      }
     }
 
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
@@ -1803,8 +1802,6 @@ __webpack_require__.r(__webpack_exports__);
 const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
 const PASSWORD_RESET_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/change/`;
 function passwordUpdateAPI(data, token) {
-  console.log("!!!!426262!!");
-  console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(PASSWORD_RESET_API, data, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -1812,8 +1809,6 @@ function passwordUpdateAPI(data, token) {
   });
 }
 function profileUpdateAPI(data, token) {
-  console.log('#$%#%^%^#^#');
-  console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
     headers: {
       Authorization: `Bearer ${token}`

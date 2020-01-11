@@ -11,7 +11,7 @@ class Form extends Component {
   }
 
   onSubmit() {
-    const { update, token } = this.props;
+    const { update, token, password_update } = this.props;
     if (this.props.type === 'profile') {
       const new_fields = {
         profile: {
@@ -34,7 +34,7 @@ class Form extends Component {
         },
       };
       console.log(new_fields);
-      update(new_fields, token);
+      password_update(new_fields, token);
     }
   }
 
@@ -58,6 +58,7 @@ class Form extends Component {
                   ref={(c) => {
                     this[field.en] = c;
                   }}
+                  key = {field.en}
                   field={field}
                   error={errors[field.en]}
                   initial={profileData[field.en]}

@@ -7,10 +7,8 @@ import Form from './form';
 import {prof_fields, pass_fields} from './utils';
 
 const panes = [
-
-  
   {
-    menuItem: 'پروفایل',
+    menuItem: 'مشخصات',
     render: (props) => (
       <Tab.Pane attached={false}>
         <Form
@@ -19,6 +17,7 @@ const panes = [
           token={props.token}
           update={props.update}
           fields={prof_fields}
+          password_update={props.password_update}
           type="profile"
         />
       </Tab.Pane>
@@ -34,6 +33,7 @@ const panes = [
           token={props.token}
           update={props.update}
           fields={pass_fields}
+          password_update={props.password_update}
           type="password"
         />
       </Tab.Pane>
@@ -46,8 +46,7 @@ const Container = styled.div`
   ${border}
 `;
 
-export default function ProfileContainer({ profile, profileData, token, update }) {
-  console.log(profile);
+export default function ProfileContainer({ password_update, clear, profile, profileData, token, update }) {
   return (
     <Container
       px={[4, 5, 6]}
@@ -56,9 +55,9 @@ export default function ProfileContainer({ profile, profileData, token, update }
       backgroundColor="rgba(255, 255, 255, 0.3)"
       borderRadius={6}
     >
-      {/* <Header size="huge" dividing dir="RTL">
+      <Header size="huge" dir="RTL">
         پروفایل
-      </Header> */}
+      </Header>
 
       <Fade up>
         <Tab
@@ -69,6 +68,8 @@ export default function ProfileContainer({ profile, profileData, token, update }
           profileData={profileData}
           token={token}
           update={update}
+          password_update={password_update}
+          onTabChange={clear}
         />
       </Fade>
     </Container>

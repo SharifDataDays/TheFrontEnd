@@ -86778,7 +86778,7 @@ function termsAPI() {
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Flogin&absolutePagePath=%2FUsers%2FSaba%2FDesktop%2FFront2%2FTheFrontEnd%2Fpages%2Flogin.jsx ***!
   \******************************************************************************************************************************************/
@@ -86801,5 +86801,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=login.js.map
