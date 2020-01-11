@@ -41,10 +41,10 @@ export function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     dispatch(profileCheckerAction(fields));
-    fields = { ...fields, ...fields.profile };
+    fields = { ...fields.profile };
     if (_.isEmpty(getState().profile.errors)) {
       console.log(fields);
-      console.log(token)
+      console.log(token);
       profileUpdateAPI(fields, token).then((res) => {
         const { data } = res;
         console.log(data);
@@ -54,6 +54,36 @@ export function profileUpdateAction(fields, token) {
           dispatch(profileFailAction(data.detail));
         }
       });
+    } else {
+      dispatch(profileFailAction({}));
+    }
+    dispatch(pageLoadingAction(false));
+  };
+}
+
+export function passwordUpdateAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(pageLoadingAction(true));
+    dispatch(profileCheckerAction(fields));
+    fields = { ...fields.password };
+    if (
+      _.isEmpty(getState().profile.errors) &&
+      fields.new_password1 != '' &&
+      !_.isUndefined(fields.new_password1)
+    ) {
+      console.log(fields);
+      console.log(token);
+      passwordUpdateAction(fields, token).then((res) => {
+        const { data } = res;
+        console.log(data);
+        if (data.status_code === 200) {
+          dispatch(profileSuccessAction());
+        } else {
+          dispatch(profileFailAction(data.detail));
+        }
+      });
+    } else {
+      dispatch(profileFailAction({}));
     }
     dispatch(pageLoadingAction(false));
   };

@@ -2,10 +2,21 @@ import axios from 'axios';
 import BASE_ADDR from '.';
 
 const PROFILE_API = `${BASE_ADDR}/accounts/profile`;
+const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
+
+export function passwordUpdateAPI(data, token) {
+  console.log("!!!!426262!!")
+  console.log(data);
+  return axios.post(PASSWORD_RESET_API, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 
 export function profileUpdateAPI(data, token) {
-  console.log("#$%#%^%^#^#")
-  console.log(data)
+  console.log('#$%#%^%^#^#');
+  console.log(data);
   return axios.put(PROFILE_API, data, {
     headers: {
       Authorization: `Bearer ${token}`,

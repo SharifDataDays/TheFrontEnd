@@ -1,12 +1,4 @@
-import _ from 'lodash';
-import validator from 'validator';
-
-const fields = [
-  // {
-  //   en: 'username',
-  //   fa: 'نام کاربری',
-  //   readOnly: true,
-  // },
+const prof_fields = [
   {
     en: 'firstname_fa',
     fa: 'نام به فارسی',
@@ -27,11 +19,6 @@ const fields = [
     fa: 'نام خانوادگی به انگلیسی',
     readOnly: false,
   },
-  // {
-  //   en: 'email',
-  //   fa: 'ایمیل',
-  //   readOnly: true,
-  // },
   {
     en: 'birth_date',
     fa: 'تاریخ تولد',
@@ -43,32 +30,26 @@ const fields = [
     fa: 'دانشگاه',
     readOnly: false,
   },
-  // {
-  //   en: 'education',
-  //   fa: 'تحصیلات',
-  //   readOnly: true,
-  // },
-  // {
-  //   en: 'residence',
-  //   fa: 'محل اقامت',
-  //   readOnly: true,
-  // },
-  // {
-  //   en: 'calling_number',
-  //   fa: 'تلفن همراه',
-  //   readOnly: true,
-  // },
+];
+
+const pass_fields = [
   {
-    en: 'password_1',
-    fa: 'رمز عبور',
+    en: 'new_password1',
+    fa: 'رمز عبور جدید',
     readOnly: false,
     pass: true,
   },
   {
-    en: 'password_2',
-    fa: 'تکرار رمز عبور',
+    en: 'new_password2',
+    fa: 'تکرار رمز عبور جدید',
+    readOnly: false,
+    pass: true,
+  },
+  {
+    en: 'old_password',
+    fa: 'رمز عبور قبلی',
     readOnly: false,
     pass: true,
   },
 ];
-export {fields};
+export { prof_fields, pass_fields };

@@ -15,7 +15,8 @@ const Label = styled.label`
 class Input extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    console.log("@#^#$*&*^%#$@$%^&*(&^%$")
+    console.log(props)
     this.state = {
       value: this.props.field.date
         ? _.join(_.reverse(_.split(this.props.initial, '-')), '-')

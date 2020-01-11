@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -116,7 +116,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_reveal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-reveal */ "react-reveal");
 /* harmony import */ var react_reveal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_reveal__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./form */ "./components/dashboard/profile/form.jsx");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/Container.jsx";
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils */ "./components/dashboard/profile/utils.js");
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/Container.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -125,6 +126,52 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+const panes = [{
+  menuItem: 'پروفایل',
+  render: props => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Tab"].Pane, {
+    attached: false,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: undefined
+  }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    profile: props.profile,
+    profileData: props.profileData,
+    token: props.token,
+    update: props.update,
+    fields: _utils__WEBPACK_IMPORTED_MODULE_7__["prof_fields"],
+    type: "profile",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  }))
+}, {
+  menuItem: 'رمز عبور',
+  render: props => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Tab"].Pane, {
+    attached: false,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    profile: props.profile,
+    profileData: props.profileData,
+    token: props.token,
+    update: props.update,
+    fields: _utils__WEBPACK_IMPORTED_MODULE_7__["pass_fields"],
+    type: "password",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }))
+}];
 const Container = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
   displayName: "Container",
   componentId: "ikk20b-0"
@@ -144,33 +191,30 @@ function ProfileContainer({
     borderRadius: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 52
     },
     __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Header"], {
-    size: "huge",
-    dividing: true,
-    dir: "RTL",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 26
-    },
-    __self: this
-  }, "\u067E\u0631\u0648\u0641\u0627\u06CC\u0644"), __jsx(react_reveal__WEBPACK_IMPORTED_MODULE_5__["Fade"], {
+  }, __jsx(react_reveal__WEBPACK_IMPORTED_MODULE_5__["Fade"], {
     up: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 63
     },
     __self: this
-  }, __jsx(_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Tab"], {
+    dir: "RTL",
+    menu: {
+      secondary: true,
+      pointing: true
+    },
+    panes: panes,
     profile: profile,
     profileData: profileData,
     token: token,
     update: update,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 64
     },
     __self: this
   })));
@@ -207,7 +251,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./input */ "./components/dashboard/profile/input.jsx");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils */ "./components/dashboard/profile/utils.js");
 
 
 
@@ -215,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/form.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/form.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -223,7 +266,6 @@ function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_cor
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
 /* eslint-disable camelcase */
-
 
 
 
@@ -240,43 +282,58 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       update,
       token
     } = this.props;
-    const new_fields = {
-      //   username: this.username.state.value,
-      //   email: this.email.state.value,
-      password_1: this.password_1.state.value,
-      password_2: this.password_2.state.value,
-      profile: {
-        firstname_fa: this.firstname_fa.state.value,
-        firstname_en: this.firstname_en.state.value,
-        lastname_fa: this.lastname_fa.state.value,
-        lastname_en: this.lastname_en.state.value,
-        university: this.university.state.value,
-        birth_date: lodash__WEBPACK_IMPORTED_MODULE_7___default.a.join(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.reverse(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.split(this.birth_date.state.value, '-')), '-')
-      }
-    };
-    console.log(new_fields);
-    update(new_fields, token);
+
+    if (this.props.type === 'profile') {
+      const new_fields = {
+        profile: {
+          firstname_fa: this.firstname_fa.state.value,
+          firstname_en: this.firstname_en.state.value,
+          lastname_fa: this.lastname_fa.state.value,
+          lastname_en: this.lastname_en.state.value,
+          university: this.university.state.value,
+          birth_date: lodash__WEBPACK_IMPORTED_MODULE_7___default.a.join(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.reverse(lodash__WEBPACK_IMPORTED_MODULE_7___default.a.split(this.birth_date.state.value, '-')), '-')
+        }
+      };
+      console.log(new_fields);
+      update(new_fields, token);
+    } else {
+      const new_fields = {
+        password: {
+          old_password: this.old_password.state.value,
+          new_password1: this.new_password1.state.value,
+          new_password2: this.new_password2.state.value
+        }
+      };
+      console.log(new_fields);
+      update(new_fields, token);
+    }
   }
 
   render() {
     const {
       success,
+      fail,
       errors
     } = this.props.profile;
 
     const profileData = _objectSpread({}, this.props.profileData, {}, this.props.profileData.profile);
 
+    const {
+      fields
+    } = this.props;
+    console.log(fields);
+    console.log(profileData);
     return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Grid"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 48
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Grid"].Column, {
       verticalAlign: "middle",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 49
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"], {
@@ -284,10 +341,14 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       dir: "RTL",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 50
       },
       __self: this
-    }, lodash__WEBPACK_IMPORTED_MODULE_7___default.a.map(_utils__WEBPACK_IMPORTED_MODULE_11__["fields"], field => {
+    }, lodash__WEBPACK_IMPORTED_MODULE_7___default.a.map(fields, field => {
+      {
+        console.log(field);
+        console.log(profileData[field.en]);
+      }
       return __jsx(_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
         ref: c => {
           this[field.en] = c;
@@ -297,7 +358,7 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
         initial: profileData[field.en],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 57
         },
         __self: this
       });
@@ -306,17 +367,25 @@ class Form extends react__WEBPACK_IMPORTED_MODULE_8__["Component"] {
       positive: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 67
       },
       __self: this
-    }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"].Button, {
+    }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Message"], {
+      hidden: !fail,
+      negative: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: this
+    }, "\u062A\u063A\u06CC\u06CC\u0631\u0627\u062A \u0628\u062F\u0648\u0646 \u0645\u0648\u0641\u0642\u06CC\u062A \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F."), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__["Form"].Button, {
       primary: true,
       content: "\u0630\u062E\u06CC\u0631\u0647\u200C\u06CC \u062A\u063A\u06CC\u06CC\u0631\u0627\u062A",
       floated: "right",
       size: "large",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55
+        lineNumber: 73
       },
       __self: this
     }))));
@@ -351,7 +420,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/profile/input.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/dashboard/profile/input.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -368,6 +437,7 @@ const Label = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.label.wit
 class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
+    console.log("@#^#$*&*^%#$@$%^&*(&^%$");
     console.log(props);
     this.state = {
       value: this.props.field.date ? _.join(_.reverse(_.split(this.props.initial, '-')), '-') : this.props.initial
@@ -405,7 +475,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         inline: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, __jsx(Label, {
@@ -415,7 +485,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 50
         },
         __self: this
       }, field.fa, ":"), __jsx(semantic_ui_calendar_react__WEBPACK_IMPORTED_MODULE_4__["DateInput"], {
@@ -433,14 +503,14 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           color: "black",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 62
+            lineNumber: 63
           },
           __self: this
         }),
         hideMobileKeyboard: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 53
         },
         __self: this
       }));
@@ -450,7 +520,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 70
       },
       __self: this
     }, __jsx(Label, {
@@ -460,7 +530,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 71
       },
       __self: this
     }, field.fa, ":"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Input, {
@@ -475,7 +545,7 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       ,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 74
       },
       __self: this
     }));
@@ -491,24 +561,14 @@ class Input extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 /*!***********************************************!*\
   !*** ./components/dashboard/profile/utils.js ***!
   \***********************************************/
-/*! exports provided: fields */
+/*! exports provided: prof_fields, pass_fields */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fields", function() { return fields; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator */ "validator");
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const fields = [// {
-//   en: 'username',
-//   fa: 'نام کاربری',
-//   readOnly: true,
-// },
-{
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prof_fields", function() { return prof_fields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pass_fields", function() { return pass_fields; });
+const prof_fields = [{
   en: 'firstname_fa',
   fa: 'نام به فارسی',
   readOnly: false
@@ -524,12 +584,7 @@ const fields = [// {
   en: 'lastname_en',
   fa: 'نام خانوادگی به انگلیسی',
   readOnly: false
-}, // {
-//   en: 'email',
-//   fa: 'ایمیل',
-//   readOnly: true,
-// },
-{
+}, {
   en: 'birth_date',
   fa: 'تاریخ تولد',
   readOnly: false,
@@ -538,29 +593,20 @@ const fields = [// {
   en: 'university',
   fa: 'دانشگاه',
   readOnly: false
-}, // {
-//   en: 'education',
-//   fa: 'تحصیلات',
-//   readOnly: true,
-// },
-// {
-//   en: 'residence',
-//   fa: 'محل اقامت',
-//   readOnly: true,
-// },
-// {
-//   en: 'calling_number',
-//   fa: 'تلفن همراه',
-//   readOnly: true,
-// },
-{
-  en: 'password_1',
-  fa: 'رمز عبور',
+}];
+const pass_fields = [{
+  en: 'new_password1',
+  fa: 'رمز عبور جدید',
   readOnly: false,
   pass: true
 }, {
-  en: 'password_2',
-  fa: 'تکرار رمز عبور',
+  en: 'new_password2',
+  fa: 'تکرار رمز عبور جدید',
+  readOnly: false,
+  pass: true
+}, {
+  en: 'old_password',
+  fa: 'رمز عبور قبلی',
   readOnly: false,
   pass: true
 }];
@@ -589,7 +635,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/footer.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/footer.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -851,7 +897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer */ "./components/global/footer.jsx");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme */ "./theme.js");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/layout.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/layout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -936,7 +982,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/navbar.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/navbar.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1245,7 +1291,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/withAuth.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/withAuth.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1551,7 +1597,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _redux_actions_profile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/actions/profile */ "./redux/actions/profile.js");
 /* harmony import */ var _components_global_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/global/layout */ "./components/global/layout.jsx");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/pages/dashboard/profile.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/pages/dashboard/profile.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -1787,7 +1833,7 @@ function pageLoadingAction(loading) {
 /*!**********************************!*\
   !*** ./redux/actions/profile.js ***!
   \**********************************/
-/*! exports provided: PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR, profileClearAction, profileCheckerAction, profileSuccessAction, profileFailAction, profileUpdateAction */
+/*! exports provided: PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR, profileClearAction, profileCheckerAction, profileSuccessAction, profileFailAction, profileUpdateAction, passwordUpdateAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1801,6 +1847,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileSuccessAction", function() { return profileSuccessAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileFailAction", function() { return profileFailAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAction", function() { return profileUpdateAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passwordUpdateAction", function() { return passwordUpdateAction; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
@@ -1867,7 +1914,7 @@ function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(true));
     dispatch(profileCheckerAction(fields));
-    fields = _objectSpread({}, fields, {}, fields.profile);
+    fields = _objectSpread({}, fields.profile);
 
     if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors)) {
       console.log(fields);
@@ -1884,6 +1931,36 @@ function profileUpdateAction(fields, token) {
           dispatch(profileFailAction(data.detail));
         }
       });
+    } else {
+      dispatch(profileFailAction({}));
+    }
+
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
+  };
+}
+function passwordUpdateAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(true));
+    dispatch(profileCheckerAction(fields));
+    fields = _objectSpread({}, fields.password);
+
+    if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors) && fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
+      console.log(fields);
+      console.log(token);
+      passwordUpdateAction(fields, token).then(res => {
+        const {
+          data
+        } = res;
+        console.log(data);
+
+        if (data.status_code === 200) {
+          dispatch(profileSuccessAction());
+        } else {
+          dispatch(profileFailAction(data.detail));
+        }
+      });
+    } else {
+      dispatch(profileFailAction({}));
     }
 
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
@@ -1937,11 +2014,12 @@ function resetAPI(data) {
 /*!********************************!*\
   !*** ./redux/api/dashboard.js ***!
   \********************************/
-/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/*! exports provided: passwordUpdateAPI, profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passwordUpdateAPI", function() { return passwordUpdateAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAPI", function() { return profileUpdateAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileAPI", function() { return profileAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskListAPI", function() { return taskListAPI; });
@@ -1954,8 +2032,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+const PASSWORD_RESET_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/change/`;
+function passwordUpdateAPI(data, token) {
+  console.log("!!!!426262!!");
+  console.log(data);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(PASSWORD_RESET_API, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 function profileUpdateAPI(data, token) {
-  console.log("#$%#%^%^#^#");
+  console.log('#$%#%^%^#^#');
   console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
     headers: {
@@ -2060,14 +2148,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************************!*\
   !*** multi ./pages/dashboard/profile.jsx ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/bahar/Desktop/TheFrontEnd/pages/dashboard/profile.jsx */"./pages/dashboard/profile.jsx");
+module.exports = __webpack_require__(/*! /Users/Saba/Desktop/Front2/TheFrontEnd/pages/dashboard/profile.jsx */"./pages/dashboard/profile.jsx");
 
 
 /***/ }),
@@ -2322,17 +2410,6 @@ module.exports = require("styled-components");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-system");
-
-/***/ }),
-
-/***/ "validator":
-/*!****************************!*\
-  !*** external "validator" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("validator");
 
 /***/ })
 

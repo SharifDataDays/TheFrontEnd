@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/footer.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/footer.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -387,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer */ "./components/global/footer.jsx");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme */ "./theme.js");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/layout.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/layout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -472,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/global/navbar.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/navbar.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1310,7 +1310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/store */ "./redux/store/index.js");
 /* harmony import */ var _components_global_layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/global/layout */ "./components/global/layout.jsx");
 
-var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/pages/_app.jsx";
+var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/pages/_app.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
 
@@ -1518,7 +1518,7 @@ function pageLoadingAction(loading) {
 /*!**********************************!*\
   !*** ./redux/actions/profile.js ***!
   \**********************************/
-/*! exports provided: PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR, profileClearAction, profileCheckerAction, profileSuccessAction, profileFailAction, profileUpdateAction */
+/*! exports provided: PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR, profileClearAction, profileCheckerAction, profileSuccessAction, profileFailAction, profileUpdateAction, passwordUpdateAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1532,6 +1532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileSuccessAction", function() { return profileSuccessAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileFailAction", function() { return profileFailAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAction", function() { return profileUpdateAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passwordUpdateAction", function() { return passwordUpdateAction; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
@@ -1598,7 +1599,7 @@ function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(true));
     dispatch(profileCheckerAction(fields));
-    fields = _objectSpread({}, fields, {}, fields.profile);
+    fields = _objectSpread({}, fields.profile);
 
     if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors)) {
       console.log(fields);
@@ -1615,6 +1616,36 @@ function profileUpdateAction(fields, token) {
           dispatch(profileFailAction(data.detail));
         }
       });
+    } else {
+      dispatch(profileFailAction({}));
+    }
+
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
+  };
+}
+function passwordUpdateAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(true));
+    dispatch(profileCheckerAction(fields));
+    fields = _objectSpread({}, fields.password);
+
+    if (lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isEmpty(getState().profile.errors) && fields.new_password1 != '' && !lodash__WEBPACK_IMPORTED_MODULE_7___default.a.isUndefined(fields.new_password1)) {
+      console.log(fields);
+      console.log(token);
+      passwordUpdateAction(fields, token).then(res => {
+        const {
+          data
+        } = res;
+        console.log(data);
+
+        if (data.status_code === 200) {
+          dispatch(profileSuccessAction());
+        } else {
+          dispatch(profileFailAction(data.detail));
+        }
+      });
+    } else {
+      dispatch(profileFailAction({}));
     }
 
     dispatch(Object(_page__WEBPACK_IMPORTED_MODULE_8__["pageLoadingAction"])(false));
@@ -1752,11 +1783,12 @@ function resetAPI(data) {
 /*!********************************!*\
   !*** ./redux/api/dashboard.js ***!
   \********************************/
-/*! exports provided: profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/*! exports provided: passwordUpdateAPI, profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passwordUpdateAPI", function() { return passwordUpdateAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileUpdateAPI", function() { return profileUpdateAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileAPI", function() { return profileAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskListAPI", function() { return taskListAPI; });
@@ -1769,8 +1801,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+const PASSWORD_RESET_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/change/`;
+function passwordUpdateAPI(data, token) {
+  console.log("!!!!426262!!");
+  console.log(data);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(PASSWORD_RESET_API, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 function profileUpdateAPI(data, token) {
-  console.log("#$%#%^%^#^#");
+  console.log('#$%#%^%^#^#');
   console.log(data);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(PROFILE_API, data, {
     headers: {
@@ -2111,6 +2153,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function profileClearReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_8__["default"].profile, action) {
   return immer__WEBPACK_IMPORTED_MODULE_9___default()(state, draft => {
     draft.success = false;
+    draft.fail = false;
     draft.errors = {};
     return draft;
   });
@@ -2122,17 +2165,21 @@ function profileCheckerReducer(state = _store_initialState__WEBPACK_IMPORTED_MOD
       fields
     } = action.payload;
 
-    const checkFields = _objectSpread({}, fields, {}, fields.profile);
+    const checkFields = _objectSpread({}, fields.password, {}, fields.profile);
 
     _.forEach(checkFields, (value, key) => {
-      if (value === '' && key !== 'password_1' && key != 'password_2') {
+      if ((value === '' || _.isUndefined(value)) && key !== 'new_password2' && key != 'new_password1' && key != 'old_password') {
         draft.errors[key] = 'فیلد خالی است.';
       }
     });
 
-    if (checkFields.password_1 !== checkFields.password_2) {
-      draft.errors.password_1 = 'گذرواژه‌ها یکسان نیستند.';
-      draft.errors.password_2 = 'گذرواژه‌ها یکسان نیستند.';
+    if (checkFields.new_password1 !== checkFields.new_password2) {
+      draft.errors.new_password1 = 'گذرواژه‌ها یکسان نیستند.';
+      draft.errors.new_password2 = 'گذرواژه‌ها یکسان نیستند.';
+    }
+
+    if (checkFields.new_password1 !== '' && !_.isUndefined(checkFields.new_password1) && (checkFields.old_password === '' || _.isUndefined(checkFields.old_password))) {
+      draft.errors.old_password = 'فیلد خالی است.';
     }
 
     return draft;
@@ -2144,6 +2191,7 @@ function profileFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE
     const {
       errors
     } = action.payload;
+    draft.fail = true;
     draft.success = false;
     draft.errors = errors;
     return draft;
@@ -2152,6 +2200,7 @@ function profileFailReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE
 
 function profileSuccessReducer(state = _store_initialState__WEBPACK_IMPORTED_MODULE_8__["default"].profile, action) {
   return immer__WEBPACK_IMPORTED_MODULE_9___default()(state, draft => {
+    draft.fail = false;
     draft.success = true;
     draft.error = {};
     return draft;
@@ -2380,7 +2429,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   profile: {
     errors: {},
-    success: false
+    success: false,
+    fail: false
   }
 });
 
