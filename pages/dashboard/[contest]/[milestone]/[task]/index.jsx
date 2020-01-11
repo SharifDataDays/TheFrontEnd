@@ -8,7 +8,7 @@ import { taskAPI } from '~/redux/api/dashboard';
 
 class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
-    const res = await taskAPI(query.id, token);
+    const res = await taskAPI(query.task, token);
     const task = res.data;
     return { task, token };
   }

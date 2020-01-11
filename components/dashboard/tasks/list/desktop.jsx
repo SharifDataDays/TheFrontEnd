@@ -24,7 +24,8 @@ const Text = styled.p`
   direction: rtl;
 `;
 
-function TasksDesktop({ tasks }) {
+function TasksDesktop({ cid, mid, tasks }) {
+  console.log(tasks);
   return (
     <Segment.Group
       basic
@@ -40,7 +41,7 @@ function TasksDesktop({ tasks }) {
       {_.map(tasks, (task, i) => {
         const { id, title_fa, description_fa, thumbnail } = task.content;
         return (
-          <a key={i} href={`/dashboard/tasks/${id}/resource`}>
+          <a key={i} href={`/dashboard/${cid}/${mid}/${id}`}>
             <RowSegment>
               <Header>
                 <Text>{title_fa}</Text>

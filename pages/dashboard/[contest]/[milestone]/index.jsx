@@ -9,18 +9,18 @@ class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
     const { contest, milestone } = query;
     const res = await milestoneAPI(contest, milestone, token);
-    return { milestone: res.data.milestone, token };
+    return { milestone: res.data.milestone, cid: contest, mid: milestone, token };
   }
 
   render() {
-    const { milestone, token } = this.props;
+    const { milestone, cid, mid, token } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
         <Layout token={token} hasNavbar>
-          <Tasks milestone={milestone} />
+          <Tasks cid={cid} mid={mid} milestone={milestone} />
         </Layout>
       </>
     );
