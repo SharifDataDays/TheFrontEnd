@@ -14,7 +14,7 @@ const Text = styled.p`
   direction: rtl;
 `;
 
-function HeaderSection() {
+function HeaderSection({ title, description, image }) {
   return (
     <Grid
       style={{
@@ -25,24 +25,13 @@ function HeaderSection() {
     >
       <Grid.Column computer={4} tablet={4} mobile={15}>
         <Segment basic>
-          <Image src="/images/tasks.png" size="big" verticalAlign="middle" centered />
+          <Image src={image} size="big" verticalAlign="middle" centered />
         </Segment>
       </Grid.Column>
       <Grid.Column computer={7} tablet={7} mobile={15}>
         <Segment basic style={{ textAlign: 'right !important' }}>
-          <Header as="h1">گام اول</Header>
-          <Text>
-            وادی علوم داده و داده‌کاوی پر است از دادگانی که اطلاعات ارزشمندی در آن نهفته‌است و
-            پرسش‌های مهمی که می‌توان با استفاده از این دادگان یافت و به آنها‌ پاسخ داد. یک متخصص
-            علوم داده برای طرح و پاسخ این پرسش‌ها بایستی طی فرایندی، داده را پاکسازی و سپس
-            پیش‌پردازش کرده، آن را به صورت اکتشافی و دیداری تحلیل کند، با استفاده از ابزار‌هایی
-            ویژگی‌های این داده را به تصویر بکشد و مشاهده و مقایسه کند، سپس با شهودی که از دادگان کسب
-            کرده و با استفاده از ابزار‌های آماری و هوش مصنوعی به تحلیل‌های پیچیده‌تر و دقیق‌تر
-            بپردازد و در نهایت از دل این داده دانشی ارزشمند را استخراج کند. آشنایی با تکنیک‌های
-            تمیز‌کردن داده، پردازش و دیداری سازی آن و همینطور آشنایی با ابزار‌های موجود برای اجرای
-            این تکنیک‌ها، گام آغازین مناسبی برای آشنایی با این وادی است. در نخستین گام آموزشی رویداد
-            با این موضوعات آشنا خواهید شد.
-          </Text>
+          <Header as="h1">{title}</Header>
+          <Text>{description}</Text>
         </Segment>
       </Grid.Column>
     </Grid>

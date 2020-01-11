@@ -8,7 +8,7 @@ function TasksMobile({ tasks }) {
     <Grid centered style={{ marginBottom: '5rem' }}>
       <Grid.Column mobile={14}>
         {_.map(tasks, (task, i) => {
-          const { id, title_fa, description_fa, thumbnail } = task;
+          const { id, title_fa, description_fa, thumbnail } = task.content;
           return (
             <a key={i} href={`/dashboard/tasks/${id}/resource`}>
               <Card style={{ padding: '1rem', width: '100%' }}>

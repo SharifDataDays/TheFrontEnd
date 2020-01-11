@@ -5,8 +5,9 @@ const PROFILE_API = `${BASE_ADDR}/accounts/profile`;
 const TASK = (id) => `${BASE_ADDR}/resources/${id}`;
 const TASK_LIST = `${BASE_ADDR}/resources`;
 const ALL_CONTESTS = `${BASE_ADDR}/contest/contests`;
-const CONTEST = (id) => `${BASE_ADDR}/contest/${id}`;
+const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
+// const TASKS = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 
 export function profileUpdateAPI(data, token) {
   return axios.put(PROFILE_API, data, {
