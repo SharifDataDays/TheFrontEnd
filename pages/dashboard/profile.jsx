@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Container from '~/components/dashboard/profile/Container';
 import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
-import { connect } from 'react-redux';
 import {
   profileUpdateAction,
   profileClearAction,

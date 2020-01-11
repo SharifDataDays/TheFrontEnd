@@ -1,21 +1,23 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import Timeline from '../../components/dashboard/main/milestones';
-import { contestAPI, milestoneAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
+import Timeline from '~/components/dashboard/milestones';
+import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard';
 
 class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
-    const contestNumber = 3;
-    const res = await contestAPI(contestNumber, token);
-    const { contest } = res.data;
-    let milestones = [];
-    for (let id = 0; id < contest.milestones.length; id++) {
-      const res = await milestoneAPI(contestNumber, contest.milestones[id], token);
-      const { milestone } = res.data;
-      milestones.push(milestone);
-    }
-    return { contest, milestones, token };
+    const allRes = await allContestsAPI(token);
+    const contest = allRes.data.contests[0];
+    const contestRes = await contestAPI(contest.id, token);
+    const milestones = await Promise.all(
+      _.map(contestRes.data.contest.milestones, async (id) => {
+        const milestoneRes = await milestoneAPI(allRes.data.contests[0].id, id, token);
+        const { milestone } = milestoneRes.data;
+        return milestone;
+      }),
+    );
+    return { milestones, contest, token };
   }
 
   render() {
