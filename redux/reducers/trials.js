@@ -5,8 +5,10 @@ import initialState from '../store/initialState';
 
 function changeAnswerReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
-    const { id, qtype, number, value } = action.payload.answer;
-    const currentValue = _.get(draft, `i${id}.n${number}.value`);
+    const { id, qtype, count, number, value } = action.payload.answer;
+    _.set(draft, `i${id}.count`, count);
+    _.set(draft, `i${id}.qtype`, qtype);
+    const currentValue = _.get(draft, `i${id}.n${number}`);
     let newValue;
     if (qtype === 'single_select') {
       newValue = [value];
@@ -21,7 +23,7 @@ function changeAnswerReducer(state = initialState.trials, action) {
     } else {
       newValue = value;
     }
-    _.set(draft, `i${id}.n${number}`, { value: newValue, qtype });
+    _.set(draft, `i${id}.n${number}`, newValue);
     return draft;
   });
 }

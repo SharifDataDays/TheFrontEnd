@@ -18,6 +18,7 @@ class FileAnswer extends Component {
       id,
       qtype,
       number: 0,
+      count: 1,
       value: e.target.files[0],
     });
   }

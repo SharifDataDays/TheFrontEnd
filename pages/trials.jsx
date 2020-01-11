@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Trials from '~/components/dashboard/trials';
-import { changeAnswerAction } from '~/redux/actions/trials';
+import { changeAnswerAction, submitAnswersAction } from '~/redux/actions/trials';
 
 class TrialsPage extends Component {
   static async getInitialProps(ctx, token) {
@@ -12,10 +12,10 @@ class TrialsPage extends Component {
   }
 
   render() {
-    const { trials, changeAnswer, token } = this.props;
+    const { trials, changeAnswer, submit, token } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
-        <Trials trials={trials} changeAnswer={changeAnswer} />
+        <Trials token={token} trials={trials} changeAnswer={changeAnswer} submit={submit} />
       </Layout>
     );
   }
@@ -31,6 +31,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     changeAnswer: (answer) => dispatch(changeAnswerAction(answer)),
+    submit: (token, contestId, milestoneId, taskId, trialId) =>
+      dispatch(submitAnswersAction(token, contestId, milestoneId, taskId, trialId)),
   };
 }
 

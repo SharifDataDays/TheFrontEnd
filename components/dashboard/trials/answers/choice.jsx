@@ -18,6 +18,7 @@ class ChoiceAnswer extends Component {
       qtype,
       value,
       number: 0,
+      count: 1,
     });
   }
 
@@ -37,7 +38,7 @@ class ChoiceAnswer extends Component {
                 key={i}
                 label={choice.body}
                 value={choice.label}
-                checked={_.includes(_.get(saved, `n0.value`, []), choice.label)}
+                checked={_.includes(_.get(saved, `n0`, []), choice.label)}
                 control={count === 1 ? Radio : Checkbox}
                 width={8}
                 onChange={this.handleChange}

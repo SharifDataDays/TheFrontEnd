@@ -12,10 +12,11 @@ class FieldAnswer extends Component {
 
   handleChange(e) {
     e.preventDefault();
-    const { id, qtype, changeAnswer } = this.props;
+    const { id, qtype, count, changeAnswer } = this.props;
     changeAnswer({
       id,
       qtype,
+      count,
       number: e.target.name,
       value: e.target.value,
     });
@@ -37,7 +38,7 @@ class FieldAnswer extends Component {
                 <Form.Input
                   key={i}
                   name={i}
-                  value={_.get(saved, `n${i}.value`, '')}
+                  value={_.get(saved, `n${i}`, '')}
                   type={type}
                   width={8}
                   onChange={this.handleChange}
