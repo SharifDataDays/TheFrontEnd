@@ -4,7 +4,7 @@ import { space, layout, color, border, typography } from 'styled-system';
 import { Header, Tab } from 'semantic-ui-react';
 import { Fade } from 'react-reveal';
 import Form from './form';
-import {prof_fields, pass_fields} from './utils';
+import { prof_fields, pass_fields } from './utils';
 
 const panes = [
   {
@@ -46,7 +46,14 @@ const Container = styled.div`
   ${border}
 `;
 
-export default function ProfileContainer({ password_update, clear, profile, profileData, token, update }) {
+export default function ProfileContainer({
+  password_update,
+  clear,
+  profile,
+  profileData,
+  token,
+  update,
+}) {
   return (
     <Container
       px={[4, 5, 6]}

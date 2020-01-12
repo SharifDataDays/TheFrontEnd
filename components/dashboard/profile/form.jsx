@@ -58,7 +58,7 @@ class Form extends Component {
                   ref={(c) => {
                     this[field.en] = c;
                   }}
-                  key = {field.en}
+                  key={field.en}
                   field={field}
                   error={errors[field.en]}
                   initial={profileData[field.en]}
