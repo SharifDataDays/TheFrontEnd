@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/footer.jsx";
+var _jsxFileName = "/Users/parsa/Desktop/everything/projects/ongoing/DataDays/TheFrontEnd/components/global/footer.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -387,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./components/global/navbar.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer */ "./components/global/footer.jsx");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../theme */ "./theme.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/layout.jsx";
+var _jsxFileName = "/Users/parsa/Desktop/everything/projects/ongoing/DataDays/TheFrontEnd/components/global/layout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -472,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/actions/auth */ "./redux/actions/auth.js");
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/components/global/navbar.jsx";
+var _jsxFileName = "/Users/parsa/Desktop/everything/projects/ongoing/DataDays/TheFrontEnd/components/global/navbar.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -608,28 +608,99 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
       lineNumber: 66
     },
     __self: undefined
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    onClick: e => {
-      e.preventDefault();
-      logout();
-    },
-    primary: true,
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Dropdown"], {
+    item: true,
+    trigger: __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+      style: {
+        marginRight: '0.5rem'
+      },
+      color: "#1d93f7",
+      size: "lg",
+      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faUser"],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: undefined
+    }),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 67
     },
     __self: undefined
-  }, "\u062E\u0631\u0648\u062C")), __jsx(Menu.Item, {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Menu, {
+    style: {
+      left: '0 !important'
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 78
+    },
+    __self: undefined
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Item, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: undefined
+  }, __jsx("a", {
+    href: "/dashboard/profile",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: undefined
+  }, "\u062A\u0646\u0638\u06CC\u0645\u0627\u062A"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+    style: {
+      marginLeft: '0.5rem'
+    },
+    color: "#1d93f7",
+    size: "lg",
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faCog"],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: undefined
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Item, {
+    onClick: e => {
+      e.preventDefault();
+      logout();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: undefined
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: undefined
+  }, "\u062E\u0631\u0648\u062C"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+    style: {
+      marginLeft: '0.5rem'
+    },
+    color: "#1d93f7",
+    size: "lg",
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSignOutAlt"],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }))))), __jsx(Menu.Item, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 105
     },
     __self: undefined
   }, __jsx("a", {
     href: "/dashboard/tasks",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 106
     },
     __self: undefined
   }, "\u0645\u0646\u0627\u0628\u0639"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
@@ -641,20 +712,20 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faBook"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 107
     },
     __self: undefined
   })), __jsx(Menu.Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 109
     },
     __self: undefined
   }, __jsx("a", {
     href: "/blog",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 110
     },
     __self: undefined
   }, "\u0628\u0644\u0627\u06AF"), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
@@ -666,27 +737,27 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faBlog"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 111
     },
     __self: undefined
   })), __jsx(Menu.Menu, {
     position: "left",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85
+      lineNumber: 113
     },
     __self: undefined
   }, __jsx(Menu.Header, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 114
     },
     __self: undefined
   }, __jsx("a", {
     href: "/dashboard/tasks",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 115
     },
     __self: undefined
   }, __jsx(Image, {
@@ -698,7 +769,7 @@ const AuthNavbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(n
     src: "/images/logo.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 116
     },
     __self: undefined
   })))));
@@ -713,7 +784,7 @@ function Navbar({
       transparent: transparent,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 102
+        lineNumber: 130
       },
       __self: this
     });
@@ -723,7 +794,7 @@ function Navbar({
     transparent: transparent,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 104
+      lineNumber: 132
     },
     __self: this
   });
@@ -1310,7 +1381,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/store */ "./redux/store/index.js");
 /* harmony import */ var _components_global_layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/global/layout */ "./components/global/layout.jsx");
 
-var _jsxFileName = "/Users/Saba/Desktop/Front2/TheFrontEnd/pages/_app.jsx";
+var _jsxFileName = "/Users/parsa/Desktop/everything/projects/ongoing/DataDays/TheFrontEnd/pages/_app.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
 
@@ -1782,7 +1853,7 @@ function resetAPI(data) {
 /*!********************************!*\
   !*** ./redux/api/dashboard.js ***!
   \********************************/
-/*! exports provided: passwordUpdateAPI, profileUpdateAPI, profileAPI, taskListAPI, taskAPI, contestAPI, milestoneAPI */
+/*! exports provided: passwordUpdateAPI, profileUpdateAPI, profileAPI, taskListAPI, taskAPI, allContestsAPI, contestAPI, milestoneAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1792,6 +1863,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profileAPI", function() { return profileAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskListAPI", function() { return taskListAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskAPI", function() { return taskAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allContestsAPI", function() { return allContestsAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contestAPI", function() { return contestAPI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "milestoneAPI", function() { return milestoneAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
@@ -1800,6 +1872,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PROFILE_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+
+const TASK = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources/${id}`;
+
+const TASK_LIST = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources`;
+const ALL_CONTESTS = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/contests`;
+
+const CONTEST = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${id}`;
+
+const MILESTONE = (contestID, milestoneID) => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}/${milestoneID}/`;
+
 const PASSWORD_RESET_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/change/`;
 function passwordUpdateAPI(data, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(PASSWORD_RESET_API, data, {
@@ -1822,10 +1904,6 @@ function profileAPI(token) {
     }
   });
 }
-
-const TASK = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources/${id}`;
-
-const TASK_LIST = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/resources`;
 function taskListAPI(token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(TASK_LIST, {
     headers: {
@@ -1840,11 +1918,13 @@ function taskAPI(id, token) {
     }
   });
 }
-
-const CONTEST = id => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${id}`;
-
-const MILESTONE = (contestID, milestoneID) => `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/contest/${contestID}/${milestoneID}/`;
-
+function allContestsAPI(token) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(ALL_CONTESTS, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 function contestAPI(contestId, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(CONTEST(contestId), {
     headers: {
@@ -1875,7 +1955,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "termsAPI", function() { return termsAPI; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- //const BASE_ADDR = 'http://37.152.190.92/test/api';
 
 const BASE_ADDR = 'https://datadays.sharif.edu/api';
 const TERMS = `${BASE_ADDR}/terms`;
