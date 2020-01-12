@@ -76,8 +76,8 @@ const AuthNavbar = connect(
           }
         >
           <Dropdown.Menu style={{ left: '0 !important' }}>
-            <Dropdown.Item>
-              <a href="/dashboard/profile">تنظیمات</a>
+            <Dropdown.Item href="/dashboard/profile">
+              <a>تنظیمات</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
                 color="#1d93f7"
@@ -86,12 +86,13 @@ const AuthNavbar = connect(
               />
             </Dropdown.Item>
             <Dropdown.Item
+              href="/login"
               onClick={(e) => {
                 e.preventDefault();
                 logout();
               }}
             >
-              <a>ناموسا</a>
+              <a>خروج</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
                 color="#1d93f7"

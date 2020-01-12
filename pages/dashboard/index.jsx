@@ -9,6 +9,7 @@ class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
     const allRes = await allContestsAPI(token);
     const { contests } = allRes.data;
+    console.log(contests);
     const contest = contests[0];
     const contestRes = await contestAPI(contest.id, token);
     const milestones = await Promise.all(

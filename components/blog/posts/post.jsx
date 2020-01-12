@@ -28,7 +28,12 @@ export function Rest({ title, description, date, image, id }) {
         <Item.Content style={{ direction: 'rtl' }}>
           <Item.Header as="a">{title}</Item.Header>
           <Item.Meta>
-            <span>{date}</span>
+            <span>
+              {moment
+                .from(date, 'en')
+                .locale('fa')
+                .fromNow()}
+            </span>
           </Item.Meta>
           <Item.Description>
             <p>{description}</p>
