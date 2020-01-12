@@ -91,7 +91,7 @@ const AuthNavbar = connect(
                 logout();
               }}
             >
-              <a>خروج</a>
+              <a>ناموسا</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
                 color="#1d93f7"
