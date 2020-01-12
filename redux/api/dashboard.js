@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import BASE_ADDR from '.';
 
@@ -7,7 +8,15 @@ const TASK_LIST = `${BASE_ADDR}/resources`;
 const ALL_CONTESTS = `${BASE_ADDR}/contest/contests`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
+const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
 
+export function passwordUpdateAPI(data, token) {
+  return axios.post(PASSWORD_RESET_API, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 export function profileUpdateAPI(data, token) {
   return axios.put(PROFILE_API, data, {
     headers: {

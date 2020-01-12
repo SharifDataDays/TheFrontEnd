@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import Container from '~/components/dashboard/profile/Container';
 import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
-import { profileUpdateAction, profileClearAction } from '~/redux/actions/profile';
+import {
+  profileUpdateAction,
+  profileClearAction,
+  passwordUpdateAction,
+} from '~/redux/actions/profile';
 import Layout from '~/components/global/layout';
 
 class ProfilePage extends Component {
@@ -19,11 +23,20 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { profileData, token, update, profile } = this.props;
+    const { profileData, token, update, profile, clear, password_update } = this.props;
+
     return (
       <>
         <Layout token={token} hasNavbar hasFooter>
-          <Container profile={profile} profileData={profileData} token={token} update={update} />;
+          <Container
+            profile={profile}
+            profileData={profileData}
+            token={token}
+            update={update}
+            clear={clear}
+            password_update={password_update}
+          />
+          ;
         </Layout>
       </>
     );
@@ -41,6 +54,9 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     update: (fields, token) => {
       dispatch(profileUpdateAction(fields, token));
+    },
+    password_update: (fields, token) => {
+      dispatch(passwordUpdateAction(fields, token));
     },
     clear: () => {
       dispatch(profileClearAction());
