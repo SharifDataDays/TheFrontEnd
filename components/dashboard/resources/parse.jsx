@@ -1,4 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
+import MathJax from 'react-mathjax2';
 import { Table, Image, Header, List, Divider } from 'semantic-ui-react';
 import htmlParser from 'react-markdown/plugins/html-parser';
 
@@ -242,6 +244,20 @@ export default htmlParser({
         return node.name && node.name === 'p';
       },
       processNode(node, children) {
+        if (node.attribs.class === 'math') {
+          return (
+            <div dir="ltr">
+              <MathJax.Node>{node.children[0].data}</MathJax.Node>
+            </div>
+          );
+        }
+        if (node.attribs.class === 'inline') {
+          return (
+            <span dir="ltr">
+              <MathJax.Node inline>{_.get(node, 'children[0].data', 'shit')}</MathJax.Node>
+            </span>
+          );
+        }
         return (
           <span
             style={{
@@ -300,12 +316,32 @@ export default htmlParser({
     },
     {
       shouldProcessNode(node) {
+        return node.type && node.type === 'span';
+      },
+      processNode(node) {
+        return (
+          <span
+            style={{
+              fontSize: '1.5rem',
+              lineHeight: 1.5,
+              marginBottom: '0.75rem',
+              direction: 'rtl',
+            }}
+          >
+            {node.nodeValue}
+          </span>
+        );
+      },
+    },
+    {
+      shouldProcessNode(node) {
         return node.type && node.type === 'text';
       },
       processNode(node) {
         if (!node.parent || node.parent.tagName === 'div' || node.parent.tagName === 'font') {
           return (
             <span
+              key={Math.floor(Math.random() * 2000)}
               style={{
                 fontSize: '1.5rem',
                 lineHeight: 1.5,
