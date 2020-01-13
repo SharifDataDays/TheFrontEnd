@@ -7,7 +7,8 @@ class CommentComp extends Component {
     super(props);
     this.state = { displayReply: 'none', open: false, value: '' };
     this.toReply = this.toReply.bind(this);
-    this.doneReply = this.doneReply.bind(this);
+    this.postReply = this.postReply.bind(this);
+    this.closeReply = this.closeReply.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,7 +22,7 @@ class CommentComp extends Component {
     this.setState({ value: event.target.value });
   }
 
-  doneReply () {
+  closeReply () {
     this.setState({ displayReply: 'none' });
   }
 
@@ -34,9 +35,20 @@ class CommentComp extends Component {
     this.setState({ displayReply: 'block' });
   }
 
+  postReply () {
+    this.closeReply();
+    const { value } = this.state;
+    if (value.trim() === '') {
+      return;
+    }
+    const { name } = this.props;
+    const message = name.concat(' : ').concat(value);
+    alert(message);
+  }
+
   closeModal () {
     this.setState({ open: false });
-    this.doneReply();
+    this.closeReply();
   }
 
   render () {
@@ -78,9 +90,9 @@ class CommentComp extends Component {
                   marginRight: '95%',
                   backgroundColor: '#21ba45',
                 }}
-                onClick={this.doneReply}
+                onClick={this.postReply}
               >
-                ثبت 
+                ثبت
               </Button>
             </Form>
           </Comment.Content>

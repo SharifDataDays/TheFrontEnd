@@ -17,8 +17,8 @@ const TextArea = styled(TextareaAutosize)`
   margin-bottom: 1rem !important;
 `;
 
-const GenerateComments = ({ data, isLoggedIn }) =>
-  data.map((x) => <Comment {...x} isLoggedIn={isLoggedIn} />);
+const GenerateComments = ({ data, isLoggedIn, name }) =>
+  data.map((x) => <Comment {...x} isLoggedIn={isLoggedIn} name={name} />);
 
 class CommentsPage extends Component {
   constructor (props) {
@@ -49,10 +49,10 @@ class CommentsPage extends Component {
 
   render () {
     const { open, value } = this.state;
-    const { comments, isLoggedIn } = this.props;
+    const { comments, isLoggedIn, name } = this.props;
     return (
       <Grid centered>
-        <Grid.Column computer={7} tablet={10} mobile={15}>
+        <Grid.Column computer={7} tablet={10} mobile={14}>
           <CMT.Group style={{ marginTop: '5rem', marginBottom: '5rem' }}>
             <Modal open={open} handle={this.closeModal} />
             <Divider horizontal>
@@ -64,10 +64,10 @@ class CommentsPage extends Component {
                 positive
                 style={{ marginBottom: '1rem', marginRight: '95%', backgroundColor: '#21ba45' }}
               >
-                ثبت 
+                ثبت
               </Button>
             </Form>
-            <GenerateComments data={comments} isLoggedIn={isLoggedIn} />
+            <GenerateComments data={comments} isLoggedIn={isLoggedIn} name={name} />
           </CMT.Group>
         </Grid.Column>
       </Grid>
