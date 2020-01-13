@@ -61,11 +61,10 @@ class CommentsPage extends Component {
             <Form reply>
               <TextArea onClick={this.onInput} onChange={this.handleChange} value={value} />
               <Button
-                secondary
                 positive
                 style={{ marginBottom: '1rem', marginRight: '95%', backgroundColor: '#21ba45' }}
               >
-                ثبت
+                ثبت 
               </Button>
             </Form>
             <GenerateComments data={comments} isLoggedIn={isLoggedIn} />

@@ -5,7 +5,7 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Post from '~/components/blog/post';
 import { blogPostAPI } from '~/redux/api/blog';
-import { getProfileApi } from '~/redux/api/dashboard';
+import { profileAPI } from '~/redux/api/dashboard';
 import Comments from '~/components/blog/post/comments';
 import samples from '~/public/static/comments-test.json';
 
@@ -13,21 +13,20 @@ class PostPage extends Component {
   static async getInitialProps ({ query }, token) {
     const { id } = query;
     const res = await blogPostAPI(id);
-    const resProfile = await getProfileApi(token);
+    const resProfile = await profileAPI(token);
     const post = res.data;
-    const profileAPI = resProfile.data;
-    return { post, token, profileAPI };
+    const profileData = resProfile.data;
+    return { post, token, profileData };
   }
 
   render () {
-    const { post, token, profileAPI } = this.props;
-    const { profile } = profileAPI;
+    const { post, token, profileData } = this.props;
+    const { profile } = profileData;
     const { firstname_fa, lastname_fa } =
       profile !== undefined ? profile : { firstname_fa: '', lastname_fa: '' };
     const { image, date, title_fa, text_fa, comments } = post;
     const isLoggedIn = token !== '';
     const name = firstname_fa.concat(' ').concat(lastname_fa);
-    console.log(name);
     const profProps = { isLoggedIn, name };
     return (
       <>

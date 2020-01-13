@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 const BASE_ADDR = 'https://datadays.sharif.edu/api';
-const TERMS = `${BASE_ADDR}/terms`;
-
-export const BASE = 'https://datadays.sharif.edu';
+const TERMS = `${BASE_ADDR}/terms/`;
 
 export function termsAPI() {
   return axios.get(TERMS);

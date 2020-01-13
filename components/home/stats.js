@@ -24,11 +24,6 @@ class Stats extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    this.setState({
-      constant: false,
-    });
-  }
   counter = async () => {
     if (this.state.constant === true) {
       this.setState({
@@ -38,7 +33,6 @@ class Stats extends React.Component {
 
       for (let i = 0; i <= this.state.participants; i++) {
         await sleep(30);
-        console.log(i);
         this.setState({
           num: i,
         });
@@ -73,7 +67,7 @@ class Stats extends React.Component {
               alignItems: 'center',
               justifyContent: 'center',
               color: 'white',
-              padding: '30px'
+              padding: '30px',
             }}
           >
             <p
@@ -81,7 +75,7 @@ class Stats extends React.Component {
               style={{
                 fontSize: '48px',
                 margin: '0',
-              padding: '0'
+                padding: '0',
               }}
             >
               {this.state.num}
@@ -91,7 +85,7 @@ class Stats extends React.Component {
               style={{
                 fontSize: '24px',
                 margin: '0',
-              padding: '0'
+                padding: '0',
               }}
             >
               شرکت‌کننده

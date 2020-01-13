@@ -4,14 +4,14 @@ import { Responsive } from 'semantic-ui-react';
 import Mobile from './mobile';
 import Desktop from './desktop';
 
-function ListSection({ tasks }) {
+function ListSection({ cid, mid, tasks }) {
   return (
     <NoSSR>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Mobile tasks={tasks} />
+        <Mobile cid={cid} mid={mid} tasks={tasks} />
       </Responsive>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Desktop tasks={tasks} />
+        <Desktop cid={cid} mid={mid} tasks={tasks} />
       </Responsive>
     </NoSSR>
   );

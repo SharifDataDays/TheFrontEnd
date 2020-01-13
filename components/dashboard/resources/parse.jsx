@@ -1,6 +1,11 @@
+import _ from 'lodash';
 import React from 'react';
+import MathJax from 'react-mathjax2';
+import LanguageDetect from 'languagedetect';
 import { Table, Image, Header, List, Divider } from 'semantic-ui-react';
 import htmlParser from 'react-markdown/plugins/html-parser';
+
+const lngDetector = new LanguageDetect();
 
 export default htmlParser({
   isValidNode: (node) => true,
@@ -27,6 +32,14 @@ export default htmlParser({
             {children}
           </font>
         );
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.name && node.name === 'style';
+      },
+      processNode(node, children) {
+        return <></>;
       },
     },
     {
@@ -167,7 +180,7 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <div style={{ margin: '2rem' }} dir="RTL">
+          <div style={{ margin: '2rem' }} dir="rtl">
             <List
               bulleted
               style={{
@@ -210,7 +223,7 @@ export default htmlParser({
         return node.name && node.name === 'li';
       },
       processNode(node, children) {
-        return <List.Item>{children}</List.Item>;
+        return <List.Item style={{ fontSize: '1.5rem' }}>{children}</List.Item>;
       },
     },
     {
@@ -234,7 +247,14 @@ export default htmlParser({
         return node.name && node.name === 'code';
       },
       processNode(node, children) {
-        return <code style={{ backgroundColor: '#eeeeee', direction: 'ltr' }}>{children}</code>;
+        return (
+          <code
+            dir="rtl"
+            style={{ fontSize: '1.5rem', backgroundColor: '#eeeeee', direction: 'ltr' }}
+          >
+            {children}
+          </code>
+        );
       },
     },
     {
@@ -242,16 +262,33 @@ export default htmlParser({
         return node.name && node.name === 'p';
       },
       processNode(node, children) {
+        if (node.attribs.class === 'math') {
+          return (
+            <div dir="ltr" style={{ fontSize: '1.5rem' }}>
+              <MathJax.Node>{node.children[0].data}</MathJax.Node>
+            </div>
+          );
+        }
+        if (node.attribs.class === 'inline') {
+          return (
+            <span dir="ltr" style={{ fontSize: '1.5rem' }}>
+              <MathJax.Node inline>{_.get(node, 'children[0].data', 'shit')}</MathJax.Node>
+            </span>
+          );
+        }
+        const text = _.get(node, 'children[0].data', '');
+        const isFarsi = _.get(lngDetector.detect(text), '0.0', 'farsi') === 'farsi';
         return (
           <span
+            dir={isFarsi ? 'rtl' : 'ltr'}
+            // dir="rtl"
             style={{
               fontSize: '1.5rem',
               lineHeight: 1.5,
               marginBottom: '0.75rem',
-              direction: 'rtl',
             }}
           >
-            {children}
+            {text}
           </span>
         );
       },
@@ -262,7 +299,12 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <a href={node.attribs.href} target="_blank" rel="noopener noreferrer">
+          <a
+            href={node.attribs.href}
+            style={{ fontSize: '1.5rem' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {children}
           </a>
         );
@@ -287,7 +329,7 @@ export default htmlParser({
         return node.name && node.name === 'strong';
       },
       processNode(node, children) {
-        return <strong>{children}</strong>;
+        return <strong style={{ fontSize: '1.5rem' }}>{children}</strong>;
       },
     },
     {
@@ -295,7 +337,26 @@ export default htmlParser({
         return node.name && node.name === 'em';
       },
       processNode(node, children) {
-        return <em>{children}</em>;
+        return <em style={{ fontSize: '1.5rem' }}>{children}</em>;
+      },
+    },
+    {
+      shouldProcessNode(node) {
+        return node.type && node.type === 'span';
+      },
+      processNode(node) {
+        return (
+          <span
+            style={{
+              fontSize: '1.5rem',
+              lineHeight: 1.5,
+              marginBottom: '0.75rem',
+              direction: 'rtl',
+            }}
+          >
+            {node.nodeValue}
+          </span>
+        );
       },
     },
     {
@@ -304,13 +365,15 @@ export default htmlParser({
       },
       processNode(node) {
         if (!node.parent || node.parent.tagName === 'div' || node.parent.tagName === 'font') {
+          const isFarsi = _.get(lngDetector.detect(node.nodeValue), '0.0', 'farsi') === 'farsi';
           return (
             <span
+              dir={isFarsi ? 'rtl' : 'ltr'}
+              // dir="rtl"
               style={{
                 fontSize: '1.5rem',
                 lineHeight: 1.5,
                 marginBottom: '0.75rem',
-                direction: 'rtl',
               }}
             >
               {node.nodeValue}
