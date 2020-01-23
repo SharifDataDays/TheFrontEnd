@@ -71,3 +71,10 @@ export function milestoneAPI(contestID, milestoneID, token) {
     },
   });
 }
+
+const CONTENT_FINISHED = (content_id, milestone_id, task_id) =>
+  `${BASE_ADDR}/contest/${content_id}/${milestone_id}/${task_id}/content_finished/`;
+
+export function contentFinished(content_id, milestone_id, task_id) {
+  return axios.get(CONTENT_FINISHED(content_id, milestone_id, task_id));
+}

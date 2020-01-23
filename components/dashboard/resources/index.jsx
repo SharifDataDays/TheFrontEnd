@@ -2,8 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
+import { contentFinished } from '~/redux/api/dashboard.js';
 
-function Pagination({ page, prevPage, nextPage, content }) {
+function Pagination({ page, prevPage, nextPage, content, trial }) {
   return (
     <div style={{ marginBottom: '3rem' }}>
       {page > 0 ? (
@@ -18,7 +19,9 @@ function Pagination({ page, prevPage, nextPage, content }) {
           بعدی
         </Button>
       ) : (
-        <></>
+        <Button primary onClick={trial} floated="right">
+          بریم تست کنیم
+        </Button>
       )}
     </div>
   );
@@ -30,6 +33,7 @@ class Resource extends Component {
     this.state = { page: 0 };
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
+    this.trial = this.trial.bind(this);
   }
 
   nextPage(event) {
@@ -49,6 +53,11 @@ class Resource extends Component {
     this.setState({
       page: Math.max(page - 1, 0),
     });
+  }
+
+  trial(event) {
+    console.log(this.props);
+    contentFinished(this.props.content.id, this.props.taskId, this.props.milestoneId);
   }
 
   render() {
@@ -74,6 +83,7 @@ class Resource extends Component {
                 content={content}
                 prevPage={this.prevPage}
                 nextPage={this.nextPage}
+                trial={this.trial}
               />
             </Grid.Column>
           </Grid.Row>
