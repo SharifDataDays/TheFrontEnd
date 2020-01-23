@@ -1,31 +1,31 @@
 {
     "trial": {
-        "id": 8,
+        "id": 1,
         "score": {},
         "question_submissions": [
             {
-                "id": 42,
+                "id": 1,
                 "question": {
-                    "id": 12,
-                    "task": 2,
-                    "max_score": 100,
-                    "body": "وارد کنین salam",
+                    "id": 24,
+                    "task": 4,
+                    "max_score": 1,
+                    "body": "داده‌های فایل [top50.csv] را بارگیری کنید.\r\nمقادیر ستونم *تعداد ضرب‌ها در دقیقه* را به نحوی مقیاس‌بندی کنید که میانگین‌آنها برابر ۰ و واریانسشان برابر ۱ باشد.\r\nحال مجموع مقادیر این ستون را در نظر بگیرید. اگر آن‌ را به صورت نماد علمی بنویسم، مقدار پایه را تا دو رقم اعشاد به عنوان پاسخ خروجی دهید.\r\n\r\n+ توجه کنید که پایه در نماد علمی عددی بین ۰ تا ۱۰ است.\r\n\r\n[top50.csv]: ./top50.csv",
                     "type": "single_answer",
-                    "answer_type": "text",
+                    "answer_type": "double",
                     "resourcetype": "SingleAnswer"
                 },
                 "answer": "[]",
                 "score": null
             },
             {
-                "id": 43,
+                "id": 2,
                 "question": {
-                    "id": 1,
-                    "task": 2,
-                    "max_score": 100,
-                    "body": "بنویسین kharو sag",
+                    "id": 9,
+                    "task": 4,
+                    "max_score": 1,
+                    "body": "فایل [top50.csv] که در اختیارتان قرار داده شده است،‌مربوط به ۵۰ آهنگی است که بیشتر از همه در سال ۲۰۱۹ توسط spotify گوش داده‌شده‌اند. این داده را بارگیری کرده و عنوان ستون‌های آن را در قالب یک  **list** خروجی بدهید.\r\n\r\n*توجه کنید که کدینگ فایل **latin-1** می‌باشد.*\r\n\r\n[top50.csv]: ./top50.csv",
                     "type": "multi_answer",
-                    "answer_count_limit": 2,
+                    "answer_count_limit": 10,
                     "answer_type": "text",
                     "resourcetype": "MultiAnswer"
                 },
@@ -33,90 +33,23 @@
                 "score": null
             },
             {
-                "id": 44,
+                "id": 3,
                 "question": {
-                    "id": 13,
-                    "task": 2,
-                    "max_score": 100,
-                    "body": "گزینه‌ی ۱ را انتخاب کنید.",
-                    "type": "single_select",
-                    "choices": [
-                        {
-                            "body": "گزینه ۱",
-                            "label": "گ ۱"
-                        },
-                        {
-                            "body": "گزینه ۲",
-                            "label": "گ ۲"
-                        },
-                        {
-                            "body": "گزینه ۳",
-                            "label": "گ ۳"
-                        }
-                    ],
-                    "resourcetype": "SingleSelect"
-                },
-                "answer": "[]",
-                "score": null
-            },
-            {
-                "id": 45,
-                "question": {
-                    "id": 10,
-                    "task": 2,
-                    "max_score": 100,
-                    "body": "گزینه‌های ۲ و ۳ را انتخاب کنید.",
-                    "type": "multi_select",
-                    "choices": [
-                        {
-                            "body": "گزینه ۱",
-                            "label": "گ ۱"
-                        },
-                        {
-                            "body": "گزینه ۲",
-                            "label": "گ ۲"
-                        },
-                        {
-                            "body": "گزینه ۳",
-                            "label": "گ ۳"
-                        }
-                    ],
-                    "resourcetype": "MultiSelect"
-                },
-                "answer": "[]",
-                "score": null
-            },
-            {
-                "id": 46,
-                "question": {
-                    "id": 14,
-                    "task": 2,
-                    "max_score": 200,
-                    "body": "oesnuteohue",
+                    "id": 16,
+                    "task": 4,
+                    "max_score": 1,
+                    "body": "داده‌های فایل [station_belem.csv] مربوط به دمای هوای یکی از شهر‌های برزیل هستند. با فرض این‌که مقادیر زیر به عنوان داده‌ی نادرست در نظر گرفته شوند، فایلی با نام *Answer.csv* ایجاد کنید که در مکان این مقادیر،‌**-1000.00** قرار بگیرد.\r\n\r\n\r\n[station_belem.csv]: ./station_belem.csv",
                     "type": "file_upload",
-                    "file_size_limit": 977,
-                    "file_format": "txt",
+                    "file_size_limit": 1000000,
+                    "file_format": ".csv,",
                     "resourcetype": "FileUpload"
-                },
-                "answer": "[]",
-                "score": null
-            },
-            {
-                "id": 48,
-                "question": {
-                    "id": 11,
-                    "task": 2,
-                    "max_score": 100,
-                    "body": "یه بازه بین ۰ تا ۱۰۰ وارد کنین.",
-                    "type": "numeric_range",
-                    "resourcetype": "NumericRange"
                 },
                 "answer": "[]",
                 "score": null
             }
         ],
-        "due_time": "2020-01-11T01:44:18.426754+03:30",
-        "start_time": "2020-01-10T19:44:18.427091+03:30",
+        "due_time": "2020-01-23T20:42:36.630751+03:30",
+        "start_time": "2020-01-23T14:42:36.631724+03:30",
         "submit_time": null
     },
     "status_code": 200

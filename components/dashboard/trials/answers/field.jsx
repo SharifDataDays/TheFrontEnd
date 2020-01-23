@@ -1,13 +1,18 @@
 import _ from 'lodash';
 import persianJs from 'persianjs';
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import Content from '~/components/global/mdx';
 
 class FieldAnswer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      formCount: 1,
+    };
     this.handleChange = this.handleChange.bind(this);
+    this.removeForm = this.removeForm.bind(this);
+    this.addForm = this.addForm.bind(this);
   }
 
   handleChange(e) {
@@ -22,7 +27,32 @@ class FieldAnswer extends Component {
     });
   }
 
+  removeForm(e) {
+    e.preventDefault();
+    const { id, qtype, count, changeAnswer } = this.props;
+    const { formCount } = this.state;
+    this.setState({
+      formCount: formCount - 1,
+    });
+    changeAnswer({
+      id,
+      qtype,
+      count,
+      number: formCount - 1,
+      value: '',
+    });
+  }
+
+  addForm(e) {
+    e.preventDefault();
+    const { formCount } = this.state;
+    this.setState({
+      formCount: formCount + 1,
+    });
+  }
+
   render() {
+    const { formCount } = this.state;
     const { content, number, count, type, saved } = this.props;
     return (
       <>
@@ -31,10 +61,24 @@ class FieldAnswer extends Component {
             .englishNumber()
             .toString()}. ${content}`}
         />
-        <Form>
-          <Form.Group width={2} dir="rtl">
-            {_.map(_.range(count), (i) => {
-              return (
+        {formCount !== 1 ? (
+          <Button primary onClick={this.removeForm}>
+            -
+          </Button>
+        ) : (
+          <></>
+        )}
+        {formCount < count ? (
+          <Button primary onClick={this.addForm}>
+            +
+          </Button>
+        ) : (
+          <></>
+        )}
+        <Form style={{ margin: '1rem auto' }}>
+          {_.map(_.range(formCount), (i) => {
+            return (
+              <Form.Group width={2} dir="rtl">
                 <Form.Input
                   key={i}
                   name={i}
@@ -43,9 +87,9 @@ class FieldAnswer extends Component {
                   width={8}
                   onChange={this.handleChange}
                 />
-              );
-            })}
-          </Form.Group>
+              </Form.Group>
+            );
+          })}
         </Form>
       </>
     );
