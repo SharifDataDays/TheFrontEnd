@@ -7,14 +7,10 @@ import { scoreboardAPI } from '~/redux/api/dashboard';
 
 class MainScoreboard extends Component {
   static async getInitialProps(ctx, token) {
-    console.log('herererererererererere');
     let milestoneID = 100;
     let startIndex = 1;
     let endIndex = 50;
     const res = await scoreboardAPI(startIndex, endIndex, milestoneID, token);
-
-    console.log('^^^^^^^^^^^^^^^ res.data');
-    console.log(res.data);
 
     const { milestone } = res.data;
     const { scoreboard } = res.data;
@@ -26,7 +22,7 @@ class MainScoreboard extends Component {
   render() {
     const { milestone, scoreboard, tasks } = this.props;
     return (
-      <Layout>
+      <Layout hasNavbar hasFooter>
         <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks}/>
       </Layout>
     );
@@ -34,9 +30,3 @@ class MainScoreboard extends Component {
 }
 export default withAuth(true)(MainScoreboard);
 
-// const ScoreboardTest = (props) => (
-// <Layout>
-//   <Scoreboard />
-// </Layout>
-// );
-// export default ScoreboardTest;

@@ -23,25 +23,23 @@ const Info = styled.p`
 const GenerateMyRow = ({ team }) => {
   const color = '#00000066';
   const border = `3px solid ${color}`;
-  return (    
+  return (
     <Table.Row warning>
-        <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
-          {team.total_score}
-        </Table.Cell>
+      <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
+        {team.total_score}
+      </Table.Cell>
 
-        {team.scores.map((score) => {
-          return (
-            <TableCell textAlign="center">
-              {score}
-            </TableCell>
-          );
-        })}
+      {team.scores.map((score) => {
+        return <TableCell textAlign="center">{score}</TableCell>;
+      })}
 
-        <Table.Cell textAlign="center" border={border}>{team.name}</Table.Cell>
-        <Table.Cell textAlign="center" border={border}>
-          {team.rank}
-        </Table.Cell>
-      </Table.Row>
+      <Table.Cell textAlign="center" border={border}>
+        {team.name}
+      </Table.Cell>
+      <Table.Cell textAlign="center" border={border}>
+        {team.rank}
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
@@ -62,11 +60,7 @@ const GenerateRows = ({ data, myName, teams }) => {
         </Table.Cell>
 
         {x.scores.map((score) => {
-          return (
-            <TableCell textAlign="center">
-              {score}
-            </TableCell>
-          );
+          return <TableCell textAlign="center">{score}</TableCell>;
         })}
 
         <Table.Cell textAlign="center">{x.name}</Table.Cell>
@@ -79,27 +73,41 @@ const GenerateRows = ({ data, myName, teams }) => {
   return rows;
 };
 
-const Footer = (props) => (
-  <>
-    <Info>رتبه‌های 1 الی 20</Info>
-    <Table.Row>
+
+const onChange = (e, pageInfo) => {
+  console.log("event:", e)
+  console.log("oageInfo:", pageInfo)
+  console.log("active page:", pageInfo.activePage)
+}
+
+const Footer = (props) => {
+  const numberOfTeams = props.teams.length;
+  const pageNumbers = numberOfTeams / 2;
+
+  return (
+    <>
+      <Info>رتبه‌های 1 الی 2</Info>
       <Table.Row>
-        <Pagination
-          defaultActivePage={1}
-          firstItem={null}
-          lastItem={null}
-          secondary
-          totalPages={10}
-          style={{ marginTop: '0.5rem' }}
-        />
+        <Table.Row>
+          <Pagination
+            defaultActivePage={1}
+            firstItem={null}
+            lastItem={null}
+            secondary
+            defaultActivePage={pageNumbers / 2}
+            totalPages={pageNumbers}
+            style={{ marginTop: '0.5rem' }}
+            onPageChange={onChange}
+          />
+        </Table.Row>
       </Table.Row>
-    </Table.Row>
-  </>
-);
+    </>
+  );
+};
 
 const Scoreboard = ({ data, milestone, teams, tasks }) => {
   const myName = 'team1';
-  const display = teams.some((x) => x.name === myName) ? 'none' : '';
+  // const display = teams.some((x) => x.name === myName) ? 'none' : '';
   return (
     <>
       <Table celled>
@@ -119,8 +127,7 @@ const Scoreboard = ({ data, milestone, teams, tasks }) => {
           <GenerateRows data={data} myName={myName} teams={teams} />
         </Table.Body>
       </Table>
-      <Footer teams={teams}/>
-
+      <Footer teams={teams} />
     </>
   );
 };
