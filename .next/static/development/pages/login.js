@@ -86779,7 +86779,7 @@ function termsAPI() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 3:
 /*!**********************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Flogin&absolutePagePath=%2FUsers%2Fbahar%2FDesktop%2FTheFrontEnd%2Fpages%2Flogin.jsx ***!
   \**********************************************************************************************************************************/
@@ -86802,5 +86802,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=login.js.map
