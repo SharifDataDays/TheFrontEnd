@@ -299,8 +299,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers */ "dom-helpers");
 /* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(dom_helpers__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var typescript__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! typescript */ "typescript");
+/* harmony import */ var typescript__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(typescript__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/scoreboard/laptab.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -327,7 +330,7 @@ const GenerateMyRow = ({
     warning: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -337,7 +340,7 @@ const GenerateMyRow = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 29
     },
     __self: undefined
   }, team.total_score), team.scores.map(score => {
@@ -345,7 +348,7 @@ const GenerateMyRow = ({
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 34
       },
       __self: undefined
     }, score);
@@ -354,7 +357,7 @@ const GenerateMyRow = ({
     border: border,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: undefined
   }, team.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -362,7 +365,7 @@ const GenerateMyRow = ({
     border: border,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 40
     },
     __self: undefined
   }, team.rank));
@@ -373,6 +376,14 @@ const GenerateRows = ({
   teams,
   topRank
 }) => {
+  let firstRank = topRank - 1;
+  let endRank = topRank + 19;
+  let numberOfTeams = teams.length;
+
+  if (endRank > numberOfTeams) {
+    endRank = numberOfTeams - 1;
+  }
+
   let newTeams = teams.slice(topRank - 1, topRank + 19);
   const rows = newTeams.map(x => {
     let background = '#f8f8fa';
@@ -383,7 +394,7 @@ const GenerateRows = ({
       team: x,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 64
       },
       __self: undefined
     });
@@ -393,7 +404,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 67
       },
       __self: undefined
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -403,7 +414,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 68
       },
       __self: undefined
     }, x.total_score), x.scores.map(score => {
@@ -411,7 +422,7 @@ const GenerateRows = ({
         textAlign: "center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 73
         },
         __self: undefined
       }, score);
@@ -419,7 +430,7 @@ const GenerateRows = ({
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 76
       },
       __self: undefined
     }, x.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
@@ -429,7 +440,7 @@ const GenerateRows = ({
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 77
       },
       __self: undefined
     }, x.rank));
@@ -441,22 +452,28 @@ const Footer = props => {
   const numberOfTeams = props.teams.length;
   const pageNumbers = Math.ceil(numberOfTeams / 20);
   console.log("page numbers : ", pageNumbers);
+  let endRank = props.topRank + 19;
+
+  if (endRank > numberOfTeams) {
+    endRank = numberOfTeams;
+  }
+
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(Info, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 99
     },
     __self: undefined
-  }, " ", props.topRank + 19, " \u0627\u0644\u06CC ", props.topRank, " \u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
+  }, " ", endRank, " \u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC ", props.topRank, " \u0627\u0644\u06CC"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 101
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 102
     },
     __self: undefined
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Pagination"], {
@@ -472,7 +489,7 @@ const Footer = props => {
     onPageChange: props.changePage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 103
     },
     __self: undefined
   }))));
@@ -503,26 +520,26 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       celled: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 127
+        lineNumber: 140
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 128
+        lineNumber: 141
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 129
+        lineNumber: 142
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 130
+        lineNumber: 143
       },
       __self: this
     }, "\u0627\u0645\u062A\u06CC\u0627\u0632"), this.state.tasks.map(x => {
@@ -530,7 +547,7 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         textAlign: "center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 145
         },
         __self: this
       }, x.name);
@@ -538,20 +555,20 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 134
+        lineNumber: 147
       },
       __self: this
     }, "\u0646\u0627\u0645"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 148
       },
       __self: this
     }, "\u0631\u062A\u0628\u0647"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 152
       },
       __self: this
     }, __jsx(GenerateRows, {
@@ -560,7 +577,7 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       topRank: this.state.topRank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 153
       },
       __self: this
     }))), __jsx(Footer, {
@@ -569,7 +586,7 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       topRank: this.state.topRank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 144
+        lineNumber: 157
       },
       __self: this
     }));
@@ -2441,6 +2458,17 @@ module.exports = require("semantic-ui-react");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-components");
+
+/***/ }),
+
+/***/ "typescript":
+/*!*****************************!*\
+  !*** external "typescript" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("typescript");
 
 /***/ })
 

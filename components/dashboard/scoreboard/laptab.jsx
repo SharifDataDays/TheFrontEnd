@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Pagination, Segment, TableRow, Tab, Header, Menu, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { width } from 'dom-helpers';
+import { EndOfLineState } from 'typescript';
 
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
@@ -44,6 +45,13 @@ const GenerateMyRow = ({ team }) => {
 };
 
 const GenerateRows = ({ myName, teams, topRank }) => {
+  let firstRank = topRank - 1
+  let endRank = topRank + 19
+  let numberOfTeams = teams.length
+  if (endRank > numberOfTeams) {
+    endRank = numberOfTeams - 1
+  }
+
   let newTeams = teams.slice(topRank - 1, topRank + 19)
 
   const rows = newTeams.map((x) => {
@@ -81,9 +89,14 @@ const Footer = (props) => {
   const pageNumbers = Math.ceil(numberOfTeams / 20);
   console.log("page numbers : ", pageNumbers)
 
+  let endRank = props.topRank + 19
+  if (endRank > numberOfTeams) {
+    endRank = numberOfTeams
+  }
+
   return (
     <>
-      <Info> {props.topRank + 19} الی {props.topRank} رتبه‌های</Info>
+      <Info> {endRank} رتبه‌های {props.topRank} الی</Info>
 
       <Table.Row>
         <Table.Row>
