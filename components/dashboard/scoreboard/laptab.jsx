@@ -20,51 +20,48 @@ const Info = styled.p`
   margin-left: 1rem;
 `;
 
-const GenerateMyRow = ({ name, score, rank, display }) => {
+const GenerateMyRow = ({ team }) => {
   const color = '#00000066';
   const border = `3px solid ${color}`;
-  return (
-    <Table.Row warning>
-      <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
-        {team.total_score}
-      </Table.Cell>
+   return (    
+     <Table.Row warning>
+         <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
+           {team.total_score}
+         </Table.Cell>
 
-      {team.scores.map((score) => {
-        return <TableCell textAlign="center">{score}</TableCell>;
-      })}
+         {team.scores.map((score) => {
+           return (
+             <TableCell textAlign="center">
+               {score}
+             </TableCell>
+           );
+         })}
 
-      <Table.Cell textAlign="center" border={border}>
-        {team.name}
-      </Table.Cell>
-      <Table.Cell textAlign="center" border={border}>
-        {team.rank}
-      </Table.Cell>
+         <Table.Cell textAlign="center" border={border}>{team.name}</Table.Cell>
+         <Table.Cell textAlign="center" border={border}>
+           {team.rank}
+         </Table.Cell>
+       </Table.Row>
+   );
+}
 
-    </Table.Row>
-  );
-};
 
 const GenerateRows = ({ data, myName, teams }) => {
   const rows = teams.map((x) => {
-    let scoresSum = 0;
-    x.scores.map((score) => {
-      scoresSum = scoresSum + score
-    })
-
-
+  
     let background = '#f8f8fa';
     const rank = x.rank;
     if (rank <= 3) background = '#fed76673';
     else if (rank <= 6) background = '#bbbbbb73';
     else if (rank <= 9) background = '#cd7f3273';
     const borderRight = `3px solid ${background} !important`;
-    if (x.name === myName) return <GenerateMyRow name={x.name} score="10" rank={x.rank} />;
+    if (x.name === myName) return <GenerateMyRow team={x} />;
 
     return (
       <Table.Row style={{ background }}>
-        <Table.Cell textAlign="right" style={{ marginLeft: '3rem !important' }}>
-          {scoresSum}
-        </Table.Cell>
+        <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
+           {x.total_score}
+         </Table.Cell>
 
         {x.scores.map((score) => {
 
@@ -119,29 +116,10 @@ const Footer = (props) => {
 const Scoreboard = ({ data, milestone, teams, tasks }) => {
 
   const myName = 'team1';
-  // const display = teams.some((x) => x.name === myName) ? 'none' : '';
+  const display = teams.some((x) => x.name === myName) ? 'none' : '';
 
   return (
     <>
-      {/* <Table selectable size="small" style={{ border: '0 !important' }}>
-        <Table.Header>
-          <Table.Row style={{ height: '4rem !important' }}>
-            <TableHeader textAlign="right">امتیاز</TableHeader>
-            {tasks.map((x) => {
-              return <TableHeader textAlign="center">{x.name}</TableHeader>;
-            })}
-            <TableHeader textAlign="center">نام</TableHeader>
-            <TableHeader textAlign="center">رتبه</TableHeader>
-          </Table.Row>
-        </Table.Header>
-      </Table>
-      <Table>
-        <Table.Body>
-          <GenerateMyRow name={myName} score="100" rank="0" display={display} />
-          <GenerateRows data={data} myName={myName} teams={teams} />
-        </Table.Body>
-      </Table>
-      <Footer /> */}
 
       <Table celled>
         <Table.Header>
@@ -156,14 +134,12 @@ const Scoreboard = ({ data, milestone, teams, tasks }) => {
         </Table.Header>
 
         <Table.Body>
-          <GenerateMyRow name={myName} score="100" rank="0" display={display} />
           <GenerateRows data={data} myName={myName} teams={teams} />
         </Table.Body>
       </Table>
-{/* <<<<<<< HEAD
-      <Footer teams={teams} /> */}
 
-      <Footer />
+      <Footer teams={teams} />
+
 
     </>
   );

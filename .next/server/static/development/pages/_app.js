@@ -1725,8 +1725,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./redux/api/index.js");
 
 
-const LOGIN = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/login`;
-const AUTH = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile`;
+const LOGIN = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/login/`;
+const AUTH = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/profile/`;
 const FORGOT = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/`;
 const RESET = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/password/reset/confirm/`;
 function loginAPI(data) {
@@ -1883,7 +1883,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./redux/api/index.js");
 
 
-const SIGNUP_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/signup`;
+const SIGNUP_API = `${___WEBPACK_IMPORTED_MODULE_1__["default"]}/accounts/signup/`;
 function signupAPI(data) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(SIGNUP_API, data, {
     headers: {
