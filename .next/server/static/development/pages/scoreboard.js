@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -291,31 +291,29 @@ class ScoreBoard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dom-helpers */ "dom-helpers");
-/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(dom_helpers__WEBPACK_IMPORTED_MODULE_4__);
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers */ "dom-helpers");
+/* harmony import */ var dom_helpers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(dom_helpers__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/bahar/Desktop/TheFrontEnd/components/dashboard/scoreboard/laptab.jsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
-const TableHeader = styled_components__WEBPACK_IMPORTED_MODULE_3___default()(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].HeaderCell).withConfig({
+const TableHeader = styled_components__WEBPACK_IMPORTED_MODULE_2___default()(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell).withConfig({
   displayName: "laptab__TableHeader",
   componentId: "qvtjrt-0"
 })(["background:rgba(80,87,99,0.05) !important;border-radius:0 !important;color:black !important;"]);
-const TableCell = styled_components__WEBPACK_IMPORTED_MODULE_3___default()(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell).withConfig({
+const TableCell = styled_components__WEBPACK_IMPORTED_MODULE_2___default()(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell).withConfig({
   displayName: "laptab__TableCell",
   componentId: "qvtjrt-1"
 })(["border-top:", " !important;border-bottom:", " !important;"], props => props.border, props => props.border);
-const Info = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.p.withConfig({
+const Info = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.p.withConfig({
   displayName: "laptab__Info",
   componentId: "qvtjrt-2"
 })(["text-align:left;margin-top:1rem;margin-left:1rem;"]);
@@ -325,14 +323,14 @@ const GenerateMyRow = ({
 }) => {
   const color = '#00000066';
   const border = `3px solid ${color}`;
-  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Row, {
+  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     warning: true,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 27
     },
     __self: undefined
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
     textAlign: "center",
     style: {
       marginLeft: '3rem !important'
@@ -351,7 +349,7 @@ const GenerateMyRow = ({
       },
       __self: undefined
     }, score);
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
     textAlign: "center",
     border: border,
     __source: {
@@ -359,7 +357,7 @@ const GenerateMyRow = ({
       lineNumber: 36
     },
     __self: undefined
-  }, team.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+  }, team.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
     textAlign: "center",
     border: border,
     __source: {
@@ -375,8 +373,7 @@ const GenerateRows = ({
   teams,
   topRank
 }) => {
-  let newTeams = teams.slice(topRank - 1, topRank + 1);
-  console.log("topRank:", topRank);
+  let newTeams = teams.slice(topRank - 1, topRank + 19);
   const rows = newTeams.map(x => {
     let background = '#f8f8fa';
     const rank = x.rank;
@@ -386,27 +383,27 @@ const GenerateRows = ({
       team: x,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 56
       },
       __self: undefined
     });
-    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Row, {
+    return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
       style: {
         background
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 59
       },
       __self: undefined
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
       textAlign: "center",
       style: {
         marginLeft: '3rem !important'
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61
+        lineNumber: 60
       },
       __self: undefined
     }, x.total_score), x.scores.map(score => {
@@ -414,25 +411,25 @@ const GenerateRows = ({
         textAlign: "center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 65
         },
         __self: undefined
       }, score);
-    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 68
       },
       __self: undefined
-    }, x.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Cell, {
+    }, x.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, {
       textAlign: "center",
       style: {
         borderRight
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 69
       },
       __self: undefined
     }, x.rank));
@@ -442,31 +439,32 @@ const GenerateRows = ({
 
 const Footer = props => {
   const numberOfTeams = props.teams.length;
-  const pageNumbers = numberOfTeams / 2;
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(Info, {
+  const pageNumbers = Math.ceil(numberOfTeams / 20);
+  console.log("page numbers : ", pageNumbers);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(Info, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 86
     },
     __self: undefined
-  }, "\u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC 1 \u0627\u0644\u06CC 2"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Row, {
+  }, " ", props.topRank + 19, " \u0627\u0644\u06CC ", props.topRank, " \u0631\u062A\u0628\u0647\u200C\u0647\u0627\u06CC"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 88
     },
     __self: undefined
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Row, {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 89
     },
     __self: undefined
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Pagination"], {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Pagination"], {
     defaultActivePage: 1,
     firstItem: null,
     lastItem: null,
     secondary: true,
-    defaultActivePage: pageNumbers / 2,
+    defaultActivePage: pageNumbers,
     totalPages: pageNumbers,
     style: {
       marginTop: '0.5rem'
@@ -481,90 +479,79 @@ const Footer = props => {
 };
 
 function onPageChange(e, pageInfo) {
-  let newTopRank = (pageInfo.activePage - 1) * 2 + 1;
+  let newTopRank = (pageInfo.activePage - 1) * 20 + 1;
   this.setState({
     topRank: newTopRank
   });
 }
 
-class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
+class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "onChange", (e, pageInfo) => {
-      console.log('event:', e);
-      console.log('pageInfo:', pageInfo);
-      console.log('active page:', pageInfo.activePage);
-      console.log("*** activePage:", pageInfo.activePage);
-      this.setState({
-        topRank: pageInfo.activePage
-      });
-    });
-
     this.state = {
       milestone: props.milestone,
       teams: props.teams,
       tasks: props.tasks,
-      myName: 'team2',
+      myName: 'parsaalian0',
       topRank: 1
     };
     this.changePage = onPageChange.bind(this);
   }
 
   render() {
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"], {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
       celled: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 137
+        lineNumber: 127
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Header, {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 128
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Row, {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 129
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].HeaderCell, {
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 130
       },
       __self: this
     }, "\u0627\u0645\u062A\u06CC\u0627\u0632"), this.state.tasks.map(x => {
-      return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].HeaderCell, {
+      return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
         textAlign: "center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 142
+          lineNumber: 132
         },
         __self: this
       }, x.name);
-    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].HeaderCell, {
+    }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 144
+        lineNumber: 134
       },
       __self: this
-    }, "\u0646\u0627\u0645"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].HeaderCell, {
+    }, "\u0646\u0627\u0645"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, {
       textAlign: "center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 145
+        lineNumber: 135
       },
       __self: this
-    }, "\u0631\u062A\u0628\u0647"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Table"].Body, {
+    }, "\u0631\u062A\u0628\u0647"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 149
+        lineNumber: 139
       },
       __self: this
     }, __jsx(GenerateRows, {
@@ -573,15 +560,16 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       topRank: this.state.topRank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 140
       },
       __self: this
     }))), __jsx(Footer, {
       teams: this.state.teams,
       changePage: this.changePage,
+      topRank: this.state.topRank,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 144
       },
       __self: this
     }));
@@ -589,30 +577,7 @@ class Scoreboard extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Scoreboard); // const Scoreboard = ({ milestone, teams, tasks }) => {
-//   const myName = 'team2';
-//   return (
-//     <>
-//       <Table celled>
-//         <Table.Header>
-//           <Table.Row>
-//             <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
-//             {tasks.map((x) => {
-//               return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
-//             })}
-//             <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
-//             <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
-//           </Table.Row>
-//         </Table.Header>
-//         <Table.Body>
-//           <GenerateRows myName={myName} teams={teams} />
-//         </Table.Body>
-//       </Table>
-//       <Footer teams={teams} />
-//     </>
-//   );
-// };
-// export default Scoreboard;
+/* harmony default export */ __webpack_exports__["default"] = (Scoreboard);
 
 /***/ }),
 
@@ -2225,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************************!*\
   !*** multi ./pages/scoreboard/index.jsx ***!
   \******************************************/

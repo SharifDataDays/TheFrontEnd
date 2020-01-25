@@ -44,8 +44,7 @@ const GenerateMyRow = ({ team }) => {
 };
 
 const GenerateRows = ({ myName, teams, topRank }) => {
-  let newTeams = teams.slice(topRank - 1, topRank + 1)
-  console.log("topRank:", topRank)
+  let newTeams = teams.slice(topRank - 1, topRank + 19)
 
   const rows = newTeams.map((x) => {
     let background = '#f8f8fa';
@@ -79,11 +78,12 @@ const GenerateRows = ({ myName, teams, topRank }) => {
 
 const Footer = (props) => {
   const numberOfTeams = props.teams.length;
-  const pageNumbers = numberOfTeams / 2;
+  const pageNumbers = Math.ceil(numberOfTeams / 20);
+  console.log("page numbers : ", pageNumbers)
 
   return (
     <>
-      <Info>رتبه‌های 1 الی 2</Info>
+      <Info> {props.topRank + 19} الی {props.topRank} رتبه‌های</Info>
 
       <Table.Row>
         <Table.Row>
@@ -92,7 +92,7 @@ const Footer = (props) => {
             firstItem={null}
             lastItem={null}
             secondary
-            defaultActivePage={pageNumbers / 2}
+            defaultActivePage={pageNumbers}
             totalPages={pageNumbers}
             style={{ marginTop: '0.5rem' }}
             onPageChange={props.changePage}
@@ -104,7 +104,7 @@ const Footer = (props) => {
 };
 
 function onPageChange(e, pageInfo) {
-  let newTopRank = (pageInfo.activePage - 1) * 2 + 1
+  let newTopRank = (pageInfo.activePage - 1) * 20 + 1
   this.setState({topRank: newTopRank})
 }
 
@@ -115,21 +115,11 @@ class Scoreboard extends Component {
       milestone: props.milestone,
       teams: props.teams,
       tasks: props.tasks,
-      myName: 'team2',
+      myName: 'parsaalian0',
       topRank: 1
     }
     this.changePage = onPageChange.bind(this)
   }
-
-  onChange = (e, pageInfo) => {
-    console.log('event:', e);
-    console.log('pageInfo:', pageInfo);
-    console.log('active page:', pageInfo.activePage);
-    console.log("*** activePage:", pageInfo.activePage)
-    this.setState({topRank: pageInfo.activePage})
-  };
-
-  
 
   render() {
     return (
@@ -151,7 +141,7 @@ class Scoreboard extends Component {
           </Table.Body>
         </Table>
 
-        <Footer teams={this.state.teams} changePage={this.changePage} />
+        <Footer teams={this.state.teams} changePage={this.changePage} topRank={this.state.topRank}/>
       </>
     );
   }
@@ -159,31 +149,3 @@ class Scoreboard extends Component {
 
 export default Scoreboard
 
-// const Scoreboard = ({ milestone, teams, tasks }) => {
-//   const myName = 'team2';
-
-//   return (
-//     <>
-//       <Table celled>
-//         <Table.Header>
-//           <Table.Row>
-//             <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
-//             {tasks.map((x) => {
-//               return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
-//             })}
-//             <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
-//             <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
-//           </Table.Row>
-//         </Table.Header>
-
-//         <Table.Body>
-//           <GenerateRows myName={myName} teams={teams} />
-//         </Table.Body>
-//       </Table>
-
-//       <Footer teams={teams} />
-//     </>
-//   );
-// };
-
-// export default Scoreboard;
