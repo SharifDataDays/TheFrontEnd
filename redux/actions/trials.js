@@ -12,7 +12,7 @@ export function changeAnswerAction(answer) {
   };
 }
 
-function mapStateToSubmission(state) {
+function mapStateToSubmission(state, trialId) {
   const data = new FormData();
 
   _.forEach(state, (value, key) => {
@@ -53,7 +53,7 @@ function mapStateToSubmission(state) {
   data.append(
     'json',
     JSON.stringify({
-      id: 4,
+      id: trialId,
       question_submissions: answers,
       final_submit: true,
     }),
@@ -63,7 +63,7 @@ function mapStateToSubmission(state) {
 
 export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId) {
   return (dispatch, getState) => {
-    const answers = mapStateToSubmission(getState().trials);
+    const answers = mapStateToSubmission(getState().trials, trialId);
     submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
       console.log(res);
     });

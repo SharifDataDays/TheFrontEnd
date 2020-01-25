@@ -81,6 +81,7 @@ class FieldAnswer extends Component {
               <Form.Group key={i} width={2} dir="rtl">
                 <Form.Input
                   name={i}
+                  style={{ textAlign: 'left !important', direction: 'ltr !important' }}
                   value={_.get(saved, `n${i}`, '')}
                   type={type}
                   width={8}

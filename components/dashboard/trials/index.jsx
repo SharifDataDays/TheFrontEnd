@@ -12,7 +12,7 @@ function Trials({ token, trials, changeAnswer, submit }) {
             primary
             onClick={(e) => {
               e.preventDefault();
-              submit(token, 2, 2, 4, 1);
+              submit(token, 2, 2, 4, 6);
             }}
           >
             ثبت
