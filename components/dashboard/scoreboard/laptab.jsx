@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Table, Pagination, Segment, TableRow, Tab, Header, Menu, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { width } from 'dom-helpers';
@@ -23,32 +23,31 @@ const Info = styled.p`
 const GenerateMyRow = ({ team }) => {
   const color = '#00000066';
   const border = `3px solid ${color}`;
-   return (    
-     <Table.Row warning>
-         <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
-           {team.total_score}
-         </Table.Cell>
+  return (
+    <Table.Row warning>
+      <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
+        {team.total_score}
+      </Table.Cell>
 
-         {team.scores.map((score) => {
-           return (
-             <TableCell textAlign="center">
-               {score}
-             </TableCell>
-           );
-         })}
+      {team.scores.map((score) => {
+        return <TableCell textAlign="center">{score}</TableCell>;
+      })}
 
-         <Table.Cell textAlign="center" border={border}>{team.name}</Table.Cell>
-         <Table.Cell textAlign="center" border={border}>
-           {team.rank}
-         </Table.Cell>
-       </Table.Row>
-   );
-}
+      <Table.Cell textAlign="center" border={border}>
+        {team.name}
+      </Table.Cell>
+      <Table.Cell textAlign="center" border={border}>
+        {team.rank}
+      </Table.Cell>
+    </Table.Row>
+  );
+};
 
+const GenerateRows = ({ myName, teams, topRank }) => {
+  let newTeams = teams.slice(topRank - 1, topRank + 1)
+  console.log("topRank:", topRank)
 
-const GenerateRows = ({ data, myName, teams }) => {
-  const rows = teams.map((x) => {
-  
+  const rows = newTeams.map((x) => {
     let background = '#f8f8fa';
     const rank = x.rank;
     if (rank <= 3) background = '#fed76673';
@@ -60,13 +59,11 @@ const GenerateRows = ({ data, myName, teams }) => {
     return (
       <Table.Row style={{ background }}>
         <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
-           {x.total_score}
-         </Table.Cell>
+          {x.total_score}
+        </Table.Cell>
 
         {x.scores.map((score) => {
-
           return <TableCell textAlign="center">{score}</TableCell>;
-
         })}
 
         <Table.Cell textAlign="center">{x.name}</Table.Cell>
@@ -79,13 +76,6 @@ const GenerateRows = ({ data, myName, teams }) => {
   return rows;
 };
 
-
-
-const onChange = (e, pageInfo) => {
-  console.log("event:", e)
-  console.log("oageInfo:", pageInfo)
-  console.log("active page:", pageInfo.activePage)
-}
 
 const Footer = (props) => {
   const numberOfTeams = props.teams.length;
@@ -105,7 +95,7 @@ const Footer = (props) => {
             defaultActivePage={pageNumbers / 2}
             totalPages={pageNumbers}
             style={{ marginTop: '0.5rem' }}
-            onPageChange={onChange}
+            onPageChange={props.changePage}
           />
         </Table.Row>
       </Table.Row>
@@ -113,36 +103,87 @@ const Footer = (props) => {
   );
 };
 
-const Scoreboard = ({ data, milestone, teams, tasks }) => {
+function onPageChange(e, pageInfo) {
+  let newTopRank = (pageInfo.activePage - 1) * 2 + 1
+  this.setState({topRank: newTopRank})
+}
 
-  const myName = 'team1';
-  const display = teams.some((x) => x.name === myName) ? 'none' : '';
+class Scoreboard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      milestone: props.milestone,
+      teams: props.teams,
+      tasks: props.tasks,
+      myName: 'team2',
+      topRank: 1
+    }
+    this.changePage = onPageChange.bind(this)
+  }
 
-  return (
-    <>
+  onChange = (e, pageInfo) => {
+    console.log('event:', e);
+    console.log('pageInfo:', pageInfo);
+    console.log('active page:', pageInfo.activePage);
+    console.log("*** activePage:", pageInfo.activePage)
+    this.setState({topRank: pageInfo.activePage})
+  };
 
-      <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
-            {tasks.map((x) => {
-              return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
-            })}
-            <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+  
 
-        <Table.Body>
-          <GenerateRows data={data} myName={myName} teams={teams} />
-        </Table.Body>
-      </Table>
+  render() {
+    return (
+      <>
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
+              {this.state.tasks.map((x) => {
+                return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
+              })}
+              <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-      <Footer teams={teams} />
+          <Table.Body>
+            <GenerateRows myName={this.state.myName} teams={this.state.teams} topRank={this.state.topRank} />
+          </Table.Body>
+        </Table>
 
+        <Footer teams={this.state.teams} changePage={this.changePage} />
+      </>
+    );
+  }
+}
 
-    </>
-  );
-};
+export default Scoreboard
 
-export default Scoreboard;
+// const Scoreboard = ({ milestone, teams, tasks }) => {
+//   const myName = 'team2';
+
+//   return (
+//     <>
+//       <Table celled>
+//         <Table.Header>
+//           <Table.Row>
+//             <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
+//             {tasks.map((x) => {
+//               return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
+//             })}
+//             <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
+//             <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
+//           </Table.Row>
+//         </Table.Header>
+
+//         <Table.Body>
+//           <GenerateRows myName={myName} teams={teams} />
+//         </Table.Body>
+//       </Table>
+
+//       <Footer teams={teams} />
+//     </>
+//   );
+// };
+
+// export default Scoreboard;

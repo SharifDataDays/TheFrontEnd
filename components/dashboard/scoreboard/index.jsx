@@ -59,7 +59,7 @@ class ScoreBoard extends Component {
                 <Mobile data={example} />
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                <Laptab data={example} milestone={this.props.milestone} teams={this.props.teams} tasks={this.props.tasks} />
+                <Laptab milestone={this.props.milestone} teams={this.props.teams} tasks={this.props.tasks} />
               </Responsive>
             </NoSSR>
           </Grid.Column>
