@@ -51,6 +51,16 @@ export function taskAPI(id, token) {
 export function allContestsAPI(token) {
   return axios.get(ALL_CONTESTS, {
     headers: {
+      withCredentials: true,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
+  return axios.post(SUBMIT_TRIAL(contestId, milestoneId, taskId, trialId), data, {
+    headers: {
+      withCredentials: true,
       Authorization: `Bearer ${token}`,
     },
   });

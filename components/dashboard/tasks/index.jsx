@@ -1,7 +1,6 @@
 import React from 'react';
 import HeaderSection from './header';
 import ListSection from './list';
-import Footer from '~/components/global/footer';
 
 function Trials({ cid, mid, milestone }) {
   const { title, description, image, tasks } = milestone;
@@ -16,4 +15,4 @@ function Trials({ cid, mid, milestone }) {
   );
 }
 
-export default Trials;
+export default Tasks;

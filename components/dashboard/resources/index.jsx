@@ -64,77 +64,74 @@ class Resource extends Component {
     const { content } = this.props;
     const { page } = this.state;
     return (
-      <>
-        <Grid
-          style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
-          centered
-        >
-          <Grid.Row>
-            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
-              <Progress
-                style={{ color: 'black' }}
-                value={page + 1}
-                total={content.sections.length + 1}
-                progress="ratio"
-                success
-              />
-              <Pagination
-                page={page}
-                content={content}
-                prevPage={this.prevPage}
-                nextPage={this.nextPage}
-                trial={this.trial}
-              />
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
-              <Header as="h1" style={{ textAlign: 'center' }}>
-                {content.title_fa}
-              </Header>
-              <Header as="h4" style={{ textAlign: 'center' }}>
-                زمان مطالعه: {content.time_to_read} دقیقه
-              </Header>
-              {!_.isEmpty(content.file) && (
-                <a
-                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
-                  href={content.file}
-                  download
-                >
-                  دانلود منابع
-                </a>
-              )}
-              <br />
-              {page > 0 && !_.isEmpty(content.sections[page - 1].link_to_colab) && (
-                <a
-                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
-                  href={content.sections[page - 1].link_to_colab}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  مشاهده در Google Colab
-                </a>
-              )}
-              <Image size="large" style={{ margin: 'auto' }} src="/images/header.jpg" />
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column computer={10} tablet={12} mobile={14}>
-              {page === 0 ? (
-                <Container content={content.description_en} />
-              ) : (
-                <Container content={content.sections[page - 1].markdown} />
-              )}
-              <Pagination
-                page={page}
-                content={content}
-                prevPage={this.prevPage}
-                nextPage={this.nextPage}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </>
+      <Grid
+        style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
+        centered
+      >
+        <Grid.Row>
+          <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+            <Progress
+              style={{ color: 'black' }}
+              value={page + 1}
+              total={content.sections.length + 1}
+              progress="ratio"
+              success
+            />
+            <Pagination
+              page={page}
+              content={content}
+              prevPage={this.prevPage}
+              nextPage={this.nextPage}
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+            <Header as="h1" style={{ textAlign: 'center' }}>
+              {content.title_fa}
+            </Header>
+            <Header as="h4" style={{ textAlign: 'center' }}>
+              زمان مطالعه: {content.time_to_read} دقیقه
+            </Header>
+            {!_.isEmpty(content.file) && (
+              <a
+                style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                href={content.file}
+                download
+              >
+                دانلود منابع
+              </a>
+            )}
+            <br />
+            {page > 0 && !_.isEmpty(content.sections[page - 1].link_to_colab) && (
+              <a
+                style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                href={content.sections[page - 1].link_to_colab}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                مشاهده در Google Colab
+              </a>
+            )}
+            <Image size="large" style={{ margin: 'auto' }} src="/images/header.jpg" />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column computer={10} tablet={12} mobile={14}>
+            {page === 0 ? (
+              <Container content={content.description_en} />
+            ) : (
+              <Container content={content.sections[page - 1].markdown} />
+            )}
+            <Pagination
+              page={page}
+              content={content}
+              prevPage={this.prevPage}
+              nextPage={this.nextPage}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
