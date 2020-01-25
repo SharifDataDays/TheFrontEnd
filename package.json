@@ -61,6 +61,7 @@
     "react-anime": "^2.2.0",
     "react-autosize-textarea": "^7.0.0",
     "react-circle": "^1.1.1",
+    "react-countdown": "^2.2.0",
     "react-dom": "16.12.0",
     "react-ellipsis-text": "^1.2.1",
     "react-ga": "^2.7.0",

@@ -78,9 +78,8 @@ class FieldAnswer extends Component {
         <Form style={{ margin: '1rem auto' }}>
           {_.map(_.range(formCount), (i) => {
             return (
-              <Form.Group width={2} dir="rtl">
+              <Form.Group key={i} width={2} dir="rtl">
                 <Form.Input
-                  key={i}
                   name={i}
                   value={_.get(saved, `n${i}`, '')}
                   type={type}

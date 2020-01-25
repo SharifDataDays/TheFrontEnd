@@ -31,14 +31,16 @@ function mapStateToSubmission(state) {
       const hasFile = qtype === 'file_upload';
       const answer =
         qtype !== 'file_upload'
-          ? _.reduce(
-              _.range(count),
-              (ans, val) => {
-                return _.concat(ans, _.get(value, `n${val}`, undefined));
-              },
-              [],
+          ? JSON.stringify(
+              _.reduce(
+                _.range(count),
+                (ans, val) => {
+                  return _.concat(ans, _.get(value, `n${val}`, undefined));
+                },
+                [],
+              ),
             )
-          : [];
+          : "['fuck this shit']";
       return _.concat(result, {
         id,
         answer,
@@ -48,7 +50,14 @@ function mapStateToSubmission(state) {
     },
     [],
   );
-  data.append('json', JSON.stringify(answers));
+  data.append(
+    'json',
+    JSON.stringify({
+      id: 4,
+      question_submissions: answers,
+      final_submit: true,
+    }),
+  );
   return data;
 }
 

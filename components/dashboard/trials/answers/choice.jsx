@@ -31,11 +31,10 @@ class ChoiceAnswer extends Component {
             .englishNumber()
             .toString()}. ${content}`}
         />
-        <Form>
-          <Form.Group width={2} dir="rtl">
-            {_.map(choices, (choice, i) => (
+        <Form style={{ margin: '1rem auto' }}>
+          {_.map(choices, (choice, i) => (
+            <Form.Group key={i} width={2} dir="rtl">
               <Form.Field
-                key={i}
                 label={choice.body}
                 value={choice.label}
                 checked={_.includes(_.get(saved, `n0`, []), choice.label)}
@@ -43,8 +42,8 @@ class ChoiceAnswer extends Component {
                 width={8}
                 onChange={this.handleChange}
               />
-            ))}
-          </Form.Group>
+            </Form.Group>
+          ))}
         </Form>
       </>
     );

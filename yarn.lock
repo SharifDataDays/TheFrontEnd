@@ -10642,6 +10642,14 @@ react-code-mirror@^3.0.6:
   resolved "https://registry.yarnpkg.com/react-code-mirror/-/react-code-mirror-3.1.0.tgz#d1e34a417dc9555dddbd63528f9fa6370d46fc44"
   integrity sha1-0eNKQX3JVV3dvWNSj5+mNw1G/EQ=
 
+react-countdown@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.2.0.tgz#87a8e72794a6f368dca4ca496ac1ce21cf3d19df"
+  integrity sha512-90CyqROLBgy4RKDaZdTdVPjRhTGT6DAWPAYAD0gKp+nO7QXl5+hrBSTfVTs4KyR6oRHgWkQ9VmMcFbAT4prBKQ==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.7.2"
+
 react-dnd-html5-backend@^2.1.2:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.6.0.tgz#590cd1cca78441bb274edd571fef4c0b16ddcf8e"

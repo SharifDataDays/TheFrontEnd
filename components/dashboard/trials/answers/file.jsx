@@ -32,7 +32,7 @@ class FileAnswer extends Component {
             .englishNumber()
             .toString()}. ${content}`}
         />
-        <Form>
+        <Form style={{ margin: '1rem auto' }}>
           <Form.Group width={2} dir="rtl">
             <input type="file" onChange={this.handleChange} />
           </Form.Group>
