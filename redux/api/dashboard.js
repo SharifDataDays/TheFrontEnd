@@ -8,6 +8,8 @@ const ALL_CONTESTS = `${BASE_ADDR}/contest/contests/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
+const SUBMIT_TRIAL = (contestID, milestoneID, taskId, trialId) =>
+  `${BASE_ADDR}/contest/${contestID}/${milestoneID}/${taskId}/${trialId}/`;
 
 export function passwordUpdateAPI(data, token) {
   return axios.post(PASSWORD_RESET_API, data, {

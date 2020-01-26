@@ -10,9 +10,8 @@ function Trials({ cid, mid, milestone }) {
         <HeaderSection title={title} description={description} image={image} />
         <ListSection cid={cid} mid={mid} tasks={tasks} />
       </div>
-      <Footer />
     </>
   );
 }
 
-export default Tasks;
+export default Trials;

@@ -10886,6 +10886,14 @@ react-countdown@^2.2.0:
     lodash.isequal "^4.5.0"
     prop-types "^15.7.2"
 
+react-dimensions@2.0.0-alpha2:
+  version "2.0.0-alpha2"
+  resolved "https://registry.yarnpkg.com/react-dimensions/-/react-dimensions-2.0.0-alpha2.tgz#0f932b702e9612973170afa89c2ce1158f048df6"
+  integrity sha512-J0nR76OmmimKWSB9iXX/MaQ5GUoJMBbFjb9KwGl3ONmoRv7qgq64d3brF4aHHmIvwkm558GAcaykLC7ygUy4vQ==
+  dependencies:
+    element-resize-event "^2.0.4"
+    lodash.debounce "^4.0.6"
+
 react-dnd-html5-backend@^2.1.2:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.6.0.tgz#590cd1cca78441bb274edd571fef4c0b16ddcf8e"
