@@ -55,10 +55,11 @@ class ScoreBoard extends Component {
         <Grid centered style={{ marginTop: '5rem' }}>
           <Grid.Column computer={10} mobile={15} tablet={15} style={{ padding }}>
             <NoSSR>
-              <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+              {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <Mobile data={example} />
-              </Responsive>
-              <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+              </Responsive> */}
+              {/* minWidth={Responsive.onlyTablet.minWidth} */}
+              <Responsive >
                 <Laptab milestone={this.props.milestone} teams={this.props.teams} tasks={this.props.tasks} />
               </Responsive>
             </NoSSR>

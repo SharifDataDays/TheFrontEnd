@@ -13,7 +13,7 @@ const MenuScoreBoard = styled(Menu)`
 
 const GenerateMyRow = ({ name, score, rank, display }) => (
   <MyRow secondary style={{ display }}>
-    <Menu.Item position='right' name={score} />
+    <Menu.Item position="right" name={score} />
     <Menu.Item name={name} />
     <Menu.Item name={rank} />
   </MyRow>
@@ -30,7 +30,7 @@ const GenerateRows = (props) => {
       return <GenerateMyRow name={x.first} score={x.second} rank={x.third} />;
     return (
       <Menu secondary pointing style={{ background }}>
-        <Menu.Item position='right' name={x.second} />
+        <Menu.Item position="right" name={x.second} />
         <Menu.Item name={x.first} />
         <Menu.Item name={x.third} />
       </Menu>
@@ -60,13 +60,26 @@ const Scoreboard = ({ data }) => {
   return (
     <>
       <MenuScoreBoard fluid secondary pointing>
-        <Menu.Item header position='right' name='امتیاز' />
-        <Menu.Item header name='نام' />
-        <Menu.Item header name='رتبه' />
+        <Menu.Item header position="right" name="امتیاز" />
+        <Menu.Item name="task1" />
+        <Menu.Item header name="نام" />
+        <Menu.Item header name="رتبه" />
       </MenuScoreBoard>
-      <GenerateMyRow name={myName} score='100' rank='12' display={display} />
+      {/* <GenerateMyRow name={myName} score='100' rank='12' display={display} /> */}
       <GenerateRows data={data} myName={myName} />
       <Footer />
+
+      {/* <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>score</Table.HeaderCell>
+            <Table.HeaderCell>task</Table.HeaderCell>
+            <Table.HeaderCell>name</Table.HeaderCell>
+            <Table.HeaderCell>rank</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+      </Table> */}
     </>
   );
 };

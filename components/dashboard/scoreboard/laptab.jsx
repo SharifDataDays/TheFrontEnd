@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Pagination, Segment, TableRow, Tab, Header, Menu, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { width } from 'dom-helpers';
-import { EndOfLineState } from 'typescript';
 
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
@@ -49,10 +47,10 @@ const GenerateRows = ({ myName, teams, topRank }) => {
   let endRank = topRank + 19
   let numberOfTeams = teams.length
   if (endRank > numberOfTeams) {
-    endRank = numberOfTeams - 1
+    endRank = numberOfTeams
   }
 
-  let newTeams = teams.slice(topRank - 1, topRank + 19)
+  let newTeams = teams.slice(firstRank, endRank)
 
   const rows = newTeams.map((x) => {
     let background = '#f8f8fa';
@@ -136,8 +134,8 @@ class Scoreboard extends Component {
 
   render() {
     return (
-      <>
-        <Table celled>
+      <div style={{overflow: 'auto'}}>
+        <Table celled unstackable >
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
@@ -155,7 +153,7 @@ class Scoreboard extends Component {
         </Table>
 
         <Footer teams={this.state.teams} changePage={this.changePage} topRank={this.state.topRank}/>
-      </>
+      </div>
     );
   }
 }
