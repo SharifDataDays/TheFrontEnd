@@ -117,7 +117,7 @@ export default htmlParser({
         return node.name && node.name === 'img';
       },
       processNode(node) {
-        return <Image style={{ margin: '3rem auto' }} src={node.attribs.src} />;
+        return <Image style={{ margin: '3rem auto', width: '100%' }} src={node.attribs.src} />;
       },
     },
     {

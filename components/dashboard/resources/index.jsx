@@ -20,7 +20,7 @@ function Pagination({ page, prevPage, nextPage, content, trial }) {
         </Button>
       ) : (
         <Button primary onClick={trial} floated="right">
-          بریم تست کنیم
+          مطالعه شد
         </Button>
       )}
     </div>
@@ -56,12 +56,12 @@ class Resource extends Component {
   }
 
   trial(event) {
-    console.log(this.props);
-    contentFinished(this.props.content.id, this.props.taskId, this.props.milestoneId);
+    const { contestId, milestoneId, taskId } = this.props;
+    contentFinished(contestId, taskId, milestoneId);
   }
 
   render() {
-    const { content } = this.props;
+    const { content, contestId, milestoneId, taskId } = this.props;
     const { page } = this.state;
     return (
       <Grid
@@ -82,6 +82,7 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
+              trial={this.trial}
             />
           </Grid.Column>
         </Grid.Row>
@@ -128,6 +129,7 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
+              trial={this.trial}
             />
           </Grid.Column>
         </Grid.Row>
