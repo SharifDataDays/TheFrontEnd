@@ -17,11 +17,12 @@ class FieldAnswer extends Component {
 
   handleChange(e) {
     e.preventDefault();
-    const { id, qtype, count, changeAnswer } = this.props;
+    const { id, qtype, changeAnswer } = this.props;
+    const { formCount } = this.state;
     changeAnswer({
       id,
       qtype,
-      count,
+      count: formCount,
       number: e.target.name,
       value: e.target.value,
     });
@@ -37,7 +38,7 @@ class FieldAnswer extends Component {
     changeAnswer({
       id,
       qtype,
-      count,
+      formCount,
       number: formCount - 1,
       value: '',
     });
