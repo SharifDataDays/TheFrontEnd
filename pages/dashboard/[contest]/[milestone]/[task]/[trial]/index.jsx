@@ -4,18 +4,42 @@ import { connect } from 'react-redux';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Trials from '~/components/dashboard/trials';
+import { getTrialAPI } from '~/redux/api/dashboard';
 import { changeAnswerAction, submitAnswersAction } from '~/redux/actions/trials';
 
 class TrialsPage extends Component {
   static async getInitialProps(ctx, token) {
-    return { token };
+    const { query } = ctx;
+    const res = await getTrialAPI(token, query.contest, query.milestone, query.task, query.trial);
+    const { data } = res;
+    return { token, questions: data, ...query };
   }
 
   render() {
-    const { trials, changeAnswer, submit, token } = this.props;
+    const {
+      trials,
+      changeAnswer,
+      submit,
+      token,
+      questions,
+      contest,
+      milestone,
+      task,
+      trial,
+    } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
-        <Trials token={token} trials={trials} changeAnswer={changeAnswer} submit={submit} />
+        <Trials
+          token={token}
+          trials={trials}
+          changeAnswer={changeAnswer}
+          submit={submit}
+          contest={contest}
+          milestone={milestone}
+          task={task}
+          trial={trial}
+          questions={questions}
+        />
       </Layout>
     );
   }

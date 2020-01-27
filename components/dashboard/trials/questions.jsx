@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import Countdown from 'react-countdown';
-import sample from './sample.json';
 import FieldAnswer from './answers/field';
 import ChoiceAnswer from './answers/choice';
 import FileAnswer from './answers/file';
@@ -50,23 +49,20 @@ function getType(question) {
 
 const renderer = ({ hours, minutes, seconds, completed }) => {
   if (completed) {
-    // Render a completed state
     return <></>;
-  } else {
-    // Render a countdown
-    return (
-      <h1 style={{ textAlign: 'center' }}>
-        {hours}:{minutes}:{seconds}
-      </h1>
-    );
   }
+  return (
+    <h1 style={{ textAlign: 'center' }}>
+      {hours}:{minutes}:{seconds}
+    </h1>
+  );
 };
 
-function Questions({ trials, changeAnswer }) {
+function Questions({ trials, changeAnswer, questions }) {
   return (
     <>
-      <Countdown dir="ltr" date={new Date(sample.trial.due_time)} renderer={renderer} />
-      {_.map(sample.trial.question_submissions, (q, i) => {
+      <Countdown dir="ltr" date={new Date(questions.due_time)} renderer={renderer} />
+      {_.map(questions.question_submissions, (q, i) => {
         const { question } = q;
         const Answer = getAnswer(question);
         return (
