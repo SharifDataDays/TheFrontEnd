@@ -8,6 +8,7 @@ const ALL_CONTESTS = `${BASE_ADDR}/contest/contests/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
+const TRIALSLIST = (contestID, milestoneID, taskID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/${taskID}/trials`
 
 export function passwordUpdateAPI(data, token) {
   return axios.post(PASSWORD_RESET_API, data, {
@@ -70,6 +71,14 @@ export function milestoneAPI(contestID, milestoneID, token) {
       Authorization: `Bearer ${token}`,
     },
   });
+}
+
+export function trialsListAPI(contestID, milestoneID, token) {
+  return axios.get(TRIALSLIST(contestID, milestoneID), {
+    headers : {
+      Authorization: `Bearer ${token}`
+    }
+  })
 }
 
 const CONTENT_FINISHED = (content_id, milestone_id, task_id) =>

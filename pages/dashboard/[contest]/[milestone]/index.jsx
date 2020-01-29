@@ -3,14 +3,44 @@ import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
-import { milestoneAPI } from '~/redux/api/dashboard';
+import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
+import { Tab, Menu } from 'semantic-ui-react';
 
 class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
-    const { contest, milestone } = query;
+    const { contest, milestone, task } = query;
     const res = await milestoneAPI(contest, milestone, token);
+    // const trialsList = await trialsListAPI(contest, milestone, token);
+    console.log(res.data.milestone.tasks[4])
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token };
   }
+
+
+  panes = () => {
+    const { milestone, cid, mid } = this.props;
+    return [
+      {
+        menuItem: (
+          <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
+            ارزشیابی
+          </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false}>Content2</Tab.Pane>,
+      },
+      {
+        menuItem: (
+          <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
+            محتوا
+          </Menu.Item>
+        ),
+        render: () => (
+          <Tab.Pane attached={false}>
+            <Tasks cid={cid} mid={mid} milestone={milestone} />
+          </Tab.Pane>
+        ),
+      },
+    ];
+  };
 
   render() {
     const { milestone, cid, mid, token } = this.props;
@@ -19,8 +49,13 @@ class TaskPage extends Component {
         <Head>
           <title>DataDays 2020</title>
         </Head>
+
         <Layout token={token} hasNavbar>
-          <Tasks cid={cid} mid={mid} milestone={milestone} />
+          <Tab
+            defaultActiveIndex={1}
+            menu={{ borderless: true, attached: false, tabular: false }}
+            panes={this.panes()}
+          />
         </Layout>
       </>
     );
