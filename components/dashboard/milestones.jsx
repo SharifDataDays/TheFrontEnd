@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Link from 'next/link';
 import React from 'react';
 import moment from 'jalali-moment';
 import { Grid, Card, Image } from 'semantic-ui-react';
