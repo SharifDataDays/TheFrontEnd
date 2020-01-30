@@ -11,7 +11,7 @@ function makeStore(initialState, { isServer, req, debug, storeKey }) {
     const store = createStore(
       reducers,
       initialState || storeInitialState,
-      applyMiddleware(thunk, logger),
+      applyMiddleware(thunk),
     );
     return store;
   }

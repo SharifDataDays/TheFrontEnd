@@ -71,7 +71,7 @@ export default function Merc({ timeline }) {
       <Events>
         {_.map(timeline, (event, i) => {
           return (
-            <TextEvent key={i} date={event.title_fa} text={_.replace(event.text_fa, '\r', '')} />
+            <TextEvent key={i} date={event.title_fa} text={_.replace(event.text_fa, '\r', '')}/>
           );
         })}
       </Events>

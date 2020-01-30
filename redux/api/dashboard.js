@@ -9,9 +9,9 @@ const ALL_CONTESTS = `${BASE_ADDR}/contest/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) =>
   `${BASE_ADDR}/contest/${contestID}/milestone/${milestoneID}/`;
-const CONTENT_FINISHED = (contestId, milestoneId, taskId) =>
-  `${BASE_ADDR}/contest/${contestId}/${milestoneId}/${taskId}/content_finished/`;
-const SUBMIT_TRIAL = (contestID, milestoneID, taskId, trialId) =>
+const TASK_API = (contestId, milestoneId, taskId) =>
+  `${BASE_ADDR}/contest/${contestId}/milestone/${milestoneId}/task/${taskId}/`;
+const TRIAL_API = (contestID, milestoneID, taskId, trialId) =>
   `${BASE_ADDR}/contest/${contestID}/milestone/${milestoneID}/task/${taskId}/trial/${trialId}/`;
 
 export function passwordUpdateAPI(data, token) {
@@ -63,7 +63,7 @@ export function allContestsAPI(token) {
 }
 
 export function getTrialAPI(token, contestId, milestoneId, taskId, trialId) {
-  return axios.get(SUBMIT_TRIAL(contestId, milestoneId, taskId, trialId), {
+  return axios.get(TRIAL_API(contestId, milestoneId, taskId, trialId), {
     headers: {
       withCredentials: true,
       Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export function getTrialAPI(token, contestId, milestoneId, taskId, trialId) {
 }
 
 export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
-  return axios.post(SUBMIT_TRIAL(contestId, milestoneId, taskId, trialId), data, {
+  return axios.post(TRIAL_API(contestId, milestoneId, taskId, trialId), data, {
     headers: {
       withCredentials: true,
       Authorization: `Bearer ${token}`,
@@ -96,6 +96,19 @@ export function milestoneAPI(contestID, milestoneID, token) {
   });
 }
 
-export function contentFinished(contestId, milestoneId, taskId) {
-  return axios.get(CONTENT_FINISHED(contestId, milestoneId, taskId));
+export function trialsListAPI(contestID, milestoneID, token) {
+  return axios.get(MILESTONE(contestID, milestoneID), {
+    headers : {
+      Authorization: `Bearer ${token}`
+    }
+  });
 }
+
+export function contentFinished(contestId, milestoneId, taskId) {
+  return axios.put(TASK_API(contestId, milestoneId, taskId), {
+    headers : {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
