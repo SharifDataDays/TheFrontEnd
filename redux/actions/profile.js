@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { pageLoadingAction } from './page';
-import { profileUpdateAPI } from '../api/dashboard';
+import { profileUpdateAPI, passwordUpdateAPI } from '../api/dashboard';
 
 export const PROFILE_CHECK = 'PROFILE_CHECK';
 export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
@@ -41,10 +41,10 @@ export function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     dispatch(profileCheckerAction(fields));
-    fields = { ...fields, ...fields.profile };
+    fields = { ...fields.profile };
     if (_.isEmpty(getState().profile.errors)) {
       console.log(fields);
-      console.log(token)
+      console.log(token);
       profileUpdateAPI(fields, token).then((res) => {
         const { data } = res;
         console.log(data);
@@ -54,6 +54,31 @@ export function profileUpdateAction(fields, token) {
           dispatch(profileFailAction(data.detail));
         }
       });
+    } else {
+      dispatch(profileFailAction({}));
+    }
+    dispatch(pageLoadingAction(false));
+  };
+}
+
+export function passwordUpdateAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(pageLoadingAction(true));
+    dispatch(profileCheckerAction(fields));
+    fields = { ...fields.password };
+    if (fields.new_password1 != '' && !_.isUndefined(fields.new_password1)) {
+      if (_.isEmpty(getState().profile.errors)) {
+        passwordUpdateAPI(fields, token).then((res) => {
+          const { data } = res;
+          if (data.status_code === 200) {
+            dispatch(profileSuccessAction());
+          } else {
+            dispatch(profileFailAction(data.detail));
+          }
+        });
+      } else {
+        dispatch(profileFailAction({}));
+      }
     }
     dispatch(pageLoadingAction(false));
   };

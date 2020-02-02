@@ -15,6 +15,7 @@ const Label = styled.label`
 class Input extends Component {
   constructor(props) {
     super(props);
+    console.log('@#^#$*&*^%#$@$%^&*(&^%$');
     console.log(props);
     this.state = {
       value: this.props.field.date

@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Button, Menu as M, Image as Im } from 'semantic-ui-react';
+import { Button, Dropdown, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBlog } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBlog, faSignOutAlt, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import { logoutAction } from '~/redux/actions/auth';
 
 const Menu = styled(M)`
@@ -64,18 +64,47 @@ const AuthNavbar = connect(
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            logout();
-          }}
-          primary
+        <Dropdown
+          item
+          trigger={
+            <FontAwesomeIcon
+              style={{ marginRight: '0.5rem' }}
+              color="#1d93f7"
+              size="lg"
+              icon={faUser}
+            />
+          }
         >
-          خروج
-        </Button>
+          <Dropdown.Menu style={{ left: '0 !important' }}>
+            <Dropdown.Item href="/dashboard/profile">
+              <a>تنظیمات</a>
+              <FontAwesomeIcon
+                style={{ marginLeft: '0.5rem' }}
+                color="#1d93f7"
+                size="lg"
+                icon={faCog}
+              />
+            </Dropdown.Item>
+            <Dropdown.Item
+              href="/login"
+              onClick={(e) => {
+                e.preventDefault();
+                logout();
+              }}
+            >
+              <a>خروج</a>
+              <FontAwesomeIcon
+                style={{ marginLeft: '0.5rem' }}
+                color="#1d93f7"
+                size="lg"
+                icon={faSignOutAlt}
+              />
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Menu.Item>
       <Menu.Item>
-        <a href="/dashboard/tasks">منابع</a>
+        <a href="/dashboard">گام‌ها</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
       </Menu.Item>
       <Menu.Item>
@@ -84,7 +113,7 @@ const AuthNavbar = connect(
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
-          <a href="/dashboard/tasks">
+          <a href="/dashboard">
             <Image
               style={{ marginRight: '1rem', marginTop: '2rem' }}
               size="mini"

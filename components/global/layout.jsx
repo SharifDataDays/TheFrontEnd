@@ -12,7 +12,11 @@ function Layout({ children, hasNavbar, hasFooter, token }) {
       <GlobalStyle />
       {hasNavbar && <Navbar token={token} />}
       <Container
-        style={{ width: '100% !important', margin: '0 !important', minHeight: '100vh' }}
+        style={{
+          width: '100% !important',
+          margin: '0 !important',
+          minHeight: 'calc(100vh - 333px)',
+        }}
         fluid
       >
         {children}

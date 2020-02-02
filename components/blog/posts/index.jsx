@@ -22,7 +22,14 @@ function Posts({ posts }) {
             );
           }
           return (
-            <Rest key={i} title={title_fa} image={image} date={date} description={description_fa} />
+            <Rest
+              key={i}
+              title={title_fa}
+              image={image}
+              date={date}
+              description={description_fa}
+              id={id}
+            />
           );
         })}
       </Grid.Column>
