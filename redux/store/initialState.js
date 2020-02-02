@@ -15,5 +15,11 @@ export default {
     errors: {},
     success: false,
     fail: false
+  },
+  team: {
+    invites: [],
+    title: "",
+    members: [],
+    finalized: false
   }
 };
