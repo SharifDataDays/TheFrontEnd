@@ -86,7 +86,8 @@ export function scoreboardAPI (startIndex, endIndex, milestoneID, token) {
      Authorization: `Bearer ${token}`
     }
   })
-  
+}
+
 const CONTENT_FINISHED = (content_id, milestone_id, task_id) =>
   `${BASE_ADDR}/contest/${content_id}/${milestone_id}/${task_id}/content_finished/`;
 
