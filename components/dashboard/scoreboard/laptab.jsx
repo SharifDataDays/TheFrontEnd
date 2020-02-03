@@ -19,60 +19,53 @@ const Info = styled.p`
   margin-left: 1rem;
 `;
 
-const GenerateMyRow = ({ team }) => {
-  const color = '#00000066';
-  const border = `3px solid ${color}`;
-  return (
-    <Table.Row warning>
-      <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
-        {team.total_score}
-      </Table.Cell>
-
-      {team.scores.map((score) => {
-        return <TableCell textAlign="center">{score}</TableCell>;
-      })}
-
-      <Table.Cell textAlign="center" border={border}>
-        {team.name}
-      </Table.Cell>
-      <Table.Cell textAlign="center" border={border}>
-        {team.rank}
-      </Table.Cell>
-    </Table.Row>
-  );
-};
 
 const GenerateRows = ({ myName, teams, topRank }) => {
-  let firstRank = topRank - 1
-  let endRank = topRank + 19
-  let numberOfTeams = teams.length
+  let firstRank = topRank - 1;
+  let endRank = topRank + 19;
+  let numberOfTeams = teams.length;
   if (endRank > numberOfTeams) {
-    endRank = numberOfTeams
+    endRank = numberOfTeams;
   }
 
-  let newTeams = teams.slice(firstRank, endRank)
+  let newTeams = teams.slice(firstRank, endRank);
 
   const rows = newTeams.map((x) => {
     let background = '#f8f8fa';
+    let fontWeight = 'normal';
     const rank = x.rank;
     if (rank <= 3) background = '#fed76673';
     else if (rank <= 6) background = '#bbbbbb73';
     else if (rank <= 9) background = '#cd7f3273';
+
+    let borderTop = `none`;
+    let borderBottom = `none`;
+
+    if (x.name === myName) {
+      background = '#fff8eb';
+      fontWeight = 'bold';
+      borderTop = `2px solid #858585`;
+      borderBottom = `2px solid #858585`;
+    }
+
     const borderRight = `3px solid ${background} !important`;
-    if (x.name === myName) return <GenerateMyRow team={x} />;
 
     return (
-      <Table.Row style={{ background }}>
-        <Table.Cell textAlign="center" style={{ marginLeft: '3rem !important' }}>
+      <Table.Row style={{ background, fontWeight }}>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
           {x.total_score}
         </Table.Cell>
-
         {x.scores.map((score) => {
-          return <TableCell textAlign="center">{score}</TableCell>;
+          return (
+            <TableCell textAlign="center" style={{ borderTop, borderBottom }}>
+              {score}
+            </TableCell>
+          );
         })}
-
-        <Table.Cell textAlign="center">{x.name}</Table.Cell>
-        <Table.Cell textAlign="center" style={{ borderRight }}>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
+          {x.name}
+        </Table.Cell>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom, borderRight }}>
           {x.rank}
         </Table.Cell>
       </Table.Row>
@@ -81,61 +74,77 @@ const GenerateRows = ({ myName, teams, topRank }) => {
   return rows;
 };
 
-
 const Footer = (props) => {
   const numberOfTeams = props.teams.length;
   const pageNumbers = Math.ceil(numberOfTeams / 20);
-  console.log("page numbers : ", pageNumbers)
 
-  let endRank = props.topRank + 19
+  let endRank = props.topRank + 19;
   if (endRank > numberOfTeams) {
-    endRank = numberOfTeams
+    endRank = numberOfTeams;
   }
 
   return (
     <>
-      <Info> {endRank} رتبه‌های {props.topRank} الی</Info>
+      <Info
+        style={{
+          textAlign: 'center',
+          margin: '5px',
+          padding: 0,
+        }}
+      >
+        {' '}
+        {endRank} رتبه‌های {props.topRank} الی
+      </Info>
 
-      <Table.Row>
-        <Table.Row>
-          <Pagination
-            defaultActivePage={1}
-            firstItem={null}
-            lastItem={null}
-            secondary
-            defaultActivePage={pageNumbers}
-            totalPages={pageNumbers}
-            style={{ marginTop: '0.5rem' }}
-            onPageChange={props.changePage}
-          />
-        </Table.Row>
+      <Table.Row
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginBottom: '20px',
+        }}
+      >
+        <Pagination
+          defaultActivePage={1}
+          firstItem={null}
+          lastItem={null}
+          secondary
+          // defaultActivePage={pageNumbers}
+          totalPages={pageNumbers}
+          onPageChange={props.changePage}
+        />
       </Table.Row>
     </>
   );
 };
 
 function onPageChange(e, pageInfo) {
-  let newTopRank = (pageInfo.activePage - 1) * 20 + 1
-  this.setState({topRank: newTopRank})
+  let newTopRank = (pageInfo.activePage - 1) * 20 + 1;
+  this.setState({ topRank: newTopRank });
 }
 
 class Scoreboard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       milestone: props.milestone,
       teams: props.teams,
       tasks: props.tasks,
-      myName: 'parsaalian0',
-      topRank: 1
-    }
-    this.changePage = onPageChange.bind(this)
+      myName: 'team13',
+      topRank: 1,
+    };
+    this.changePage = onPageChange.bind(this);
+  }
+
+  componentDidMount() {
+    
+
   }
 
   render() {
     return (
-      <div style={{overflow: 'auto'}}>
-        <Table celled unstackable >
+      <div style={{ overflow: 'auto' }}>
+        <Table celled unstackable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
@@ -148,15 +157,22 @@ class Scoreboard extends Component {
           </Table.Header>
 
           <Table.Body>
-            <GenerateRows myName={this.state.myName} teams={this.state.teams} topRank={this.state.topRank} />
+            <GenerateRows
+              myName={this.state.myName}
+              teams={this.state.teams}
+              topRank={this.state.topRank}
+            />
           </Table.Body>
         </Table>
 
-        <Footer teams={this.state.teams} changePage={this.changePage} topRank={this.state.topRank}/>
+        <Footer
+          teams={this.state.teams}
+          changePage={this.changePage}
+          topRank={this.state.topRank}
+        />
       </div>
     );
   }
 }
 
-export default Scoreboard
-
+export default Scoreboard;
