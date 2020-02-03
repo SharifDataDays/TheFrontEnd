@@ -16,17 +16,16 @@ class MainScoreboard extends Component {
     const { scoreboard } = res.data;
     const { tasks } = res.data;
 
-    return { milestone, scoreboard, tasks };
+    return { milestone, scoreboard, tasks, token };
   }
 
   render() {
-    const { milestone, scoreboard, tasks } = this.props;
+    const { milestone, scoreboard, tasks, token } = this.props;
     return (
-      <Layout hasNavbar hasFooter>
-        <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks}/>
+      <Layout token={token} hasNavbar hasFooter>
+        <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks} />
       </Layout>
     );
   }
 }
 export default withAuth(true)(MainScoreboard);
-

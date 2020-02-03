@@ -12,55 +12,83 @@ const Text = styled.p`
 `;
 
 const HeaderScoreBoard = (props) => (
-  <Grid.Column
-    style={{
-      background: 'url(/images/datas.jpeg)',
-      backgroundSize: 'cover',
-      height: ' 18rem',
-      opacity: '.9',
-    }}
-    computer={10}
-    mobile={15}
-    tablet={16}
-    textAlign='left'
-  >
-    {' '}
-    <Text marginTop='2rem'>انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف</Text>
-    <Header as='h2' style={{ color: 'white' }}>
-      Data days از دومین دوره‌ی مسابقات {props.milestone.name} جدول رده‌بندی فاز
-    </Header>
-    <Text marginTop="6rem">تعداد سابمیت‌کننده‌ها : 763 نفر</Text>
+  <Grid.Column computer={10} mobile={15} tablet={15}>
+    <div
+      style={{
+        background: 'url(/images/datas.jpeg)',
+        backgroundSize: 'cover',
+        height: ' 18rem',
+        opacity: '.9',
+        padding: '0px',
+        marginTop: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Text style={{ color: '#ffeac2' }}>
+        انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف
+      </Text>
+      <Header as="h1" style={{ color: 'white' }}>
+        {props.milestone.name} جدول رده‌بندی فاز
+      </Header>
+      <Header as="h4" style={{ color: 'white', marginTop: 0 }}>
+        Data days دومین دوره‌ی مسابقات
+      </Header>
+    </div>
   </Grid.Column>
 );
 
 class ScoreBoard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = { padding: '0px !important' };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const width = window.innerWidth;
     const padding = width <= Responsive.onlyMobile.maxWidth ? '0px !important' : '!important';
     this.setState({ padding });
   }
 
-  render () {
+  render() {
     const { padding } = this.state;
+    //const count = this.props.milestone.count;
+    const count = 245;
     return (
       <>
         <Grid centered>
           <HeaderScoreBoard milestone={this.props.milestone} />
         </Grid>
-        <Grid centered style={{ marginTop: '5rem' }}>
+        <Grid centered>
+          <Grid.Column computer={10} mobile={15} tablet={15}>
+            <Text
+              marginTop=""
+              style={{
+                color: 'black',
+                textAlign: 'right',
+                backgroundColor: 'white',
+              }}
+            >
+              تعداد سابمیت‌کننده‌ها: {count} نفر
+            </Text>
+          </Grid.Column>
+        </Grid>
+        <Grid centered>
           <Grid.Column computer={10} mobile={15} tablet={15} style={{ padding }}>
             <NoSSR>
               {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <Mobile data={example} />
               </Responsive> */}
               {/* minWidth={Responsive.onlyTablet.minWidth} */}
-              <Responsive >
-                <Laptab milestone={this.props.milestone} teams={this.props.teams} tasks={this.props.tasks} />
+              <Responsive>
+                <Laptab
+                  milestone={this.props.milestone}
+                  teams={this.props.teams}
+                  tasks={this.props.tasks}
+                />
               </Responsive>
             </NoSSR>
           </Grid.Column>
