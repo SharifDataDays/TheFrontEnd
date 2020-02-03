@@ -17,6 +17,7 @@ export default {
     fail: false
   },
   team: {
+    errors: [],
     invites: [],
     title: "",
     members: [],
