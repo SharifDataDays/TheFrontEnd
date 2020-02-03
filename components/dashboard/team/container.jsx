@@ -34,10 +34,16 @@ export default function ProfileContainer({ token, teamData }) {
 
       <Fade up>
         <Grid dir="RTL">
-          <Grid.Column verticalAlign="middle" style={{
-              borderRadius: '3px',
-              border: ''
-          }}>
+          <Grid.Column
+            verticalAlign="middle"
+            style={{
+              marginTop: '20px',
+         
+              border: '1px solid #d1d1d1',
+              borderRadius: '10px'
+            }}
+            
+          >
             <Grid.Row>
               <Label pl={4}>نام تیم: </Label>
               <Input
