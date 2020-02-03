@@ -1,23 +1,43 @@
 import axios from 'axios';
 import BASE_ADDR from '.';
 
-const PROFILE_API = `${BASE_ADDR}/accounts/profile/`;
+const PROFILE = `${BASE_ADDR}/accounts/profile/`;
 const TASK = (id) => `${BASE_ADDR}/resources/${id}/`;
 const TASK_LIST = `${BASE_ADDR}/resources/`;
 const ALL_CONTESTS = `${BASE_ADDR}/contest/contests/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
-const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
+const PASSWORD_RESET= `${BASE_ADDR}/accounts/password/change/`;
+
+//const TEAM = `${BASE_ADDR}/participation/2/team/`;
+const TEAM = `http://81.31.170.5/test/api/participation/2/team/`
+
+export function getTeamInfoAPI(token){
+  return axios.get(TEAM, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function changeTeamName(data, token){
+  return axios.put(TEAM, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
 
 export function passwordUpdateAPI(data, token) {
-  return axios.post(PASSWORD_RESET_API, data, {
+  return axios.post(PASSWORD_RESET, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 }
 export function profileUpdateAPI(data, token) {
-  return axios.put(PROFILE_API, data, {
+  return axios.put(PROFILE, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -25,7 +45,7 @@ export function profileUpdateAPI(data, token) {
 }
 
 export function profileAPI(token) {
-  return axios.get(PROFILE_API, {
+  return axios.get(PROFILE, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
