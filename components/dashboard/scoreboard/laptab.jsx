@@ -19,7 +19,6 @@ const Info = styled.p`
   margin-left: 1rem;
 `;
 
-
 const GenerateRows = ({ myName, teams, topRank }) => {
   let firstRank = topRank - 1;
   let endRank = topRank + 19;
@@ -79,7 +78,6 @@ const Footer = (props) => {
   const pageNumbers = Math.ceil(numberOfTeams / 20);
 
   const currentPage = (props.topRank - 1) / 20 + 1;
-  console.log (currentPage)
   let endRank = Math.min(props.topRank + 19, numberOfTeams);
 
   return (

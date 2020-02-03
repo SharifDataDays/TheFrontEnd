@@ -3,16 +3,16 @@ import Scoreboard from '~/components/dashboard/scoreboard/index';
 import '~/.semantic/dist/semantic.rtl.min.css';
 import Layout from '~/components/global/layout';
 import withAuth from '~/components/global/withAuth';
-import { scoreboardAPI, profileUpdateAPI } from '~/redux/api/dashboard';
+import { scoreboardAPI, getTeamNameAPI } from '~/redux/api/dashboard';
 import NotFound from '~/components/global/notFound';
 import _ from 'lodash';
 
 class MainScoreboard extends Component {
   static async getInitialProps({ query }, token) {
+    const contestID = 2;
     let milestoneID = query.milestone; //100 bezanid kar kone: scoreboard/100/
     let startIndex = 1;
     let endIndex = 50; //todo numberOfTeams
-
 
     const res = await scoreboardAPI(startIndex, endIndex, milestoneID, token);
     let { milestone, scoreboard, tasks, status_code } = res.data;
@@ -20,17 +20,28 @@ class MainScoreboard extends Component {
       status_code = 200;
     }
 
-    //todo get teamname
-    const teamName = "parsaalian0"
+    const res2 = await getTeamNameAPI(token);
+    const teams = res2.data.teams;
+    //const teamName = "parsaalian0"
+    const teamName = teams[contestID];
 
-    const myRow = scoreboard.filter((a)=>{return a.name ===teamName})[0]
-    const myPageTopRank = Math.floor((myRow.rank - 1) / 20) * 20 + 1
+    let myteam = {
+      name: '',
+      myPageTopRank: 1,
+    };
 
-    const myteam={
-      name: teamName,
-      myPageTopRank: myPageTopRank
+    const myRow = scoreboard.filter((a) => {
+      return a.name === teamName;
+    })[0];
+    if (!_.isUndefined(myRow)) {
+      const myPageTopRank = Math.floor((myRow.rank - 1) / 20) * 20 + 1;
+      myteam = {
+        name: teamName,
+        myPageTopRank: myPageTopRank,
+      };
     }
-    return { milestone, scoreboard, tasks, status_code, token , myteam};
+
+    return { milestone, scoreboard, tasks, status_code, token, myteam };
   }
 
   render() {
