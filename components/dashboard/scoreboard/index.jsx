@@ -45,6 +45,7 @@ class ScoreBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { padding: '0px !important' };
+    
   }
 
   componentDidMount() {
@@ -88,6 +89,7 @@ class ScoreBoard extends Component {
                   milestone={this.props.milestone}
                   teams={this.props.teams}
                   tasks={this.props.tasks}
+                  myteam={this.props.myteam}
                 />
               </Responsive>
             </NoSSR>

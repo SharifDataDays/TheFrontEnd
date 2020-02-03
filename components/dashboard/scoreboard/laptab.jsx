@@ -78,10 +78,9 @@ const Footer = (props) => {
   const numberOfTeams = props.teams.length;
   const pageNumbers = Math.ceil(numberOfTeams / 20);
 
-  let endRank = props.topRank + 19;
-  if (endRank > numberOfTeams) {
-    endRank = numberOfTeams;
-  }
+  const currentPage = (props.topRank - 1) / 20 + 1;
+  console.log (currentPage)
+  let endRank = Math.min(props.topRank + 19, numberOfTeams);
 
   return (
     <>
@@ -104,12 +103,12 @@ const Footer = (props) => {
           marginBottom: '20px',
         }}
       >
+        {console.log(currentPage)}
         <Pagination
-          defaultActivePage={1}
+          defaultActivePage={currentPage}
           firstItem={null}
           lastItem={null}
           secondary
-          // defaultActivePage={pageNumbers}
           totalPages={pageNumbers}
           onPageChange={props.changePage}
         />
@@ -130,15 +129,10 @@ class Scoreboard extends Component {
       milestone: props.milestone,
       teams: props.teams,
       tasks: props.tasks,
-      myName: 'team13',
-      topRank: 1,
+      myteam: props.myteam,
+      topRank: props.myteam.myPageTopRank,
     };
     this.changePage = onPageChange.bind(this);
-  }
-
-  componentDidMount() {
-    
-
   }
 
   render() {
@@ -158,7 +152,7 @@ class Scoreboard extends Component {
 
           <Table.Body>
             <GenerateRows
-              myName={this.state.myName}
+              myName={this.state.myteam.name}
               teams={this.state.teams}
               topRank={this.state.topRank}
             />
@@ -169,6 +163,7 @@ class Scoreboard extends Component {
           teams={this.state.teams}
           changePage={this.changePage}
           topRank={this.state.topRank}
+          currentPage={this.state.currentPage}
         />
       </div>
     );
