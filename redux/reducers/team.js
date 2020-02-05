@@ -1,4 +1,4 @@
-import { TEAM_CHECK, TEAM_CLEAR, TEAM_FAIL, TEAM_SUCCESS } from '../actions/profile';
+import { TEAM_CHECK, TEAM_CLEAR, TEAM_FAIL, TEAM_SUCCESS } from '../actions/team';
 import initialState from '../store/initialState';
 import produce from 'immer';
 

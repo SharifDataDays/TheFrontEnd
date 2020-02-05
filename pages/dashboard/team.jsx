@@ -14,11 +14,13 @@ import Layout from '~/components/global/layout';
 
 class TeamPage extends Component {
   static async getInitialProps(ctx, token) {
-    console.log(token);
     const cid = 2;
     const res = await getTeamInfoAPI(cid, token);
     const teamData = res.data;
-    return { teamData, token };
+    const res2 = await getInvitationsAPI(cid, token);
+    const teamInvitations = res2.data.team_invitations; //outgoing invitations
+    const userInvitations = res2.data.user_invitations; //incoming invitations
+    return { teamData, token, userInvitations, teamInvitations };
   }
 
   componentDidMount() {
@@ -27,18 +29,35 @@ class TeamPage extends Component {
   }
 
   render() {
-    const { token, teamData } = this.props;
+    console.log(this.state);
+    console.log(this.props);
+    
+    const {
+      token,
+      team,
+      teamData,
+      userInvitations,
+      teamInvitations,
+      teamNameUpdate,
+      finalize,
+      answerInvitation,
+      addMember,
+      
+    } = this.props;
+    console.log(team)
     return (
       <>
         <Layout token={token} hasNavbar hasFooter>
           <Container
             token={token}
+            team={team}
             teamData={teamData}
-            // profile={profile}
-            // profileData={profileData}
-            // update={update}
-            // clear={clear}
-            // password_update={password_update}
+            userInvitations={userInvitations}
+            teamInvitations={teamInvitations}
+            teamNameUpdate={teamNameUpdate}
+            finalize={finalize}
+            answerInvitation={answerInvitation}
+            addMember={addMember}
           />
           ;
         </Layout>
@@ -49,6 +68,7 @@ class TeamPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   const { team } = state;
+  console.log(state)
   return {
     team,
   };

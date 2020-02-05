@@ -27,43 +27,139 @@ const Container = styled.div`
   ${border}
 `;
 
-const Text = styled.text`
-  ${color}
-`;
-
-export default function TeamInfo({ token, teamData, finilized }) {
+function HeaderDiv({finilized}) {
   return (
-    <>
+    <Container
+      style={{
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingBottom: '20px',
+      }}
+    >
+      <Header size="huge" dir="RTL" floated="left">
+        تیم من
+      </Header>
+      <Popup
+        dir="RTL"
+        position="right center"
+        content="پس از ثبت نهایی امکان تغییر نام و اعضا وجود ندارد!"
+        inverted
+        trigger={
+          <Form.Button
+            primary
+            inverted
+            content="ثبت نهایی"
+            floated="right"
+            size="big"
+            disabled={finilized}
+          />
+        }
+      />
+    </Container>
+  );
+}
+
+function ChangableSection({
+  finilized,
+  label,
+  placeholder,
+  defaultValue,
+  buttonName,
+  func,
+  paddingLeft,
+}) {
+  return (
+    <Grid.Row>
       <Container
         style={{
           display: 'flex',
-          flexDirection: 'row-reverse',
+          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          paddingBottom: '20px',
         }}
+        py={[1,0,0]}
       >
-        <Header size="huge" dir="RTL" floated="left">
-          تیم من
-        </Header>
-        <Popup
-          dir="RTL"
-          position="right center"
-          content="پس از ثبت نهایی امکان تغییر نام و اعضا وجود ندارد!"
-          inverted
-          trigger={
-            <Form.Button
-              primary
-              inverted
-              content="ثبت نهایی"
-              floated="right"
-              size="big"
-              disabled={finilized}
-            />
-          }
+        <Container>
+          <Label primary style={{ fontWeight: 'bold', paddingLeft }}>
+            {label}:
+          </Label>
+          <Input
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            disabled={finilized}
+            transparent={finilized}
+          />
+        </Container>
+        <Form.Button
+          primary
+          content={buttonName}
+          floated="right"
+          size="small"
+          disabled={finilized}
+          onClick={func}
         />
       </Container>
+    </Grid.Row>
+  );
+}
 
+function TeamMembersSection({teamData}) {
+  return (
+    <Grid.Row>
+      <Label primary pl={4} style={{ fontWeight: 'bold' }}>
+        اعضای تیم:
+      </Label>
+      <List bulleted>
+        {_.map(teamData.participants, (user) => {
+          return (
+            <List.Item
+              key={user.id}
+              style={{
+                padding: '10px',
+              }}
+            >
+              {user.user.first_name} {user.user.last_name} ({user.user.username})
+            </List.Item>
+          );
+        })}
+      </List>
+    </Grid.Row>
+  );
+}
+
+function TeamInvitationsSection({invitations}) {
+  if (_.isUndefined(invitations) || _.isEmpty(invitations)) {
+    return;
+  }
+  return (
+    <Grid.Row>
+      <Label primary pl={4} style={{ fontWeight: 'bold' }}>
+        درخواست‌های فرستاده شده:
+      </Label>
+      <List bulleted>
+        {_.map(invitations, (invitation) => {
+          return (
+            <List.Item
+              key={invitation.id}
+              style={{
+                padding: '10px',
+              }}
+            >
+              {invitation.participant}
+            </List.Item>
+          );
+        })}
+      </List>
+    </Grid.Row>
+  );
+}
+
+export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, addMember, token }) {
+  return (
+    <>
+      <HeaderDiv finalized={team.finalized} />
       <Grid dir="RTL">
         <Grid.Column
           verticalAlign="middle"
@@ -73,90 +169,32 @@ export default function TeamInfo({ token, teamData, finilized }) {
             borderRadius: '10px',
           }}
         >
-          <Grid.Row>
-            <Container
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Container>
-                <Label primary pl={4} style={{ fontWeight: 'bold', paddingLeft: '55px' }}>
-                  نام تیم:
-                </Label>
-                <Input
-                  placeholder="نام تیم"
-                  defaultValue={teamData.name}
-                  disabled={finilized}
-                  transparent={finilized}
-                />
-              </Container>
-              <Form.Button
-                primary
-                content="تغییر نام"
-                floated="right"
-                size="small"
-                disabled={finilized}
-              />
-            </Container>
-            <Divider />
-          </Grid.Row>
+          <ChangableSection
+            finalized={team.finalized}
+            placeholder={'نام تیم'}
+            label={'نام تیم'}
+            defaultValue={teamData.name}
+            buttonName={'تغییر نام'}
+            func={teamNameUpdate}
+            paddingLeft={'55px'}
+          />
 
-          <Grid.Row>
-            <Label primary pl={4} style={{ fontWeight: 'bold' }}>
-              اعضای تیم:
-            </Label>
-            <List bulleted>
-              {_.map(teamData.participants, (user) => {
-                return (
-                  <List.Item
-                    key={user.id}
-                    style={{
-                      padding: '10px',
-                    }}
-                  >
-                    {user.user.first_name} {user.user.last_name} ({user.user.username})
-                  </List.Item>
-                );
-              })}
-            </List>
-          </Grid.Row>
+          <Divider />
+          <TeamMembersSection teamData={teamData}/>
+          <Divider />
+          <TeamInvitationsSection invitations={teamData.invitations}/>
+          <Divider />
 
-          <Grid.Row hidden={finilized}>
-            <Divider />
-            <Container
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Container>
-                <Label primary pl={4} style={{ fontWeight: 'bold', width: '250px' }}>
-                  عضو جدید:
-                </Label>
-                <Input placeholder="نام کاربری" disabled={finilized} transparent={finilized} />
-              </Container>
-              <Form.Button
-                primary
-                content="اضافه کردن"
-                floated="right"
-                size="small"
-                disabled={finilized}
-              />
-            </Container>
-          </Grid.Row>
-          <Grid.Row>
-            <Message hidden={true} positive>
-              تغییرات با موفقیت ذخیره شد.
-            </Message>
-            <Message hidden={true} negative>
-              تغییرات بدون موفقیت ذخیره شد.
-            </Message>
-          </Grid.Row>
+          <ChangableSection
+            finalized={team.finalized}
+            placeholder={'نام کاربری'}
+            label={'عضو جدید'}
+            defaultValue={''}
+            buttonName={'اضافه کردن'}
+            func={addMember}
+            paddingLeft={'32px'}
+          />
+          
         </Grid.Column>
       </Grid>
     </>
