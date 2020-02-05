@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '~/components/dashboard/team/Container';
-import { getTeamInfoAPI } from '~/redux/api/participation';
+import { getTeamInfoAPI } from '~/redux/api/team';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 
-class ProfilePage extends Component {
+class TeamPage extends Component {
   static async getInitialProps(ctx, token) {
     console.log(token)
-    const res = await getTeamInfoAPI(token);
+    const cid = 2;
+    const res = await getTeamInfoAPI(cid, token);
     const teamData = res.data;
     return { teamData, token };
   }
@@ -60,4 +61,4 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(ProfilePage));
+export default withAuth(true)(connect(mapStateToProps, mapDispatchToProps)(TeamPage));

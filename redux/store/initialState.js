@@ -14,13 +14,12 @@ export default {
   profile: {
     errors: {},
     success: false,
-    fail: false
+    fail: false,
   },
   team: {
-    errors: [],
-    invites: [],
-    title: "",
-    members: [],
-    finalized: false
-  }
+    errors: {},
+    finalized: false,
+    success: false,
+    fail: false,
+  },
 };
