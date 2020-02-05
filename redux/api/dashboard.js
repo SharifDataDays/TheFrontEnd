@@ -9,24 +9,6 @@ const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 const PASSWORD_RESET= `${BASE_ADDR}/accounts/password/change/`;
 
-//const TEAM = `${BASE_ADDR}/participation/2/team/`;
-const TEAM = `http://81.31.170.5/test/api/participation/2/team/`
-
-export function getTeamInfoAPI(token){
-  return axios.get(TEAM, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-}
-
-export function changeTeamName(data, token){
-  return axios.put(TEAM, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-}
 
 
 export function passwordUpdateAPI(data, token) {

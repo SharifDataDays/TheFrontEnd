@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '~/components/dashboard/team/Container';
-import { getTeamInfoAPI } from '~/redux/api/dashboard';
+import { getTeamInfoAPI } from '~/redux/api/participation';
 import withAuth from '~/components/global/withAuth';
-import {
-  profileUpdateAction,
-  profileClearAction,
-  passwordUpdateAction,
-} from '~/redux/actions/profile';
 import Layout from '~/components/global/layout';
 
 class ProfilePage extends Component {
