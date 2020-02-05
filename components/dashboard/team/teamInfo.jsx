@@ -1,18 +1,9 @@
 import _ from 'lodash';
 import styled from 'styled-components';
 import { space, layout, color, border, typography, flex } from 'styled-system';
-import {
-  Header,
-  List,
-  Input,
-  Divider,
-  Button,
-  Grid,
-  Form,
-  Message,
-  Popup,
-} from 'semantic-ui-react';
-import { Fade } from 'react-reveal';
+import { Header, List, Divider, Button, Grid, Form, Message, Popup } from 'semantic-ui-react';
+
+import Input from './input';
 
 const Label = styled.label`
   ${space}
@@ -27,7 +18,7 @@ const Container = styled.div`
   ${border}
 `;
 
-function HeaderDiv({finilized}) {
+function HeaderDiv({ finilized }) {
   return (
     <Container
       style={{
@@ -61,51 +52,7 @@ function HeaderDiv({finilized}) {
   );
 }
 
-function ChangableSection({
-  finilized,
-  label,
-  placeholder,
-  defaultValue,
-  buttonName,
-  func,
-  paddingLeft,
-}) {
-  return (
-    <Grid.Row>
-      <Container
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-        py={[1,0,0]}
-      >
-        <Container>
-          <Label primary style={{ fontWeight: 'bold', paddingLeft }}>
-            {label}:
-          </Label>
-          <Input
-            placeholder={placeholder}
-            defaultValue={defaultValue}
-            disabled={finilized}
-            transparent={finilized}
-          />
-        </Container>
-        <Form.Button
-          primary
-          content={buttonName}
-          floated="right"
-          size="small"
-          disabled={finilized}
-          onClick={func}
-        />
-      </Container>
-    </Grid.Row>
-  );
-}
-
-function TeamMembersSection({teamData}) {
+function TeamMembersSection({ teamData }) {
   return (
     <Grid.Row>
       <Label primary pl={4} style={{ fontWeight: 'bold' }}>
@@ -129,7 +76,7 @@ function TeamMembersSection({teamData}) {
   );
 }
 
-function TeamInvitationsSection({invitations}) {
+function TeamInvitationsSection({ invitations }) {
   if (_.isUndefined(invitations) || _.isEmpty(invitations)) {
     return;
   }
@@ -169,7 +116,8 @@ export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, add
             borderRadius: '10px',
           }}
         >
-          <ChangableSection
+          <Input
+            kind={'changeName'}
             finalized={team.finalized}
             placeholder={'نام تیم'}
             label={'نام تیم'}
@@ -177,15 +125,18 @@ export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, add
             buttonName={'تغییر نام'}
             func={teamNameUpdate}
             paddingLeft={'55px'}
+            teamData={teamData}
+            token={token}
           />
 
           <Divider />
-          <TeamMembersSection teamData={teamData}/>
+          <TeamMembersSection teamData={teamData} />
           <Divider />
-          <TeamInvitationsSection invitations={teamData.invitations}/>
+          <TeamInvitationsSection invitations={teamData.invitations} />
           <Divider />
 
-          <ChangableSection
+          <Input
+            kind={'addMember'}
             finalized={team.finalized}
             placeholder={'نام کاربری'}
             label={'عضو جدید'}
@@ -193,8 +144,9 @@ export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, add
             buttonName={'اضافه کردن'}
             func={addMember}
             paddingLeft={'32px'}
+            teamData={teamData}
+            token={token}
           />
-          
         </Grid.Column>
       </Grid>
     </>

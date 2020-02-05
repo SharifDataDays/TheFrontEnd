@@ -76,7 +76,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    teamUpdate: (fields, token) => {
+    teamNameUpdate: (fields, token) => {
       dispatch(teamNameUpdateAction(fields, token));
     },
     finalize: (fields, token) => {
