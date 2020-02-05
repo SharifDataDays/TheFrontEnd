@@ -15,7 +15,7 @@ export function getTeamInfoAPI(cid, token){
   });
 }
 
-export function updateTeamName(cid, data, token){
+export function updateTeamNameAPI(cid, data, token){
   return axios.put(TEAM(cid), data, {
     headers: {
       Authorization: `Bearer ${token}`,

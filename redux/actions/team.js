@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { pageLoadingAction } from './page';
-import { inviteUserAPI, answerInvitationAPI, updateTeamName } from '../api/dashboard';
 
 export const TEAM_CHECK = 'TEAM_CHECK';
 export const TEAM_SUCCESS = 'TEAM_SUCCESS';
