@@ -5,7 +5,8 @@ import produce from 'immer';
 function teamClearReducer(state = initialState.team, action) {
   return produce(state, (draft) => {
     draft.success = false;
-    draft.fail = false;
+    draft.fail = false
+    draft.finalized = false;
     draft.errors = {};
     return draft;
   });

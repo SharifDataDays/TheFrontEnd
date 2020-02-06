@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import styled from 'styled-components';
 import { space, layout, color, border, typography, flex } from 'styled-system';
-import { Header, List, Divider, Button, Grid, Form, Message, Popup } from 'semantic-ui-react';
+import { List, Divider, Button, Grid, Message } from 'semantic-ui-react';
+import React, { Component } from 'react';
 
 import Input from './input';
+import { HeaderDiv } from './HeaderDiv';
 
 const Label = styled.label`
   ${space}
@@ -12,53 +14,11 @@ const Label = styled.label`
   ${color}
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   ${space}
   ${color}
   ${border}
 `;
-
-function HeaderDiv({ finalized, finalize, teamData, token }) {
-  return (
-    <Container
-      style={{
-        display: 'flex',
-        flexDirection: 'row-reverse',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingBottom: '20px',
-      }}
-    >
-      <Header size="huge" dir="RTL" floated="left">
-        تیم من
-      </Header>
-      <Popup
-        dir="RTL"
-        position="right center"
-        content="پس از ثبت نهایی امکان تغییر نام و اعضا وجود ندارد!"
-        inverted
-        trigger={
-          <Form.Button
-            primary
-            inverted
-            content="ثبت نهایی"
-            floated="right"
-            size="big"
-            disabled={finalized}
-            onClick={() => {
-              const fields = {
-                name: 'name',
-                contest: teamData.contest,
-                finalize: true,
-              };
-              finalize(fields, token);
-            }}
-          />
-        }
-      />
-    </Container>
-  );
-}
 
 function TeamMembersSection({ teamData }) {
   return (
@@ -90,77 +50,87 @@ function TeamInvitationsSection({ invitations }) {
   }
   return (
     <>
-    <Grid.Row>
-      <Label primary pl={4} style={{ fontWeight: 'bold' }}>
-        درخواست‌های فرستاده شده:
-      </Label>
-      <List bulleted>
-        {_.map(invitations, (invitation) => {
-          return (
-            <List.Item
-              key={invitation.id}
-              style={{
-                padding: '10px',
-              }}
-            >
-              {invitation.participant}
-            </List.Item>
-          );
-        })}
-      </List>
-    </Grid.Row>
-    <Divider />
+      <Grid.Row>
+        <Label primary pl={4} style={{ fontWeight: 'bold' }}>
+          درخواست‌های فرستاده شده:
+        </Label>
+        <List bulleted>
+          {_.map(invitations, (invitation) => {
+            return (
+              <List.Item
+                key={invitation.id}
+                style={{
+                  padding: '10px',
+                }}
+              >
+                {invitation.participant}
+              </List.Item>
+            );
+          })}
+        </List>
+      </Grid.Row>
+      <Divider />
     </>
   );
 }
 
-export default function TeamInfo({ team, teamData, teamNameUpdate, addMember, token, finalize }) {
-  const fin = teamData.name_finalized || team.finalized
-  return (
-    <>
-      <HeaderDiv finalized={fin} finalize={finalize} teamData={teamData} token={token} />
-      <Grid dir="RTL">
-        <Grid.Column
-          verticalAlign="middle"
-          style={{
-            marginTop: '20px',
-            border: '1px solid #d1d1d1',
-            borderRadius: '10px',
-          }}
-        >
-          <Input
-            kind={'changeName'}
-            finalized={fin}
-            placeholder={'نام تیم'}
-            label={'نام تیم'}
-            defaultValue={teamData.name}
-            buttonName={'تغییر نام'}
-            func={teamNameUpdate}
-            paddingLeft={'55px'}
-            teamData={teamData}
-            token={token}
-          />
+export default class TeamInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.teamName = this.props.teamData.name;
+  }
 
-          <Divider />
-          <TeamMembersSection teamData={teamData} />
-          <Divider />
-          <TeamInvitationsSection invitations={teamData.invitations} />
-          
+  render() {
+    const { team, teamData, teamNameUpdate, addMember, token, finalize } = this.props;
+    const fin = teamData.name_finalized || team.finalized;
+    return (
+      <>
+        <HeaderDiv finalized={fin} finalize={finalize} teamData={teamData} token={token} teamName={this.teamName} />
+        <Grid dir="RTL">
+          <Grid.Column
+            verticalAlign="middle"
+            style={{
+              marginTop: '20px',
+              border: '1px solid #d1d1d1',
+              borderRadius: '10px',
+            }}
+          >
+            <Input
+              ref={(c) => {
+                this.teamName = c;
+              }}
+              kind={'changeName'}
+              finalized={fin}
+              placeholder={'نام تیم'}
+              label={'نام تیم'}
+              defaultValue={teamData.name}
+              buttonName={'تغییر نام'}
+              func={teamNameUpdate}
+              paddingLeft={'55px'}
+              teamData={teamData}
+              token={token}
+            />
 
-          <Input
-            kind={'addMember'}
-            finalized={fin}
-            placeholder={'نام کاربری'}
-            label={'عضو جدید'}
-            defaultValue={''}
-            buttonName={'اضافه کردن'}
-            func={addMember}
-            paddingLeft={'32px'}
-            teamData={teamData}
-            token={token}
-          />
-        </Grid.Column>
-      </Grid>
-    </>
-  );
+            <Divider />
+            <TeamMembersSection teamData={teamData} />
+            <Divider />
+            <TeamInvitationsSection invitations={teamData.invitations} />
+
+            <Input
+              kind={'addMember'}
+              finalized={fin}
+              placeholder={'نام کاربری'}
+              label={'عضو جدید'}
+              defaultValue={''}
+              buttonName={'اضافه کردن'}
+              func={addMember}
+              paddingLeft={'32px'}
+              teamData={teamData}
+              token={token}
+            />
+          </Grid.Column>
+        </Grid>
+      </>
+    );
+  }
 }

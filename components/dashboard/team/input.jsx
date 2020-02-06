@@ -64,6 +64,18 @@ class Input extends Component {
     if (finalized && this.props.kind === 'addMember') {
       return <></>;
     }
+
+    let buttonComp = (
+      <Form.Button
+        primary
+        content={buttonName}
+        floated="right"
+        size="small"
+        disabled={finalized}
+        onClick={this.handleSubmit}
+      />
+    );
+    if (finalized) buttonComp = <></>;
     return (
       <Grid.Row>
         <Container
@@ -87,14 +99,7 @@ class Input extends Component {
               onChange={this.handleChange}
             />
           </Container>
-          <Form.Button
-            primary
-            content={buttonName}
-            floated="right"
-            size="small"
-            disabled={finalized}
-            onClick={this.handleSubmit}
-          />
+          {buttonComp}
         </Container>
       </Grid.Row>
     );

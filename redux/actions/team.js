@@ -25,7 +25,6 @@ export function teamSuccessAction() {
 }
 
 export function teamFailAction(errors) {
-  console.log(errors);
   return {
     type: TEAM_FAIL,
     payload: {
@@ -64,21 +63,16 @@ export function teamFinalAction() {
 export function finalizeTeamAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
-    getTeamInfoAPI(fields.contest, token)
-      .then((res) => {
-        fields.name = res.data.name;
-      })
-      .then(() => {
-        updateTeamNameAPI(fields.contest, fields, token).then((res) => {
-          const { data } = res;
-          if (data.status_code === 200) {
-            dispatch(teamSuccessAction());
-            dispatch(teamFinalAction());
-          } else {
-            dispatch(teamFailAction(data.detail));
-          }
-        });
-      });
+
+    updateTeamNameAPI(fields.contest, fields, token).then((res) => {
+      const { data } = res;
+      if (data.status_code === 200) {
+        dispatch(teamSuccessAction());
+        dispatch(teamFinalAction());
+      } else {
+        dispatch(teamFailAction(data.detail));
+      }
+    });
 
     dispatch(pageLoadingAction(false));
   };
@@ -100,12 +94,10 @@ export function addMemberAction(fields, token) {
 }
 
 export function answerInvitationAction(fields, token) {
-  console.log(fields);
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     answerInvitationAPI(fields.contest_id, fields, token).then((res) => {
       const { data } = res;
-      console.log(data);
       if (data.status_code === 200) {
         dispatch(teamSuccessAction());
       } else {
