@@ -5,7 +5,7 @@ import produce from 'immer';
 function teamClearReducer(state = initialState.team, action) {
   return produce(state, (draft) => {
     draft.success = false;
-    draft.fail = false
+    draft.fail = false;
     draft.finalized = false;
     draft.errors = {};
     return draft;
@@ -18,6 +18,36 @@ function teamFailReducer(state = initialState.team, action) {
     draft.fail = true;
     draft.success = false;
     draft.errors = errors;
+
+    let fa = '';
+    if (draft.errors.name === 'invalid name') {
+      fa = 'فیلد نباید خالی باشد';
+    } else if (
+      !_.isUndefined(draft.errors.participant) &&
+      draft.errors.participant[0] === 'This field may not be blank.'
+    ) {
+      fa = 'فیلد نباید خالی باشد';
+    } else if (draft.errors[0] === 'name must be unique') {
+      fa = 'نام انتخاب شده تکراری است';
+    } else if (!_.isUndefined(draft.errors.non_field_errors)) {
+      if (draft.errors.non_field_errors[0] === 'requested user not found') {
+        fa = 'کاربر مورد نظر یافت نشد';
+      } else if (draft.errors.non_field_errors[0] === "requested user's already in team") {
+        fa = 'کاربر مورد نظر در تیم وجود دارد';
+      } else if (draft.errors.non_field_errors[0] === 'same invitation already exists') {
+        fa = 'دعوت‌نامه‌ی عضویت قبلا به این کاربر ارسال شده است';
+      } else if (
+        draft.errors.non_field_errors[0] ===
+        'number of team members and open invitations exeeds team size'
+      ) {
+        fa = 'تعداد اعضای تیم بیش‌تر از حد مجاز است';
+      } else {
+        fa = draft.errors.non_field_errors[0];
+      }
+    }
+
+    draft.errors.fa = fa;
+
     return draft;
   });
 }
@@ -31,7 +61,6 @@ function teamSuccessReducer(state = initialState.team, action) {
   });
 }
 
-
 function teamFinalizeReducer(state = initialState.team, action) {
   return produce(state, (draft) => {
     draft.finalized = true;
@@ -40,16 +69,16 @@ function teamFinalizeReducer(state = initialState.team, action) {
 }
 
 export default function teamReducers(state = initialState.team, action) {
-    switch (action.type) {
-        case TEAM_FINAL:
-          return teamFinalizeReducer(state, action);
-        case TEAM_SUCCESS:
-          return teamSuccessReducer(state, action);
-        case TEAM_CLEAR:
-          return teamClearReducer(state, action);
-        case TEAM_FAIL:
-          return teamFailReducer(state, action);
-        default:
-          return state;
-      }
+  switch (action.type) {
+    case TEAM_FINAL:
+      return teamFinalizeReducer(state, action);
+    case TEAM_SUCCESS:
+      return teamSuccessReducer(state, action);
+    case TEAM_CLEAR:
+      return teamClearReducer(state, action);
+    case TEAM_FAIL:
+      return teamFailReducer(state, action);
+    default:
+      return state;
+  }
 }

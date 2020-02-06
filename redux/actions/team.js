@@ -38,10 +38,11 @@ export function teamNameUpdateAction(fields, token) {
     dispatch(pageLoadingAction(true));
 
     if (_.isUndefined(fields.name) || fields.name === '') {
-      dispatch(teamFailAction);
+      dispatch(teamFailAction({name: 'invalid name'}));
     } else {
       updateTeamNameAPI(fields.contest, fields, token).then((res) => {
         const { data } = res;
+        console.log(data)
         if (data.status_code === 200) {
           dispatch(teamSuccessAction());
         } else {

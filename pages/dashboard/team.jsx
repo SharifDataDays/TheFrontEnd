@@ -29,9 +29,6 @@ class TeamPage extends Component {
   }
 
   render() {
-    console.log(this.state);
-    console.log(this.props);
-    
     const {
       token,
       team,
@@ -42,9 +39,8 @@ class TeamPage extends Component {
       finalize,
       answerInvitation,
       addMember,
-      
     } = this.props;
-    console.log(team)
+
     return (
       <>
         <Layout token={token} hasNavbar hasFooter>
@@ -67,7 +63,6 @@ class TeamPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   const { team } = state;
-  console.log(state)
   return {
     team,
   };
@@ -87,10 +82,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     addMember: (fields, token) => {
       dispatch(addMemberAction(fields, token));
     },
-    finalize: (fields, token) =>{
+    finalize: (fields, token) => {
       dispatch(finalizeTeamAction(fields, token));
-    }
-    
+    },
   };
 }
 

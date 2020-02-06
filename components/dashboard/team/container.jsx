@@ -20,16 +20,6 @@ export default function ProfileContainer({
   addMember,
   finalize,
 }) {
-  let error = '';
-  if (!_.isUndefined(team.errors.non_field_errors) && !_.isEmpty(team.errors.non_field_errors)) {
-    error = team.errors.non_field_errors;
-  }
-  if (error === '' && team.fail) {
-    error = 'فیلد نباید خالی باشد';
-  }
-
-
-
   return (
     <>
       <Container dir="RTL" px={[4, 5, 6]} pt={3} m={0}>
@@ -37,7 +27,7 @@ export default function ProfileContainer({
           تغییرات با موفقیت ذخیره شد.
         </Message>
         <Message hidden={!team.fail} negative>
-          تغییرات بدون موفقیت ذخیره شد. ({error})
+          تغییرات بدون موفقیت ذخیره شد. ({team.errors.fa})
         </Message>
       </Container>
 
