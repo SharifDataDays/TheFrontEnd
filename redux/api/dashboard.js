@@ -8,8 +8,8 @@ const ALL_CONTESTS = `${BASE_ADDR}/contest/contests/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
-//const TEAM_NAME_API = `http://81.31.170.5/test/api/participation/teams/`;
-const TEAM_NAME_API = `${BASE_ADDR}/participation/teams/`;
+const TEAM_NAME_API = `http://81.31.170.5/test/api/participation/teams/`;
+//const TEAM_NAME_API = `${BASE_ADDR}/participation/teams/`;
 
 export function getTeamNameAPI(token) {
   return axios.get(TEAM_NAME_API, {
@@ -89,6 +89,16 @@ const SCOREBOARD = (
   ms_id,
 ) => `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}
 &end_index=${end_index}&ms_id=${ms_id}`;
+
+const TEAMCOUNT = (ms_id) => `${SCOREBOARD_BASE_ADD}/milestone_info/?ms_id=${ms_id}`
+
+export function teamCountAPI(milestoneID, token) {
+  return axios.get(TEAMCOUNT(milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 
 export function scoreboardAPI(startIndex, endIndex, milestoneID, token) {
   return axios.get(SCOREBOARD(startIndex, endIndex, milestoneID), {

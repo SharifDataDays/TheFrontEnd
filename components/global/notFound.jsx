@@ -14,7 +14,7 @@ function HeaderSection() {
   return (
     <Grid verticalAlign="middle" centered>
       <Grid.Column computer={15} tablet={15} mobile={10} style={{paddingTop: '50px'}}>
-        <Header as="h1">صفحه‌ی مورد‌نظر موجود نیست.</Header>
+        <Header as="h1">صفحه‌ی مورد‌ نظر موجود نیست.</Header>
       </Grid.Column>
     </Grid>
   );

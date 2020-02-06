@@ -45,7 +45,7 @@ class ScoreBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { padding: '0px !important' };
-    
+  
   }
 
   componentDidMount() {
@@ -56,8 +56,9 @@ class ScoreBoard extends Component {
 
   render() {
     const { padding } = this.state;
-    //const count = this.props.milestone.count;
-    const count = 245;
+
+    const count = this.props.myteam.teams_count;
+    //const count = 245;
     return (
       <>
         <Grid centered>
@@ -73,7 +74,7 @@ class ScoreBoard extends Component {
                 backgroundColor: 'white',
               }}
             >
-              تعداد سابمیت‌کننده‌ها: {count} نفر
+              تعداد تیم‌ها: {count} تیم
             </Text>
           </Grid.Column>
         </Grid>
