@@ -1,8 +1,13 @@
 import _ from 'lodash';
 import { pageLoadingAction } from './page';
-import { updateTeamNameAPI, inviteUserAPI } from '~/redux/api/team';
+import {
+  updateTeamNameAPI,
+  inviteUserAPI,
+  getTeamInfoAPI,
+  answerInvitationAPI,
+} from '~/redux/api/team';
 
-export const TEAM_CHECK = 'TEAM_CHECK';
+export const TEAM_FINAL = 'TEAM_FINAL';
 export const TEAM_SUCCESS = 'TEAM_SUCCESS';
 export const TEAM_FAIL = 'TEAM_FAIL';
 export const TEAM_CLEAR = 'TEAM_CLEAR';
@@ -20,7 +25,7 @@ export function teamSuccessAction() {
 }
 
 export function teamFailAction(errors) {
-  console.log(errors)
+  console.log(errors);
   return {
     type: TEAM_FAIL,
     payload: {
@@ -32,6 +37,7 @@ export function teamFailAction(errors) {
 export function teamNameUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
+
     if (_.isUndefined(fields.name) || fields.name === '') {
       dispatch(teamFailAction);
     } else {
@@ -44,16 +50,60 @@ export function teamNameUpdateAction(fields, token) {
         }
       });
     }
+
+    dispatch(pageLoadingAction(false));
+  };
+}
+
+export function teamFinalAction() {
+  return {
+    type: TEAM_FINAL,
+  };
+}
+
+export function finalizeTeamAction(fields, token) {
+  return (dispatch, getState) => {
+    dispatch(pageLoadingAction(true));
+    getTeamInfoAPI(fields.contest, token)
+      .then((res) => {
+        fields.name = res.data.name;
+      })
+      .then(() => {
+        updateTeamNameAPI(fields.contest, fields, token).then((res) => {
+          const { data } = res;
+          if (data.status_code === 200) {
+            dispatch(teamSuccessAction());
+            dispatch(teamFinalAction());
+          } else {
+            dispatch(teamFailAction(data.detail));
+          }
+        });
+      });
+
     dispatch(pageLoadingAction(false));
   };
 }
 
 export function addMemberAction(fields, token) {
-  console.log(fields);
-  console.log(token);
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     inviteUserAPI(fields.contest_id, fields, token).then((res) => {
+      const { data } = res;
+      if (data.status_code === 200) {
+        dispatch(teamSuccessAction());
+      } else {
+        dispatch(teamFailAction(data.detail));
+      }
+    });
+    dispatch(pageLoadingAction(false));
+  };
+}
+
+export function answerInvitationAction(fields, token) {
+  console.log(fields);
+  return (dispatch, getState) => {
+    dispatch(pageLoadingAction(true));
+    answerInvitationAPI(fields.contest_id, fields, token).then((res) => {
       const { data } = res;
       console.log(data);
       if (data.status_code === 200) {
@@ -65,7 +115,3 @@ export function addMemberAction(fields, token) {
     dispatch(pageLoadingAction(false));
   };
 }
-
-export function answerInvitationAction(fields, token) {}
-
-export function finalizeTeamAction(fields, token) {}

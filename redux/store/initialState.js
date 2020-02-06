@@ -18,7 +18,7 @@ export default {
   },
   team: {
     errors: {},
-    finalized: false,
+    finalize: false,
     success: false,
     fail: false,
   },

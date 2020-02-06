@@ -53,11 +53,10 @@ class TeamPage extends Component {
             team={team}
             teamData={teamData}
             userInvitations={userInvitations}
-            teamInvitations={teamInvitations}
             teamNameUpdate={teamNameUpdate}
-            finalize={finalize}
             answerInvitation={answerInvitation}
             addMember={addMember}
+            finalize={finalize}
           />
           ;
         </Layout>
@@ -79,9 +78,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     teamNameUpdate: (fields, token) => {
       dispatch(teamNameUpdateAction(fields, token));
     },
-    finalize: (fields, token) => {
-      dispatch(finalizeTeamAction(fields, token));
-    },
     clear: () => {
       dispatch(teamClearAction());
     },
@@ -91,6 +87,10 @@ function mapDispatchToProps(dispatch, ownProps) {
     addMember: (fields, token) => {
       dispatch(addMemberAction(fields, token));
     },
+    finalize: (fields, token) =>{
+      dispatch(finalizeTeamAction(fields, token));
+    }
+    
   };
 }
 

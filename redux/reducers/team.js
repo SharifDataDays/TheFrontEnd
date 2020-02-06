@@ -1,4 +1,4 @@
-import { TEAM_CHECK, TEAM_CLEAR, TEAM_FAIL, TEAM_SUCCESS } from '../actions/team';
+import { TEAM_FINAL, TEAM_CLEAR, TEAM_FAIL, TEAM_SUCCESS } from '../actions/team';
 import initialState from '../store/initialState';
 import produce from 'immer';
 
@@ -30,18 +30,18 @@ function teamSuccessReducer(state = initialState.team, action) {
   });
 }
 
-function teamNameCheckReducer(state = initialState.team, action) {
-  return produce(state, (draft) => {
-    const { fields } = action.payload;
 
+function teamFinalizeReducer(state = initialState.team, action) {
+  return produce(state, (draft) => {
+    draft.finalized = true;
     return draft;
   });
 }
 
 export default function teamReducers(state = initialState.team, action) {
     switch (action.type) {
-        case TEAM_CHECK:
-          return teamNameCheckReducer(state, action);
+        case TEAM_FINAL:
+          return teamFinalizeReducer(state, action);
         case TEAM_SUCCESS:
           return teamSuccessReducer(state, action);
         case TEAM_CLEAR:

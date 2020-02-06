@@ -32,12 +32,14 @@ class Input extends Component {
 
   handleSubmit(event) {
     if (this.props.kind === 'changeName') {
-      const fields = {
-        contest: this.props.teamData.contest,
-        finalize: false,
-        name: this.state.value,
-      };
-      this.props.func(fields, this.props.token);
+      if (this.state.value !== this.props.defaultValue) {
+        const fields = {
+          contest: this.props.teamData.contest,
+          finalize: false,
+          name: this.state.value,
+        };
+        this.props.func(fields, this.props.token);
+      }
     } else if (this.props.kind === 'addMember') {
       const fields = {
         contest_id: this.props.teamData.contest,
@@ -49,7 +51,7 @@ class Input extends Component {
 
   render() {
     const {
-      finilized,
+      finalized,
       label,
       placeholder,
       defaultValue,
@@ -59,8 +61,9 @@ class Input extends Component {
     } = this.props;
     const { value } = this.state;
 
-    // const labelWidth = '170px';
-
+    if (finalized && this.props.kind === 'addMember') {
+      return <></>;
+    }
     return (
       <Grid.Row>
         <Container
@@ -78,8 +81,8 @@ class Input extends Component {
             </Label>
             <I
               placeholder={placeholder}
-              disabled={finilized}
-              transparent={finilized}
+              disabled={finalized}
+              transparent={finalized}
               value={value}
               onChange={this.handleChange}
             />
@@ -89,7 +92,7 @@ class Input extends Component {
             content={buttonName}
             floated="right"
             size="small"
-            disabled={finilized}
+            disabled={finalized}
             onClick={this.handleSubmit}
           />
         </Container>

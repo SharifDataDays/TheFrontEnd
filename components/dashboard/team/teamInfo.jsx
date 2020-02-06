@@ -18,7 +18,7 @@ const Container = styled.div`
   ${border}
 `;
 
-function HeaderDiv({ finilized }) {
+function HeaderDiv({ finalized, finalize, teamData, token }) {
   return (
     <Container
       style={{
@@ -44,7 +44,15 @@ function HeaderDiv({ finilized }) {
             content="ثبت نهایی"
             floated="right"
             size="big"
-            disabled={finilized}
+            disabled={finalized}
+            onClick={() => {
+              const fields = {
+                name: 'name',
+                contest: teamData.contest,
+                finalize: true,
+              };
+              finalize(fields, token);
+            }}
           />
         }
       />
@@ -78,9 +86,10 @@ function TeamMembersSection({ teamData }) {
 
 function TeamInvitationsSection({ invitations }) {
   if (_.isUndefined(invitations) || _.isEmpty(invitations)) {
-    return;
+    return <></>;
   }
   return (
+    <>
     <Grid.Row>
       <Label primary pl={4} style={{ fontWeight: 'bold' }}>
         درخواست‌های فرستاده شده:
@@ -100,13 +109,16 @@ function TeamInvitationsSection({ invitations }) {
         })}
       </List>
     </Grid.Row>
+    <Divider />
+    </>
   );
 }
 
-export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, addMember, token }) {
+export default function TeamInfo({ team, teamData, teamNameUpdate, addMember, token, finalize }) {
+  const fin = teamData.name_finalized || team.finalized
   return (
     <>
-      <HeaderDiv finalized={team.finalized} />
+      <HeaderDiv finalized={fin} finalize={finalize} teamData={teamData} token={token} />
       <Grid dir="RTL">
         <Grid.Column
           verticalAlign="middle"
@@ -118,7 +130,7 @@ export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, add
         >
           <Input
             kind={'changeName'}
-            finalized={team.finalized}
+            finalized={fin}
             placeholder={'نام تیم'}
             label={'نام تیم'}
             defaultValue={teamData.name}
@@ -133,11 +145,11 @@ export default function TeamInfo({ team, teamData, teamNameUpdate, finalize, add
           <TeamMembersSection teamData={teamData} />
           <Divider />
           <TeamInvitationsSection invitations={teamData.invitations} />
-          <Divider />
+          
 
           <Input
             kind={'addMember'}
-            finalized={team.finalized}
+            finalized={fin}
             placeholder={'نام کاربری'}
             label={'عضو جدید'}
             defaultValue={''}

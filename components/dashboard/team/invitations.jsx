@@ -31,10 +31,30 @@ const Text = styled.text`
   ${color}
 `;
 
+function accept(invitation, answerInvitation, token) {
+  console.log(invitation);
+  const fields = {
+    id: invitation.id,
+    accept: true,
+    contest_id: invitation.contest_id,
+  };
+  answerInvitation(fields, token);
+}
 
-export default function Invitations({ team, userInvitations, answerInvitation, token }) {
-  if (_.isUndefined(userInvitations) || _.isEmpty(userInvitations)) {
-    return;
+function reject(invitation, answerInvitation, token) {
+  console.log(invitation);
+  const fields = {
+    id: invitation.id,
+    accept: false,
+    contest_id: invitation.contest_id,
+  };
+  answerInvitation(fields, token);
+}
+
+export default function Invitations({ finalized, userInvitations, answerInvitation, token }) {
+ console.log(finalized)
+  if (finalized || _.isUndefined(userInvitations) || _.isEmpty(userInvitations)) {
+    return <></>;
   }
   return (
     <>
@@ -47,25 +67,16 @@ export default function Invitations({ team, userInvitations, answerInvitation, t
           verticalAlign="middle"
           style={{
             marginTop: '20px',
-           // border: '1px solid #d1d1d1',
-           // borderRadius: '10px',
+            // border: '1px solid #d1d1d1',
+            // borderRadius: '10px',
           }}
         >
           <Grid.Row>
             {_.map(userInvitations, (invitation) => {
               return (
                 <>
-                <Container
-                  py={1}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  اضافه شدن به تیم {invitation.team}
                   <Container
+                    py={1}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
@@ -73,25 +84,34 @@ export default function Invitations({ team, userInvitations, answerInvitation, t
                       justifyContent: 'space-between',
                     }}
                   >
-                    <Form.Button
-                      positive
-                      content="قبول "
-                      floated="right"
-                      size="small"
-                      disabled={team.finilized}
-                      style={{ width: '60px' }}
-                    />
-                    <Form.Button
-                      negative
-                      content="رد"
-                      floated="right"
-                      size="small"
-                      disabled={team.finilized}
-                      style={{ width: '60px' }}
-                    />
+                    اضافه شدن به تیم {invitation.team}
+                    <Container
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Form.Button
+                        positive
+                        content="قبول "
+                        floated="right"
+                        size="small"
+                        style={{ width: '60px' }}
+                        onClick={() => {accept(invitation, answerInvitation, token)}}
+                      />
+                      <Form.Button
+                        negative
+                        content="رد"
+                        floated="right"
+                        size="small"
+                        style={{ width: '60px' }}
+                        onClick={() => {reject(invitation, answerInvitation, token)}}
+                      />
+                    </Container>
                   </Container>
-                </Container>
-                <Divider/>
+                  <Divider />
                 </>
               );
             })}
