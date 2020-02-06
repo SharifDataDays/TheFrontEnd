@@ -76,32 +76,39 @@ class Input extends Component {
       />
     );
     if (finalized) buttonComp = <></>;
+    let divv = <></>;
+    if (this.props.kind === 'addMember') {
+      divv = <Divider />;
+    }
     return (
-      <Grid.Row>
-        <Container
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-          py={[1, 0, 0]}
-        >
-          <Container>
-            <Label primary style={{ fontWeight: 'bold', paddingLeft }}>
-              {label}:
-            </Label>
-            <I
-              placeholder={placeholder}
-              disabled={finalized}
-              transparent={finalized}
-              value={value}
-              onChange={this.handleChange}
-            />
+      <>
+        {divv}
+        <Grid.Row>
+          <Container
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+            py={[1, 0, 0]}
+          >
+            <Container>
+              <Label primary style={{ fontWeight: 'bold', paddingLeft }}>
+                {label}:
+              </Label>
+              <I
+                placeholder={placeholder}
+                disabled={finalized}
+                transparent={finalized}
+                value={value}
+                onChange={this.handleChange}
+              />
+            </Container>
+            {buttonComp}
           </Container>
-          {buttonComp}
-        </Container>
-      </Grid.Row>
+        </Grid.Row>
+      </>
     );
   }
 }

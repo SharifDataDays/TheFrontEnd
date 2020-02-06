@@ -37,6 +37,7 @@ function accept(invitation, answerInvitation, token) {
     accept: true,
     contest_id: invitation.contest_id,
   };
+  invitation.hide = true;
   answerInvitation(fields, token);
 }
 
@@ -46,6 +47,7 @@ function reject(invitation, answerInvitation, token) {
     accept: false,
     contest_id: invitation.contest_id,
   };
+  invitation.hide = true;
   answerInvitation(fields, token);
 }
 
@@ -70,6 +72,9 @@ export default function Invitations({ finalized, userInvitations, answerInvitati
         >
           <Grid.Row>
             {_.map(userInvitations, (invitation) => {
+              if (invitation.hide === true) {
+                return <></>;
+              }
               return (
                 <>
                   <Container

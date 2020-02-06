@@ -50,6 +50,7 @@ function TeamInvitationsSection({ invitations }) {
   }
   return (
     <>
+     <Divider />
       <Grid.Row>
         <Label primary pl={4} style={{ fontWeight: 'bold' }}>
           درخواست‌های فرستاده شده:
@@ -69,7 +70,7 @@ function TeamInvitationsSection({ invitations }) {
           })}
         </List>
       </Grid.Row>
-      <Divider />
+     
     </>
   );
 }
@@ -113,7 +114,7 @@ export default class TeamInfo extends Component {
 
             <Divider />
             <TeamMembersSection teamData={teamData} />
-            <Divider />
+            
             <TeamInvitationsSection invitations={teamData.invitations} />
 
             <Input
