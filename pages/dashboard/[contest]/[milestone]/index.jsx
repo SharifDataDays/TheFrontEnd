@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
+import Trials from '~/components/dashboard/trial/list/index'
 import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
+import NoSSR from 'react-no-ssr';
 
 class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
     const { contest, milestone, task } = query;
     const res = await milestoneAPI(contest, milestone, token);
-    // const trialsList = await trialsListAPI(contest, milestone, token);
-    console.log(res.data.milestone.tasks[4])
+    console.log(res.data.milestone.tasks[4].trials)
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token };
   }
 
@@ -25,7 +26,7 @@ class TaskPage extends Component {
             ارزشیابی
           </Menu.Item>
         ),
-        render: () => <Tab.Pane attached={false}>Content2</Tab.Pane>,
+        render: () => <Tab.Pane attached={false}><Trials tasks={milestone.tasks}/></Tab.Pane>,
       },
       {
         menuItem: (
@@ -49,7 +50,6 @@ class TaskPage extends Component {
         <Head>
           <title>DataDays 2020</title>
         </Head>
-
         <Layout token={token} hasNavbar>
           <Tab
             defaultActiveIndex={1}
