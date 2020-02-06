@@ -32,7 +32,6 @@ const Text = styled.text`
 `;
 
 function accept(invitation, answerInvitation, token) {
-  console.log(invitation);
   const fields = {
     id: invitation.id,
     accept: true,
@@ -42,7 +41,6 @@ function accept(invitation, answerInvitation, token) {
 }
 
 function reject(invitation, answerInvitation, token) {
-  console.log(invitation);
   const fields = {
     id: invitation.id,
     accept: false,
@@ -52,7 +50,6 @@ function reject(invitation, answerInvitation, token) {
 }
 
 export default function Invitations({ finalized, userInvitations, answerInvitation, token }) {
- console.log(finalized)
   if (finalized || _.isUndefined(userInvitations) || _.isEmpty(userInvitations)) {
     return <></>;
   }
@@ -99,7 +96,9 @@ export default function Invitations({ finalized, userInvitations, answerInvitati
                         floated="right"
                         size="small"
                         style={{ width: '60px' }}
-                        onClick={() => {accept(invitation, answerInvitation, token)}}
+                        onClick={() => {
+                          accept(invitation, answerInvitation, token);
+                        }}
                       />
                       <Form.Button
                         negative
@@ -107,7 +106,9 @@ export default function Invitations({ finalized, userInvitations, answerInvitati
                         floated="right"
                         size="small"
                         style={{ width: '60px' }}
-                        onClick={() => {reject(invitation, answerInvitation, token)}}
+                        onClick={() => {
+                          reject(invitation, answerInvitation, token);
+                        }}
                       />
                     </Container>
                   </Container>
