@@ -35,9 +35,6 @@ class DropdownInput extends Component {
     let { field, error } = this.props;
     const { value } = this.state;
     const labelWidth = '170px';
-    console.log('HET');
-    console.log(value);
- console.log(this.props.initial)
     return (
       <Form.Group inline>
         <Label py={2} style={{ width: labelWidth }}>
