@@ -5,8 +5,8 @@ import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from '../input';
 import Date from './date';
 import Terms from './terms';
-import DropdownInput from '~/components/dashboard/profile/dropdownInput.jsx';
-import {getUniversities} from '~/components/dashboard/profile/dropdownOptions.jsx'
+import SignupDropdown from '~/components/user/signup/signupDropdown.jsx';
+import { getUniversities } from '~/components/dashboard/profile/dropdownOptions.jsx';
 
 class Form extends Component {
   constructor(props) {
@@ -75,27 +75,16 @@ class Form extends Component {
             </F.Group>
 
             <F.Group width={2} dir="rtl">
-              {/* <Input
-                ref={(c) => {
-                  this.university = c;
+              <SignupDropdown
+                field={{
+                  en: 'uni',
+                  fa: 'دانشگاه',
+                  readOnly: false,
+                  dropdown: true,
                 }}
-                error={errors.university}
-                label="دانشگاه"
-                width={8}
-              /> */}
-              
-              {/* <DropdownInput
-                field={
-                  {
-                    en: 'uni',
-                    fa: 'دانشگاه',
-                    readOnly: false,
-                    dropdown: true,
-                  }
-                }
-                allowAdd={'uni' !== "bmp"}
+                allowAdd={'uni' !== 'bmp'}
                 options={options.universities}
-              /> */}
+              />
 
               <Date
                 ref={(c) => {
@@ -141,6 +130,29 @@ class Form extends Component {
                 label="تکرار گذرواژه"
               />
             </F.Group>
+            <F.Group width={2} dir="rtl">
+              <SignupDropdown
+                field={{
+                  en: 'bmp',
+                  fa: 'مقطع تحصیلی',
+                  readOnly: false,
+                  dropdown: true
+                }}
+                allowAdd={'bmp' !== 'bmp'}
+                options={options.BMPs}
+              />
+              <SignupDropdown
+                field={{
+                  en: 'major',
+                  fa: 'رشته‌ی تحصیلی',
+                  readOnly: false,
+                  dropdown: true
+                }}
+                allowAdd={'major' !== 'bmp'}
+                options={options.fields}
+              />
+            </F.Group>
+
             <F.Field dir="rtl">
               <Message hidden={!success} positive>
                 ایمیل تایید برای شما ارسال شد.
