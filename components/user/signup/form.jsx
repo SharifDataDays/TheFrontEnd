@@ -27,6 +27,8 @@ class Form extends Component {
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
         university: this.university.state.value,
+        bmp: this.bmp.state.value,
+        major: this.major.state.value,
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
@@ -76,6 +78,9 @@ class Form extends Component {
 
             <F.Group width={2} dir="rtl">
               <SignupDropdown
+                ref={(c) => {
+                  this.university = c;
+                }}
                 field={{
                   en: 'uni',
                   fa: 'دانشگاه',
@@ -132,21 +137,27 @@ class Form extends Component {
             </F.Group>
             <F.Group width={2} dir="rtl">
               <SignupDropdown
+                ref={(c) => {
+                  this.bmp = c;
+                }}
                 field={{
                   en: 'bmp',
                   fa: 'مقطع تحصیلی',
                   readOnly: false,
-                  dropdown: true
+                  dropdown: true,
                 }}
                 allowAdd={'bmp' !== 'bmp'}
                 options={options.BMPs}
               />
               <SignupDropdown
+                ref={(c) => {
+                  this.major = c;
+                }}
                 field={{
                   en: 'major',
                   fa: 'رشته‌ی تحصیلی',
                   readOnly: false,
-                  dropdown: true
+                  dropdown: true,
                 }}
                 allowAdd={'major' !== 'bmp'}
                 options={options.fields}

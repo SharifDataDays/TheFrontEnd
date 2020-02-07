@@ -40,7 +40,7 @@ class SignupDropdown extends Component {
         options={this.state.options}
         fluid
         label={field.fa}
-        placeholder={field.fa}
+        placeholder='انتخاب کنید'
         onAddItem={this.handleAddition}
         onChange={this.handleChange}
         allowAdditions={this.props.allowAdd}
