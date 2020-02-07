@@ -9,6 +9,7 @@ class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
     const { contest, milestone } = query;
     const res = await milestoneAPI(contest, milestone, token);
+    console.log(res.data.milestone.tasks)
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token };
   }
 

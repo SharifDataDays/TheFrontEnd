@@ -38,7 +38,8 @@ function TasksDesktop({ cid, mid, tasks }) {
       }}
     >
       {_.map(tasks, (task, i) => {
-        const { id, title_fa, description_fa, thumbnail } = task.content;
+        const { title_fa, description_fa, thumbnail } = task.content;
+        const { id } = task;
         return (
           <a key={i} href={`/dashboard/${cid}/${mid}/${id}`}>
             <RowSegment>

@@ -12,6 +12,7 @@ class TrialsPage extends Component {
     const { query } = ctx;
     const res = await getTrialAPI(token, query.contest, query.milestone, query.task, query.trial);
     const { data } = res;
+    console.log(data)
     return { token, questions: data, ...query };
   }
 

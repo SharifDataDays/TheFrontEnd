@@ -4,11 +4,14 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
-import { taskAPI } from '~/redux/api/dashboard';
+import { taskAPI, contentAPI } from '~/redux/api/dashboard';
 
 class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
-    const res = await taskAPI(query.task, token);
+    const res0 = await taskAPI(query.contest, query.milestone, query.task, token);
+    const contentID = res0.data.content.id
+console.log(res0.data)
+    const res = await contentAPI(contentID, token);
     const task = res.data;
     return {
       task,
@@ -35,6 +38,7 @@ class ResourcesPage extends Component {
               contestId={contestId}
               milestoneId={milestoneId}
               taskId={taskId}
+              token={token}
             />
           )}
         </Layout>

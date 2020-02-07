@@ -55,9 +55,10 @@ class Resource extends Component {
     });
   }
 
-  trial(event) {
-    const { contestId, milestoneId, taskId } = this.props;
-    contentFinished(contestId, taskId, milestoneId);
+  async trial(event) {
+    const { contestId, milestoneId, taskId , token} = this.props;
+    const rs = await contentFinished(contestId, taskId, milestoneId, token);
+    console.log(rs)
   }
 
   render() {
@@ -83,6 +84,7 @@ class Resource extends Component {
               prevPage={this.prevPage}
               nextPage={this.nextPage}
               trial={this.trial}
+              token={this.props.token}
             />
           </Grid.Column>
         </Grid.Row>
