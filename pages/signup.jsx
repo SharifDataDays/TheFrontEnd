@@ -5,12 +5,18 @@ import withAuth from '~/components/global/withAuth';
 import Container from '~/components/user/signup/container';
 import { termsAPI } from '~/redux/api';
 import { signupClearAction, signupAction } from '~/redux/actions/signup';
+import DropdownInput from '~/components/dashboard/profile/dropdownInput.jsx';
+import {getUniversities, getFields, getBmp} from '~/components/dashboard/profile/dropdownOptions.jsx'
 
 class SignupPage extends Component {
   static async getInitialProps(ctx) {
     const res = await termsAPI();
     const terms = res.data;
-    return { terms };
+    const universities = await getUniversities();
+    const BMPs = await getBmp();
+    const fields = await getFields();
+
+    return { terms, universities, BMPs, fields };
   }
 
   componentDidMount() {
@@ -19,13 +25,14 @@ class SignupPage extends Component {
   }
 
   render() {
-    const { signup, request, terms } = this.props;
+    const { signup, request, terms, universities, BMPs, fields} = this.props;
+    
     return (
       <>
         <Head>
           <title>ثبت نام - DataDays 2020</title>
         </Head>
-        <Container signup={signup} request={request} terms={terms} />
+        <Container signup={signup} request={request} terms={terms} universities={universities} BMPs={BMPs} fields={fields}/>
       </>
     );
   }

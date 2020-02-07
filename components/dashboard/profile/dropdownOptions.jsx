@@ -26,6 +26,7 @@ export async function getUniversities() {
   _.map(uniNames, (uni) => {
     universities = [{ key: uni.name, text: uni.name, value: uni.name }, ...universities];
   });
+  console.log("herere:", universities)
   return universities;
 }
 

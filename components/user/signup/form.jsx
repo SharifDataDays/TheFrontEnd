@@ -5,6 +5,8 @@ import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from '../input';
 import Date from './date';
 import Terms from './terms';
+import DropdownInput from '~/components/dashboard/profile/dropdownInput.jsx';
+import {getUniversities} from '~/components/dashboard/profile/dropdownOptions.jsx'
 
 class Form extends Component {
   constructor(props) {
@@ -73,14 +75,26 @@ class Form extends Component {
             </F.Group>
 
             <F.Group width={2} dir="rtl">
-              <Input
+              {/* <Input
                 ref={(c) => {
                   this.university = c;
                 }}
                 error={errors.university}
                 label="دانشگاه"
                 width={8}
-              />
+              /> */}
+              {/* <DropdownInput
+                field={
+                  {
+                    en: 'uni',
+                    fa: 'دانشگاه',
+                    readOnly: false,
+                    dropdown: true,
+                  }
+                }
+                allowAdd={'uni' !== "bmp"}
+                options={getUniversities}
+              /> */}
 
               <Date
                 ref={(c) => {
