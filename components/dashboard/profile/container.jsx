@@ -59,7 +59,7 @@ export default function ProfileContainer({
   return (
     <Container
       px={[4, 5, 6]}
-      py={5}
+      py={4}
       m={0}
       backgroundColor="rgba(255, 255, 255, 0.3)"
       borderRadius={6}

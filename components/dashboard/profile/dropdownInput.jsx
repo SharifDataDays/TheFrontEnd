@@ -11,11 +11,20 @@ const Label = styled.label`
   ${typography}
 `;
 
+const Div = styled.div`
+  ${space}
+  ${layout}
+  ${color}
+`;
+
 class DropdownInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: (this.props.field.en === "uni" && !_.isNull(this.props.initial))? this.props.initial.name:this.props.initial,
+      value:
+        this.props.field.en === 'uni' && !_.isNull(this.props.initial)
+          ? this.props.initial.name
+          : this.props.initial,
       options: this.props.options,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -40,14 +49,15 @@ class DropdownInput extends Component {
         <Label py={2} style={{ width: labelWidth }}>
           {field.fa}:
         </Label>
+
         <Dropdown
           defaultValue={value}
           options={this.state.options}
           placeholder={field.fa}
           search
           selection
-          //   fluid
-          width={6}
+          // fluid
+          //width={8}
           error={error}
           readOnly={field.readOnly}
           allowAdditions={this.props.allowAdd}

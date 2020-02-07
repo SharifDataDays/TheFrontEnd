@@ -21,17 +21,19 @@ class Form extends Component {
       email: this.email.state.value,
       password_1: this.password_1.state.value,
       password_2: this.password_2.state.value,
+      uni: this.uni.state.value,
       profile: {
         firstname_fa: this.firstname_fa.state.value,
         firstname_en: this.firstname_en.state.value,
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
-        university: this.university.state.value,
+  
         bmp: this.bmp.state.value,
         major: this.major.state.value,
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
+    console.log(fields)
     request(fields);
   }
 
@@ -79,7 +81,7 @@ class Form extends Component {
             <F.Group width={2} dir="rtl">
               <SignupDropdown
                 ref={(c) => {
-                  this.university = c;
+                  this.uni = c;
                 }}
                 field={{
                   en: 'uni',
@@ -87,8 +89,9 @@ class Form extends Component {
                   readOnly: false,
                   dropdown: true,
                 }}
-                allowAdd={'uni' !== 'bmp'}
+                allowAdd={true}
                 options={options.universities}
+                error={errors.uni != "" && !_.isUndefined(errors.uni)}
               />
 
               <Date
@@ -146,8 +149,10 @@ class Form extends Component {
                   readOnly: false,
                   dropdown: true,
                 }}
-                allowAdd={'bmp' !== 'bmp'}
+                allowAdd={false}
                 options={options.BMPs}
+                error={errors.bmp != "" && !_.isUndefined(errors.bmp)}
+
               />
               <SignupDropdown
                 ref={(c) => {
@@ -159,8 +164,10 @@ class Form extends Component {
                   readOnly: false,
                   dropdown: true,
                 }}
-                allowAdd={'major' !== 'bmp'}
+                allowAdd={true}
                 options={options.fields}
+                error={errors.major != "" && !_.isUndefined(errors.major)}
+
               />
             </F.Group>
 

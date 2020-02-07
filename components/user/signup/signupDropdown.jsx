@@ -4,12 +4,6 @@ import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import { addUniAPI } from '~/redux/api/signup';
 
-const Label = styled.label`
-  ${space}
-  ${layout}
-  ${typography}
-`;
-
 class SignupDropdown extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +27,8 @@ class SignupDropdown extends Component {
   render() {
     let { field, error } = this.props;
     const { value } = this.state;
-
     return (
-      <Form.Select
+      <Form.Dropdown
         width={8}
         options={this.state.options}
         fluid
@@ -46,7 +39,10 @@ class SignupDropdown extends Component {
         allowAdditions={this.props.allowAdd}
         error={error}
         value={value}
+        search
+        selection
       />
+
 
     );
   }

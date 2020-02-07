@@ -30,11 +30,15 @@ function signupFailReducer(state = initialState.signup, action) {
 }
 
 function signupChekerReducer(state = initialState.signup, action) {
+  console.log("HEY!!!!")
   return produce(state, (draft) => {
     const { fields } = action.payload;
+    console.log(fields)
     const checkFields = { ...fields, ...fields.profile };
     _.forEach(checkFields, (value, key) => {
-      if (value === '') {
+      console.log(value)
+      console.log(key)
+      if (value === '' || _.isUndefined(value)) {
         draft.errors[key] = 'فیلد خالی است.';
       }
     });
