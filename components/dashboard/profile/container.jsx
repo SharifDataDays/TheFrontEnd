@@ -19,6 +19,7 @@ const panes = [
           fields={prof_fields}
           password_update={props.password_update}
           type="profile"
+          options={props.options}
         />
       </Tab.Pane>
     ),
@@ -53,6 +54,7 @@ export default function ProfileContainer({
   profileData,
   token,
   update,
+  options
 }) {
   return (
     <Container
@@ -77,6 +79,7 @@ export default function ProfileContainer({
           update={update}
           password_update={password_update}
           onTabChange={clear}
+          options={options}
         />
       </Fade>
     </Container>

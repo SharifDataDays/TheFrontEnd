@@ -9,6 +9,8 @@ const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 const MILESTONE = (contestID, milestoneID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/`;
 const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
 
+
+
 export function passwordUpdateAPI(data, token) {
   return axios.post(PASSWORD_RESET_API, data, {
     headers: {

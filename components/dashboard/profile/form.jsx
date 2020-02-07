@@ -3,6 +3,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from './input';
+import DropdownInput from './dropdownInput';
 
 class Form extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Form extends Component {
           firstname_en: this.firstname_en.state.value,
           lastname_fa: this.lastname_fa.state.value,
           lastname_en: this.lastname_en.state.value,
-          university: this.university.state.value,
+          uni: this.uni.state.value,
           birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
         },
       };
@@ -44,14 +45,26 @@ class Form extends Component {
     const { fields } = this.props;
     console.log(fields);
     console.log(profileData);
+    console.log(this.props.options)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
-              {
-                console.log(field);
-                console.log(profileData[field.en]);
+              if (field.dropdown) {
+                return (
+                  <DropdownInput
+                    ref={(c) => {
+                      this[field.en] = c;
+                    }}
+                    key={field.en}
+                    field={field}
+                    error={errors[field.en]}
+                    initial={profileData[field.en]}
+                    options={this.props.options[field.en]}
+                    allowAdd={field.en !== "bmp"}
+                  />
+                );
               }
               return (
                 <Input
@@ -65,6 +78,7 @@ class Form extends Component {
                 />
               );
             })}
+
             <Message hidden={!success} positive>
               تغییرات با موفقیت ذخیره شد.
             </Message>
