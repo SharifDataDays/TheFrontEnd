@@ -15,8 +15,9 @@ class SignupPage extends Component {
     const universities = await getUniversities();
     const BMPs = await getBmp();
     const fields = await getFields();
+    const options = {universities, BMPs, fields}
 
-    return { terms, universities, BMPs, fields };
+    return { terms, options};
   }
 
   componentDidMount() {
@@ -25,14 +26,14 @@ class SignupPage extends Component {
   }
 
   render() {
-    const { signup, request, terms, universities, BMPs, fields} = this.props;
+    const { signup, request, terms, options} = this.props;
     
     return (
       <>
         <Head>
           <title>ثبت نام - DataDays 2020</title>
         </Head>
-        <Container signup={signup} request={request} terms={terms} universities={universities} BMPs={BMPs} fields={fields}/>
+        <Container signup={signup} request={request} terms={terms} options={options}/>
       </>
     );
   }

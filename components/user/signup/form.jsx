@@ -34,7 +34,7 @@ class Form extends Component {
   }
 
   render() {
-    const { terms, signup } = this.props;
+    const { terms, signup, options } = this.props;
     const { success, errors } = signup;
     return (
       <Grid>
@@ -83,6 +83,7 @@ class Form extends Component {
                 label="دانشگاه"
                 width={8}
               /> */}
+              
               {/* <DropdownInput
                 field={
                   {
@@ -93,7 +94,7 @@ class Form extends Component {
                   }
                 }
                 allowAdd={'uni' !== "bmp"}
-                options={getUniversities}
+                options={options.universities}
               /> */}
 
               <Date
