@@ -81,7 +81,7 @@ class Questions extends Component {
 
     return (
       <>
-        <Container p={2} mx={[1,2,2]} mb={2}>
+        <Container p={2} mx={[1, 2, 2]} mb={2}>
           زمان باقی‌مانده:{' '}
           <Countdown dir="ltr" date={new Date(questions.due_time)} renderer={this.renderer} />
         </Container>

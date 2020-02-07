@@ -24,7 +24,7 @@ const PASSWORD_RESET= `${BASE_ADDR}/accounts/password/change/`;
 
 
 const CONTENT = (id) => `${BASE_ADDR}/resources/${id}/`;
-const TASK = (id) => `${BASE_ADDR}/resources/${id}/`;
+
 const TASK_LIST = `${BASE_ADDR}/resources/`;
 
 const ALL_CONTESTS = `${BASE_ADDR}/contest/`;

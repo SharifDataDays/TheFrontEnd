@@ -6,11 +6,10 @@ import { Component } from 'react';
 class Trials extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
+    console.log(this.props);
     this.state = {
       endTime: false,
       submitted: false,
-      
     };
   }
 
@@ -21,20 +20,21 @@ class Trials extends Component {
   };
 
   msg = (text, link) => {
-    return(
-    <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
-      <Grid.Row>
-        <Grid.Column computer={10} tablet={12} mobile={14}>
-          <Message>{text}</Message>
-        </Grid.Column>
-      </Grid.Row>
+    return (
+      <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
+        <Grid.Row>
+          <Grid.Column computer={10} tablet={12} mobile={14}>
+            <Message>{text}</Message>
+          </Grid.Column>
+        </Grid.Row>
 
-      <a href={link}>
-        <Button primary size="large" floated="right">
-          بازگشت
-        </Button>
-      </a>
-    </Grid>);
+        <a href={link}>
+          <Button primary size="large" floated="right">
+            بازگشت
+          </Button>
+        </a>
+      </Grid>
+    );
   };
 
   render() {
@@ -50,13 +50,17 @@ class Trials extends Component {
       questions,
     } = this.props;
 
-
-    if (this.state.submitted)
-     {
-      return this.msg('پاسخ شما ارسال شد.', `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`);
+    if (this.state.submitted) {
+      return this.msg(
+        'پاسخ شما ارسال شد.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+      );
     }
     if (this.state.endTime) {
-      return this.msg('زمان شما تمام شده‌ است.', `/dashboard/${this.props.contest}/${this.props.milestone}/`);
+      return this.msg(
+        'زمان شما تمام شده‌ است.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+      );
     }
 
     return (
