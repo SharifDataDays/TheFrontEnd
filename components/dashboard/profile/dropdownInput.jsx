@@ -3,6 +3,7 @@ import { Form, Dropdown } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import { addUniAPI } from '~/redux/api/signup';
+import _ from 'lodash';
 
 const Label = styled.label`
   ${space}
@@ -14,7 +15,7 @@ class DropdownInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.initial,
+      value: (this.props.field.en === "uni" && !_.isNull(this.props.initial))? this.props.initial.name:this.props.initial,
       options: this.props.options,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -34,13 +35,16 @@ class DropdownInput extends Component {
     let { field, error } = this.props;
     const { value } = this.state;
     const labelWidth = '170px';
+    console.log('HET');
     console.log(value);
+ console.log(this.props.initial)
     return (
       <Form.Group inline>
         <Label py={2} style={{ width: labelWidth }}>
           {field.fa}:
         </Label>
         <Dropdown
+          defaultValue={value}
           options={this.state.options}
           placeholder={field.fa}
           search
@@ -50,7 +54,7 @@ class DropdownInput extends Component {
           error={error}
           readOnly={field.readOnly}
           allowAdditions={this.props.allowAdd}
-          value={value}
+          //value={value}
           name={field.en}
           onAddItem={this.handleAddition}
           onChange={this.handleChange}
