@@ -17,4 +17,10 @@ export default {
     fail: false,
   },
   trials: {},
+  team: {
+    errors: {},
+    finalize: false,
+    success: false,
+    fail: false,
+  },
 };

@@ -19,10 +19,12 @@ import BASE_ADDR from '.';
 //     GET, show trial and its questions
 //     POST, submit trial
 
-const PROFILE_API = `${BASE_ADDR}/accounts/profile/`;
-const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
+const PROFILE = `${BASE_ADDR}/accounts/profile/`;
+const PASSWORD_RESET= `${BASE_ADDR}/accounts/password/change/`;
 
-const TASK_ = (id) => `${BASE_ADDR}/resources/${id}/`;
+
+const CONTENT = (id) => `${BASE_ADDR}/resources/${id}/`;
+const TASK = (id) => `${BASE_ADDR}/resources/${id}/`;
 const TASK_LIST = `${BASE_ADDR}/resources/`;
 
 const ALL_CONTESTS = `${BASE_ADDR}/contest/`;
@@ -38,14 +40,14 @@ const TRIAL = (contestID, milestoneID, taskId, trialId) =>
   `${BASE_ADDR}/contest/${contestID}/milestone/${milestoneID}/task/${taskId}/trial/${trialId}/`;
 
 export function passwordUpdateAPI(data, token) {
-  return axios.post(PASSWORD_RESET_API, data, {
+  return axios.post(PASSWORD_RESET, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 }
 export function profileUpdateAPI(data, token) {
-  return axios.put(PROFILE_API, data, {
+  return axios.put(PROFILE, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -53,7 +55,7 @@ export function profileUpdateAPI(data, token) {
 }
 
 export function profileAPI(token) {
-  return axios.get(PROFILE_API, {
+  return axios.get(PROFILE, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -95,7 +97,7 @@ export function taskListAPI(token) {
 }
 
 export function contentAPI(id, token) {
-  return axios.get(TASK_(id), {
+  return axios.get(CONTENT(id), {
     headers: {
       Authorization: `Bearer ${token}`,
     },
