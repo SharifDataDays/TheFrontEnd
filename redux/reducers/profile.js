@@ -12,16 +12,22 @@ function profileClearReducer(state = initialState.profile, action) {
 }
 
 function profileCheckerReducer(state = initialState.profile, action) {
+  
   return produce(state, (draft) => {
+    console.log(draft)
     const { fields } = action.payload;
+    console.log(fields)
     const checkFields = { ...fields.password, ...fields.profile };
     _.forEach(checkFields, (value, key) => {
+      console.log(value)
+      console.log(key)
       if (
-        (value === '' || _.isUndefined(value)) &&
+        (value === '' || _.isUndefined(value) || _.isNull(value)) &&
         key !== 'new_password2' &&
         key != 'new_password1' &&
         key != 'old_password'
       ) {
+        console.log("I HATE THIS")
         draft.errors[key] = 'فیلد خالی است.';
       }
     });
@@ -37,6 +43,7 @@ function profileCheckerReducer(state = initialState.profile, action) {
     ) {
       draft.errors.old_password = 'فیلد خالی است.';
     }
+    console.log(draft)
     return draft;
   });
 }

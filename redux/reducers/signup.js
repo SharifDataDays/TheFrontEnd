@@ -30,15 +30,11 @@ function signupFailReducer(state = initialState.signup, action) {
 }
 
 function signupChekerReducer(state = initialState.signup, action) {
-  console.log("HEY!!!!")
   return produce(state, (draft) => {
     const { fields } = action.payload;
-    console.log(fields)
     const checkFields = { ...fields, ...fields.profile };
     _.forEach(checkFields, (value, key) => {
-      console.log(value)
-      console.log(key)
-      if (value === '' || _.isUndefined(value)) {
+      if (value === '' || _.isUndefined(value) || _.isNull(value)) {
         draft.errors[key] = 'فیلد خالی است.';
       }
     });
@@ -49,6 +45,7 @@ function signupChekerReducer(state = initialState.signup, action) {
       draft.errors.password_1 = 'گذرواژه‌ها یکسان نیستند.';
       draft.errors.password_2 = 'گذرواژه‌ها یکسان نیستند.';
     }
+    console.log(draft)
     return draft;
   });
 }

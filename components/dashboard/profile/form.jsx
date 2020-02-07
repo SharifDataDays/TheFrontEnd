@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from './input';
 import DropdownInput from './dropdownInput';
+import { C_NUMBER_MODE } from 'highlight.js';
 
 class Form extends Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class Form extends Component {
           lastname_en: this.lastname_en.state.value,
           birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
           uni: this.uni.state.value,
-          "profile.major": this.major.state.value,
-          "profile.bmp": this.bmp.state.value
+          'profile.major': this.major.state.value,
+          'profile.bmp': this.bmp.state.value,
         },
       };
       console.log(new_fields);
@@ -48,23 +49,27 @@ class Form extends Component {
     // console.log(fields);
     // console.log(profileData);
     // console.log(this.props.options)
+    console.log(errors)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
               if (field.dropdown) {
+                console.log("MY BELOVED EEEERRRRR")
+                console.log(errors[field.en])
                 return (
+                 
                   <DropdownInput
                     ref={(c) => {
                       this[field.en] = c;
                     }}
                     key={field.en}
                     field={field}
-                    error={errors[field.en]}
+                    error={errors[field.en] != '' && !_.isUndefined(errors[field.en])}
                     initial={profileData[field.en]}
                     options={this.props.options[field.en]}
-                    allowAdd={field.en !== "bmp"}
+                    allowAdd={field.en !== 'bmp'}
                   />
                 );
               }

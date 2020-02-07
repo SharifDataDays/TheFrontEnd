@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Dropdown } from 'semantic-ui-react';
+import { Form, Dropdown, Container } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import { addUniAPI } from '~/redux/api/signup';
@@ -49,23 +49,32 @@ class DropdownInput extends Component {
         <Label py={2} style={{ width: labelWidth }}>
           {field.fa}:
         </Label>
-
-        <Dropdown
-          defaultValue={value}
-          options={this.state.options}
-          placeholder={field.fa}
-          search
-          selection
-          // fluid
-          //width={8}
-          error={error}
-          readOnly={field.readOnly}
-          allowAdditions={this.props.allowAdd}
-          //value={value}
-          name={field.en}
-          onAddItem={this.handleAddition}
-          onChange={this.handleChange}
-        />
+        <Div
+          //px={6}
+          //width={[1/2]}
+          //py={4}
+          //mx={6}
+          width={[95/100, 69/192, 69/192]}
+          backgroundColor="rgba(255, 100, 255, 0.3)"
+          borderRadius={6}
+        >
+          <Dropdown
+            defaultValue={value}
+            options={this.state.options}
+            placeholder={field.fa}
+            search
+            selection
+            fluid
+            //width={6}
+            error={error}
+            readOnly={field.readOnly}
+            allowAdditions={this.props.allowAdd}
+            //value={value}
+            name={field.en}
+            onAddItem={this.handleAddition}
+            onChange={this.handleChange}
+          />
+        </Div>
       </Form.Group>
     );
   }
