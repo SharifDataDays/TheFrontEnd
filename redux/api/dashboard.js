@@ -20,12 +20,11 @@ import BASE_ADDR from '.';
 //     POST, submit trial
 
 const PROFILE = `${BASE_ADDR}/accounts/profile/`;
-const PASSWORD_RESET= `${BASE_ADDR}/accounts/password/change/`;
-
+const PASSWORD_RESET = `${BASE_ADDR}/accounts/password/change/`;
 
 const CONTENT = (id) => `${BASE_ADDR}/resources/${id}/`;
 
-const TASK_LIST = `${BASE_ADDR}/resources/`;
+const CONTENT_LIST = `${BASE_ADDR}/resources/`;
 
 const ALL_CONTESTS = `${BASE_ADDR}/contest/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
@@ -38,6 +37,16 @@ const TASK = (contestId, milestoneId, taskId) =>
 
 const TRIAL = (contestID, milestoneID, taskId, trialId) =>
   `${BASE_ADDR}/contest/${contestID}/milestone/${milestoneID}/task/${taskId}/trial/${trialId}/`;
+
+const TEAM_NAME = `${BASE_ADDR}/participation/teams/`;
+
+export function getTeamNameAPI(token) {
+  return axios.get(TEAM_NAME, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 
 export function passwordUpdateAPI(data, token) {
   return axios.post(PASSWORD_RESET, data, {
@@ -87,9 +96,8 @@ export function milestoneAPI(contestID, milestoneID, token) {
   });
 }
 
-
-export function taskListAPI(token) {
-  return axios.get(TASK_LIST, {
+export function contentListAPI(token) {
+  return axios.get(CONTENT_LIST, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -113,24 +121,32 @@ export function taskAPI(contestId, milestoneId, taskId, token) {
 }
 
 export function getNewTrialAPI(token, contestId, milestoneId, taskId, trialId) {
-  return axios.post(TASK(contestId, milestoneId, taskId, trialId), {},{
-    headers: {
-      Authorization: `Bearer ${token}`,
+  return axios.post(
+    TASK(contestId, milestoneId, taskId, trialId),
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 }
 
 export function contentFinished(contestId, milestoneId, taskId, token) {
-  return axios.put(TASK(contestId, milestoneId, taskId), {},{
-    headers: {
-      withCredentials: true,
-      Authorization: `Bearer ${token}`,
+  return axios.put(
+    TASK(contestId, milestoneId, taskId),
+    {},
+    {
+      headers: {
+        withCredentials: true,
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 }
 
 export function getTrialAPI(token, contestId, milestoneId, taskId, trialId) {
-  console.log(TRIAL(contestId, milestoneId, taskId, trialId))
+  console.log(TRIAL(contestId, milestoneId, taskId, trialId));
   return axios.get(TRIAL(contestId, milestoneId, taskId, trialId), {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -146,3 +162,27 @@ export function submitTrialAPI(data, token, contestId, milestoneId, taskId, tria
   });
 }
 
+const SCOREBOARD_BASE_ADD = 'http://81.31.170.5:8000';
+const SCOREBOARD = (
+  start_index,
+  end_index,
+  ms_id,
+) => `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}
+&end_index=${end_index}&ms_id=${ms_id}`;
+
+const TEAMCOUNT = (ms_id) => `${SCOREBOARD_BASE_ADD}/milestone_info/?ms_id=${ms_id}`;
+
+export function teamCountAPI(milestoneID, token) {
+  return axios.get(TEAMCOUNT(milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+export function scoreboardAPI(startIndex, endIndex, milestoneID, token) {
+  return axios.get(SCOREBOARD(startIndex, endIndex, milestoneID), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
