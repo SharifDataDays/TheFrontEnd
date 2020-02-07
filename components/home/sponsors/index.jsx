@@ -7,13 +7,13 @@ import VisibilitySensor from 'react-visibility-sensor';
 import Logo from './logo';
 
 const logo1 = {
-  image: '/images/sponsors/ssc.png',
-  link: 'https://ssc.ce.sharif.edu/',
+  image: '/images/sponsors/sharif.png',
+  link: 'https://ce.sharif.edu/',
   invert: true,
 };
 const logo2 = {
-  image: '/images/sponsors/sharif.png',
-  link: 'https://ce.sharif.edu/',
+  image: '/images/sponsors/ssc.png',
+  link: 'https://ssc.ce.sharif.edu/',
   invert: true,
 };
 const logo3 = {
@@ -21,8 +21,18 @@ const logo3 = {
   link: 'https://tapsell.ir/',
   invert: false,
 };
+const logo4 = {
+  image: '/images/sponsors/ictic.png',
+  link: '#',
+  invert: false,
+};
+const logo5 = {
+  image: '/images/sponsors/setad.jpeg',
+  link: '#',
+  invert: false,
+};
 
-const logos = [logo1, logo2, logo3];
+const logos = [logo1, logo2, logo3, logo4, logo5];
 
 const Container = styled.div`
   ${space};
