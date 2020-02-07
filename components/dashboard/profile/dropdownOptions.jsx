@@ -7,12 +7,12 @@ export async function getBmp() {
     {
       key: 'MAS',
       text: 'Master',
-      value: 'Master',
+      value: 'MAS',
     },
     {
       key: 'PHD',
       text: 'Ph.D',
-      value: 'Ph.D',
+      value: 'PHD',
     },
   ];
 

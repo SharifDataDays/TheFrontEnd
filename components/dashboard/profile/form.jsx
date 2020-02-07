@@ -20,8 +20,10 @@ class Form extends Component {
           firstname_en: this.firstname_en.state.value,
           lastname_fa: this.lastname_fa.state.value,
           lastname_en: this.lastname_en.state.value,
-          uni: this.uni.state.value,
           birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
+          uni: this.uni.state.value,
+          major: this.major.state.value,
+          bmp: this.bmp.state.value
         },
       };
       console.log(new_fields);

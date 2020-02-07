@@ -19,34 +19,22 @@ class DropdownInput extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-
-  handleChange(event) {
-    this.setState({
-      value: event.target.value,
-    });
-  }
-
-  dateHandleChange(event, { value }) {
-    this.setState({
-      value,
-    });
-  }
+  handleChange = (e, { value }) => this.setState({ value: value });
 
   handleAddition = (e, { value }) => {
     this.setState((prevState) => ({
       options: [{ key: value, text: value, value }, ...prevState.options],
     }));
-    if(this.props.field.en === "uni"){
-    addUniAPI({ name: value });
+    if (this.props.field.en === 'uni') {
+      addUniAPI({ name: value });
     }
   };
 
   render() {
-    const { field, error } = this.props;
+    let { field, error } = this.props;
     const { value } = this.state;
-
     const labelWidth = '170px';
-
+    console.log(value);
     return (
       <Form.Group inline>
         <Label py={2} style={{ width: labelWidth }}>
