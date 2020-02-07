@@ -20,7 +20,7 @@ export function authAPI(token) {
 }
 
 export function forgotAPI(email) {
-  return axios.post(FORGOT, email);
+  return axios.post(FORGOT, {email});
 }
 
 export function resetAPI(data) {

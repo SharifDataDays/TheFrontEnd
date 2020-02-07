@@ -8,7 +8,7 @@ function change(color, visible) {
 }
 
 const Image = styled(Im)`
-  filter: ${(props) => (change(props.color, props.visible) ? 'invert(1)' : 'invert(1)')};
+  filter: ${(props) => (props.invert? 'invert(1)' : 'none')};
   opacity: ${(props) => (change(props.color, props.visible) ? 0.66 : 1)};
   margin-left: auto;
   margin-right: auto;
@@ -44,6 +44,7 @@ class Logo extends Component {
           height={height}
           color={color}
           visible={visible}
+          invert={src.invert}
           onMouseEnter={this.changeToColor}
           onMouseLeave={this.changeToGray}
         />
