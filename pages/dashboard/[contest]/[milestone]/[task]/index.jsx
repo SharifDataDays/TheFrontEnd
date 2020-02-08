@@ -5,14 +5,23 @@ import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
 import { taskAPI, contentAPI } from '~/redux/api/dashboard';
+import _ from 'lodash';
 
 class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
     const res0 = await taskAPI(query.contest, query.milestone, query.task, token);
-    const contentID = res0.data.content.id
-console.log(res0.data)
-    const res = await contentAPI(contentID, token);
-    const task = res.data;
+    let status_code = 200;
+    if (!_.isUndefined(res0.data.status_code)) {
+      status_code = res0.data.status_code;
+    }
+    let task = {
+      status_code,
+    };
+    if (status_code === 200) {
+      const contentID = res0.data.content.id;
+      const res = await contentAPI(contentID, token);
+      const task = res.data;
+    }
     return {
       task,
       token,
