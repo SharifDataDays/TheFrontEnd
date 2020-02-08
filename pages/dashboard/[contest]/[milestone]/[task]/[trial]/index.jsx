@@ -12,8 +12,6 @@ import NotFound from '~/components/global/notFound';
 class TrialsPage extends Component {
   static async getInitialProps(ctx, token) {
     const { query } = ctx;
-    console.log("HERE")
-    console.log(query)
     const res = await getTrialAPI(token, query.contest, query.milestone, query.task, query.trial);
     let status_code = 200;
     if (!_.isUndefined(res.data.status_code)) {

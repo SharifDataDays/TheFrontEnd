@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Header = styled(H)`
   font-size: 25px;
   direction: rtl;
-  position: absolute;
+
   width: 100%;
   text-align: center;
 `;
@@ -23,16 +23,41 @@ function HeaderSection({ cid }) {
           computer={15}
           tablet={15}
           mobile={10}
-          style={{ paddingTop: '50px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+          style={{
+            paddingTop: '10px',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+          }}
         >
           <a href={`/dashboard/profile`}>
-            <Button secondary size="large" floated="right">
+            <Button
+              inverted
+              secondary
+              size="large"
+              floated="right"
+              style={{
+                margin: '20px',
+                width: '150px',
+              }}
+            >
               پروفایل
             </Button>
           </a>
           <a href={`/team/${cid}`}>
-            <Button secondary size="large" floated="right">
-              تیم
+            <Button
+              inverted
+              secondary
+              size="large"
+              floated="right"
+              style={{
+                margin: '20px',
+                width: '150px',
+              }}
+            >
+              صفحه‌ی تیم
             </Button>
           </a>
         </Grid.Column>
