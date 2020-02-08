@@ -29,7 +29,13 @@ class TaskPage extends Component {
         </Head>
 
         <Layout token={token} hasNavbar hasFooter>
-          {status_code !== 200 ? <NotFound /> : <Tasks cid={cid} mid={mid} milestone={milestone} token={token}/>}
+          {status_code === 403 ? (
+            <Forbidden cid={2} />
+          ) : status_code !== 200 ? (
+            <NotFound />
+          ) : (
+            <Tasks cid={cid} mid={mid} milestone={milestone} token={token} />
+          )}
         </Layout>
       </>
     );

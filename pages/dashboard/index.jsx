@@ -15,7 +15,7 @@ class Dashboard extends Component {
       status_code = contests.status_code;
     }
     if (status_code != 200) {
-      return { status_code };
+      return { token,status_code };
     }
 
     const contest = contests[0];
@@ -25,7 +25,7 @@ class Dashboard extends Component {
       status_code = contestRes.data.status_code;
     }
     if (status_code != 200) {
-      return { status_code };
+      return { token,status_code };
     }
     const milestones = await Promise.all(
       _.map(contestRes.data.contest.milestones, async (id) => {
@@ -41,10 +41,11 @@ class Dashboard extends Component {
 
   render() {
     const { milestones, contest, token, status_code } = this.props;
+    console.log(token)
     return (
       <Layout token={token} hasNavbar hasFooter>
         {status_code === 403 ? (
-          <Forbidden cid={2}/>
+          <Forbidden cid={2} />
         ) : status_code !== 200 ? (
           <NotFound />
         ) : (

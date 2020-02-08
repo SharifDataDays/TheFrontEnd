@@ -61,6 +61,16 @@ function mapStateToSubmission(state, trialId, final) {
   return data;
 }
 
+export const TRIAL_FAIL = 'TRIAL_FAIL';
+
+export function trialFailAction(errors) {
+  return {
+    type: TRIAL_FAIL,
+    payload: {
+      errors,
+    },
+  };
+}
 export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final) {
   console.log({token, contestId, milestoneId, taskId, trialId, final})
   console.log("SUBMIT")
@@ -69,6 +79,10 @@ export function submitAnswersAction(token, contestId, milestoneId, taskId, trial
     const answers = mapStateToSubmission(getState().trials, trialId, final);
     submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
       console.log(res);
+      if(!_.isUndefined(res.data.status_code) && res.data.status_code != 200)
+      {
+        dispatch(trialFailAction(res.data.details))
+      }
     });
   };
 }

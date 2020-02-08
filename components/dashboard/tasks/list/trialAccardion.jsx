@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Icon, Dimmer, Loader, Segment, Divider, Button } from 'semantic-ui-react';
+import { Accordion, Icon, Dimmer, Loader, Segment, Divider, Button, Message } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
@@ -68,11 +68,6 @@ export default class TrialAccardion extends Component {
         <p>
           مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
         </p>
-        <a href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}>
-          <Button primary size="medium" floated="right">
-            ورود به صفحه‌ی آزمون
-          </Button>
-        </a>
       </>
     );
   };
@@ -90,34 +85,28 @@ export default class TrialAccardion extends Component {
       res.data.detail[0] === 'Cooling down time of trial not finished'
     ) {
       this.setState({
-        error: 'Cooling down time of trial not finished',
+        error:`برای گرفتن ترایال جدید باید ${this.state.data.trial_cooldown} ساعت از ترایال قبلی گذشته باشد.`,
       });
     }
-    this.getData();
   };
 
   content = () => {
     if (this.state.loading) {
-      return (
-        //<Segment>
-        <Loader active inline="centered" />
-        //</Segment>
-      );
+      return <Loader active inline="centered" />;
     }
-    console.log('@@@@@@@@');
-    console.log(this.activeTrial);
+
     let addButton = <></>;
-    if (!this.state.openTrial || true) {
+    if (!this.state.openTrial) {
       addButton = (
         <>
           <Divider />
-
           <Button primary size="medium" floated="right" onClick={this.newTrial}>
             ایجاد آزمون جدید
           </Button>
         </>
       );
     }
+    
     return (
       <>
         {/* <p>{this.props.data.trial_cooldown}</p> */}
@@ -134,6 +123,13 @@ export default class TrialAccardion extends Component {
                   trial={trial}
                 />
                 <p>امتیاز: {trial.score}</p>
+                <a
+                  href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
+                >
+                  <Button primary size="medium" floated="right">
+                    ورود به صفحه‌ی آزمون
+                  </Button>
+                </a>
               </>
             );
           } else {
@@ -141,19 +137,6 @@ export default class TrialAccardion extends Component {
               <>
                 <Divider />
                 <p>آزمون شماره‌ی {i + 1}</p>
-                <Countdown
-                  dir="ltr"
-                  date={new Date(trial.due_time)}
-                  renderer={this.renderer}
-                  onComplete={() => {
-                    this.setState({
-                      openTrial: false,
-                    });
-                  }}
-                  ref={(c) => {
-                    this.activeTrial = c;
-                  }}
-                />
                 <p>امتیاز: {trial.score}</p>
               </>
             );
@@ -172,6 +155,13 @@ export default class TrialAccardion extends Component {
     if (!this.props.content_finished) {
       return <></>;
     }
+
+    let error = <></>
+    if(!_.isNull(this.state.error) && !_.isUndefined(this.state.error) && this.state.error !== "")
+      {
+
+        error = <Message >{this.state.error}</Message>
+      }
     return (
       <Container
         px={[2, 4, 4]}
@@ -183,10 +173,17 @@ export default class TrialAccardion extends Component {
       >
         <Accordion dir="RTL">
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-            <Text>
+            <Text
+              style={{
+                padding: 0,
+                margin: 0,
+              }}
+            >
               <Icon name="dropdown" />
               آزمون‌
             </Text>
+            {error}
+            
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>{this.content()}</Accordion.Content>
         </Accordion>

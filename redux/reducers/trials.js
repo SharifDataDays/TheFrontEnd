@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import produce from 'immer';
-import { CHANGE_ANSWER } from '../actions/trials';
+import { CHANGE_ANSWER, TRIAL_FAIL } from '../actions/trials';
 import initialState from '../store/initialState';
 
 function changeAnswerReducer(state = initialState.trials, action) {
@@ -32,9 +32,22 @@ function trialsReducers(state = initialState.trials, action) {
   switch (action.type) {
     case CHANGE_ANSWER:
       return changeAnswerReducer(state, action);
+    case TRIAL_FAIL:
+      return trialFailReducer(state, action)
     default:
       return state;
   }
+}
+
+
+function trialFailReducer(state = initialState.trials, action) {
+  return produce(state, (draft) => {
+    const { errors } = action.payload;
+    draft.fail = true;
+    draft.success = false;
+    draft.errors = errors;
+    return draft;
+  });
 }
 
 export default trialsReducers;

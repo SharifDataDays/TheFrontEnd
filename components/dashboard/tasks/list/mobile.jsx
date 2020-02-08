@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Grid, Card, Image } from 'semantic-ui-react';
 import EllipsisText from 'react-ellipsis-text';
+import TrialAccardion from './trialAccardion';
 
 function TasksMobile({ cid, mid, tasks, token }) {
   return (

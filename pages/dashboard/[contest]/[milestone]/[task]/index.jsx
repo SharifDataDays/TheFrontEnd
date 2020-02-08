@@ -20,7 +20,7 @@ class ResourcesPage extends Component {
     if (status_code === 200) {
       const contentID = res0.data.content.id;
       const res = await contentAPI(contentID, token);
-      const task = res.data;
+      task = res.data;
     }
     return {
       task,
@@ -39,7 +39,9 @@ class ResourcesPage extends Component {
           <title>DataDays 2020</title>
         </Head>
         <Layout token={token} hasNavbar hasFooter>
-          {task.status_code !== 200 ? (
+          {task.status_code === 403 ? (
+            <Forbidden cid={2} />
+          ) : task.status_code !== 200 ? (
             <NotFound />
           ) : (
             <Resources
