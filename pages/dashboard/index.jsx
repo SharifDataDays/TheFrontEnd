@@ -11,7 +11,8 @@ class Dashboard extends Component {
     let status_code = 200;
     const allRes = await allContestsAPI(token);
     const { contests } = allRes.data;
-    if (!_.isUndefined(contests.status_code)) {
+    console.log(contests)
+    if (!_.isUndefined(contests) && !_.isUndefined(contests.status_code)) {
       status_code = contests.status_code;
     }
     if (status_code != 200) {

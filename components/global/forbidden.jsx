@@ -30,7 +30,7 @@ function HeaderSection({ cid }) {
               پروفایل
             </Button>
           </a>
-          <a href={`/dashboard/${cid}/team`}>
+          <a href={`/team/${cid}`}>
             <Button secondary size="large" floated="right">
               تیم
             </Button>

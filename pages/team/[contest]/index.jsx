@@ -15,6 +15,7 @@ import Layout from '~/components/global/layout';
 class TeamPage extends Component {
   static async getInitialProps({query}, token) {
     const cid = query.contest;
+    console.log(cid)
     const res = await getTeamInfoAPI(cid, token);
     const teamData = res.data;
     const res2 = await getInvitationsAPI(cid, token);
