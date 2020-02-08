@@ -53,6 +53,9 @@ function profileFailReducer(state = initialState.profile, action) {
     const { errors } = action.payload;
     draft.fail = true;
     draft.success = false;
+    console.log("%%%%%%%%@#$#@$")
+    console.log(action)
+    console.log(errors)
     draft.errors = errors;
     return draft;
   });

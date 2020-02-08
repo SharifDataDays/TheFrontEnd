@@ -21,10 +21,7 @@ class DropdownInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value:
-        this.props.field.en === 'uni' && !_.isNull(this.props.initial)
-          ? this.props.initial.name
-          : this.props.initial,
+      value: this.props.initial,
       options: this.props.options,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +38,7 @@ class DropdownInput extends Component {
   };
 
   render() {
+    console.log(this.props);
     let { field, error } = this.props;
     const { value } = this.state;
     const labelWidth = '170px';
@@ -54,7 +52,7 @@ class DropdownInput extends Component {
           //width={[1/2]}
           //py={4}
           //mx={6}
-          width={[95/100, 69/192, 69/192]}
+          width={[95 / 100, 69 / 192, 69 / 192]}
           backgroundColor="rgba(255, 100, 255, 0.3)"
           borderRadius={6}
         >

@@ -23,8 +23,8 @@ class Form extends Component {
           lastname_en: this.lastname_en.state.value,
           birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
           uni: this.uni.state.value,
-          'profile.major': this.major.state.value,
-          'profile.bmp': this.bmp.state.value,
+          major: this.major.state.value,
+          bmp: this.bmp.state.value,
         },
       };
       console.log(new_fields);
@@ -45,6 +45,7 @@ class Form extends Component {
   render() {
     const { success, fail, errors } = this.props.profile;
     const profileData = { ...this.props.profileData, ...this.props.profileData.profile };
+    console.log(profileData)
     const { fields } = this.props;
     // console.log(fields);
     // console.log(profileData);

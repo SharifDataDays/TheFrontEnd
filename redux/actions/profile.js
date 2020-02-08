@@ -41,7 +41,6 @@ export function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     dispatch(profileCheckerAction(fields));
-    fields = { ...fields.profile };
     if (_.isEmpty(getState().profile.errors)) {
       console.log(fields);
       console.log(token);
@@ -55,7 +54,7 @@ export function profileUpdateAction(fields, token) {
         }
       });
     } else {
-      dispatch(profileFailAction({}));
+      dispatch(profileFailAction(getState().profile.errors));
     }
     dispatch(pageLoadingAction(false));
   };
