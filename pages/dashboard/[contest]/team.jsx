@@ -13,8 +13,8 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 
 class TeamPage extends Component {
-  static async getInitialProps(ctx, token) {
-    const cid = 2;
+  static async getInitialProps({query}, token) {
+    const cid = query.contest;
     const res = await getTeamInfoAPI(cid, token);
     const teamData = res.data;
     const res2 = await getInvitationsAPI(cid, token);

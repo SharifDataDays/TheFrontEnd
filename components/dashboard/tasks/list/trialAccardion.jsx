@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Accordion, Icon, Dimmer, Loader, Segment, Divider, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
-import { taskAPI } from '~/redux/api/dashboard';
+import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 import Countdown from 'react-countdown';
 
@@ -22,13 +22,16 @@ export default class TrialAccardion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: -1,
       loading: true,
       trials: [],
+      openTrial: true,
+      openTrialFinished: false,
     };
+    this.getData();
   }
 
-  async componentDidMount() {
+  async getData() {
     const { cid, mid, tid, token } = this.props;
     const res = await taskAPI(cid, mid, tid, token);
     this.setState({
@@ -58,21 +61,40 @@ export default class TrialAccardion extends Component {
 
   renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
-     
-      return (
-        <p>
-        مهلت آزمون تمام شده است.
-      </p>
-      )
+      return <p>مهلت آزمون تمام شده است.</p>;
     }
     return (
-      <p>
-        مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
-      </p>
+      <>
+        <p>
+          مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
+        </p>
+        <a href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}>
+          <Button primary size="medium" floated="right">
+            ورود به صفحه‌ی آزمون
+          </Button>
+        </a>
+      </>
     );
   };
 
-  newTrial = () => {};
+  newTrial = async () => {
+    const res = await getNewTrialAPI(
+      this.props.token,
+      this.props.cid,
+      this.props.mid,
+      this.props.tid,
+    );
+    console.log(res);
+    if (
+      !_.isUndefined(res.data.detail) &&
+      res.data.detail[0] === 'Cooling down time of trial not finished'
+    ) {
+      this.setState({
+        error: 'Cooling down time of trial not finished',
+      });
+    }
+    this.getData();
+  };
 
   content = () => {
     if (this.state.loading) {
@@ -82,9 +104,10 @@ export default class TrialAccardion extends Component {
         //</Segment>
       );
     }
-
+    console.log('@@@@@@@@');
+    console.log(this.activeTrial);
     let addButton = <></>;
-    if (!this.state.openTrial) {
+    if (!this.state.openTrial || true) {
       addButton = (
         <>
           <Divider />
@@ -97,21 +120,20 @@ export default class TrialAccardion extends Component {
     }
     return (
       <>
+        {/* <p>{this.props.data.trial_cooldown}</p> */}
         {_.map(this.state.trials, (trial, i) => {
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
             return (
               <>
                 <Divider />
                 <p>آزمون شماره‌ی {i + 1}</p>
-                <Countdown dir="ltr" date={new Date(trial.due_time)} renderer={this.renderer} />
+                <Countdown
+                  dir="ltr"
+                  date={new Date(trial.due_time)}
+                  renderer={this.renderer}
+                  trial={trial}
+                />
                 <p>امتیاز: {trial.score}</p>
-                <a
-                  href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
-                >
-                  <Button primary size="medium" floated="right">
-                    ورود به صفحه‌ی آزمون
-                  </Button>
-                </a>
               </>
             );
           } else {
@@ -119,7 +141,19 @@ export default class TrialAccardion extends Component {
               <>
                 <Divider />
                 <p>آزمون شماره‌ی {i + 1}</p>
-                <Countdown dir="ltr" date={new Date(trial.due_time)} renderer={this.renderer} />
+                <Countdown
+                  dir="ltr"
+                  date={new Date(trial.due_time)}
+                  renderer={this.renderer}
+                  onComplete={() => {
+                    this.setState({
+                      openTrial: false,
+                    });
+                  }}
+                  ref={(c) => {
+                    this.activeTrial = c;
+                  }}
+                />
                 <p>امتیاز: {trial.score}</p>
               </>
             );
@@ -135,13 +169,15 @@ export default class TrialAccardion extends Component {
     console.log(this.state);
     const { activeIndex } = this.state;
 
+    if (!this.props.content_finished) {
+      return <></>;
+    }
     return (
       <Container
         px={[2, 4, 4]}
         py={3}
         m={0}
         style={{
-          backgroundColor: 'rgba(29, 147, 247,0.2)',
           backgroundColor: '#d5e2ed',
         }}
       >

@@ -39,6 +39,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
       }}
     >
       {_.map(tasks, (task, i) => {
+        console.log(task)
         const { title_fa, description_fa, thumbnail } = task.content;
         const { id } = task;
         return (
@@ -58,7 +59,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
                 />
               </RowSegment>
             </a>
-            <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token}/>
+            <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/>
           </>
         );
       })}

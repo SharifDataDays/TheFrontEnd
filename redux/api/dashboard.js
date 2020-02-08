@@ -120,9 +120,9 @@ export function taskAPI(contestId, milestoneId, taskId, token) {
   });
 }
 
-export function getNewTrialAPI(token, contestId, milestoneId, taskId, trialId) {
+export function getNewTrialAPI(token, contestId, milestoneId, taskId) {
   return axios.post(
-    TASK(contestId, milestoneId, taskId, trialId),
+    TASK(contestId, milestoneId, taskId),
     {},
     {
       headers: {
