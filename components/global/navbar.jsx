@@ -66,6 +66,7 @@ const AuthNavbar = connect(
       <Menu.Item>
         <Dropdown
           item
+          // direction={"left"}
           trigger={
             <FontAwesomeIcon
               style={{ marginRight: '0.5rem' }}
@@ -75,9 +76,20 @@ const AuthNavbar = connect(
             />
           }
         >
-          <Dropdown.Menu style={{ left: '0 !important' }}>
+          <Dropdown.Menu style={{ left: '0 !important' }}
+          >
+            {/* todo todo todo */}
+            <Dropdown.Item href="/dashboard/team/2">
+              <a>تیم</a>
+              <FontAwesomeIcon
+                style={{ marginLeft: '0.5rem' }}
+                color="#1d93f7"
+                size="lg"
+                icon={faCog}
+              />
+            </Dropdown.Item>
             <Dropdown.Item href="/dashboard/profile">
-              <a>تنظیمات</a>
+              <a>پروفایل</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
                 color="#1d93f7"
