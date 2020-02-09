@@ -51,7 +51,7 @@ function signupChekerReducer(state = initialState.signup, action) {
       draft.errors.password_1 = 'گذرواژه‌ها یکسان نیستند.';
       draft.errors.password_2 = 'گذرواژه‌ها یکسان نیستند.';
     }
-
+  
     return draft;
   });
 }
