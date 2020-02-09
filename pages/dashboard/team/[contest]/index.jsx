@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from '~/components/dashboard/team/Container';
+import Container from '~/components/dashboard/team/container';
 import { getTeamInfoAPI, getInvitationsAPI } from '~/redux/api/team';
 import {
   teamNameUpdateAction,
