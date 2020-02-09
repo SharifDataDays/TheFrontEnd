@@ -79,7 +79,7 @@ const AuthNavbar = connect(
           <Dropdown.Menu style={{ left: '0 !important' }}
           >
             {/* todo todo todo */}
-            <Dropdown.Item href="/dashboard/team/2">
+            {/* <Dropdown.Item href="/dashboard/team/2">
               <a>تیم</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
@@ -87,7 +87,7 @@ const AuthNavbar = connect(
                 size="lg"
                 icon={faCog}
               />
-            </Dropdown.Item>
+            </Dropdown.Item> */}
             <Dropdown.Item href="/dashboard/profile">
               <a>پروفایل</a>
               <FontAwesomeIcon

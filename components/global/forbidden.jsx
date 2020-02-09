@@ -15,7 +15,7 @@ function HeaderSection({ cid }) {
     <Grid verticalAlign="middle" centered>
       <Grid.Row>
         <Grid.Column computer={15} tablet={15} mobile={10} style={{ paddingTop: '50px' }}>
-          <Header as="h1">لطفا پروفایل و تیم خود را تکمیل کنید.</Header>
+          <Header as="h1">لطفا پروفایل خود را تکمیل کنید.</Header>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -46,7 +46,7 @@ function HeaderSection({ cid }) {
               پروفایل
             </Button>
           </a>
-          <a href={`dashboard/team/${cid}`}>
+          {/* <a href={`dashboard/team/${cid}`}>
             <Button
               inverted
               secondary
@@ -59,7 +59,7 @@ function HeaderSection({ cid }) {
             >
               صفحه‌ی تیم
             </Button>
-          </a>
+          </a> */}
         </Grid.Column>
       </Grid.Row>
     </Grid>

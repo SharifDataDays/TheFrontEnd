@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export async function getBmp() {
   const bmp = [
-    { key: 'BAC', text: 'Bacholar', value: 'Bacholar' },
+    { key: 'BAC', text: 'Bacholar', value: 'BAC' },
     {
       key: 'MAS',
       text: 'Master',
