@@ -23,8 +23,10 @@ class Form extends Component {
           lastname_en: this.lastname_en.state.value,
           birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
           uni: this.uni.state.value,
-          'profile.major': this.major.state.value,
-          'profile.bmp': this.bmp.state.value,
+          major: this.major.state.value,
+          bmp: this.bmp.state.value,
+          student_id: this.student_id.state.value,
+          phone_number: this.phone_number.state.value
         },
       };
       console.log(new_fields);
@@ -45,21 +47,16 @@ class Form extends Component {
   render() {
     const { success, fail, errors } = this.props.profile;
     const profileData = { ...this.props.profileData, ...this.props.profileData.profile };
+
     const { fields } = this.props;
-    // console.log(fields);
-    // console.log(profileData);
-    // console.log(this.props.options)
-    console.log(errors)
+
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
               if (field.dropdown) {
-                console.log("MY BELOVED EEEERRRRR")
-                console.log(errors[field.en])
                 return (
-                 
                   <DropdownInput
                     ref={(c) => {
                       this[field.en] = c;

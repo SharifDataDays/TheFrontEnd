@@ -1,6 +1,3 @@
-
-
-
 const prof_fields = [
   {
     en: 'firstname_fa',
@@ -28,23 +25,34 @@ const prof_fields = [
     readOnly: false,
     date: true,
   },
+
+  {
+    en: 'phone_number',
+    fa: 'شماره تماس',
+    readOnly: false,
+  },
+  {
+    en: 'student_id',
+    fa: 'شماره دانش‌جویی',
+    readOnly: false,
+  },
   {
     en: 'uni',
     fa: 'دانشگاه',
     readOnly: false,
-    dropdown: true
+    dropdown: true,
   },
   {
     en: 'bmp',
     fa: 'مقطع تحصیلی',
     readOnly: false,
-    dropdown: true
+    dropdown: true,
   },
   {
     en: 'major',
     fa: 'رشته‌ی تحصیلی',
     readOnly: false,
-    dropdown: true
+    dropdown: true,
   },
 ];
 
