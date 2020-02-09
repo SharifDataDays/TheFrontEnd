@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Image, Header } from 'semantic-ui-react';
 
 function HeaderImageContainer() {
-  console.log("oyyyyyyyyyyyy")
   return (
     <Grid style={{ margin: 0, backgroundColor: '#FFF0EB', direction: 'rtl' }}>
       <Grid.Column floated="left" computer={5} tablet={5} mobile={15}>

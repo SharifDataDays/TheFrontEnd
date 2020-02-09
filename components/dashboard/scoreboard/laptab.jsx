@@ -101,7 +101,6 @@ const Footer = (props) => {
           marginBottom: '20px',
         }}
       >
-        {console.log(currentPage)}
         <Pagination
           defaultActivePage={currentPage}
           firstItem={null}

@@ -45,22 +45,16 @@ class Form extends Component {
   render() {
     const { success, fail, errors } = this.props.profile;
     const profileData = { ...this.props.profileData, ...this.props.profileData.profile };
-    console.log(profileData)
+
     const { fields } = this.props;
-    // console.log(fields);
-    // console.log(profileData);
-    // console.log(this.props.options)
-    console.log(errors)
+
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit} dir="RTL">
             {_.map(fields, (field) => {
               if (field.dropdown) {
-                console.log("MY BELOVED EEEERRRRR")
-                console.log(errors[field.en])
                 return (
-                 
                   <DropdownInput
                     ref={(c) => {
                       this[field.en] = c;
