@@ -21,7 +21,7 @@ class Form extends Component {
       email: this.email.state.value,
       password_1: this.password_1.state.value,
       password_2: this.password_2.state.value,
-      
+
       profile: {
         firstname_fa: this.firstname_fa.state.value,
         firstname_en: this.firstname_en.state.value,
@@ -30,16 +30,19 @@ class Form extends Component {
         uni: this.uni.state.value,
         bmp: this.bmp.state.value,
         major: this.major.state.value,
+        student_id: this.student_id.state.value,
+        phone_number: this.phone_number.state.value,
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
-    console.log(fields)
+    console.log(fields);
     request(fields);
   }
 
   render() {
     const { terms, signup, options } = this.props;
     const { success, errors } = signup;
+    console.log('signupppppp:', signup);
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
@@ -91,7 +94,7 @@ class Form extends Component {
                 }}
                 allowAdd={true}
                 options={options.universities}
-                error={errors.uni != "" && !_.isUndefined(errors.uni)}
+                error={errors.uni != '' && !_.isUndefined(errors.uni)}
               />
 
               <Date
@@ -102,6 +105,26 @@ class Form extends Component {
                 label="تاریخ تولد"
               />
             </F.Group>
+
+            <F.Group width={2} dir="rtl">
+              <Input
+                ref={(c) => {
+                  this.student_id = c;
+                }}
+                type="number"
+                error={errors.student_id}
+                label="شماره دانشجویی"
+              />
+              <Input
+                ref={(c) => {
+                  this.phone_number = c;
+                }}
+                type="number"
+                error={errors.phone_number}
+                label="شماره تماس"
+              />
+            </F.Group>
+
             <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
@@ -151,8 +174,7 @@ class Form extends Component {
                 }}
                 allowAdd={false}
                 options={options.BMPs}
-                error={errors.bmp != "" && !_.isUndefined(errors.bmp)}
-
+                error={errors.bmp != '' && !_.isUndefined(errors.bmp)}
               />
               <SignupDropdown
                 ref={(c) => {
@@ -166,8 +188,7 @@ class Form extends Component {
                 }}
                 allowAdd={true}
                 options={options.fields}
-                error={errors.major != "" && !_.isUndefined(errors.major)}
-
+                error={errors.major != '' && !_.isUndefined(errors.major)}
               />
             </F.Group>
 

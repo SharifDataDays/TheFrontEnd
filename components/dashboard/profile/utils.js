@@ -33,7 +33,7 @@ const prof_fields = [
   },
   {
     en: 'student_id',
-    fa: 'شماره دانش‌جویی',
+    fa: 'شماره دانشجویی',
     readOnly: false,
   },
   {
