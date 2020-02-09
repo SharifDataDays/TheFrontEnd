@@ -61,6 +61,8 @@ export function profileUpdateAction(fields, token) {
 export function passwordUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
+    console.log("FF")
+    console.log(fields)
     dispatch(profileCheckerAction(fields));
     fields = { ...fields.password };
     if (fields.new_password1 != '' && !_.isUndefined(fields.new_password1)) {
