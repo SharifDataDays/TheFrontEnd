@@ -111,7 +111,6 @@ class Form extends Component {
                 ref={(c) => {
                   this.student_id = c;
                 }}
-                type="number"
                 error={errors.student_id}
                 label="شماره دانشجویی"
               />
@@ -119,7 +118,6 @@ class Form extends Component {
                 ref={(c) => {
                   this.phone_number = c;
                 }}
-                type="number"
                 error={errors.phone_number}
                 label="شماره تماس"
               />
