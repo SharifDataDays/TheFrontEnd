@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import Head from 'next/head';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
