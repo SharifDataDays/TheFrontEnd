@@ -38,7 +38,7 @@ class DropdownInput extends Component {
   };
 
   render() {
-    console.log(this.props);
+    
     let { field, error } = this.props;
     const { value } = this.state;
     const labelWidth = '170px';

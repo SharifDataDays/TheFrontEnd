@@ -25,6 +25,8 @@ class Form extends Component {
           uni: this.uni.state.value,
           major: this.major.state.value,
           bmp: this.bmp.state.value,
+          student_id: this.student_id.state.value,
+          phone_number: this.phone_number.state.value
         },
       };
       console.log(new_fields);

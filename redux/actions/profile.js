@@ -42,11 +42,9 @@ export function profileUpdateAction(fields, token) {
     dispatch(pageLoadingAction(true));
     dispatch(profileCheckerAction(fields));
     if (_.isEmpty(getState().profile.errors)) {
-      console.log(fields);
-      console.log(token);
       profileUpdateAPI(fields, token).then((res) => {
         const { data } = res;
-        console.log(data);
+
         if (data.status_code === 200) {
           dispatch(profileSuccessAction());
         } else {

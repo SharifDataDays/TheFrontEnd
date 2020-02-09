@@ -21,6 +21,7 @@ class Form extends Component {
       email: this.email.state.value,
       password_1: this.password_1.state.value,
       password_2: this.password_2.state.value,
+      
       profile: {
         firstname_fa: this.firstname_fa.state.value,
         firstname_en: this.firstname_en.state.value,
