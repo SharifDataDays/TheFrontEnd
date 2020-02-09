@@ -10,11 +10,12 @@ class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
     let status_code = 200;
     const allRes = await allContestsAPI(token);
-    const { contests } = allRes.data;
-    console.log(contests)
-    if (!_.isUndefined(contests) && !_.isUndefined(contests.status_code)) {
-      status_code = contests.status_code;
+
+    if (!_.isUndefined(allRes.data.status_code)) {
+      status_code = allRes.data.status_code;
     }
+    const { contests } = allRes.data;
+
     if (status_code != 200) {
       return { token,status_code };
     }
