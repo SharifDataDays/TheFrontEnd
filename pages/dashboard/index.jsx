@@ -4,7 +4,7 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Milestones from '~/components/dashboard/milestones';
 import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard';
-import Forbidden from '~/components/global/Forbidden';
+import Forbidden from '~/components/global/forbidden';
 
 class Dashboard extends Component {
   static async getInitialProps(ctx, token) {

@@ -5,6 +5,7 @@ import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
 import { milestoneAPI } from '~/redux/api/dashboard';
 import NotFound from '~/components/global/notFound';
+import Forbidden from '~/components/global/forbidden';
 
 import _ from 'lodash';
 
