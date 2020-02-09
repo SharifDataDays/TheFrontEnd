@@ -44,6 +44,7 @@ export function signupAction(fields) {
     if (_.isEmpty(getState().signup.errors)) {
       signupAPI(fields).then((res) => {
         const { data } = res;
+        console.log(data)
         if (data.status_code === 200) {
           dispatch(signupSuccessAction());
           dispatch(pageLoadingAction(false));

@@ -21,13 +21,12 @@ class Form extends Component {
       email: this.email.state.value,
       password_1: this.password_1.state.value,
       password_2: this.password_2.state.value,
-      uni: this.uni.state.value,
       profile: {
         firstname_fa: this.firstname_fa.state.value,
         firstname_en: this.firstname_en.state.value,
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
-  
+        uni: this.uni.state.value,
         bmp: this.bmp.state.value,
         major: this.major.state.value,
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
