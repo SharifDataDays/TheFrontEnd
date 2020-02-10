@@ -61,8 +61,6 @@ const AuthNavbar = connect(
   null,
   mapDispatchToProps,
 )(({ logout, transparent }) => {
-  console.log("Trans2")
-  console.log(transparent)
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
@@ -78,8 +76,7 @@ const AuthNavbar = connect(
             />
           }
         >
-          <Dropdown.Menu style={{ left: '0 !important' }}
-          >
+          <Dropdown.Menu style={{ left: '0 !important' }}>
             {/* todo todo todo */}
             {/* <Dropdown.Item href="/dashboard/team/2">
               <a>تیم</a>

@@ -7,9 +7,6 @@ import Footer from './footer';
 import theme from '~/theme';
 
 function Layout({ children, hasNavbar, hasFooter, token , transparent}) {
-  console.log("TRANS")
-  console.log(transparent)
-  console.log(hasNavbar)
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
