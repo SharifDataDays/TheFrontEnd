@@ -41,7 +41,6 @@ export function profileUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
     dispatch(profileCheckerAction(fields));
-    fields = { ...fields.profile };
     if (_.isEmpty(getState().profile.errors)) {
       profileUpdateAPI(fields, token).then((res) => {
         const { data } = res;
@@ -53,7 +52,7 @@ export function profileUpdateAction(fields, token) {
         }
       });
     } else {
-      dispatch(profileFailAction({}));
+      dispatch(profileFailAction(getState().profile.errors));
     }
     dispatch(pageLoadingAction(false));
   };
@@ -62,6 +61,8 @@ export function profileUpdateAction(fields, token) {
 export function passwordUpdateAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
+    console.log("FF")
+    console.log(fields)
     dispatch(profileCheckerAction(fields));
     fields = { ...fields.password };
     if (fields.new_password1 != '' && !_.isUndefined(fields.new_password1)) {

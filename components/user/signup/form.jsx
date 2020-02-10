@@ -5,6 +5,8 @@ import { Grid, Form as F, Message, Button } from 'semantic-ui-react';
 import Input from '../input';
 import Date from './date';
 import Terms from './terms';
+import SignupDropdown from '~/components/user/signup/signupDropdown.jsx';
+import { getUniversities } from '~/components/dashboard/profile/dropdownOptions.jsx';
 
 class Form extends Component {
   constructor(props) {
@@ -19,21 +21,28 @@ class Form extends Component {
       email: this.email.state.value,
       password_1: this.password_1.state.value,
       password_2: this.password_2.state.value,
+
       profile: {
         firstname_fa: this.firstname_fa.state.value,
         firstname_en: this.firstname_en.state.value,
         lastname_fa: this.lastname_fa.state.value,
         lastname_en: this.lastname_en.state.value,
-        university: this.university.state.value,
+        uni: this.uni.state.value,
+        bmp: this.bmp.state.value,
+        major: this.major.state.value,
+        student_id: this.student_id.state.value,
+        phone_number: this.phone_number.state.value,
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
+    console.log(fields);
     request(fields);
   }
 
   render() {
-    const { terms, signup } = this.props;
+    const { terms, signup, options } = this.props;
     const { success, errors } = signup;
+    console.log('signupppppp:', signup);
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
@@ -73,13 +82,19 @@ class Form extends Component {
             </F.Group>
 
             <F.Group width={2} dir="rtl">
-              <Input
+              <SignupDropdown
                 ref={(c) => {
-                  this.university = c;
+                  this.uni = c;
                 }}
-                error={errors.university}
-                label="دانشگاه"
-                width={8}
+                field={{
+                  en: 'uni',
+                  fa: 'دانشگاه',
+                  readOnly: false,
+                  dropdown: true,
+                }}
+                allowAdd={true}
+                options={options.universities}
+                error={errors.uni != '' && !_.isUndefined(errors.uni)}
               />
 
               <Date
@@ -90,6 +105,24 @@ class Form extends Component {
                 label="تاریخ تولد"
               />
             </F.Group>
+
+            <F.Group width={2} dir="rtl">
+              <Input
+                ref={(c) => {
+                  this.student_id = c;
+                }}
+                error={errors.student_id}
+                label="شماره دانشجویی"
+              />
+              <Input
+                ref={(c) => {
+                  this.phone_number = c;
+                }}
+                error={errors.phone_number}
+                label="شماره تماس"
+              />
+            </F.Group>
+
             <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
@@ -126,6 +159,37 @@ class Form extends Component {
                 label="تکرار گذرواژه"
               />
             </F.Group>
+            <F.Group width={2} dir="rtl">
+              <SignupDropdown
+                ref={(c) => {
+                  this.bmp = c;
+                }}
+                field={{
+                  en: 'bmp',
+                  fa: 'مقطع تحصیلی',
+                  readOnly: false,
+                  dropdown: true,
+                }}
+                allowAdd={false}
+                options={options.BMPs}
+                error={errors.bmp != '' && !_.isUndefined(errors.bmp)}
+              />
+              <SignupDropdown
+                ref={(c) => {
+                  this.major = c;
+                }}
+                field={{
+                  en: 'major',
+                  fa: 'رشته‌ی تحصیلی',
+                  readOnly: false,
+                  dropdown: true,
+                }}
+                allowAdd={true}
+                options={options.fields}
+                error={errors.major != '' && !_.isUndefined(errors.major)}
+              />
+            </F.Group>
+
             <F.Field dir="rtl">
               <Message hidden={!success} positive>
                 ایمیل تایید برای شما ارسال شد.

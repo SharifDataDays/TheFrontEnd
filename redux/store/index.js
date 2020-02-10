@@ -23,7 +23,7 @@ function makeStore(initialState, { isServer, req, debug, storeKey }) {
   const store = createStore(
     persistReducer(persistConfig, reducers),
     initialState,
-    applyMiddleware(thunk, logger),
+    (process.env.NODE_ENV === 'development' ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)),
   );
 
   store.__PERSISTOR = persistStore(store);

@@ -1,6 +1,7 @@
 import { PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR } from '../actions/profile';
 import initialState from '../store/initialState';
 import produce from 'immer';
+import validator from 'validator';
 
 function profileClearReducer(state = initialState.profile, action) {
   return produce(state, (draft) => {
@@ -14,10 +15,12 @@ function profileClearReducer(state = initialState.profile, action) {
 function profileCheckerReducer(state = initialState.profile, action) {
   return produce(state, (draft) => {
     const { fields } = action.payload;
+    draft.errors = {};
     const checkFields = { ...fields.password, ...fields.profile };
+
     _.forEach(checkFields, (value, key) => {
       if (
-        (value === '' || _.isUndefined(value)) &&
+        (value === '' || _.isUndefined(value) || _.isNull(value)) &&
         key !== 'new_password2' &&
         key != 'new_password1' &&
         key != 'old_password'
@@ -26,6 +29,13 @@ function profileCheckerReducer(state = initialState.profile, action) {
       }
     });
 
+
+    if (!validator.isNumeric("" + checkFields.student_id)) {
+      draft.errors.student_id = 'یک شماره دانشجویی معتبر وارد کنید.';
+    }
+    if (!validator.isNumeric("" + checkFields.phone_number) || checkFields.phone_number.length != 11) {
+      draft.errors.phone_number = 'یک شماره تماس معتبر به فرمت ۰۹۱۲۳۴۵۶۷۸۹ وارد کنید.';
+    }
     if (checkFields.new_password1 !== checkFields.new_password2) {
       draft.errors.new_password1 = 'گذرواژه‌ها یکسان نیستند.';
       draft.errors.new_password2 = 'گذرواژه‌ها یکسان نیستند.';
@@ -37,6 +47,7 @@ function profileCheckerReducer(state = initialState.profile, action) {
     ) {
       draft.errors.old_password = 'فیلد خالی است.';
     }
+
     return draft;
   });
 }
@@ -46,6 +57,7 @@ function profileFailReducer(state = initialState.profile, action) {
     const { errors } = action.payload;
     draft.fail = true;
     draft.success = false;
+
     draft.errors = errors;
     return draft;
   });

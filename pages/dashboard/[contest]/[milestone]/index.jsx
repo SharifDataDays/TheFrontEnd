@@ -7,6 +7,8 @@ import Trials from '~/components/dashboard/trial/list/index'
 import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
 import NotFound from '~/components/global/notFound';
+import Forbidden from '~/components/global/forbidden';
+
 import _ from 'lodash';
 
 class TaskPage extends Component {

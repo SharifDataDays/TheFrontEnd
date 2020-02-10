@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from '~/components/dashboard/team/Container';
+import Container from '~/components/dashboard/team/container';
 import { getTeamInfoAPI, getInvitationsAPI } from '~/redux/api/team';
 import {
   teamNameUpdateAction,
@@ -19,6 +19,7 @@ class TeamPage extends Component {
     const res = await getTeamInfoAPI(cid, token);
     const teamData = res.data;
     const res2 = await getInvitationsAPI(cid, token);
+    console.log(res)
     const teamInvitations = res2.data.team_invitations; //outgoing invitations
     const userInvitations = res2.data.user_invitations; //incoming invitations
     return { teamData, token, userInvitations, teamInvitations };

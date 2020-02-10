@@ -29,6 +29,7 @@ class Date extends Component {
         value={value}
         error={error}
         onChange={this.handleChange}
+        width={8}
       />
     );
   }

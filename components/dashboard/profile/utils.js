@@ -25,10 +25,34 @@ const prof_fields = [
     readOnly: false,
     date: true,
   },
+
   {
-    en: 'university',
+    en: 'phone_number',
+    fa: 'شماره تماس',
+    readOnly: false,
+  },
+  {
+    en: 'student_id',
+    fa: 'شماره دانشجویی',
+    readOnly: false,
+  },
+  {
+    en: 'uni',
     fa: 'دانشگاه',
     readOnly: false,
+    dropdown: true,
+  },
+  {
+    en: 'bmp',
+    fa: 'مقطع تحصیلی',
+    readOnly: false,
+    dropdown: true,
+  },
+  {
+    en: 'major',
+    fa: 'رشته‌ی تحصیلی',
+    readOnly: false,
+    dropdown: true,
   },
 ];
 
@@ -52,4 +76,5 @@ const pass_fields = [
     pass: true,
   },
 ];
+
 export { prof_fields, pass_fields };

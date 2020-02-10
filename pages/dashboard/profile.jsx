@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from '~/components/dashboard/profile/Container';
+import Container from '~/components/dashboard/profile/container';
 import { profileAPI } from '~/redux/api/dashboard';
 import withAuth from '~/components/global/withAuth';
+import {getUniversities, getFields, getBmp} from '~/components/dashboard/profile/dropdownOptions';
+
 import {
   profileUpdateAction,
   profileClearAction,
@@ -14,7 +16,15 @@ class ProfilePage extends Component {
   static async getInitialProps(ctx, token) {
     const res = await profileAPI(token);
     const profileData = res.data;
-    return { profileData, token };
+    const uni = await getUniversities();
+    const major  = await getFields();
+    const bmp = await getBmp()
+    const options = {
+      uni,
+      major, 
+      bmp
+    }
+    return { profileData, token , options};
   }
 
   componentDidMount() {
@@ -23,7 +33,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { profileData, token, update, profile, clear, password_update } = this.props;
+    const { profileData, token, update, profile, clear, password_update, options } = this.props;
 
     return (
       <>
@@ -35,6 +45,7 @@ class ProfilePage extends Component {
             update={update}
             clear={clear}
             password_update={password_update}
+            options={options}
           />
           ;
         </Layout>
