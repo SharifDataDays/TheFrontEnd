@@ -18,7 +18,7 @@ class Dashboard extends Component {
     const { contests, token } = this.props;
     console.log(contests);
     return (
-      <Layout token={token} hasNavbar hasFooter transparent>
+      <Layout token={token} hasNavbar hasFooter >
         <Container contests={contests} />
       </Layout>
     );
