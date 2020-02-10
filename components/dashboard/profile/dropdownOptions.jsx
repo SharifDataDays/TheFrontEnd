@@ -5,17 +5,17 @@ export async function getBmp() {
   const bmp = [
     {
       key: 'BAC',
-      text: 'Bachelor',
+      text: 'کارشناسی',
       value: 'BAC'
     },
     {
       key: 'MAS',
-      text: 'Master',
+      text: 'کارشناسی ارشد',
       value: 'MAS',
     },
     {
       key: 'PHD',
-      text: 'Ph.D',
+      text: 'دکتری',
       value: 'PHD',
     },
   ];
