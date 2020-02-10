@@ -68,7 +68,7 @@ export default class TrialAccardion extends Component {
         <p>
           مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
         </p>
-      </>
+       </>
     );
   };
 

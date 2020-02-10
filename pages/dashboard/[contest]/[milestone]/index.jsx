@@ -25,7 +25,7 @@ class TaskPage extends Component {
 
 
   panes = () => {
-    const { milestone, cid, mid } = this.props;
+    const { milestone, cid, mid, token } = this.props;
     return [
       {
         menuItem: (
@@ -43,7 +43,7 @@ class TaskPage extends Component {
         ),
         render: () => (
           <Tab.Pane attached={false}>
-            <Tasks cid={cid} mid={mid} milestone={milestone} />
+            <Tasks cid={cid} mid={mid} milestone={milestone} token={token}/>
           </Tab.Pane>
         ),
       },

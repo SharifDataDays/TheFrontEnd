@@ -126,6 +126,7 @@ export function taskAPI(contestId, milestoneId, taskId, token) {
 }
 
 export function getNewTrialAPI(token, contestId, milestoneId, taskId) {
+  console.log({token, contestId, milestoneId, taskId})
   return axios.post(
     TASK(contestId, milestoneId, taskId),
     {},
