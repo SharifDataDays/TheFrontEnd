@@ -7,6 +7,7 @@ const FORGOT = `${BASE_ADDR}/accounts/password/reset/`;
 const RESET = `${BASE_ADDR}/accounts/password/reset/confirm/`;
 
 export function loginAPI(data) {
+  console.log(data);
   return axios.post(LOGIN, data);
 }
 
@@ -19,7 +20,7 @@ export function authAPI(token) {
 }
 
 export function forgotAPI(email) {
-  return axios.post(FORGOT, email);
+  return axios.post(FORGOT, {email});
 }
 
 export function resetAPI(data) {

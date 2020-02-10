@@ -69,4 +69,5 @@ export default {
   tr: (props): Node => <Table.Row {...props} />,
   td: (props): Node => <Table.Cell {...props} />,
   img: (props): Node => <Image {...props} />,
+  a: (props): Node => <a target="_blank" rel="noopener noreferrer" {...props} />,
 };

@@ -13,7 +13,7 @@ const Header = styled(H)`
 function HeaderSection() {
   return (
     <Grid verticalAlign="middle" centered>
-      <Grid.Column computer={7} tablet={7} mobile={15}>
+      <Grid.Column computer={7} tablet={7} mobile={15} style={{paddingTop: '50px'}} >
         <Header as="h1">محتوای مورد‌نظر موجود نیست.</Header>
       </Grid.Column>
     </Grid>

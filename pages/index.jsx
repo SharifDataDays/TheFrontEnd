@@ -12,6 +12,7 @@ import homeAPI from '~/redux/api/home';
 
 class HomePage extends Component {
   static async getInitialProps(ctx) {
+
     const res = await homeAPI();
     const content = res.data;
     return { content };

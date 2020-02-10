@@ -6,14 +6,19 @@ import Tasks from '~/components/dashboard/tasks';
 import Trials from '~/components/dashboard/trial/list/index'
 import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
-import NoSSR from 'react-no-ssr';
+import NotFound from '~/components/global/notFound';
+import _ from 'lodash';
 
 class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
     const { contest, milestone, task } = query;
     const res = await milestoneAPI(contest, milestone, token);
-    console.log(res.data.milestone.tasks[4].trials)
-    return { milestone: res.data.milestone, cid: contest, mid: milestone, token };
+
+    let status_code = 200;
+    if (!_.isUndefined(res.data.status_code)) {
+      status_code = res.data.status_code;
+    }
+    return { milestone: res.data.milestone, cid: contest, mid: milestone, token, status_code };
   }
 
 
@@ -44,18 +49,26 @@ class TaskPage extends Component {
   };
 
   render() {
-    const { milestone, cid, mid, token } = this.props;
+    const { milestone, cid, mid, token, status_code } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Layout token={token} hasNavbar>
-          <Tab
+
+
+        <Layout token={token} hasNavbar hasFooter>
+          {status_code === 403 ? (
+            <Forbidden cid={2} />
+          ) : status_code !== 200 ? (
+            <NotFound />
+          ) : (
+            <Tab
             defaultActiveIndex={1}
             menu={{ borderless: true, attached: false, tabular: false }}
             panes={this.panes()}
           />
+          )}
         </Layout>
       </>
     );

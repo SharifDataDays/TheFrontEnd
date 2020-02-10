@@ -14,6 +14,15 @@ export default {
   profile: {
     errors: {},
     success: false,
-    fail: false
-  }
+    fail: false,
+  },
+  trials: {
+    errors:{}
+  },
+  team: {
+    errors: {},
+    finalize: false,
+    success: false,
+    fail: false,
+  },
 };
