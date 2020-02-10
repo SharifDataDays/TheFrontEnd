@@ -61,6 +61,8 @@ const AuthNavbar = connect(
   null,
   mapDispatchToProps,
 )(({ logout, transparent }) => {
+  console.log("Trans2")
+  console.log(transparent)
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
@@ -116,7 +118,7 @@ const AuthNavbar = connect(
         </Dropdown>
       </Menu.Item>
       <Menu.Item>
-        <a href="/dashboard">گام‌ها</a>
+        <a href="/dashboard">داشبورد</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
       </Menu.Item>
       <Menu.Item>
