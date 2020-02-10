@@ -15,8 +15,13 @@ class Dashboard extends Component {
     if (!_.isUndefined(contestRes.data.status_code)) {
       status_code = contestRes.data.status_code;
     }
+    console.log(contestRes)
+    console.log(contest_id)
+
     if (status_code != 200) {
-      return { token, status_code };
+      const detail = contestRes.data.detail
+      console.log(contest_id)
+      return { token, status_code , detail, contest_id};
     }
     
     const contest = contestRes.data.contest;
@@ -27,15 +32,15 @@ class Dashboard extends Component {
         return milestone;
       }),
     );
-    return { milestones, contest, token, status_code };
+    return { milestones, contest, token, status_code , contest_id};
   }
 
   render() {
-    const { milestones, contest, token, status_code } = this.props;
+    const { milestones, contest, token, status_code, contest_id, detail } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
         {status_code === 403 ? (
-          <Forbidden cid={2} />
+          <Forbidden cid={contest_id} detail={detail} />
         ) : status_code !== 200 ? (
           <NotFound />
         ) : (
