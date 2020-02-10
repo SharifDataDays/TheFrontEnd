@@ -59,7 +59,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
                 />
               </RowSegment>
             </a>
-            {/* <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/> */}
+            <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/>
           </>
         );
       })}
