@@ -53,6 +53,8 @@ export function getTeamNameAPI(token) {
 }
 
 export function passwordUpdateAPI(data, token) {
+  console.log(PASSWORD_RESET)
+  console.log(data)
   return axios.post(PASSWORD_RESET, data, {
     headers: {
       Authorization: `Bearer ${token}`,

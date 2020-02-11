@@ -45,11 +45,14 @@ class Form extends Component {
   }
 
   render() {
-    const { success, fail, errors } = this.props.profile;
+    const { success, fail } = this.props.profile;
     const profileData = { ...this.props.profileData, ...this.props.profileData.profile };
 
     const { fields } = this.props;
-
+    let {errors }= this.props.profile;
+    if(!_.isUndefined(this.props.profile.errors.profile))
+    errors = this.props.profile.errors.profile
+    console.log(errors)
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">
@@ -77,7 +80,9 @@ class Form extends Component {
                   }}
                   key={field.en}
                   field={field}
-                  error={errors[field.en]}
+//                  error={errors[field.en]}
+                  error={errors[field.en] != '' && !_.isUndefined(errors[field.en])}
+
                   initial={profileData[field.en]}
                 />
               );

@@ -1,4 +1,10 @@
-import { PROFILE_CHECK, PROFILE_SUCCESS, PROFILE_FAIL, PROFILE_CLEAR } from '../actions/profile';
+import {
+  PROFILE_CHECK,
+  PROFILE_PASS_CHECK,
+  PROFILE_SUCCESS,
+  PROFILE_FAIL,
+  PROFILE_CLEAR,
+} from '../actions/profile';
 import initialState from '../store/initialState';
 import produce from 'immer';
 import validator from 'validator';
@@ -8,6 +14,23 @@ function profileClearReducer(state = initialState.profile, action) {
     draft.success = false;
     draft.fail = false;
     draft.errors = {};
+    return draft;
+  });
+}
+function profilePasswordCheckerReducer(state = initialState.profile, action) {
+  return produce(state, (draft) => {
+    const { fields } = action.payload;
+    draft.errors = {};
+    const checkFields = { ...fields.password, ...fields.profile };
+
+    if (
+      checkFields.new_password1 !== '' &&
+      !_.isUndefined(checkFields.new_password1) &&
+      (checkFields.old_password === '' || _.isUndefined(checkFields.old_password))
+    ) {
+      draft.errors.old_password = 'فیلد خالی است.';
+    }
+
     return draft;
   });
 }
@@ -29,11 +52,13 @@ function profileCheckerReducer(state = initialState.profile, action) {
       }
     });
 
-
-    if (!validator.isNumeric("" + checkFields.student_id)) {
+    if (!validator.isNumeric('' + checkFields.student_id)) {
       draft.errors.student_id = 'یک شماره دانشجویی معتبر وارد کنید.';
     }
-    if (!validator.isNumeric("" + checkFields.phone_number) || checkFields.phone_number.length != 11) {
+    if (
+      !validator.isNumeric('' + checkFields.phone_number) ||
+      checkFields.phone_number.length != 11
+    ) {
       draft.errors.phone_number = 'یک شماره تماس معتبر به فرمت ۰۹۱۲۳۴۵۶۷۸۹ وارد کنید.';
     }
     if (checkFields.new_password1 !== checkFields.new_password2) {
@@ -57,8 +82,9 @@ function profileFailReducer(state = initialState.profile, action) {
     const { errors } = action.payload;
     draft.fail = true;
     draft.success = false;
-
     draft.errors = errors;
+    console.log(errors);
+
     return draft;
   });
 }
@@ -82,6 +108,8 @@ export default function profileReducers(state = initialState.profile, action) {
       return profileSuccessReducer(state, action);
     case PROFILE_CLEAR:
       return profileClearReducer(state, action);
+    case PROFILE_PASS_CHECK:
+      return profilePasswordCheckerReducer(state, action);
     default:
       return state;
   }

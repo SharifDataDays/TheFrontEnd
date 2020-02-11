@@ -1,5 +1,10 @@
 const prof_fields = [
   {
+    en: 'email',
+    fa: 'ایمیل',
+    readOnly: true,
+  },
+  {
     en: 'firstname_fa',
     fa: 'نام به فارسی',
     readOnly: false,
