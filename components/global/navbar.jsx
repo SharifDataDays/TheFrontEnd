@@ -31,7 +31,7 @@ const Image = styled(Im)`
 function NoAuthNavbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Item >
+      <Menu.Item>
         <a href="/login">
           <Button primary>ورود</Button>
         </a>
@@ -66,12 +66,9 @@ const AuthNavbar = connect(
   mapDispatchToProps,
 )(({ logout, transparent }) => {
   return (
-    <Menu size="huge" transparent={transparent} secondary pl={[3, 4, 4]} pr ={0}>
-      <Menu.Item 
-      style={{ paddingRight: 0 }}
-  >
+    <Menu size="huge" transparent={transparent} secondary pl={[1, 4, 4]} pr={0}>
+      <Menu.Item style={{ paddingRight: 0 ,  zIndex: 1 }}>
         <Dropdown
-    
           item
           // direction={"left"}
           trigger={
@@ -82,10 +79,9 @@ const AuthNavbar = connect(
               icon={faUser}
             />
           }
-         style={{ paddingRight: 0 }}
-          
+          style={{ paddingRight: 0 }}
         >
-          <Dropdown.Menu style={{ left: '0 !important'}} >
+          <Dropdown.Menu style={{ left: '0 !important', zIndex: 1 }}>
             {/* todo todo todo */}
             {/* <Dropdown.Item href="/dashboard/team/2">
               <a>تیم</a>
@@ -96,7 +92,12 @@ const AuthNavbar = connect(
                 icon={faCog}
               />
             </Dropdown.Item> */}
-            <Dropdown.Item href="/dashboard/profile" >
+            <Dropdown.Item
+              href="/dashboard/profile"
+              style={{
+                zIndex: 1,
+              }}
+            >
               <a>پروفایل</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
@@ -106,6 +107,9 @@ const AuthNavbar = connect(
               />
             </Dropdown.Item>
             <Dropdown.Item
+              style={{
+                zIndex: 1,
+              }}
               href="/login"
               onClick={(e) => {
                 e.preventDefault();
@@ -124,9 +128,9 @@ const AuthNavbar = connect(
         </Dropdown>
       </Menu.Item>
       <Menu.Item
-      style={{
-        padding: 0
-      }}
+        style={{
+          padding: 0,
+        }}
       >
         <a href="/dashboard">داشبورد</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
