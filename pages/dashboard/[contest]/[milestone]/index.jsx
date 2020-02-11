@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Tasks from '~/components/dashboard/tasks';
-import Trials from '~/components/dashboard/trial/list/index'
+import Trials from '~/components/dashboard/trial/list/index';
 import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
 import NotFound from '~/components/global/notFound';
-import Forbidden from '~/components/global/forbidden';
 
 import _ from 'lodash';
 
@@ -23,7 +22,6 @@ class TaskPage extends Component {
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token, status_code };
   }
 
-
   panes = () => {
     const { milestone, cid, mid, token } = this.props;
     return [
@@ -33,7 +31,11 @@ class TaskPage extends Component {
             ارزشیابی
           </Menu.Item>
         ),
-        render: () => <Tab.Pane attached={false}><Trials tasks={milestone.tasks}/></Tab.Pane>,
+        render: () => (
+          <Tab.Pane attached={false}>
+            <Trials tasks={milestone.tasks} />
+          </Tab.Pane>
+        ),
       },
       {
         menuItem: (
@@ -43,7 +45,7 @@ class TaskPage extends Component {
         ),
         render: () => (
           <Tab.Pane attached={false}>
-            <Tasks cid={cid} mid={mid} milestone={milestone} token={token}/>
+            <Tasks cid={cid} mid={mid} milestone={milestone} token={token} />
           </Tab.Pane>
         ),
       },
@@ -58,18 +60,15 @@ class TaskPage extends Component {
           <title>DataDays 2020</title>
         </Head>
 
-
         <Layout token={token} hasNavbar hasFooter>
-          {status_code === 403 ? (
-            <Forbidden cid={2} />
-          ) : status_code !== 200 ? (
+          {status_code !== 200 ? (
             <NotFound />
           ) : (
             <Tab
-            defaultActiveIndex={1}
-            menu={{ borderless: true, attached: false, tabular: false }}
-            panes={this.panes()}
-          />
+              defaultActiveIndex={1}
+              menu={{ borderless: true, attached: false, tabular: false }}
+              panes={this.panes()}
+            />
           )}
         </Layout>
       </>

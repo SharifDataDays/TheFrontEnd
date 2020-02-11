@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '~/components/dashboard/team/container';
 import { getTeamInfoAPI, getInvitationsAPI } from '~/redux/api/team';
+import { contestAPI } from '~/redux/api/dashboard';
+
 import _ from 'lodash';
 
 import {
@@ -18,17 +20,24 @@ import NotFound from '~/components/global/notFound';
 class TeamPage extends Component {
   static async getInitialProps({ query }, token) {
     const cid = query.contest;
-    console.log(cid);
+
     const res = await getTeamInfoAPI(cid, token);
     let status_code = 200;
     const teamData = res.data;
+
     if (!_.isUndefined(res.data.status_code)) status_code = res.data.status_code;
     if (status_code != 200) return { status_code, token };
     const res2 = await getInvitationsAPI(cid, token);
-    console.log(res);
+
     const teamInvitations = res2.data.team_invitations; //outgoing invitations
     const userInvitations = res2.data.user_invitations; //incoming invitations
-    return { teamData, token, userInvitations, teamInvitations, status_code };
+
+    const contestRes = await contestAPI(cid, token);
+    let rules = '';
+    if (!_.isUndefined(contestRes.data.contest) && !_.isUndefined(contestRes.data.contest.rules))
+      rules = contestRes.data.contest.rules;
+
+    return { teamData, token, userInvitations, teamInvitations, status_code, rules };
   }
 
   componentDidMount() {
@@ -47,7 +56,8 @@ class TeamPage extends Component {
       finalize,
       answerInvitation,
       addMember,
-      status_code
+      status_code,
+      rules,
     } = this.props;
 
     return (
@@ -65,6 +75,7 @@ class TeamPage extends Component {
               answerInvitation={answerInvitation}
               addMember={addMember}
               finalize={finalize}
+              rules={rules}
             />
           )}
           ;

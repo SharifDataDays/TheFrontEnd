@@ -63,7 +63,7 @@ function HeaderSection({ cid, profile, team, detail }) {
             <></>
           )}
           {team ? (
-            <a href={`/dashboard/team/${cid}`}>
+            <a href={`/dashboard/${cid}/team`}>
               <Button
                 inverted
                 secondary

@@ -39,9 +39,7 @@ class ResourcesPage extends Component {
           <title>DataDays 2020</title>
         </Head>
         <Layout token={token} hasNavbar hasFooter>
-          {task.status_code === 403 ? (
-            <Forbidden cid={2} />
-          ) : task.status_code !== 200 ? (
+          {task.status_code !== 200 ? (
             <NotFound />
           ) : (
             <Resources
