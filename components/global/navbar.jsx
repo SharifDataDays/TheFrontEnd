@@ -66,7 +66,7 @@ const AuthNavbar = connect(
   mapDispatchToProps,
 )(({ logout, transparent }) => {
   return (
-    <Menu size="huge" transparent={transparent} secondary pl={[2, 2, 4]} pr ={0}>
+    <Menu size="huge" transparent={transparent} secondary pl={[3, 4, 4]} pr ={0}>
       <Menu.Item 
       style={{ paddingRight: 0 }}
   >
