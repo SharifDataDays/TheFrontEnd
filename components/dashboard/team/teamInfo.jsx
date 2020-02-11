@@ -35,7 +35,7 @@ function TeamMembersSection({ teamData }) {
                 padding: '10px',
               }}
             >
-              {user.user.first_name} {user.user.last_name} ({user.user.username})
+              {user.user.username}
             </List.Item>
           );
         })}
@@ -44,7 +44,7 @@ function TeamMembersSection({ teamData }) {
   );
 }
 
-function remove(invitation, answerInvitation, token) {
+function cancel(invitation, answerInvitation, token) {
   const fields = {
     id: invitation.id,
     accept: false,
@@ -95,7 +95,7 @@ function TeamInvitationsSection({ invitations, answerInvitation, token }) {
                     floated="right"
                     size="small"
                     onClick={() => {
-                      remove(invitation, answerInvitation, token);
+                      cancel(invitation, answerInvitation, token);
                     }}
                   />
                 </Container>

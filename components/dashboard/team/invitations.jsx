@@ -56,7 +56,7 @@ export default function Invitations({ finalized, userInvitations, answerInvitati
     return <></>;
   }
   return (
-    <Container px={[4, 5, 6]} pt={5} pb={4} m={0} >
+    <Container pt={5} pb={4} m={0} >
       <Header size="huge" dir="RTL">
         درخواست‌ها
       </Header>
