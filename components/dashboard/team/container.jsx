@@ -57,6 +57,7 @@ export default function TeamContainer({
         addMember={addMember}
         finalize={finalize}
         token={token}
+        answerInvitation={answerInvitation}
       />
 
       <Invitations

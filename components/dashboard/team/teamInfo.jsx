@@ -44,7 +44,17 @@ function TeamMembersSection({ teamData }) {
   );
 }
 
-function TeamInvitationsSection({ invitations }) {
+function remove(invitation, answerInvitation, token) {
+  const fields = {
+    id: invitation.id,
+    accept: false,
+    contest_id: invitation.contest_id,
+  };
+  invitation.hide = true;
+  answerInvitation(fields, token);
+}
+
+function TeamInvitationsSection({ invitations, answerInvitation, token }) {
   if (_.isUndefined(invitations) || _.isEmpty(invitations)) {
     return <></>;
   }
@@ -55,18 +65,42 @@ function TeamInvitationsSection({ invitations }) {
         <Label primary pl={4} style={{ fontWeight: 'bold' }}>
           درخواست‌های فرستاده شده:
         </Label>
-        <List bulleted>
+        <List>
           {_.map(invitations, (invitation) => {
-            return (
-              <List.Item
-                key={invitation.id}
-                style={{
-                  padding: '10px',
-                }}
-              >
-                {invitation.participant}
-              </List.Item>
-            );
+            if (!invitation.hide) {
+              return (
+                <Container
+                  key={invitation.id}
+                  py={1}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingRight: '10px',
+                  }}
+                >
+                  <List bulleted>
+                    <List.Item
+                      style={{
+                        paddingRight: '10px',
+                      }}
+                    >
+                      {invitation.participant}
+                    </List.Item>
+                  </List>
+                  <Button
+                    negative
+                    content="لفو"
+                    floated="right"
+                    size="small"
+                    onClick={() => {
+                      remove(invitation, answerInvitation, token);
+                    }}
+                  />
+                </Container>
+              );
+            }
           })}
         </List>
       </Grid.Row>
@@ -81,7 +115,7 @@ export default class TeamInfo extends Component {
   }
 
   render() {
-    const { team, teamData, teamNameUpdate, addMember, token, finalize } = this.props;
+    const { team, teamData, teamNameUpdate, addMember, token, finalize, answerInvitation } = this.props;
     const fin = teamData.name_finalized || team.finalized;
     return (
       <Container py={3} m={0}>
@@ -120,7 +154,11 @@ export default class TeamInfo extends Component {
             <Divider />
             <TeamMembersSection teamData={teamData} />
 
-            <TeamInvitationsSection invitations={teamData.invitations} />
+            <TeamInvitationsSection
+              invitations={teamData.invitations}
+              answerInvitation={answerInvitation}
+              token={token}
+            />
 
             <Input
               kind={'addMember'}

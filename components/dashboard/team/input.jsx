@@ -44,6 +44,7 @@ class Input extends Component {
       const fields = {
         contest_id: this.props.teamData.contest,
         participant: this.state.value,
+        accept: true
       };
       this.props.func(fields, this.props.token);
     }
