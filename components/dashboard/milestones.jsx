@@ -10,34 +10,38 @@ function Milestones({ contest, milestones }) {
         <Card.Group>
           {_.map(milestones, (milestone) => {
             const { id, title, description, image, start_time, end_time } = milestone;
-            console.log(image)
+
             return (
               <a href={`/dashboard/${contest.id}/${id}`}>
                 <Card dir="rtl" style={{ margin: '2rem auto' }} fluid>
                   <Card.Content>
                     <Card.Header>{title}</Card.Header>
                     <div
-                    style={{
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      textAlign: 'justify',
-                    }}
-                    >
-                    <Image size="medium" src={image} style={{
-                      padding: '20px',
-                      marginLeft: 'auto',
-                      marginRight: 'auto'
-                    }} />
-                    <p
                       style={{
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
                         textAlign: 'justify',
                       }}
                     >
-                      <Card.Description>{description}</Card.Description>
-                    </p>
+                      <Image
+                        size="medium"
+                        src={image}
+                        style={{
+                          padding: '20px',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                        }}
+                      />
+                      <p
+                        style={{
+                          textAlign: 'justify',
+                        }}
+                      >
+                        <Card.Description>{description}</Card.Description>
+                      </p>
                     </div>
                   </Card.Content>
                   <Card.Content extra>

@@ -4,13 +4,14 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
-import { taskAPI, contentAPI } from '~/redux/api/dashboard';
+import { taskAPI, contentAPI, milestoneAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 
 class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
     const res0 = await taskAPI(query.contest, query.milestone, query.task, token);
     let status_code = 200;
+    console.log(res0.data);
     if (!_.isUndefined(res0.data.status_code)) {
       status_code = res0.data.status_code;
     }
@@ -22,7 +23,11 @@ class ResourcesPage extends Component {
       const res = await contentAPI(contentID, token);
       task = res.data;
     }
+    const res2 = await milestoneAPI(query.contest, query.milestone, token);
+    const image = res2.data.milestone.image;
+
     return {
+      image,
       task,
       token,
       contestId: query.contest,
@@ -32,7 +37,7 @@ class ResourcesPage extends Component {
   }
 
   render() {
-    const { task, token, contestId, milestoneId, taskId } = this.props;
+    const { task, token, contestId, milestoneId, taskId, image } = this.props;
     return (
       <>
         <Head>
@@ -48,6 +53,7 @@ class ResourcesPage extends Component {
               milestoneId={milestoneId}
               taskId={taskId}
               token={token}
+              image={image}
             />
           )}
         </Layout>

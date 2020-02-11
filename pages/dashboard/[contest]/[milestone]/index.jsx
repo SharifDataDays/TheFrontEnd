@@ -8,6 +8,7 @@ import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
 import NotFound from '~/components/global/notFound';
 import Forbidden from '~/components/global/forbidden';
+import Router from 'next/router';
 
 import _ from 'lodash';
 
@@ -15,7 +16,7 @@ class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
     const { contest, milestone, task } = query;
     const res = await milestoneAPI(contest, milestone, token);
-
+console.log(res.data)
     let status_code = 200;
     if (!_.isUndefined(res.data.status_code)) {
       status_code = res.data.status_code;
@@ -55,7 +56,17 @@ class TaskPage extends Component {
 
   render() {
     const { milestone, cid, mid, token, status_code } = this.props;
+    console.log(milestone)
     const trialsReady = false;
+    console.log(milestone.tasks[0])
+    if (status_code === 200 && milestone.tasks.length === 1) {
+      Router.push(
+        `/dashboard/${cid}/${mid}/${milestone.tasks[0].id}`,
+        `/dashboard/${cid}/${mid}/${milestone.tasks[0].id}`,
+        { shallow: false },
+      );
+      return <></>;
+    }
     if (!trialsReady) {
       return (
         <>

@@ -25,7 +25,6 @@ class Dashboard extends Component {
 
     if (status_code != 200) {
       const detail = contestRes.data.detail;
-      console.log(contest_id);
       return { token, status_code, detail, contest_id };
     }
 
@@ -43,10 +42,20 @@ class Dashboard extends Component {
 
   render() {
     const { milestones, contest, token, status_code, contest_id, detail } = this.props;
+
     if (status_code === 200 && milestones.length === 1) {
+      const milestone = milestones[0];
+      if (milestone.tasks.length === 1) {
+        Router.push(
+          `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
+          `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
+          { shallow: false },
+        );
+        return <></>;
+      }
       Router.push(
-        `/dashboard/${contest_id}/${milestones[0].id}`,
-        `/dashboard/${contest_id}/${milestones[0].id}`,
+        `/dashboard/${contest_id}/${milestone.id}`,
+        `/dashboard/${contest_id}/${milestone.id}`,
         { shallow: false },
       );
       return <></>;

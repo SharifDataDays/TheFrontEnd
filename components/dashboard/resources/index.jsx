@@ -56,14 +56,66 @@ class Resource extends Component {
   }
 
   async trial(event) {
-    const { contestId, milestoneId, taskId , token} = this.props;
+    const { contestId, milestoneId, taskId, token } = this.props;
     const rs = await contentFinished(contestId, taskId, milestoneId, token);
-    console.log(rs)
+    console.log(rs);
   }
 
   render() {
-    const { content, contestId, milestoneId, taskId } = this.props;
+    const { content, contestId, milestoneId, taskId, image } = this.props;
     const { page } = this.state;
+
+    if (contestId + '' === '3') {
+      return (
+        <Grid
+          style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
+          centered
+        >
+          <Grid.Row>
+            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}></Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+              <Header as="h1" style={{ textAlign: 'center' }}>
+                {content.title_fa}
+              </Header>
+
+              {!_.isEmpty(content.file) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.file}
+                  download
+                >
+                  دانلود منابع
+                </a>
+              )}
+              <br />
+              {page > 0 && !_.isEmpty(content.sections[page - 1].link_to_colab) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.sections[page - 1].link_to_colab}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  مشاهده در Google Colab
+                </a>
+              )}
+              {!_.isUndefined(image) ? (
+                <Image size="large" style={{ margin: 'auto' }} src={image} />
+              ) : (
+                <></>
+              )}
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column computer={10} tablet={12} mobile={14}>
+              <Container content={content.description_en} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      );
+    }
+
     return (
       <Grid
         style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
