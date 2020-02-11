@@ -44,7 +44,7 @@ export class Box extends Component {
 
     const { contest } = this.props;
     let backgroundColor = 'rgba(32, 32, 32, 0.6)';
-    let border = '2px solid rgba(32, 32, 32, 1)';
+    let border = '2px solid rgba(32, 32, 32, 0.8)';
     if (this.state.hover) {
       backgroundColor = 'rgba(29, 147, 247, 0.8)';
       border = '2px solid rgba(29, 147, 247, 1)';
