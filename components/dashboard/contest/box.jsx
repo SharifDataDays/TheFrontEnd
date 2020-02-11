@@ -11,7 +11,7 @@ const Container = styled.div`
   ${space}
 `;
 
-const Header = styled.text`
+const Header = styled.div`
   color: white;
   font-size: 30px;
   align-content: center;
@@ -26,6 +26,7 @@ export class Box extends Component {
     this.state = { hover: false };
     this.toggleHoverOff.bind(this);
     this.toggleHoverOn.bind(this);
+    this.box.bind(this);
   }
 
   toggleHoverOff = () => {
@@ -39,9 +40,7 @@ export class Box extends Component {
     });
   };
 
-  render() {
-    console.log(contest);
-
+  box = (width, minHeight) => {
     const { contest } = this.props;
     let backgroundColor = 'rgba(32, 32, 32, 0.6)';
     let border = '2px solid rgba(32, 32, 32, 0.8)';
@@ -50,8 +49,33 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
-    const content = (
-      <>
+    console.log(width)
+    return (
+      <Container
+        py={[4, 4, 4]}
+        px={[3, 4, 4]}
+        style={{
+          backgroundColor,
+           border,
+          width,
+          minHeight,
+
+          borderRadius: '10px',
+          color: 'white',
+          
+         // boxShadow: `0 0 5px 10px ${backgroundColor} inset`,
+          boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
+          alignContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          textAlign: 'justify',
+        }}
+        onMouseEnter={this.toggleHoverOn}
+        onMouseLeave={this.toggleHoverOff}
+      >
+        {' '}
         <Header>{contest.title}</Header>
         <Divider />
         <Container
@@ -76,60 +100,22 @@ export class Box extends Component {
           </div>
           <Container pt={3}>{contest.description}</Container>
         </Container>
-      </>
+      </Container>
     );
+  };
+
+  render() {
+    const {contest} = this.props
     return (
       <div>
         <Grid.Column>
           <Container mx={[2, 5, 5]} my={[3, 4, 4]}>
             <a href={`/dashboard/${contest.id}`}>
               <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-              <Container
-                  py={[4, 4, 4]}
-                  px={[3, 4, 4]}
-                  style={{
-                    backgroundColor,
-                    border,
-
-                    borderRadius: '10px',
-                    color: 'white',
-                     width: '300px',
-                    // height: '350px',
-
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    textAlign: 'justify',
-                  }}
-                  onMouseEnter={this.toggleHoverOn}
-                  onMouseLeave={this.toggleHoverOff}
-                >{content}</Container>
+                {this.box("300px", "auto")}
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                <Container
-                  py={[4, 4, 4]}
-                  px={[3, 4, 4]}
-                  style={{
-                    backgroundColor,
-                    border,
-
-                    borderRadius: '10px',
-                    color: 'white',
-                    width: '350px',
-                    minHeight: '400px',
-
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    textAlign: 'justify',
-                  }}
-                  onMouseEnter={this.toggleHoverOn}
-                  onMouseLeave={this.toggleHoverOff}
-                >{content}</Container>
+                {this.box("360px", "380px")}
               </Responsive>
             </a>
           </Container>
