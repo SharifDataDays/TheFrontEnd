@@ -118,7 +118,7 @@ export class Box extends Component {
                     borderRadius: '10px',
                     color: 'white',
                     width: '350px',
-                    height: '350px',
+                    minHeight: '400px',
 
                     alignContent: 'center',
                     alignItems: 'center',
