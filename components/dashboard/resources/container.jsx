@@ -39,6 +39,7 @@ function Container({ content }) {
           tableCell: (props) => <Table.Cell {...props} />,
         }}
         astPlugins={[parseHtml]}
+       
       />
     </MathJax.Context>
   );
