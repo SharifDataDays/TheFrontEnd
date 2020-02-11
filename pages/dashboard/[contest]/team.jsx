@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from '~/components/dashboard/team/container';
 import { getTeamInfoAPI, getInvitationsAPI } from '~/redux/api/team';
-import { contestAPI } from '~/redux/api/dashboard';
+import { allContestsAPI } from '~/redux/api/dashboard';
 
 import _ from 'lodash';
 
@@ -32,12 +32,16 @@ class TeamPage extends Component {
     const teamInvitations = res2.data.team_invitations; //outgoing invitations
     const userInvitations = res2.data.user_invitations; //incoming invitations
 
-    const contestRes = await contestAPI(cid, token);
-    let rules = '';
-    if (!_.isUndefined(contestRes.data.contest) && !_.isUndefined(contestRes.data.contest.rules))
-      rules = contestRes.data.contest.rules;
+    const allRes = await allContestsAPI(token);
+    const { contests } = allRes.data;
+    const contest = contests.filter((a) => {
+      return a.id + '' === cid + '';
+    });
 
-    return { teamData, token, userInvitations, teamInvitations, status_code, rules };
+    
+    const rules = contest[0].rules;
+
+    return { teamData, token, userInvitations, teamInvitations, status_code, rules, cid };
   }
 
   componentDidMount() {
@@ -58,6 +62,7 @@ class TeamPage extends Component {
       addMember,
       status_code,
       rules,
+      cid
     } = this.props;
 
     return (
@@ -76,6 +81,7 @@ class TeamPage extends Component {
               addMember={addMember}
               finalize={finalize}
               rules={rules}
+              cid={cid}
             />
           )}
           ;

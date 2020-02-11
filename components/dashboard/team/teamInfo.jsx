@@ -50,7 +50,7 @@ function TeamInvitationsSection({ invitations }) {
   }
   return (
     <>
-     <Divider />
+      <Divider />
       <Grid.Row>
         <Label primary pl={4} style={{ fontWeight: 'bold' }}>
           درخواست‌های فرستاده شده:
@@ -70,7 +70,6 @@ function TeamInvitationsSection({ invitations }) {
           })}
         </List>
       </Grid.Row>
-     
     </>
   );
 }
@@ -85,8 +84,14 @@ export default class TeamInfo extends Component {
     const { team, teamData, teamNameUpdate, addMember, token, finalize } = this.props;
     const fin = teamData.name_finalized || team.finalized;
     return (
-      <>
-        <HeaderDiv finalized={fin} finalize={finalize} teamData={teamData} token={token} teamName={this.teamName} />
+      <Container py={3} m={0}>
+        <HeaderDiv
+          finalized={fin}
+          finalize={finalize}
+          teamData={teamData}
+          token={token}
+          teamName={this.teamName}
+        />
         <Grid dir="RTL">
           <Grid.Column
             verticalAlign="middle"
@@ -114,7 +119,7 @@ export default class TeamInfo extends Component {
 
             <Divider />
             <TeamMembersSection teamData={teamData} />
-            
+
             <TeamInvitationsSection invitations={teamData.invitations} />
 
             <Input
@@ -131,7 +136,7 @@ export default class TeamInfo extends Component {
             />
           </Grid.Column>
         </Grid>
-      </>
+      </Container>
     );
   }
 }

@@ -52,7 +52,7 @@ export function loginAction(username, password) {
     if (_.isEmpty(getState().auth.errors)) {
       loginAPI({ username, password }).then((res) => {
         const { data } = res;
-        console.log(data);
+        
         if (data.status_code === 200) {
           dispatch(loginSuccessAction(data.access));
           dispatch(pageLoadingAction(false));

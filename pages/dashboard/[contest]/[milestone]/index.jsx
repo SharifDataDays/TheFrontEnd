@@ -7,6 +7,7 @@ import Trials from '~/components/dashboard/trial/list/index';
 import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
 import NotFound from '~/components/global/notFound';
+import Forbidden from '~/components/global/forbidden';
 
 import _ from 'lodash';
 
@@ -54,6 +55,24 @@ class TaskPage extends Component {
 
   render() {
     const { milestone, cid, mid, token, status_code } = this.props;
+    const trialsReady = false;
+    if (!trialsReady) {
+      return (
+        <>
+          <Head>
+            <title>DataDays 2020</title>
+          </Head>
+
+          <Layout token={token} hasNavbar hasFooter>
+            {status_code !== 200 ? (
+              <NotFound />
+            ) : (
+              <Tasks cid={cid} mid={mid} milestone={milestone} token={token} />
+            )}
+          </Layout>
+        </>
+      );
+    }
     return (
       <>
         <Head>

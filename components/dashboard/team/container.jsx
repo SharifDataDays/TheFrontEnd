@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { space, color, border } from 'styled-system';
 import TeamInfo from './teamInfo';
 import Invitations from './invitations';
-import { Message, Header, Container as C } from 'semantic-ui-react';
+import { Message, Header, Container as C, Button } from 'semantic-ui-react';
 const Container = styled.div`
   ${space}
   ${color}
@@ -20,18 +20,12 @@ export default function TeamContainer({
   addMember,
   finalize,
   rules,
+  cid,
 }) {
-  if (_.isUndefined(rules) || rules === "")
-    rules =
-      'مخاطبان این چالش، دانشجویان سال دوم کارشناسی تا سال آخر کارشناسی ارشد هستند و  با تشکیل تیم،‌ شما می‌پذیرید که این موارد را رعایت فرمایید:\n\
-      - تمام اعضای تیم‌‌ها باید اشخاص حقیقی و دانشجوی سال دوم کارشناسی تا پایان کارشناسی ارشد باشند.\n\
-      - مدل ارائه شده برای حل مسئله، باید دقیقا حاصل کار سه نفر عضو تیم باشد و اعضا باید به اخلاقی بودن کد خود پایبند باشند.\n\
-      - دریافت جایزه نهایی منوط به حضور هر سه عضو تیم در محل دانشگاه صنعتی شریف و ارائه مدل در روز اختتامیه خواهد بود.\n\
-      - در هر مرحله از فرایند برگزاری چالش که خلاف این قوانین درخصوص تیمی احراز شود، آن تیم از ادامه حضور در رقابت‌ نهایی محروم خواهند شد. \n\
-      - شرکت کنندگان باید با مفاهیم گا‌م‌های آموزشی رویداد آشنایی نسبی داشته باشند. محتوای آموزشی رویداد همچنان در دسترس شما خواهد بود.';
-  return (
-    <>
-      <Container px={[4, 5, 6]} py={3} my={3} mx={[0, 0, 4]} dir="RTL">
+  let rules_container = <> </>;
+  if (!_.isUndefined(rules) && rules !== '') {
+    rules_container = (
+      <Container py={3} my={3} dir="RTL">
         <Header size="huge" dir="RTL">
           قوانین
         </Header>
@@ -41,7 +35,13 @@ export default function TeamContainer({
           })}
         </Container>
       </Container>
-      <Container dir="RTL" px={[4, 5, 6]} pt={3} m={0} mx={[0, 0, 4]}>
+    );
+  }
+
+  return (
+    <Container px={[4, 5, 6]} mx={[0, 0, 4]}>
+      {rules_container}
+      <Container dir="RTL" pt={3} m={0}>
         <Message hidden={!team.success} positive>
           تغییرات با موفقیت ذخیره شد.
         </Message>
@@ -50,24 +50,36 @@ export default function TeamContainer({
         </Message>
       </Container>
 
-      <Container px={[4, 5, 6]} py={3} m={0} mx={[0, 0, 4]}>
-        <TeamInfo
-          team={team}
-          teamData={teamData}
-          teamNameUpdate={teamNameUpdate}
-          addMember={addMember}
-          finalize={finalize}
-          token={token}
-        />
+      <TeamInfo
+        team={team}
+        teamData={teamData}
+        teamNameUpdate={teamNameUpdate}
+        addMember={addMember}
+        finalize={finalize}
+        token={token}
+      />
+
+      <Invitations
+        finalized={teamData.name_finalized || team.finalized}
+        userInvitations={userInvitations}
+        answerInvitation={answerInvitation}
+        token={token}
+      />
+
+      <Container
+        py={3}
+        style={{
+          alignContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          textAlign: 'justify',
+        }}
+      >
+        <a href={`/dashboard/${cid}/`}>
+          <Button size="large">بازگشت</Button>
+        </a>
       </Container>
-      <Container px={[4, 5, 6]} pt={5} pb={4} m={0} mx={[0, 0, 4]}>
-        <Invitations
-          finalized={teamData.name_finalized || team.finalized}
-          userInvitations={userInvitations}
-          answerInvitation={answerInvitation}
-          token={token}
-        />
-      </Container>
-    </>
+    </Container>
   );
 }

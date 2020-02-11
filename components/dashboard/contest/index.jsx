@@ -22,11 +22,13 @@ function ContestContainer({ contests }) {
     <>
       <Container
          py={[5, 6, 6]}
-        //py={[6, 7, 7]}
         px={5}
         style={{
           backgroundImage: "url('/images/contest3.png')",
           backgroundSize: 'cover',
+          backgroundRepeat: 'true',
+          minHeight: 'calc(100vh - 333px)',
+
         }}
       >
         <Fade down>

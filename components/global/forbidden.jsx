@@ -5,8 +5,6 @@ import styled from 'styled-components';
 const Header = styled(H)`
   font-size: 25px;
   direction: rtl;
-
-  width: 100%;
   text-align: center;
 `;
 

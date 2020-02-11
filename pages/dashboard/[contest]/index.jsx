@@ -6,6 +6,7 @@ import Milestones from '~/components/dashboard/milestones';
 import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard';
 import Forbidden from '~/components/global/forbidden';
 import NotFound from '~/components/global/notFound';
+import Router from 'next/router';
 
 class Dashboard extends Component {
   static async getInitialProps({ query }, token) {
@@ -17,18 +18,16 @@ class Dashboard extends Component {
       status_code = contestRes.data.status_code;
     }
     const contest = contestRes.data.contest;
-    
-    console.log(contestRes)
-    console.log(contest)
-    console.log(contest_id)
+
+    // console.log(contestRes);
+    // console.log(contest);
+    // console.log(contest_id);
 
     if (status_code != 200) {
-      const detail = contestRes.data.detail
-      console.log(contest_id)
-      return { token, status_code , detail, contest_id};
+      const detail = contestRes.data.detail;
+      console.log(contest_id);
+      return { token, status_code, detail, contest_id };
     }
-    
-    
 
     const milestones = await Promise.all(
       _.map(contestRes.data.contest.milestones, async (id) => {
@@ -37,16 +36,25 @@ class Dashboard extends Component {
         return milestone;
       }),
     );
-    return { milestones, contest, token, status_code , contest_id};
+    //console.log(milestones);
+
+    return { milestones, contest, token, status_code, contest_id };
   }
 
   render() {
     const { milestones, contest, token, status_code, contest_id, detail } = this.props;
-    
+    if (status_code === 200 && milestones.length === 1) {
+      Router.push(
+        `/dashboard/${contest_id}/${milestones[0].id}`,
+        `/dashboard/${contest_id}/${milestones[0].id}`,
+        { shallow: false },
+      );
+      return <></>;
+    }
     return (
       <Layout token={token} hasNavbar hasFooter>
         {status_code === 403 ? (
-          <Forbidden cid={contest_id} detail={detail}/>
+          <Forbidden cid={contest_id} detail={detail} />
         ) : status_code !== 200 ? (
           <NotFound />
         ) : (

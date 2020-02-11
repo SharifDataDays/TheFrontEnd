@@ -9,14 +9,11 @@ import moment from 'jalali-moment';
 
 const Container = styled.div`
   ${space}
-
-  border-radius: 10px;
-  color: white;
 `;
 
 const Header = styled.text`
   color: white;
-  font-size: 28px;
+  font-size: 30px;
   align-content: center;
   align-items: center;
   display: flex;
@@ -27,12 +24,18 @@ export class Box extends Component {
   constructor(props) {
     super(props);
     this.state = { hover: false };
-    this.toggleHover.bind(this);
+    this.toggleHoverOff.bind(this);
+    this.toggleHoverOn.bind(this);
   }
 
-  toggleHover = () => {
+  toggleHoverOff = () => {
     this.setState({
-      hover: !this.state.hover,
+      hover: false,
+    });
+  };
+  toggleHoverOn = () => {
+    this.setState({
+      hover: true,
     });
   };
 
@@ -40,35 +43,98 @@ export class Box extends Component {
     console.log(contest);
 
     const { contest } = this.props;
-    let backgroundColor = 'rgba(32, 32, 32, 0.8)';
+    let backgroundColor = 'rgba(32, 32, 32, 0.6)';
     let border = '2px solid rgba(32, 32, 32, 1)';
     if (this.state.hover) {
-      backgroundColor = 'rgba(29, 147, 247, 0.7)';
+      backgroundColor = 'rgba(29, 147, 247, 0.8)';
       border = '2px solid rgba(29, 147, 247, 1)';
     }
-    return (
-      <a href={`/dashboard/${contest.id}`}>
-        <Grid.Column>
-          <Container
-            py={[5, 5, 5]}
-            px={[4, 5, 5]}
-            m={[3, 5, 5]}
+
+    const content = (
+      <>
+        <Header>{contest.title}</Header>
+        <Divider />
+        <Container
+          style={{
+            alignContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textAlign: 'justify',
+          }}
+        >
+          <div
             style={{
-              backgroundColor,
-              border,
+              color: 'black',
             }}
-            onMouseEnter={this.toggleHover}
-            onMouseLeave={this.toggleHover}
           >
-            <Header>{contest.title}</Header>
-            <Divider inverted />
-            <div>{`شروع از ${moment
+            {`شروع از ${moment
               .from(contest.start_time, 'en')
               .locale('fa')
-              .fromNow()}`}</div>
+              .fromNow()}`}
+          </div>
+          <Container pt={3}>{contest.description}</Container>
+        </Container>
+      </>
+    );
+    return (
+      <div>
+        <Grid.Column>
+          <Container mx={[2, 5, 5]} my={[3, 4, 4]}>
+            <a href={`/dashboard/${contest.id}`}>
+              <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+              <Container
+                  py={[4, 4, 4]}
+                  px={[3, 4, 4]}
+                  style={{
+                    backgroundColor,
+                    border,
+
+                    borderRadius: '10px',
+                    color: 'white',
+                     width: '300px',
+                    // height: '350px',
+
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    textAlign: 'justify',
+                  }}
+                  onMouseEnter={this.toggleHoverOn}
+                  onMouseLeave={this.toggleHoverOff}
+                >{content}</Container>
+              </Responsive>
+              <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                <Container
+                  py={[4, 4, 4]}
+                  px={[3, 4, 4]}
+                  style={{
+                    backgroundColor,
+                    border,
+
+                    borderRadius: '10px',
+                    color: 'white',
+                    width: '350px',
+                    height: '350px',
+
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    textAlign: 'justify',
+                  }}
+                  onMouseEnter={this.toggleHoverOn}
+                  onMouseLeave={this.toggleHoverOff}
+                >{content}</Container>
+              </Responsive>
+            </a>
           </Container>
         </Grid.Column>
-      </a>
+      </div>
     );
   }
 }

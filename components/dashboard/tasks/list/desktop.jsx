@@ -26,7 +26,7 @@ const Text = styled.p`
 `;
 
 function TasksDesktop({ cid, mid, tasks, token }) {
-  console.log(token)
+  console.log(token);
   return (
     <Segment.Group
       basic
@@ -40,7 +40,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
       }}
     >
       {_.map(tasks, (task, i) => {
-        console.log(task)
+        console.log(task);
         const { title_fa, description_fa, thumbnail } = task.content;
         const { id } = task;
         return (
@@ -49,8 +49,8 @@ function TasksDesktop({ cid, mid, tasks, token }) {
               <RowSegment>
                 <Header>
                   <Text>{title_fa}</Text>
-                  <Text style={{ fontSize: '1rem' }}>
-                    <EllipsisText text={description_fa} length={200} />
+                  <Text style={{ fontSize: '1rem', textAlign: 'justify' }}>
+                    <EllipsisText text={description_fa} style={{textAlign: 'justify'}} length={200} />
                   </Text>
                 </Header>
                 <Image
@@ -60,7 +60,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
                 />
               </RowSegment>
             </a>
-            <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/>
+            {/* <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/> */}
           </>
         );
       })}

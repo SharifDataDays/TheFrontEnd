@@ -30,7 +30,8 @@ const ALL_CONTESTS = `${BASE_ADDR}/contest/`;
 const CONTEST = (contestID) => `${BASE_ADDR}/contest/${contestID}/`;
 
 const PASSWORD_RESET_API = `${BASE_ADDR}/accounts/password/change/`;
-const TRIALSLIST = (contestID, milestoneID, taskID) => `${BASE_ADDR}/contest/${contestID}/${milestoneID}/${taskID}/trials`
+const TRIALSLIST = (contestID, milestoneID, taskID) =>
+  `${BASE_ADDR}/contest/${contestID}/${milestoneID}/${taskID}/trials`;
 
 const MILESTONE = (contestID, milestoneID) =>
   `${BASE_ADDR}/contest/${contestID}/milestone/${milestoneID}/`;
@@ -50,8 +51,6 @@ export function getTeamNameAPI(token) {
     },
   });
 }
-
-
 
 export function passwordUpdateAPI(data, token) {
   return axios.post(PASSWORD_RESET, data, {
@@ -126,7 +125,7 @@ export function taskAPI(contestId, milestoneId, taskId, token) {
 }
 
 export function getNewTrialAPI(token, contestId, milestoneId, taskId) {
-  console.log({token, contestId, milestoneId, taskId})
+  console.log({ token, contestId, milestoneId, taskId });
   return axios.post(
     TASK(contestId, milestoneId, taskId),
     {},
@@ -162,18 +161,15 @@ export function getTrialAPI(token, contestId, milestoneId, taskId, trialId) {
 
 export function trialsListAPI(contestID, milestoneID, token) {
   return axios.get(TRIALSLIST(contestID, milestoneID), {
-    headers : {
-      Authorization: `Bearer ${token}`
-    }
-  })
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }
 
-const CONTENT_FINISHED = (content_id, milestone_id, task_id) =>
-  `${BASE_ADDR}/contest/${content_id}/${milestone_id}/${task_id}/content_finished/`;
-
-  export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
-  console.log("DATA")
-  console.log(data)
+export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
+  console.log('DATA');
+  console.log(data);
   return axios.post(TRIAL(contestId, milestoneId, taskId, trialId), data, {
     headers: {
       Authorization: `Bearer ${token}`,

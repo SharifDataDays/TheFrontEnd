@@ -20,11 +20,13 @@ function TasksMobile({ cid, mid, tasks, token }) {
                     <Card.Header style={{ direction: 'rtl' }}>{title_fa}</Card.Header>
                   </Card.Content>
                   <Card.Description style={{ direction: 'rtl' }}>
-                    <EllipsisText text={description_fa} length={200} />
+                    {/* <Text style={{ textAlign: 'justify' }}> */}
+                      <EllipsisText text={description_fa} length={200} />
+                    {/* </Text> */}
                   </Card.Description>
                 </Card>
               </a>
-              <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/>
+              {/* <TrialAccardion key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/> */}
             </>
           );
         })}
