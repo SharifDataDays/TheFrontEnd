@@ -9,7 +9,7 @@ import Box from './box';
 
 const Container = styled.div`
   ${space};
-  background-color: #202020;
+  
   color: white;
 `;
 
