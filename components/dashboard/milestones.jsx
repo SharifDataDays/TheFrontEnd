@@ -24,6 +24,7 @@ function Milestones({ contest, milestones }) {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         textAlign: 'justify',
+                        
                       }}
                     >
                       <Image
@@ -38,6 +39,7 @@ function Milestones({ contest, milestones }) {
                       <p
                         style={{
                           textAlign: 'justify',
+                          color: 'black'
                         }}
                       >
                         <Card.Description>{description}</Card.Description>
