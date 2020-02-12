@@ -19,10 +19,6 @@ class Dashboard extends Component {
     }
     const contest = contestRes.data.contest;
 
-    // console.log(contestRes);
-    // console.log(contest);
-    // console.log(contest_id);
-
     if (status_code != 200) {
       const detail = contestRes.data.detail;
       return { token, status_code, detail, contest_id };
@@ -35,7 +31,6 @@ class Dashboard extends Component {
         return milestone;
       }),
     );
-    //console.log(milestones);
 
     return { milestones, contest, token, status_code, contest_id };
   }

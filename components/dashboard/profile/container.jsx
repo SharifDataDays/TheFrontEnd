@@ -56,8 +56,7 @@ export default function ProfileContainer({
   update,
   options
 }) {
-  console.log(password_update)
-  console.log(profileData)
+  
   return (
     <Container
       px={[4, 5, 6]}

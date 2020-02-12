@@ -11,7 +11,6 @@ class ResourcesPage extends Component {
   static async getInitialProps({ query }, token) {
     const res0 = await taskAPI(query.contest, query.milestone, query.task, token);
     let status_code = 200;
-    console.log(res0.data);
     if (!_.isUndefined(res0.data.status_code)) {
       status_code = res0.data.status_code;
     }

@@ -49,7 +49,6 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
-    console.log(width)
     return (
       <Container
         py={[4, 4, 4]}
@@ -63,7 +62,6 @@ export class Box extends Component {
           borderRadius: '10px',
           color: 'white',
           
-         // boxShadow: `0 0 5px 10px ${backgroundColor} inset`,
           boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
           alignContent: 'center',
           alignItems: 'center',

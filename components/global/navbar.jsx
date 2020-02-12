@@ -18,7 +18,7 @@ ${layout}
   border: 0 !important;
   border-bottom: ${(props) => (props.transparent ? '0' : '1px solid #e2e2e2')} !important;
   background-color: ${(props) => (props.transparent ? 'transparent' : 'white')} !important;
-  z-index: ${(props) => (props.transparent ? 1 : 0)} !important;
+  z-index: 1;
   width: 100%;
 `;
 
@@ -70,7 +70,7 @@ const AuthNavbar = connect(
       <Menu.Item style={{ paddingRight: 0 ,  zIndex: 1 }}>
         <Dropdown
           item
-          // direction={"left"}
+          //  direction={"left"}
           trigger={
             <FontAwesomeIcon
               style={{ marginRight: '0.5rem' }}

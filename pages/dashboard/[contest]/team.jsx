@@ -24,8 +24,7 @@ class TeamPage extends Component {
     const res = await getTeamInfoAPI(cid, token);
     let status_code = 200;
     const teamData = res.data;
-console.log(res)
-console.log(teamData.participants[0].user)
+
     if (!_.isUndefined(res.data.status_code)) status_code = res.data.status_code;
     if (status_code != 200) return { status_code, token };
     const res2 = await getInvitationsAPI(cid, token);
@@ -39,7 +38,7 @@ console.log(teamData.participants[0].user)
       return a.id + '' === cid + '';
     });
 
-    console.log(contest)
+    
     const rules = contest[0].rules;
 
     return { teamData, token, userInvitations, teamInvitations, status_code, rules, cid };

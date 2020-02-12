@@ -26,7 +26,6 @@ const Text = styled.p`
 `;
 
 function TasksDesktop({ cid, mid, tasks, token }) {
-  console.log(token);
   return (
     <Segment.Group
       basic
@@ -40,7 +39,6 @@ function TasksDesktop({ cid, mid, tasks, token }) {
       }}
     >
       {_.map(tasks, (task, i) => {
-        console.log(task);
         const { title_fa, description_fa, thumbnail } = task.content;
         const { id } = task;
         return (
