@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'intersection-observer';
 import handleViewport from 'react-in-viewport';
-import { Segment, Statistic as S } from 'semantic-ui-react';
+import { Segment, Statistic as S, Grid } from 'semantic-ui-react';
 import CountUp from 'react-countup';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
@@ -39,23 +39,24 @@ class SingleStat extends Component {
     return (
       <div ref={props.forwardedRef}>
         <Segment
-          inverted
+          // inverted
           p={0}
           m={0}
           style={{
-            borderRadius: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+
+            backgroundColor: 'transparent',
           }}
         >
-          <Statistic inverted py={4} m={0}>
-            <Statistic.Value>
+          <Statistic py={4} px={5} m={0}  size='large'>
+            <Statistic.Value style={{ color: 'white' }}>
               <CountUp
                 start={this.state.start}
                 end={this.state.end}
-                delay={0.2}
-                duration={3}
+                delay={0.1}
+                duration={3.6}
               ></CountUp>
             </Statistic.Value>
             <Statistic.Label style={{ color: '#1d93f7' }}>{this.props.title}</Statistic.Label>
@@ -87,13 +88,24 @@ class SingleStat extends Component {
 }
 
 export default function Stats({ counts }) {
-  
-  return (
-    <Container py={3} style={{ backgroundColor: '#202020' }}>
-      {_.map(counts, (a) => {
-        
-        return <SingleStat count={a.count} title={a.title} />;
-      })}
+return(
+    <Container
+      style={{
+        backgroundColor: '#252525',
+      }}
+      py={[3, 4, 4]}
+    >
+      <Grid centered>
+        <Grid.Row>
+          {_.map(counts, (a, i) => {
+            return (
+              <Grid.Row key={i}>
+                <SingleStat count={a.count} title={a.title} />
+              </Grid.Row>
+            );
+          })}
+        </Grid.Row>
+      </Grid>
     </Container>
   );
 }
