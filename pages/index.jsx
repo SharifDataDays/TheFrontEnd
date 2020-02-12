@@ -9,7 +9,7 @@ import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 import homeAPI from '~/redux/api/home';
-import Stats from '~/components/home/Stats';
+import Stats from '~/components/home/stats';
 
 class HomePage extends Component {
   static async getInitialProps(ctx) {
