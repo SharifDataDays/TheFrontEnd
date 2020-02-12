@@ -49,21 +49,19 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
-    console.log(width)
     return (
       <Container
         py={[4, 4, 4]}
         px={[3, 4, 4]}
         style={{
           backgroundColor,
-           border,
+          border,
           width,
           minHeight,
 
           borderRadius: '10px',
           color: 'white',
-          
-         // boxShadow: `0 0 5px 10px ${backgroundColor} inset`,
+
           boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
           alignContent: 'center',
           alignItems: 'center',
@@ -105,17 +103,17 @@ export class Box extends Component {
   };
 
   render() {
-    const {contest} = this.props
+    const { contest } = this.props;
     return (
       <div>
         <Grid.Column>
           <Container mx={[2, 5, 5]} my={[3, 4, 4]}>
             <a href={`/dashboard/${contest.id}`}>
               <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-                {this.box("300px", "auto")}
+                {this.box('300px', 'auto')}
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                {this.box("360px", "380px")}
+                {this.box('360px', '380px')}
               </Responsive>
             </a>
           </Container>
