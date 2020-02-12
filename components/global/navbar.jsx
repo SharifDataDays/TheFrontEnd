@@ -19,6 +19,7 @@ ${layout}
   border-bottom: ${(props) => (props.transparent ? '0' : '1px solid #e2e2e2')} !important;
   background-color: ${(props) => (props.transparent ? 'transparent' : 'white')} !important;
   z-index: 1;
+  opacity: 1;
   width: 100%;
 `;
 
