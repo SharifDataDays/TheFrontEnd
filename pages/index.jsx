@@ -31,8 +31,9 @@ class HomePage extends Component {
         <Header />
         <Sponsers />
         <Introduction header={intro.header_fa} content={intro.text_fa} />
-        <Timeline timeline={timeline} />
         <Stats counts={counts} />
+
+        <Timeline timeline={timeline} />
         <Prize prizes={prizes} />
         <Footer />
       </>

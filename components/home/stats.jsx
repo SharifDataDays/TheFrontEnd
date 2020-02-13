@@ -56,7 +56,7 @@ class SingleStat extends Component {
               <CountUp
                 start={this.state.start}
                 end={this.state.end}
-                delay={0.1}
+                delay={0}
                 duration={3.6}
               ></CountUp>
             </Statistic.Value>
@@ -92,7 +92,7 @@ export default function Stats({ counts }) {
 return(
     <Container
       style={{
-        backgroundColor: '#252525',
+        backgroundColor: '#202020',
       }}
       py={[3, 4, 4]}
     >
