@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Accordion, Icon, Dimmer, Loader, Segment, Divider, Button, Message } from 'semantic-ui-react';
+import {
+  Accordion,
+  Icon,
+  Dimmer,
+  Loader,
+  Segment,
+  Divider,
+  Button,
+  Message,
+} from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
@@ -48,7 +57,6 @@ export default class TrialAccardion extends Component {
         });
       }
     });
-    console.log(res.data);
   }
 
   handleClick = (e, titleProps) => {
@@ -68,7 +76,7 @@ export default class TrialAccardion extends Component {
         <p>
           مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
         </p>
-       </>
+      </>
     );
   };
 
@@ -79,15 +87,16 @@ export default class TrialAccardion extends Component {
       this.props.mid,
       this.props.tid,
     );
-    console.log(res);
+
     if (
       !_.isUndefined(res.data.detail) &&
       res.data.detail[0] === 'Cooling down time of trial not finished'
     ) {
       this.setState({
-        error:`برای گرفتن ترایال جدید باید ${this.state.data.trial_cooldown} ساعت از ترایال قبلی گذشته باشد.`,
+        error: `برای گرفتن ترایال جدید باید ${this.state.data.trial_cooldown} ساعت از ترایال قبلی گذشته باشد.`,
       });
     }
+    history.go(0);
   };
 
   content = () => {
@@ -106,7 +115,7 @@ export default class TrialAccardion extends Component {
         </>
       );
     }
-    
+
     return (
       <>
         {/* <p>{this.props.data.trial_cooldown}</p> */}
@@ -149,19 +158,20 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { activeIndex } = this.state;
-
     if (!this.props.content_finished) {
       return <></>;
     }
 
-    let error = <></>
-    if(!_.isNull(this.state.error) && !_.isUndefined(this.state.error) && this.state.error !== "")
-      {
-
-        error = <Message >{this.state.error}</Message>
-      }
+    let error = <></>;
+    if (
+      !_.isNull(this.state.error) &&
+      !_.isUndefined(this.state.error) &&
+      this.state.error !== ''
+    ) {
+      error = <Message>{this.state.error}</Message>;
+    }
     return (
       <Container
         px={[2, 4, 4]}
@@ -183,7 +193,6 @@ export default class TrialAccardion extends Component {
               آزمون‌
             </Text>
             {error}
-            
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>{this.content()}</Accordion.Content>
         </Accordion>

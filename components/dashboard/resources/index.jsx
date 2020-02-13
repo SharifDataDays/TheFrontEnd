@@ -57,7 +57,7 @@ class Resource extends Component {
 
   async trial(event) {
     const { contestId, milestoneId, taskId , token} = this.props;
-    const rs = await contentFinished(contestId, taskId, milestoneId, token);
+    const rs = await contentFinished(contestId, milestoneId, taskId, token);
     console.log(rs)
   }
 

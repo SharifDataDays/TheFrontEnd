@@ -20,6 +20,7 @@ class TaskPage extends Component {
     if (!_.isUndefined(res.data.status_code)) {
       status_code = res.data.status_code;
     }
+    // console.log(res.data.milestone)
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token, status_code };
   }
 

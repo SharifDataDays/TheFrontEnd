@@ -9,7 +9,6 @@ import { ThemeConsumer } from 'styled-components';
 class Trials extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       endTime: false,
       submitted: false,
@@ -48,7 +47,6 @@ class Trials extends Component {
 
     e.preventDefault();
     const res = await submit(token, contest, milestone, task, trial, final);
-    
 
     //todo redux state fail and success
     {
@@ -73,9 +71,9 @@ class Trials extends Component {
       trial,
       questions,
     } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
-    if (this.state.error){
+    if (this.state.error) {
       return this.msg(
         this.state.error_detail,
         `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
