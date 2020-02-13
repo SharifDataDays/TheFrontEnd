@@ -40,7 +40,12 @@ class Form extends Component {
             </F.Group>
             <F.Field dir="rtl">
               <Message hidden={_.isEmpty(errors)} negative>
+                <p>
                 مشخصات وارد شده صحیح نمی‌باشد.
+                </p>
+                <p>
+                نام کاربری و کلمه‌ی عبور به کوچکی و بزرگی حروف حساس هستند.
+                </p>
               </Message>
             </F.Field>
             <F.Field dir="rtl">

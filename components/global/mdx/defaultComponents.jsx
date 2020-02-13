@@ -8,7 +8,7 @@ import CodeBlock from './code';
 export default {
   div: (props): Node => (
     <div
-      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl' }}
+      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl', textAlign: 'justify' }}
       {...props}
     />
   ),
@@ -16,7 +16,7 @@ export default {
     <div dir="RTL">
       <Header
         as="h1"
-        style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem' }}
+        style={{ fontSize: '3rem', lineHeight: 1.5, marginBottom: '3rem' , textAlign: 'justify'}}
         {...props}
       />
     </div>
@@ -25,7 +25,7 @@ export default {
     <div dir="RTL">
       <Header
         as="h2"
-        style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '2rem' }}
+        style={{ fontSize: '2.25rem', lineHeight: 1.5, marginBottom: '2rem', textAlign: 'justify' }}
         {...props}
       />
     </div>
@@ -34,14 +34,14 @@ export default {
     <div dir="RTL">
       <Header
         as="h3"
-        style={{ fontSize: '2rem', lineHeight: 1.5, marginBottom: '1rem' }}
+        style={{ fontSize: '2rem', lineHeight: 1.5, marginBottom: '1rem', textAlign: 'justify' }}
         {...props}
       />
     </div>
   ),
   p: (props): Node => (
     <p
-      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl' }}
+      style={{ fontSize: '1.5rem', lineHeight: 1.5, marginBottom: '0.75rem', direction: 'rtl' , textAlign: 'justify'}}
       {...props}
     />
   ),

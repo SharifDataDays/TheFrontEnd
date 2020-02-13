@@ -43,6 +43,7 @@ class SingleStat extends Component {
           p={0}
           m={0}
           style={{
+            border: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
