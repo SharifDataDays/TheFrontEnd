@@ -65,11 +65,12 @@ class TaskPage extends Component {
           ) : status_code !== 200 ? (
             <NotFound />
           ) : (
-            <Tab
-            defaultActiveIndex={1}
-            menu={{ borderless: true, attached: false, tabular: false }}
-            panes={this.panes()}
-          />
+            <Tasks cid={cid} mid={mid} milestone={milestone} token={token}/>
+            // <Tab
+            // defaultActiveIndex={1}
+            // menu={{ borderless: true, attached: false, tabular: false }}
+            // panes={this.panes()}
+            // />
           )}
         </Layout>
       </>
