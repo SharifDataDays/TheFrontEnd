@@ -2,6 +2,8 @@ import _ from 'lodash';
 import { submitTrialAPI } from '../api/dashboard';
 
 export const CHANGE_ANSWER = 'CHANGE_ANSWER';
+export const CLEAR_ANSWER = 'CLEAR_ANSWER'
+export const SAW_FAIL = 'SAW_FAIL'
 
 export function changeAnswerAction(answer) {
   return {
@@ -10,6 +12,12 @@ export function changeAnswerAction(answer) {
       answer,
     },
   };
+}
+
+export function clearAnswerAction() {
+  return {
+    type : CLEAR_ANSWER
+  }
 }
 
 function mapStateToSubmission(state, trialId, final) {
@@ -40,7 +48,7 @@ function mapStateToSubmission(state, trialId, final) {
                 [],
               ),
             )
-          : "['fuck this shit']";
+          : ['kir'];
       return _.concat(result, {
         id,
         answer,
@@ -50,14 +58,19 @@ function mapStateToSubmission(state, trialId, final) {
     },
     [],
   );
+  let fixedAnswers = answers.slice(1)
   data.append(
     'json',
     JSON.stringify({
       id: trialId,
-      question_submissions: answers,
+      question_submissions: fixedAnswers,
       final_submit: final,
     }),
   );
+  let fixedJson = data.get('json').split('\\"').join('"').split('"[').join('[').split(']"').join(']')
+  data.delete('json')
+  data.append('json', fixedJson)
+  console.log(data.get('json'))
   return data;
 }
 
@@ -71,11 +84,25 @@ export function trialFailAction(errors) {
     },
   };
 }
+
+export function clearAnswers() {
+  return (dispatch) => {
+    dispatch(clearAnswerAction())
+  }
+}
+
+export function sawFailAction() {
+  return {
+    type : SAW_FAIL
+  }
+}
+
 export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final) {
   return (dispatch, getState) => {
     const answers = mapStateToSubmission(getState().trials, trialId, final);
     submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-      if(!_.isUndefined(res.data.status_code) && res.data.status_code != 200)
+      console.log(res.data)
+      if(!_.isUndefined(res.data.status_code) && res.data.status_code !== 200)
       {
         dispatch(trialFailAction(res.data.details))
       }

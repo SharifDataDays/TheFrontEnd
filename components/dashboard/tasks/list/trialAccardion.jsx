@@ -10,10 +10,12 @@ import {
   Message,
 } from 'semantic-ui-react';
 import styled from 'styled-components';
+import withAuth from '~/components/global/withAuth';
 import { space, layout, color, border, typography } from 'styled-system';
 import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 import Countdown from 'react-countdown';
+import { clearAnswers } from '../../../../redux/actions/trials';
 
 const Container = styled.div`
   ${space}
@@ -34,7 +36,6 @@ export default class TrialAccardion extends Component {
       activeIndex: -1,
       loading: true,
       trials: [],
-      openTrial: true,
       openTrialFinished: false,
     };
     this.getData();
@@ -46,16 +47,7 @@ export default class TrialAccardion extends Component {
     this.setState({
       loading: false,
       trials: res.data.trials,
-      openTrial: false,
       data: res.data,
-    });
-
-    _.map(this.state.trials, (trial) => {
-      if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
-        this.setState({
-          openTrial: true,
-        });
-      }
     });
   }
 
@@ -88,6 +80,8 @@ export default class TrialAccardion extends Component {
       this.props.tid,
     );
 
+    console.log(res.data)
+
     if (
       !_.isUndefined(res.data.detail) &&
       res.data.detail[0] === 'Cooling down time of trial not finished'
@@ -96,16 +90,21 @@ export default class TrialAccardion extends Component {
         error: `برای گرفتن ترایال جدید باید ${this.state.data.trial_cooldown} ساعت از ترایال قبلی گذشته باشد.`,
       });
     }
-    history.go(0);
+
+    if(res.data.status_code === 200) {
+      this.props.clear()
+      history.go(0);
+    }
+    
   };
 
   content = () => {
     if (this.state.loading) {
       return <Loader active inline="centered" />;
     }
-
+    
     let addButton = <></>;
-    if (!this.state.openTrial) {
+    if (this.props.can_create_trial) {
       addButton = (
         <>
           <Divider />
@@ -118,7 +117,6 @@ export default class TrialAccardion extends Component {
 
     return (
       <>
-        {/* <p>{this.props.data.trial_cooldown}</p> */}
         {_.map(this.state.trials, (trial, i) => {
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
             return (
@@ -158,7 +156,6 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    // console.log(this.state);
     const { activeIndex } = this.state;
     if (!this.props.content_finished) {
       return <></>;
@@ -200,3 +197,6 @@ export default class TrialAccardion extends Component {
     );
   }
 }
+
+
+

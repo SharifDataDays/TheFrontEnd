@@ -4,7 +4,10 @@ import Questions from './questions';
 import { Component } from 'react';
 import _ from 'lodash';
 import { relativeTimeThreshold } from 'jalali-moment';
+import { clearAnswers } from '../../../redux/actions/trials';
 import { ThemeConsumer } from 'styled-components';
+import { connect } from 'react-redux';
+import { sawFailAction } from '../../../redux/actions/trials';
 
 class Trials extends Component {
   constructor(props) {
@@ -34,7 +37,7 @@ class Trials extends Component {
         </Grid.Row>
 
         <a href={link}>
-          <Button primary size="large" floated="right">
+          <Button onClick={() => this.props.sawFail()} primary size="large" floated="right">
             بازگشت
           </Button>
         </a>
@@ -43,12 +46,12 @@ class Trials extends Component {
   };
 
   onclick = async (e, final) => {
-    const { submit, token, contest, milestone, task, trial } = this.props;
+    const { submit, token, contest, milestone, task, trial, fail } = this.props;
 
     e.preventDefault();
-    const res = await submit(token, contest, milestone, task, trial, final);
+    
+    submit(token, contest, milestone, task, trial, final);
 
-    //todo redux state fail and success
     {
       this.setState({ submitted: true });
       if (final) {
@@ -73,19 +76,27 @@ class Trials extends Component {
     } = this.props;
     // console.log(this.props);
 
+    
+
     if (this.state.error) {
       return this.msg(
-        this.state.error_detail,
+        this.state.error,
         `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
       );
     }
-    if (this.state.final) {
+    if(this.props.fail) {
+      return this.msg(
+        'پاسخ های ارسالی شما با خطا مواجه شد',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+      );
+    }
+    else if (this.state.final) {
       return this.msg(
         'پاسخ شما ارسال شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/`,
       );
     }
-    if (this.state.submitted) {
+    else if (this.state.submitted) {
       return this.msg(
         'پاسخ شما ذخیره شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
@@ -141,4 +152,17 @@ class Trials extends Component {
   }
 }
 
-export default Trials;
+function mapStateToProps(state) {
+  const {trials} = state
+  return {
+    fail :trials.fail
+  }
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    sawFail: () => dispatch(sawFailAction())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Trials);

@@ -172,8 +172,8 @@ const CONTENT_FINISHED = (content_id, milestone_id, task_id) =>
   `${BASE_ADDR}/contest/${content_id}/${milestone_id}/${task_id}/content_finished/`;
 
   export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
-  console.log("DATA")
-  console.log(data)
+  // console.log("DATA")
+  // console.log(data)
   return axios.post(TRIAL(contestId, milestoneId, taskId, trialId), data, {
     headers: {
       Authorization: `Bearer ${token}`,

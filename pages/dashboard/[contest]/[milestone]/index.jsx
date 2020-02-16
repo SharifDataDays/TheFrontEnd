@@ -8,8 +8,9 @@ import { milestoneAPI, trialsListAPI } from '~/redux/api/dashboard';
 import { Tab, Menu } from 'semantic-ui-react';
 import NotFound from '~/components/global/notFound';
 import Forbidden from '~/components/global/forbidden';
-
+import { connect } from 'react-redux';
 import _ from 'lodash';
+import { clearAnswers } from '../../../../redux/actions/trials';
 
 class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
@@ -20,7 +21,6 @@ class TaskPage extends Component {
     if (!_.isUndefined(res.data.status_code)) {
       status_code = res.data.status_code;
     }
-    // console.log(res.data.milestone)
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token, status_code };
   }
 
@@ -52,7 +52,7 @@ class TaskPage extends Component {
   };
 
   render() {
-    const { milestone, cid, mid, token, status_code } = this.props;
+    const { milestone, cid, mid, token, status_code, clear } = this.props;
     return (
       <>
         <Head>
@@ -66,7 +66,7 @@ class TaskPage extends Component {
           ) : status_code !== 200 ? (
             <NotFound />
           ) : (
-            <Tasks cid={cid} mid={mid} milestone={milestone} token={token}/>
+            <Tasks clear={clear} cid={cid} mid={mid} milestone={milestone} token={token}/>
             // <Tab
             // defaultActiveIndex={1}
             // menu={{ borderless: true, attached: false, tabular: false }}
@@ -79,4 +79,11 @@ class TaskPage extends Component {
   }
 }
 
-export default withAuth(true)(TaskPage);
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    clear: () => dispatch(clearAnswers())
+  };
+}
+
+export default withAuth(true)(connect(null, mapDispatchToProps)(TaskPage));
+
