@@ -19,9 +19,15 @@ function Post({ image, header, content, comments }: PropsType): Node {
   return (
     <>
       <Body>
-        <HeaderImage url={image} />
-        <Header title={title} desc={desc} date={date} />
-        <Content content={content} />
+        <div
+          style={{
+            padding: '15px',
+          }}
+        >
+          <HeaderImage url={image} />
+          <Header title={title} desc={desc} date={date} />
+          <Content  content={content} />
+        </div>
       </Body>
       {/* <Body bg="muted">
         <Comments count={comments} />

@@ -42,7 +42,7 @@ export function teamNameUpdateAction(fields, token) {
     } else {
       updateTeamNameAPI(fields.contest, fields, token).then((res) => {
         const { data } = res;
-        console.log(data)
+        
         if (data.status_code === 200) {
           dispatch(teamSuccessAction());
         } else {

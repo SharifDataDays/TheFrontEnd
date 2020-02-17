@@ -49,8 +49,8 @@ function TasksDesktop({ cid, mid, tasks, token, clear }) {
               <RowSegment>
                 <Header>
                   <Text>{title_fa}</Text>
-                  <Text style={{ fontSize: '1rem' }}>
-                    <EllipsisText text={description_fa} length={200} />
+                  <Text style={{ fontSize: '1rem', textAlign: 'justify', paddingLeft: '5px'}}>
+                    <EllipsisText text={description_fa} style={{textAlign: 'justify'}} length={200} />
                   </Text>
                 </Header>
                 <Image

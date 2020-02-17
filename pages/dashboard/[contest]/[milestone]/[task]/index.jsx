@@ -4,7 +4,7 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Resources from '~/components/dashboard/resources';
 import NotFound from '~/components/dashboard/resources/notFound';
-import { taskAPI, contentAPI } from '~/redux/api/dashboard';
+import { taskAPI, contentAPI, milestoneAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 
 class ResourcesPage extends Component {
@@ -22,7 +22,11 @@ class ResourcesPage extends Component {
       const res = await contentAPI(contentID, token);
       task = res.data;
     }
+    const res2 = await milestoneAPI(query.contest, query.milestone, token);
+    const image = res2.data.milestone.image;
+
     return {
+      image,
       task,
       token,
       contestId: query.contest,
@@ -32,16 +36,14 @@ class ResourcesPage extends Component {
   }
 
   render() {
-    const { task, token, contestId, milestoneId, taskId } = this.props;
+    const { task, token, contestId, milestoneId, taskId, image } = this.props;
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
         <Layout token={token} hasNavbar hasFooter>
-          {task.status_code === 403 ? (
-            <Forbidden cid={2} />
-          ) : task.status_code !== 200 ? (
+          {task.status_code !== 200 ? (
             <NotFound />
           ) : (
             <Resources
@@ -50,6 +52,7 @@ class ResourcesPage extends Component {
               milestoneId={milestoneId}
               taskId={taskId}
               token={token}
+              image={image}
             />
           )}
         </Layout>

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Dimmer } from 'semantic-ui-react';
 import { ClipLoader } from 'react-spinners';
 import { authorizeAction } from '~/redux/actions/auth';
+import withTracker from './withTracker';
 
 function getSSRToken(headerCookies) {
   let token = '';
@@ -23,6 +24,8 @@ function getSSRToken(headerCookies) {
 function withAuth(loggedIn) {
   return (WrappedComponent) => {
     class Wrapper extends Component {
+      
+
       static async getInitialProps(ctx) {
         const { store, isServer, req } = ctx;
         const token = isServer ? getSSRToken(req.headers.cookie) : cookie.get('token');
@@ -36,6 +39,7 @@ function withAuth(loggedIn) {
       }
 
       render() {
+
         const { page, auth } = this.props;
         const pageLoading =
           page.loading || (auth.authorized && !loggedIn) || (!auth.authorized && loggedIn);
@@ -70,7 +74,7 @@ function withAuth(loggedIn) {
       };
     }
 
-    return connect(mapStateToProps, null)(Wrapper);
+    return withTracker()(connect(mapStateToProps, null)(Wrapper));
   };
 }
 

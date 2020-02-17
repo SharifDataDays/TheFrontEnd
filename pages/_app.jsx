@@ -6,6 +6,11 @@ import withRedux from 'next-redux-wrapper';
 import { PersistGate } from 'redux-persist/integration/react';
 import makeStore from '~/redux/store';
 import Layout from '~/components/global/layout';
+import ReactGA from 'react-ga';
+
+const trackingId = 'UA-158271881-1';
+ReactGA.initialize(trackingId);
+
 
 class MyApp extends App {
   render() {

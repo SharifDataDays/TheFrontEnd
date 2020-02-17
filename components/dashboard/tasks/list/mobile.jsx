@@ -20,7 +20,9 @@ function TasksMobile({ cid, mid, tasks, token, clear }) {
                     <Card.Header style={{ direction: 'rtl' }}>{title_fa}</Card.Header>
                   </Card.Content>
                   <Card.Description style={{ direction: 'rtl' }}>
-                    <EllipsisText text={description_fa} length={200} />
+                    <p style={{ textAlign: 'justify', color: 'black' }}>
+                      <EllipsisText text={description_fa} length={200} />
+                    </p>
                   </Card.Description>
                 </Card>
               </a>

@@ -78,7 +78,7 @@ class Input extends Component {
           width={6}
           error={error}
           type={field.pass === true ? 'password' : 'none'}
-          // transparent={field.readOnly}
+           transparent={field.readOnly}
         />
       </Form.Group>
     );

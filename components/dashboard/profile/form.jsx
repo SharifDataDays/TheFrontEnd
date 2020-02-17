@@ -26,7 +26,7 @@ class Form extends Component {
           major: this.major.state.value,
           bmp: this.bmp.state.value,
           student_id: this.student_id.state.value,
-          phone_number: this.phone_number.state.value
+          phone_number: this.phone_number.state.value,
         },
       };
       console.log(new_fields);
@@ -45,10 +45,16 @@ class Form extends Component {
   }
 
   render() {
-    const { success, fail, errors } = this.props.profile;
+    const { success, fail } = this.props.profile;
     const profileData = { ...this.props.profileData, ...this.props.profileData.profile };
 
     const { fields } = this.props;
+    let { errors } = this.props.profile;
+    let showError = true;
+    if (!_.isUndefined(this.props.profile.errors.profile)) {
+      errors = this.props.profile.errors.profile;
+      showError = false;
+    }
 
     return (
       <Grid>
@@ -70,6 +76,8 @@ class Form extends Component {
                   />
                 );
               }
+              let error = errors[field.en] != '' && !_.isUndefined(errors[field.en]);
+              if (showError) error = errors[field.en];
               return (
                 <Input
                   ref={(c) => {
@@ -77,7 +85,7 @@ class Form extends Component {
                   }}
                   key={field.en}
                   field={field}
-                  error={errors[field.en]}
+                  error={error}
                   initial={profileData[field.en]}
                 />
               );

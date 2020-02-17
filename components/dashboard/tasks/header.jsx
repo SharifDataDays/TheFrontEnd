@@ -31,7 +31,13 @@ function HeaderSection({ title, description, image }) {
       <Grid.Column computer={7} tablet={7} mobile={15}>
         <Segment basic style={{ textAlign: 'right !important' }}>
           <Header as="h1">{title}</Header>
-          <Text>{description}</Text>
+          <Text
+            style={{
+              textAlign: 'justify',
+            }}
+          >
+            {description}
+          </Text>
         </Segment>
       </Grid.Column>
     </Grid>
