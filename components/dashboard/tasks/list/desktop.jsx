@@ -49,8 +49,12 @@ function TasksDesktop({ cid, mid, tasks, token, clear }) {
               <RowSegment>
                 <Header>
                   <Text>{title_fa}</Text>
-                  <Text style={{ fontSize: '1rem', textAlign: 'justify', paddingLeft: '5px'}}>
-                    <EllipsisText text={description_fa} style={{textAlign: 'justify'}} length={200} />
+                  <Text style={{ fontSize: '1rem', textAlign: 'justify', paddingLeft: '5px' }}>
+                    <EllipsisText
+                      text={description_fa}
+                      style={{ textAlign: 'justify' }}
+                      length={200}
+                    />
                   </Text>
                 </Header>
                 <Image
@@ -60,7 +64,16 @@ function TasksDesktop({ cid, mid, tasks, token, clear }) {
                 />
               </RowSegment>
             </a>
-            <TrialAccardion clear={clear} key={i} cid={cid} mid={mid} tid={id} token={token} can_create_trial={task.can_create_trial} content_finished={task.content_finished}/>
+            <TrialAccardion
+              clear={clear}
+              key={i}
+              cid={cid}
+              mid={mid}
+              tid={id}
+              token={token}
+              can_create_trial={task.can_create_trial}
+              content_finished={task.content_finished}
+            />
           </>
         );
       })}

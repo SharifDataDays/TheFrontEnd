@@ -23,35 +23,35 @@ class TaskPage extends Component {
     return { milestone: res.data.milestone, cid: contest, mid: milestone, token, status_code };
   }
 
-  panes = () => {
-    const { milestone, cid, mid, token } = this.props;
-    return [
-      {
-        menuItem: (
-          <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
-            ارزشیابی
-          </Menu.Item>
-        ),
-        render: () => (
-          <Tab.Pane attached={false}>
-            <Trials tasks={milestone.tasks} />
-          </Tab.Pane>
-        ),
-      },
-      {
-        menuItem: (
-          <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
-            محتوا
-          </Menu.Item>
-        ),
-        render: () => (
-          <Tab.Pane attached={false}>
-            <Tasks cid={cid} mid={mid} milestone={milestone} token={token} />
-          </Tab.Pane>
-        ),
-      },
-    ];
-  };
+  // panes = () => {
+  //   const { milestone, cid, mid, token } = this.props;
+  //   return [
+  //     {
+  //       menuItem: (
+  //         <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
+  //           ارزشیابی
+  //         </Menu.Item>
+  //       ),
+  //       render: () => (
+  //         <Tab.Pane attached={false}>
+  //           <Trials tasks={milestone.tasks} />
+  //         </Tab.Pane>
+  //       ),
+  //     },
+  //     {
+  //       menuItem: (
+  //         <Menu.Item style={{ marginLeft: 'auto', width: '50%', justifyContent: 'center' }}>
+  //           محتوا
+  //         </Menu.Item>
+  //       ),
+  //       render: () => (
+  //         <Tab.Pane attached={false}>
+  //           <Tasks cid={cid} mid={mid} milestone={milestone} token={token} />
+  //         </Tab.Pane>
+  //       ),
+  //     },
+  //   ];
+  // };
 
   render() {
     const { milestone, cid, mid, token, status_code, clear } = this.props;

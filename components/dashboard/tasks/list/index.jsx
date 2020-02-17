@@ -9,6 +9,7 @@ import Desktop from './desktop';
 function ListSection({ cid, mid, tasks , token, clear}) {
   return (
     <NoSSR>
+              {/* <p>برای دسترسی به آزمون‌ها ابتدا هر مطلب را مطالعه کنید</p> */}
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Mobile clear={clear} cid={cid} mid={mid} tasks={tasks} token={token}/>
       </Responsive>

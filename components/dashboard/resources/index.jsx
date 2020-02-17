@@ -4,7 +4,8 @@ import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
 import { contentFinished } from '~/redux/api/dashboard.js';
 
-function Pagination({ page, prevPage, nextPage, content, trial }) {
+function Pagination({ page, prevPage, nextPage, content, contentRead , returnAddr, content_finished}) {
+
   return (
     <div style={{ marginBottom: '3rem' }}>
       {page > 0 ? (
@@ -14,26 +15,33 @@ function Pagination({ page, prevPage, nextPage, content, trial }) {
       ) : (
         <></>
       )}
+
       {page < content.sections.length ? (
         <Button onClick={nextPage} floated="right">
           بعدی
         </Button>
       ) : (
-        <Button primary onClick={trial} floated="right">
-          مطالعه شد
-        </Button>
+        <>
+          <Button primary onClick={contentRead} floated="right" disabled={content_finished}>
+            مطالعه شد
+          </Button>
+          <Button href={returnAddr} floated="right">
+            بازگشت
+          </Button>
+        </>
       )}
     </div>
   );
 }
 
+
 class Resource extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 0 };
+    this.state = { page: 0 , content_finished: this.props.content.content_finished};
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    this.trial = this.trial.bind(this);
+    this.contentRead = this.contentRead.bind(this);
   }
 
   nextPage(event) {
@@ -55,11 +63,17 @@ class Resource extends Component {
     });
   }
 
-  async trial(event) {
-    const { contestId, milestoneId, taskId , token} = this.props;
+  async contentRead(event) {
+    const { contestId, milestoneId, taskId, token } = this.props;
     const rs = await contentFinished(contestId, milestoneId, taskId, token);
-    console.log(rs)
+    console.log(rs);
+    this.setState({
+      content_finished: true
+    })
   }
+
+
+  
 
   render() {
     const { content, contestId, milestoneId, taskId, image } = this.props;
@@ -135,8 +149,10 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
-              trial={this.trial}
+              contentRead={this.contentRead}
               token={this.props.token}
+              returnAddr={`/dashboard/${contestId}/${milestoneId}`}
+              content_finished={this.state.content_finished}
             />
           </Grid.Column>
         </Grid.Row>
@@ -183,7 +199,10 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
-              trial={this.trial}
+              contentRead={this.contentRead}
+              token={this.props.token}
+              returnAddr={`/dashboard/${contestId}/${milestoneId}`}
+              content_finished={this.state.content_finished}
             />
           </Grid.Column>
         </Grid.Row>

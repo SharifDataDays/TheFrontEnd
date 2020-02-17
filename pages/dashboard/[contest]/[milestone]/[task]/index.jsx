@@ -17,13 +17,16 @@ class ResourcesPage extends Component {
     let task = {
       status_code,
     };
+    
     if (status_code === 200) {
       const contentID = res0.data.content.id;
       const res = await contentAPI(contentID, token);
-      task = res.data;
+      const content_finished = res0.data.content_finished;
+      task = {...res.data, ...{content_finished}};
     }
     const res2 = await milestoneAPI(query.contest, query.milestone, token);
     const image = res2.data.milestone.image;
+
 
     return {
       image,
