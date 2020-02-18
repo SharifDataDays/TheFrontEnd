@@ -53,11 +53,7 @@ function HeaderSection({ title, description, image, idsInfo }) {
         <Grid.Row>
           <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
         </Grid.Row>
-        <a href={`/scoreboard/${contestID}/${milestoneID}`}>
-          <Grid.Row>
-          <Item as='a'>مشاهده‌ی جدول امتیازات</Item>
-          </Grid.Row>
-        </a>
+
         
       </Grid>
     </>

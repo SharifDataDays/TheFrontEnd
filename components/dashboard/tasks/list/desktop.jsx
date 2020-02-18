@@ -4,8 +4,11 @@ import { Segment, Header as H, Image, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import EllipsisText from 'react-ellipsis-text';
 import TrialAccardion from './trialAccardion';
+import { space, layout, color, border, typography } from 'styled-system';
 
 const RowSegment = styled(Segment)`
+  ${space},
+  ${layout}
   padding: 0 !important;
   display: flex;
   justify-content: flex-end;
@@ -26,7 +29,7 @@ const Text = styled.p`
 `;
 
 function TasksDesktop({ cid, mid, tasks, token }) {
-   console.log(tasks)
+  console.log(tasks);
   return (
     <Segment.Group
       basic
@@ -39,9 +42,21 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         marginBottom: '3rem',
       }}
     >
-       {/* <RowSegment>
-         جدول
-       </RowSegment> */}
+      <a href={`/scoreboard/${cid}/${mid}`}>
+        <RowSegment
+          p={5}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignContent: 'center',
+            backgroundColor: '#505763',
+          }}
+        >
+          <H inverted> مشاهده‌ی جدول امتیازات</H>
+        </RowSegment>
+      </a>
+
       {_.map(tasks, (task, i) => {
         // console.log(task)
         const { title_fa, description_fa, thumbnail } = task.content;

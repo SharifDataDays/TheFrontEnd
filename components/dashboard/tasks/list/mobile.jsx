@@ -1,13 +1,40 @@
 import _ from 'lodash';
 import React from 'react';
-import { Grid, Card, Image } from 'semantic-ui-react';
+import { Grid, Card, Image, Segment, Header as H } from 'semantic-ui-react';
 import EllipsisText from 'react-ellipsis-text';
 import TrialAccardion from './trialAccardion';
+
+import styled from 'styled-components';
+
+import { space, layout, color, border, typography } from 'styled-system';
+
+const RowSegment = styled(Segment)`
+  ${space},
+  ${layout}
+  padding: 0 !important;
+  display: flex;
+  justify-content: flex-end;
+`;
 
 function TasksMobile({ cid, mid, tasks, token }) {
   return (
     <Grid centered style={{ marginBottom: '5rem' }}>
       <Grid.Column mobile={14}>
+        <a href={`/scoreboard/${cid}/${mid}`}>
+          <RowSegment
+            p={5}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignContent: 'center',
+              backgroundColor: '#505763',
+            }}
+          >
+            <H inverted> مشاهده‌ی جدول امتیازات</H>
+          </RowSegment>
+        </a>
+
         {_.map(tasks, (task, i) => {
           const { title_fa, description_fa, thumbnail } = task.content;
           const { id } = task;

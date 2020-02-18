@@ -6,8 +6,7 @@ import { Divider, Image, Grid, Header as H, Responsive, Button } from 'semantic-
 import { Zoom, Fade } from 'react-reveal';
 import _ from 'lodash';
 import moment from 'jalali-moment';
-import {BoxButton} from './button'
-
+import { BoxButton } from './button';
 
 const Container = styled.div`
   ${space}
@@ -51,7 +50,7 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
-    console.log("this.propsssssss of box:", this.props.contest)
+    console.log('this.propsssssss of box:', this.props.contest);
 
     return (
       <Container
@@ -108,8 +107,22 @@ export class Box extends Component {
           </Grid.Row> */}
         </Container>
         <Grid.Row>
-        <BoxButton attached="left" title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`}>Left</BoxButton>
-        <BoxButton attached="right" title="جدول امتیازات" contest={contest} clickOnPage={`/scoreboard/${contest.id}/0`}>Right</BoxButton>
+          <BoxButton
+            attached="left"
+            title="ورود"
+            contest={contest}
+            clickOnPage={`/dashboard/${contest.id}`}
+          >
+            Left
+          </BoxButton>
+          <BoxButton
+            attached="right"
+            title="جدول امتیازات"
+            contest={contest}
+            clickOnPage={`/scoreboard/${contest.id}/0`}
+          >
+            Right
+          </BoxButton>
         </Grid.Row>
       </Container>
     );
@@ -160,12 +173,12 @@ export class Box extends Component {
         <Grid.Column>
           <Container mx={[2, 5, 5]} my={[3, 4, 4]}>
             {/* <a href={`/dashboard/${contest.id}`}> */}
-              <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-                {this.box('300px', 'auto')}
-              </Responsive>
-              <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                {this.box('360px', '380px')}
-              </Responsive>
+            <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+              {this.box('300px', 'auto')}
+            </Responsive>
+            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+              {this.box('360px', '380px')}
+            </Responsive>
             {/* </a> */}
           </Container>
         </Grid.Column>

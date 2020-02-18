@@ -15,11 +15,11 @@ class MainScoreboard extends Component {
     if (milestoneID !== 0) requestID = contestID * 1000 + milestoneID;
 
     let startIndex = 1;
-    console.log(query);
-    console.log(requestID);
+    // console.log(query);
+    // console.log(requestID);
     const res0 = await teamCountAPI(requestID, token);
     const { teams_count } = res0.data;
-    console.log(res0.data);
+    // console.log(res0.data);
     let endIndex = teams_count;
     let myteam = {
       name: '',
@@ -29,7 +29,7 @@ class MainScoreboard extends Component {
 
     const res = await scoreboardAPI(startIndex, endIndex, requestID, token);
     let { milestone, scoreboard, tasks, status_code } = res.data;
-    console.log(res.data);
+    // console.log(res.data);
 
     if (status_code === 200 || _.isUndefined(status_code)) {
       status_code = 200;

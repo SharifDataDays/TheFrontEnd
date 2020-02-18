@@ -10,7 +10,6 @@ import {
   Message,
 } from 'semantic-ui-react';
 import styled from 'styled-components';
-import withAuth from '~/components/global/withAuth';
 import { space, layout, color, border, typography } from 'styled-system';
 import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';

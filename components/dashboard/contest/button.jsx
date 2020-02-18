@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import _ from 'lodash';
+import { display } from 'styled-system';
 
 export class BoxButton extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export class BoxButton extends Component {
             color: 'white',
             backgroundColor: background,
             textAlign: 'center'
+            
           }}
           onMouseEnter={this.toggleHoverOn}
           onMouseLeave={this.toggleHoverOff}
