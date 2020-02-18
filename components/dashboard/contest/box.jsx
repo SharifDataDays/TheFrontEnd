@@ -51,7 +51,7 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
-    // console.log("this.propsssssss of box:", this.props)
+    console.log("this.propsssssss of box:", this.props.contest)
 
     return (
       <Container
@@ -108,8 +108,8 @@ export class Box extends Component {
           </Grid.Row> */}
         </Container>
         <Grid.Row>
-        <BoxButton attached="left" title="ورود">Left</BoxButton>
-        <BoxButton attached="right" title="جدول امتیازات">Right</BoxButton>
+        <BoxButton attached="left" title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`}>Left</BoxButton>
+        <BoxButton attached="right" title="جدول امتیازات" contest={contest} clickOnPage={`/dashboard/scoreboard/${contest.id}`}>Right</BoxButton>
         </Grid.Row>
       </Container>
     );
@@ -159,14 +159,14 @@ export class Box extends Component {
       <div>
         <Grid.Column>
           <Container mx={[2, 5, 5]} my={[3, 4, 4]}>
-            <a href={`/dashboard/${contest.id}`}>
+            {/* <a href={`/dashboard/${contest.id}`}> */}
               <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 {this.box('300px', 'auto')}
               </Responsive>
               <Responsive minWidth={Responsive.onlyTablet.minWidth}>
                 {this.box('360px', '380px')}
               </Responsive>
-            </a>
+            {/* </a> */}
           </Container>
         </Grid.Column>
       </div>

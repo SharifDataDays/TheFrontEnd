@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button} from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
 export class BoxButton extends Component {
@@ -19,28 +19,30 @@ export class BoxButton extends Component {
   };
 
   render() {
-      let background = ''
-      if (this.state.hover) {
-          background = 'rgba(94, 178, 247, 1)';
-      }else {
-        background = 'rgba(52, 116, 235, 1)';
-      }
+    let background = '';
+    if (this.state.hover) {
+      background = 'rgba(94, 178, 247, 1)';
+    } else {
+      background = 'rgba(52, 116, 235, 1)';
+    }
 
     return (
-      <Button
-        attached={this.props.attached}
-        style={{
-          minHeight: '40px',
-          // minWidth: '100px',
-          marginTop: '15px',
-          color: 'white',
-          backgroundColor: background,
-        }}
-        onMouseEnter={this.toggleHoverOn}
-        onMouseLeave={this.toggleHoverOff}
-      >
-        {this.props.title}
-      </Button>
+      <a href={this.props.clickOnPage}>
+        <Button
+          attached={this.props.attached}
+          style={{
+            minHeight: '40px',
+            // minWidth: '100px',
+            marginTop: '15px',
+            color: 'white',
+            backgroundColor: background,
+          }}
+          onMouseEnter={this.toggleHoverOn}
+          onMouseLeave={this.toggleHoverOff}
+        >
+          {this.props.title}
+        </Button>
+      </a>
     );
   }
 }
