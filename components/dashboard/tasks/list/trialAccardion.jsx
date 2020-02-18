@@ -17,7 +17,6 @@ import _ from 'lodash';
 import Countdown from 'react-countdown';
 import Router from 'next/router';
 
-
 const Container = styled.div`
   ${space}
   ${color}
@@ -57,7 +56,7 @@ export default class TrialAccardion extends Component {
         });
       }
     });
-     console.log(res.data);
+    console.log(res.data);
   }
 
   handleClick = (e, titleProps) => {
@@ -115,8 +114,10 @@ export default class TrialAccardion extends Component {
     }
 
     if (res.data.status_code === 200) {
-      console.log(`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`)
-      localStorage.clear()
+      console.log(
+        `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
+      );
+      localStorage.clear();
       Router.push(
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
@@ -143,8 +144,28 @@ export default class TrialAccardion extends Component {
       );
     }
 
+    let ind = 0;
     return (
       <Container pb={4}>
+        {_.map(this.state.trials, (trial, i) => {
+          if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
+          } else {
+            ind = ind + 1;
+            return (
+              <>
+                <Divider />
+                <p
+                  style={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  آزمون شماره‌ی {ind}
+                </p>
+                <p>امتیاز: {trial.score}</p>
+              </>
+            );
+          }
+        })}
         {_.map(this.state.trials, (trial, i) => {
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
             let goToPageButton = (
@@ -155,6 +176,7 @@ export default class TrialAccardion extends Component {
             if (!this.state.openTrial) {
               goToPageButton = <></>;
             }
+            ind = ind + 1;
             return (
               <>
                 <Divider />
@@ -163,7 +185,7 @@ export default class TrialAccardion extends Component {
                     fontWeight: 'bold',
                   }}
                 >
-                  آزمون شماره‌ی {i + 1}
+                  آزمون شماره‌ی {ind}
                 </p>
                 <Countdown
                   dir="ltr"
@@ -177,14 +199,6 @@ export default class TrialAccardion extends Component {
                 >
                   {goToPageButton}
                 </a>
-              </>
-            );
-          } else {
-            return (
-              <>
-                <Divider />
-                <p>آزمون شماره‌ی {i + 1}</p>
-                <p>امتیاز: {trial.score}</p>
               </>
             );
           }

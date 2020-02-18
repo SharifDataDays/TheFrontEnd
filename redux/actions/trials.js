@@ -15,9 +15,12 @@ export function trialFailAction(errors) {
     },
   };
 }
-export function trialSuccessAction() {
+export function trialSuccessAction(final) {
   return {
     type: TRIAL_SUCCESS,
+    payload: {
+      final,
+    },
   };
 }
 
@@ -126,7 +129,7 @@ export function submitAnswersAction(
   questions,
 ) {
   return (dispatch, getState) => {
-     dispatch(pageLoadingAction(true));
+    dispatch(pageLoadingAction(true));
 
     const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
     if (!checkFields(questions, getState().trials.answers)) {
@@ -138,10 +141,10 @@ export function submitAnswersAction(
         if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
           dispatch(trialFailAction(res.data));
         } else {
-          dispatch(trialSuccessAction());
+          dispatch(trialSuccessAction(final));
         }
       });
     }
-     dispatch(pageLoadingAction(false));
+    dispatch(pageLoadingAction(false));
   };
 }

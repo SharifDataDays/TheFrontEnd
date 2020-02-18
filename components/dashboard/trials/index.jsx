@@ -61,7 +61,7 @@ class Trials extends Component {
       this.setState({ submitted: true });
       if (final) {
         this.setState({
-          final: false,
+          final: true,
         });
       }
     }
@@ -85,13 +85,11 @@ class Trials extends Component {
     console.log('TRIALS');
     console.log(trials);
 
-    if (this.props.trials.fail) {
-      console.log(this.props.trials.errors);
-      // return this.msg('پاسخ‌های ارسالی شما با خطا مواجه شد.' + "\n" + trials.errors.fa, ``);
-    }
-    if (this.props.trials.success) {
-      console.log(this.props.trials.errors);
-      return this.msg('پاسخ شما ارسال شد.', ``);
+    if (this.props.trials.success && this.props.trials.finalize) {
+      return this.msg(
+        'پاسخ شما ارسال شد.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+      );
     }
     if (this.state.endTime) {
       return this.msg(
@@ -100,36 +98,17 @@ class Trials extends Component {
       );
     }
 
-
-    // if (this.state.error) {
-    //   return this.msg(
-    //     this.state.error,
-    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-    //   );
-    // }
-    // if(this.props.fail) {
-    //   return this.msg(
-    //     'پاسخ‌های ارسالی شما با خطا مواجه شد.',
-    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-    //   );
-    // }
-    // else if (this.state.final) {
-    //   return this.msg(
-    //     'پاسخ شما ارسال شد.',
-    //     `/dashboard/${this.props.contest}/${this.props.milestone}/`,
-    //   );
-    // }
-    // else if (this.state.submitted) {
-    //   return this.msg(
-    //     'پاسخ شما ذخیره شد.',
-    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-    //   );
-    // }
-
     return (
       <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
         <Grid.Row>
           <Grid.Column computer={10} tablet={12} mobile={14}>
+            <Message negative hidden={!this.props.trials.fail}>
+              {trials.errors.fa}
+            </Message>
+            <Message positive hidden={!this.props.trials.success}>
+              {'پاسخ شما ارسال شد.'}
+            </Message>
+
             <Questions
               trials={trials}
               changeAnswer={changeAnswer}

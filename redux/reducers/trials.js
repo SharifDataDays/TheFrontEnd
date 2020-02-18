@@ -5,6 +5,9 @@ import initialState from '../store/initialState';
 
 function trialSuccessReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
+    const { final } = action.payload;
+
+    draft.final = final;
     draft.fail = false;
     draft.success = true;
     draft.error = {};
@@ -21,17 +24,20 @@ function trialFailReducer(state = initialState.trials, action) {
 
     console.log('ERRR');
     console.log(errors);
-
+    console.log(errors.detail);
+    console.log(errors.detail === 'This trial has already been submitted.');
     let fa = '';
+    draft.errors.fa = 'خطا در ارسال پاسخ';
 
-    if (errors.error === 'Must complete all fields') {
+    if (errors.detail === 'This trial has already been submitted.') {
+      fa = 'این ترایال ثبت نهایی شده است.';
+      draft.errors.fa = fa;
+    } else if (errors.error === 'Must complete all fields') {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
       draft.errors.fa = fa;
-
     } else if (!_.isUndefined(errors.question_submissions)) {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
       draft.errors.fa = fa;
-
     } else if (!_.isUndefined(errors.errors)) {
       console.log('ENNN');
 
@@ -64,6 +70,7 @@ function trialFailReducer(state = initialState.trials, action) {
         if (fa != '') {
           draft.errors.errors[key + '_en'] = draft.errors.errors[key];
           draft.errors.errors[key] = fa;
+          draft.errors.fa = 'لطفا خطاهای ایجاد شده را اصلاح کنید.';
         }
       });
     }
