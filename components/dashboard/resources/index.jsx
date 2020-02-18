@@ -79,7 +79,7 @@ class Resource extends Component {
     const { content, contestId, milestoneId, taskId, image } = this.props;
     const { page } = this.state;
 
-    if (contestId + '' === '3') {
+    if (contestId + '' === '13') {
       return (
         <Grid
           style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
