@@ -1,9 +1,34 @@
 import _ from 'lodash';
 import { submitTrialAPI } from '../api/dashboard';
+import { pageLoadingAction } from './page';
 
 export const CHANGE_ANSWER = 'CHANGE_ANSWER';
-export const CLEAR_ANSWER = 'CLEAR_ANSWER';
-export const SAW_FAIL = 'SAW_FAIL';
+export const TRIAL_CLEAR = 'TRIAL_CLEAR';
+export const TRIAL_FAIL = 'TRIAL_FAIL';
+export const TRIAL_SUCCESS = 'TRIAL_SUCCESS';
+
+export function trialFailAction(errors) {
+  return {
+    type: TRIAL_FAIL,
+    payload: {
+      errors,
+    },
+  };
+}
+export function trialSuccessAction() {
+  return {
+    type: TRIAL_SUCCESS,
+  };
+}
+
+export function trialClearAction(clearAnswers) {
+  return {
+    type: TRIAL_CLEAR,
+    payload: {
+      clearAnswers,
+    },
+  };
+}
 
 export function changeAnswerAction(answer) {
   return {
@@ -14,20 +39,19 @@ export function changeAnswerAction(answer) {
   };
 }
 
-export function clearAnswerAction() {
-  return {
-    type: CLEAR_ANSWER,
-  };
-}
-
 function mapStateToSubmission(state, trialId, final) {
   const data = new FormData();
 
   _.forEach(state, (value, key) => {
     const { qtype, n0 } = value;
+    console.log('KKKK');
+    console.log(value, key);
     const id = _.join(_.tail(_.split(key, '')), '');
     if (qtype === 'file_upload') {
       data.append(id, n0);
+      console.log('IDD');
+      console.log(n0);
+      console.log(data);
     }
   });
 
@@ -48,7 +72,7 @@ function mapStateToSubmission(state, trialId, final) {
                 [],
               ),
             )
-          : ['k'];
+          : ['NOTHING'];
       return _.concat(result, {
         id,
         answer,
@@ -58,12 +82,11 @@ function mapStateToSubmission(state, trialId, final) {
     },
     [],
   );
-  let fixedAnswers = answers.slice(1);
   data.append(
     'json',
     JSON.stringify({
       id: trialId,
-      question_submissions: fixedAnswers,
+      question_submissions: answers,
       final_submit: final,
     }),
   );
@@ -78,40 +101,47 @@ function mapStateToSubmission(state, trialId, final) {
   data.delete('json');
   data.append('json', fixedJson);
   console.log(data.get('json'));
+  console.log('FIXEDJSON');
+  console.log(fixedJson);
   return data;
 }
 
-export const TRIAL_FAIL = 'TRIAL_FAIL';
-
-export function trialFailAction(errors) {
-  return {
-    type: TRIAL_FAIL,
-    payload: {
-      errors,
-    },
-  };
+function checkFields(questions, answers) {
+  console.log(questions);
+  console.log(answers);
+  let fine = true;
+  _.each(questions, (value) => {
+    if (_.isUndefined(answers['i' + value.id])) fine = false;
+  });
+  return fine;
 }
 
-export function clearAnswers() {
-  return (dispatch) => {
-    dispatch(clearAnswerAction());
-  };
-}
-
-export function sawFailAction() {
-  return {
-    type: SAW_FAIL,
-  };
-}
-
-export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final) {
+export function submitAnswersAction(
+  token,
+  contestId,
+  milestoneId,
+  taskId,
+  trialId,
+  final,
+  questions,
+) {
   return (dispatch, getState) => {
-    const answers = mapStateToSubmission(getState().trials, trialId, final);
-    submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-      console.log(res.data);
-      if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
-        dispatch(trialFailAction(res.data.details));
-      }
-    });
+    // dispatch(pageLoadingAction(true));
+
+    const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
+    if (!checkFields(questions, getState().trials.answers)) {
+      dispatch(trialFailAction({ error: 'Must complete all fields' }));
+    } else {
+      submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
+        console.log('SUBMIT');
+        console.log(res.data);
+        if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
+          dispatch(trialFailAction(res.data));
+        } else {
+          dispatch(trialSuccessAction());
+        }
+      });
+    }
+    // dispatch(pageLoadingAction(false));
   };
 }

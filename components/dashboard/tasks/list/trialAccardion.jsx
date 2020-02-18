@@ -15,7 +15,6 @@ import { space, layout, color, border, typography } from 'styled-system';
 import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 import Countdown from 'react-countdown';
-import { clearAnswers } from '../../../../redux/actions/trials';
 import Router from 'next/router';
 
 
@@ -58,7 +57,7 @@ export default class TrialAccardion extends Component {
         });
       }
     });
-    console.log(res.data);
+     console.log(res.data);
   }
 
   handleClick = (e, titleProps) => {
@@ -116,15 +115,12 @@ export default class TrialAccardion extends Component {
     }
 
     if (res.data.status_code === 200) {
-      console.log(
-        `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
-      );
+      console.log(`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`)
       Router.push(
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
         { shallow: false },
       );
-      // this.props.clear();
       // history.go(0);
     }
   };
@@ -199,7 +195,7 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     const { activeIndex } = this.state;
 

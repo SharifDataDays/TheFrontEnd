@@ -25,7 +25,7 @@ const Text = styled.p`
   direction: rtl;
 `;
 
-function TasksDesktop({ cid, mid, tasks, token, clear }) {
+function TasksDesktop({ cid, mid, tasks, token }) {
    console.log(tasks)
   return (
     <Segment.Group
@@ -65,7 +65,6 @@ function TasksDesktop({ cid, mid, tasks, token, clear }) {
               </RowSegment>
             </a>
             <TrialAccardion
-              clear={clear}
               key={i}
               cid={cid}
               mid={mid}

@@ -35,7 +35,7 @@ class Form extends Component {
         birth_date: _.join(_.reverse(_.split(this.birth_date.state.value, '-')), '-'),
       },
     };
-    console.log(fields);
+    // console.log(fields);
     request(fields);
   }
 
