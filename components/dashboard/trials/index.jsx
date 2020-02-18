@@ -13,7 +13,6 @@ class Trials extends Component {
     super(props);
     this.state = {
       endTime: false,
-      submitted: false,
       final:
         !_.isUndefined(this.props.questions.submit_time) &&
         !_.isNull(this.props.questions.submit_time),
@@ -57,14 +56,6 @@ class Trials extends Component {
 
     submit(token, contest, milestone, task, trial, final, questions.question_submissions);
 
-    {
-      this.setState({ submitted: true });
-      if (final) {
-        this.setState({
-          final: true,
-        });
-      }
-    }
   };
 
   render() {

@@ -85,6 +85,7 @@ function trialClearReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
     draft.success = false;
     draft.fail = false;
+    draft.finalize = false;
     draft.errors = {};
 
     const { clearAnswers } = action.payload;
