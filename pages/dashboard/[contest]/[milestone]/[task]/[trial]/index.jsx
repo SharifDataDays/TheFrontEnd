@@ -18,7 +18,6 @@ class TrialsPage extends Component {
       status_code = res.data.status_code;
     }
     const { data } = res;
-    console.log(res.data)
     return { status_code, token, questions: data, ...query };
     
   }
@@ -42,8 +41,7 @@ class TrialsPage extends Component {
       status_code,
       clear,
     } = this.props;
-    console.log(trials)
-    console.log(questions)
+    
     return (
       <Layout token={token} hasNavbar hasFooter>
         {status_code !== 200 ? (

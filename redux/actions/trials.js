@@ -47,14 +47,10 @@ function mapStateToSubmission(state, trialId, final) {
 
   _.forEach(state, (value, key) => {
     const { qtype, n0 } = value;
-    console.log('KKKK');
-    console.log(value, key);
+
     const id = _.join(_.tail(_.split(key, '')), '');
     if (qtype === 'file_upload') {
       data.append(id, n0);
-      console.log('IDD');
-      console.log(n0);
-      console.log(data);
     }
   });
 
@@ -103,15 +99,11 @@ function mapStateToSubmission(state, trialId, final) {
     .join(']');
   data.delete('json');
   data.append('json', fixedJson);
-  console.log(data.get('json'));
-  console.log('FIXEDJSON');
-  console.log(fixedJson);
+
   return data;
 }
 
 function checkFields(questions, answers) {
-  console.log(questions);
-  console.log(answers);
   let fine = true;
   _.each(questions, (value) => {
     if (_.isUndefined(answers['i' + value.id])) fine = false;
@@ -129,24 +121,21 @@ export function submitAnswersAction(
   questions,
 ) {
   return (dispatch, getState) => {
-    dispatch(pageLoadingAction(true));
-    console.log('STATEEE');
-
-    console.log(getState());
     const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
     if (!checkFields(questions, getState().trials.answers)) {
       dispatch(trialFailAction({ error: 'Must complete all fields' }));
     } else {
+      dispatch(pageLoadingAction(true));
+
       submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-        console.log('SUBMIT');
-        console.log(res.data);
         if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
           dispatch(trialFailAction(res.data));
+          dispatch(pageLoadingAction(false));
         } else {
           dispatch(trialSuccessAction(final));
+          dispatch(pageLoadingAction(false));
         }
       });
     }
-    dispatch(pageLoadingAction(false));
   };
 }

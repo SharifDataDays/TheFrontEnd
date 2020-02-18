@@ -51,7 +51,6 @@ class Trials extends Component {
 
   onclick = async (e, final) => {
     const { submit, token, contest, milestone, task, trial, questions } = this.props;
-    console.log(questions.question_submissions);
     e.preventDefault();
 
     submit(token, contest, milestone, task, trial, final, questions.question_submissions);
@@ -71,12 +70,6 @@ class Trials extends Component {
       questions,
       clear,
     } = this.props;
-    console.log(this.props);
-
-    console.log('TRIALS');
-    console.log(trials);
-    console.log(questions);
-    console.log(this.state);
 
     if (this.props.trials.success && this.props.trials.finalize) {
       return this.msg(
