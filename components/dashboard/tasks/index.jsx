@@ -7,7 +7,7 @@ function Trials({ cid, mid, milestone , token}) {
   return (
     <>
       <div style={{ minHeight: 'calc(100vh - 100px)' }}>
-        <HeaderSection title={title} description={description} image={image} />
+        <HeaderSection title={title} description={description} image={image} idsInfo={{cid, mid}}/>
         <ListSection cid={cid} mid={mid} tasks={tasks} token={token}/>
       </div>
     </>

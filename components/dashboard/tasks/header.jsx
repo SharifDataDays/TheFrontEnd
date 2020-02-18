@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Image, Header as H, Message } from 'semantic-ui-react';
+import { Grid, Segment, Image, Header as H, Message, Item } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Header = styled(H)`
@@ -14,12 +14,18 @@ const Text = styled.p`
   direction: rtl;
 `;
 
-function HeaderSection({ title, description, image }) {
+function HeaderSection({ title, description, image, idsInfo }) {
+  const milestoneID = parseInt(idsInfo.mid);
+  const contestID = parseInt(idsInfo.cid);
+  const refNumber = contestID * 1000 + milestoneID
   return (
     <>
-      <Grid centered  style={{
-            marginBottom: '2rem',
-          }}>
+      <Grid
+        centered
+        style={{
+          marginBottom: '2rem',
+        }}
+      >
         <Grid.Row
           style={{
             marginBottom: '1rem',
@@ -47,6 +53,12 @@ function HeaderSection({ title, description, image }) {
         <Grid.Row>
           <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
         </Grid.Row>
+        <a href={`/dashboard/scoreboard/${refNumber}`}>
+          <Grid.Row>
+          <Item as='a'>مشاهده‌ی جدول امتیازات</Item>
+          </Grid.Row>
+        </a>
+        
       </Grid>
     </>
   );
