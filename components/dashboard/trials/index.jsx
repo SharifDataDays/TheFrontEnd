@@ -4,10 +4,9 @@ import Questions from './questions';
 import { Component } from 'react';
 import _ from 'lodash';
 import { relativeTimeThreshold } from 'jalali-moment';
-import { clearAnswers } from '../../../redux/actions/trials';
 import { ThemeConsumer } from 'styled-components';
 import { connect } from 'react-redux';
-import { sawFailAction } from '../../../redux/actions/trials';
+import { C_NUMBER_MODE } from 'highlight.js';
 
 class Trials extends Component {
   constructor(props) {
@@ -36,21 +35,27 @@ class Trials extends Component {
           </Grid.Column>
         </Grid.Row>
 
-        <a href={link}>
-          <Button onClick={() => this.props.sawFail()} primary size="large" floated="right">
-            بازگشت
-          </Button>
-        </a>
+        <Button
+          href={link}
+          onClick={() => {
+            if (link === '' || _.isUndefined(link)) this.props.clear(false);
+          }}
+          primary
+          size="large"
+          floated="right"
+        >
+          بازگشت
+        </Button>
       </Grid>
     );
   };
 
   onclick = async (e, final) => {
-    const { submit, token, contest, milestone, task, trial, fail } = this.props;
-
+    const { submit, token, contest, milestone, task, trial, questions } = this.props;
+    console.log(questions.question_submissions);
     e.preventDefault();
-    
-    submit(token, contest, milestone, task, trial, final);
+
+    submit(token, contest, milestone, task, trial, final, questions.question_submissions);
 
     {
       this.setState({ submitted: true });
@@ -73,41 +78,52 @@ class Trials extends Component {
       task,
       trial,
       questions,
+      clear,
     } = this.props;
-    // console.log(this.props);
+    console.log(this.props);
 
-    
+    console.log('TRIALS');
+    console.log(trials);
 
-    if (this.state.error) {
-      return this.msg(
-        this.state.error,
-        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-      );
+    if (this.props.trials.fail) {
+      console.log(this.props.trials.errors);
+      return this.msg('پاسخ‌های ارسالی شما با خطا مواجه شد.', ``);
     }
-    if(this.props.fail) {
-      return this.msg(
-        'پاسخ‌های ارسالی شما با خطا مواجه شد.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-      );
+    if (this.props.trials.success) {
+      console.log(this.props.trials.errors);
+      return this.msg('پاسخ شما ارسال شد.', ``);
     }
-    else if (this.state.final) {
-      return this.msg(
-        'پاسخ شما ارسال شد.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
-      );
-    }
-    else if (this.state.submitted) {
-      return this.msg(
-        'پاسخ شما ذخیره شد.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-      );
-    }
-    if (this.state.endTime) {
-      return this.msg(
-        'زمان شما تمام شده‌ است.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
-      );
-    }
+
+    // if (this.state.error) {
+    //   return this.msg(
+    //     this.state.error,
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+    //   );
+    // }
+    // if(this.props.fail) {
+    //   return this.msg(
+    //     'پاسخ‌های ارسالی شما با خطا مواجه شد.',
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+    //   );
+    // }
+    // else if (this.state.final) {
+    //   return this.msg(
+    //     'پاسخ شما ارسال شد.',
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+    //   );
+    // }
+    // else if (this.state.submitted) {
+    //   return this.msg(
+    //     'پاسخ شما ذخیره شد.',
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+    //   );
+    // }
+    // if (this.state.endTime) {
+    //   return this.msg(
+    //     'زمان شما تمام شده‌ است.',
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+    //   );
+    // }
 
     return (
       <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
@@ -152,17 +168,4 @@ class Trials extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const {trials} = state
-  return {
-    fail :trials.fail
-  }
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    sawFail: () => dispatch(sawFailAction())
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Trials);
+export default Trials;

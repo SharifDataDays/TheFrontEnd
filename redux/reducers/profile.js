@@ -83,8 +83,6 @@ function profileFailReducer(state = initialState.profile, action) {
     draft.fail = true;
     draft.success = false;
     draft.errors = errors;
-    console.log(errors);
-
     return draft;
   });
 }

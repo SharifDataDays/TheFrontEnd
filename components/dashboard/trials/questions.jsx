@@ -79,6 +79,7 @@ class Questions extends Component {
   render() {
     const { trials, changeAnswer, questions } = this.props;
 
+    console.log(this.props)
     return (
       <>
         <Container p={2} mx={[1, 2, 2]} mb={2}>
@@ -93,7 +94,7 @@ class Questions extends Component {
             <Answer
               key={i}
               number={i + 1}
-              saved={trials[`i${q.id}`]}
+              saved={trials.answers[`i${q.id}`]}
               id={q.id}
               content={question.body}
               count={getCount(question)}

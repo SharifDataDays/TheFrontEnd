@@ -4,7 +4,7 @@ import { Grid, Card, Image } from 'semantic-ui-react';
 import EllipsisText from 'react-ellipsis-text';
 import TrialAccardion from './trialAccardion';
 
-function TasksMobile({ cid, mid, tasks, token, clear }) {
+function TasksMobile({ cid, mid, tasks, token }) {
   return (
     <Grid centered style={{ marginBottom: '5rem' }}>
       <Grid.Column mobile={14}>
@@ -27,7 +27,6 @@ function TasksMobile({ cid, mid, tasks, token, clear }) {
                 </Card>
               </a>
               <TrialAccardion
-                clear={clear}
                 key={i}
                 cid={cid}
                 mid={mid}

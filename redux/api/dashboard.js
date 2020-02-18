@@ -53,8 +53,6 @@ export function getTeamNameAPI(token) {
 }
 
 export function passwordUpdateAPI(data, token) {
-  console.log(PASSWORD_RESET);
-  console.log(data);
   return axios.post(PASSWORD_RESET, data, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -127,7 +125,6 @@ export function taskAPI(contestId, milestoneId, taskId, token) {
 }
 
 export function getNewTrialAPI(token, contestId, milestoneId, taskId) {
-  console.log({ token, contestId, milestoneId, taskId });
   return axios.post(
     TASK(contestId, milestoneId, taskId),
     {},
@@ -153,7 +150,6 @@ export function contentFinished(contestId, milestoneId, taskId, token) {
 }
 
 export function getTrialAPI(token, contestId, milestoneId, taskId, trialId) {
-  console.log(TRIAL(contestId, milestoneId, taskId, trialId));
   return axios.get(TRIAL(contestId, milestoneId, taskId, trialId), {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -170,8 +166,8 @@ export function trialsListAPI(contestID, milestoneID, token) {
 }
 
 export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
-  // console.log("DATA")
-  // console.log(data)
+  console.log('DATA');
+  console.log(data);
   return axios.post(TRIAL(contestId, milestoneId, taskId, trialId), data, {
     headers: {
       Authorization: `Bearer ${token}`,

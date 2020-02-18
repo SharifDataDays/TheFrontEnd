@@ -40,14 +40,14 @@ class Dashboard extends Component {
 
     if (status_code === 200 && milestones.length === 1) {
       const milestone = milestones[0];
-      if (milestone.tasks.length === 1) {
-        Router.push(
-          `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
-          `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
-          { shallow: false },
-        );
-        return <></>;
-      }
+      // if (milestone.tasks.length === 1) {
+      //   Router.push(
+      //     `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
+      //     `/dashboard/${contest_id}/${milestone.id}/${milestone.tasks[0].id}`,
+      //     { shallow: false },
+      //   );
+      //   return <></>;
+      // }
       Router.push(
         `/dashboard/${contest_id}/${milestone.id}`,
         `/dashboard/${contest_id}/${milestone.id}`,

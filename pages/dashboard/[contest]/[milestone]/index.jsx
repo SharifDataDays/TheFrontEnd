@@ -10,7 +10,7 @@ import NotFound from '~/components/global/notFound';
 import Forbidden from '~/components/global/forbidden';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { clearAnswers } from '../../../../redux/actions/trials';
+import { trialClearAction } from '../../../../redux/actions/trials';
 
 class TaskPage extends Component {
   static async getInitialProps({ query }, token) {
@@ -77,12 +77,5 @@ class TaskPage extends Component {
     );
   }
 }
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    clear: () => dispatch(clearAnswers())
-  };
-}
-
-export default withAuth(true)(connect(null, mapDispatchToProps)(TaskPage));
+export default withAuth(true)(TaskPage);
 
