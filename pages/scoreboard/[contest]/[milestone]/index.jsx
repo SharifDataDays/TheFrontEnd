@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Scoreboard from '~/components/dashboard/scoreboard/index';
+import Scoreboard from '~/components/dashboard/scoreboard';
 import '~/.semantic/dist/semantic.rtl.min.css';
 import Layout from '~/components/global/layout';
 import withAuth from '~/components/global/withAuth';
@@ -9,14 +9,17 @@ import _ from 'lodash';
 
 class MainScoreboard extends Component {
   static async getInitialProps({ query }, token) {
-    const contestID = 2;
-    let milestoneID = query.milestone; 
+    const contestID = parseInt(query.contest);
+    let milestoneID = parseInt(query.milestone);
+    let requestID = contestID;
+    if (milestoneID !== 0) requestID = contestID * 1000 + milestoneID;
+
     let startIndex = 1;
-
-    const res0 = await teamCountAPI(milestoneID, token);
+    console.log(query);
+    console.log(requestID);
+    const res0 = await teamCountAPI(requestID, token);
     const { teams_count } = res0.data;
-
-
+    console.log(res0.data);
     let endIndex = teams_count;
     let myteam = {
       name: '',
@@ -24,15 +27,17 @@ class MainScoreboard extends Component {
       teams_count: teams_count,
     };
 
-    const res = await scoreboardAPI(startIndex, endIndex, milestoneID, token);
+    const res = await scoreboardAPI(startIndex, endIndex, requestID, token);
     let { milestone, scoreboard, tasks, status_code } = res.data;
+    console.log(res.data);
+
     if (status_code === 200 || _.isUndefined(status_code)) {
       status_code = 200;
 
       const res2 = await getTeamNameAPI(token);
       const teams = res2.data.teams;
       //const teamName = "asgharha"
-      
+
       const teamName = teams[contestID];
 
       const myRow = scoreboard.filter((a) => {

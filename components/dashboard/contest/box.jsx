@@ -109,7 +109,7 @@ export class Box extends Component {
         </Container>
         <Grid.Row>
         <BoxButton attached="left" title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`}>Left</BoxButton>
-        <BoxButton attached="right" title="جدول امتیازات" contest={contest} clickOnPage={`/dashboard/scoreboard/${contest.id}`}>Right</BoxButton>
+        <BoxButton attached="right" title="جدول امتیازات" contest={contest} clickOnPage={`/scoreboard/${contest.id}/0`}>Right</BoxButton>
         </Grid.Row>
       </Container>
     );

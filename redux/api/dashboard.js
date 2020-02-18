@@ -176,12 +176,8 @@ export function submitTrialAPI(data, token, contestId, milestoneId, taskId, tria
 }
 
 const SCOREBOARD_BASE_ADD = 'http://81.31.170.5:8000';
-const SCOREBOARD = (
-  start_index,
-  end_index,
-  ms_id,
-) => `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}
-&end_index=${end_index}&ms_id=${ms_id}`;
+const SCOREBOARD = (start_index, end_index, ms_id) =>
+  `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}&end_index=${end_index}&ms_id=${ms_id}`;
 
 const TEAMCOUNT = (ms_id) => `${SCOREBOARD_BASE_ADD}/milestone_info/?ms_id=${ms_id}`;
 
@@ -193,6 +189,7 @@ export function teamCountAPI(milestoneID, token) {
   });
 }
 export function scoreboardAPI(startIndex, endIndex, milestoneID, token) {
+  console.log(SCOREBOARD(startIndex, endIndex, milestoneID));
   return axios.get(SCOREBOARD(startIndex, endIndex, milestoneID), {
     headers: {
       Authorization: `Bearer ${token}`,

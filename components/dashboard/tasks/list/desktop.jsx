@@ -39,6 +39,9 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         marginBottom: '3rem',
       }}
     >
+       {/* <RowSegment>
+         جدول
+       </RowSegment> */}
       {_.map(tasks, (task, i) => {
         // console.log(task)
         const { title_fa, description_fa, thumbnail } = task.content;

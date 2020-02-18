@@ -17,7 +17,7 @@ const Text = styled.p`
 function HeaderSection({ title, description, image, idsInfo }) {
   const milestoneID = parseInt(idsInfo.mid);
   const contestID = parseInt(idsInfo.cid);
-  const refNumber = contestID * 1000 + milestoneID
+  
   return (
     <>
       <Grid
@@ -53,7 +53,7 @@ function HeaderSection({ title, description, image, idsInfo }) {
         <Grid.Row>
           <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
         </Grid.Row>
-        <a href={`/dashboard/scoreboard/${refNumber}`}>
+        <a href={`/scoreboard/${contestID}/${milestoneID}`}>
           <Grid.Row>
           <Item as='a'>مشاهده‌ی جدول امتیازات</Item>
           </Grid.Row>
