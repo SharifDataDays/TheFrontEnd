@@ -4,7 +4,8 @@ import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
 import { contentFinished } from '~/redux/api/dashboard.js';
 
-function Pagination({ page, prevPage, nextPage, content, trial }) {
+function Pagination({ page, prevPage, nextPage, content, contentRead , returnAddr, content_finished}) {
+
   return (
     <div style={{ marginBottom: '3rem' }}>
       {page > 0 ? (
@@ -14,26 +15,33 @@ function Pagination({ page, prevPage, nextPage, content, trial }) {
       ) : (
         <></>
       )}
+
       {page < content.sections.length ? (
         <Button onClick={nextPage} floated="right">
           بعدی
         </Button>
       ) : (
-        <Button primary onClick={trial} floated="right">
-          مطالعه شد
-        </Button>
+        <>
+          <Button primary onClick={contentRead} floated="right" disabled={content_finished}>
+            مطالعه شد
+          </Button>
+          <Button href={returnAddr} floated="right">
+            بازگشت
+          </Button>
+        </>
       )}
     </div>
   );
 }
 
+
 class Resource extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 0 };
+    this.state = { page: 0 , content_finished: this.props.content.content_finished};
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
-    this.trial = this.trial.bind(this);
+    this.contentRead = this.contentRead.bind(this);
   }
 
   nextPage(event) {
@@ -55,15 +63,73 @@ class Resource extends Component {
     });
   }
 
-  async trial(event) {
-    const { contestId, milestoneId, taskId , token} = this.props;
-    const rs = await contentFinished(contestId, taskId, milestoneId, token);
-    console.log(rs)
+  async contentRead(event) {
+    const { contestId, milestoneId, taskId, token } = this.props;
+    const rs = await contentFinished(contestId, milestoneId, taskId, token);
+    console.log(rs);
+    this.setState({
+      content_finished: true
+    })
   }
 
+
+  
+
   render() {
-    const { content, contestId, milestoneId, taskId } = this.props;
+    const { content, contestId, milestoneId, taskId, image } = this.props;
     const { page } = this.state;
+
+    if (contestId + '' === '3') {
+      return (
+        <Grid
+          style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
+          centered
+        >
+          <Grid.Row>
+            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}></Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+              <Header as="h1" style={{ textAlign: 'center' }}>
+                {content.title_fa}
+              </Header>
+
+              {!_.isEmpty(content.file) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.file}
+                  download
+                >
+                  دانلود منابع
+                </a>
+              )}
+              <br />
+              {page > 0 && !_.isEmpty(content.sections[page - 1].link_to_colab) && (
+                <a
+                  style={{ textAlign: 'center', margin: '2rem', width: '100%' }}
+                  href={content.sections[page - 1].link_to_colab}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  مشاهده در Google Colab
+                </a>
+              )}
+              {!_.isUndefined(image) ? (
+                <Image size="large" style={{ margin: 'auto' }} src={image} />
+              ) : (
+                <></>
+              )}
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column computer={10} tablet={12} mobile={14}>
+              <Container content={content.description_en} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      );
+    }
+
     return (
       <Grid
         style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
@@ -83,8 +149,10 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
-              trial={this.trial}
+              contentRead={this.contentRead}
               token={this.props.token}
+              returnAddr={`/dashboard/${contestId}/${milestoneId}`}
+              content_finished={this.state.content_finished}
             />
           </Grid.Column>
         </Grid.Row>
@@ -131,7 +199,10 @@ class Resource extends Component {
               content={content}
               prevPage={this.prevPage}
               nextPage={this.nextPage}
-              trial={this.trial}
+              contentRead={this.contentRead}
+              token={this.props.token}
+              returnAddr={`/dashboard/${contestId}/${milestoneId}`}
+              content_finished={this.state.content_finished}
             />
           </Grid.Column>
         </Grid.Row>

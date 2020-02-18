@@ -9,10 +9,10 @@ import Introduction from '~/components/home/introduction';
 import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 import homeAPI from '~/redux/api/home';
+import Stats from '~/components/home/stats';
 
 class HomePage extends Component {
   static async getInitialProps(ctx) {
-
     const res = await homeAPI();
     const content = res.data;
     return { content };
@@ -20,7 +20,8 @@ class HomePage extends Component {
 
   render() {
     const { content } = this.props;
-    const { intro, timeline, prizes } = content;
+    const { intro, timeline, prizes, counts } = content;
+
     return (
       <>
         <Head>
@@ -30,6 +31,8 @@ class HomePage extends Component {
         <Header />
         <Sponsers />
         <Introduction header={intro.header_fa} content={intro.text_fa} />
+        <Stats counts={counts} />
+
         <Timeline timeline={timeline} />
         <Prize prizes={prizes} />
         <Footer />

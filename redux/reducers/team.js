@@ -19,6 +19,7 @@ function teamFailReducer(state = initialState.team, action) {
     draft.success = false;
     draft.errors = errors;
 
+    console.log(errors);
     let fa = '';
     if (draft.errors.name === 'invalid name') {
       fa = 'فیلد نباید خالی باشد';
@@ -27,8 +28,13 @@ function teamFailReducer(state = initialState.team, action) {
       draft.errors.participant[0] === 'This field may not be blank.'
     ) {
       fa = 'فیلد نباید خالی باشد';
-    } else if (draft.errors[0] === 'name must be unique') {
+    } else if (!_.isUndefined(draft.errors) && draft.errors[0] === 'name must be unique') {
       fa = 'نام انتخاب شده تکراری است';
+    } else if (
+      !_.isUndefined(draft.errors) &&
+      draft.errors[0] === "can't finalize uncompleted team"
+    ) {
+      fa = 'تیم کامل نیست';
     } else if (!_.isUndefined(draft.errors.non_field_errors)) {
       if (draft.errors.non_field_errors[0] === 'requested user not found') {
         fa = 'کاربر مورد نظر یافت نشد';
@@ -41,6 +47,8 @@ function teamFailReducer(state = initialState.team, action) {
         'number of team members and open invitations exeeds team size'
       ) {
         fa = 'تعداد اعضای تیم بیش‌تر از حد مجاز است';
+      } else if (draft.errors.non_field_errors[0] === "requested user's team is finalized") {
+        fa = 'تیم کاربر مورد نظر تکمیل است';
       } else {
         fa = draft.errors.non_field_errors[0];
       }

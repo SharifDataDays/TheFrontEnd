@@ -35,7 +35,7 @@ function TeamMembersSection({ teamData }) {
                 padding: '10px',
               }}
             >
-              {user.user.first_name} {user.user.last_name} ({user.user.username})
+              {user.user.username}
             </List.Item>
           );
         })}
@@ -44,33 +44,66 @@ function TeamMembersSection({ teamData }) {
   );
 }
 
-function TeamInvitationsSection({ invitations }) {
+function cancel(invitation, answerInvitation, token) {
+  const fields = {
+    id: invitation.id,
+    accept: false,
+    contest_id: invitation.contest_id,
+  };
+  invitation.hide = true;
+  answerInvitation(fields, token);
+}
+
+function TeamInvitationsSection({ invitations, answerInvitation, token }) {
   if (_.isUndefined(invitations) || _.isEmpty(invitations)) {
     return <></>;
   }
   return (
     <>
-     <Divider />
+      <Divider />
       <Grid.Row>
         <Label primary pl={4} style={{ fontWeight: 'bold' }}>
           درخواست‌های فرستاده شده:
         </Label>
-        <List bulleted>
+        <List>
           {_.map(invitations, (invitation) => {
-            return (
-              <List.Item
-                key={invitation.id}
-                style={{
-                  padding: '10px',
-                }}
-              >
-                {invitation.participant}
-              </List.Item>
-            );
+            if (!invitation.hide) {
+              return (
+                <Container
+                  key={invitation.id}
+                  py={1}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingRight: '10px',
+                  }}
+                >
+                  <List bulleted>
+                    <List.Item
+                      style={{
+                        paddingRight: '10px',
+                      }}
+                    >
+                      {invitation.participant}
+                    </List.Item>
+                  </List>
+                  <Button
+                    negative
+                    content="لفو"
+                    floated="right"
+                    size="small"
+                    onClick={() => {
+                      cancel(invitation, answerInvitation, token);
+                    }}
+                  />
+                </Container>
+              );
+            }
           })}
         </List>
       </Grid.Row>
-     
     </>
   );
 }
@@ -82,11 +115,17 @@ export default class TeamInfo extends Component {
   }
 
   render() {
-    const { team, teamData, teamNameUpdate, addMember, token, finalize } = this.props;
+    const { team, teamData, teamNameUpdate, addMember, token, finalize, answerInvitation } = this.props;
     const fin = teamData.name_finalized || team.finalized;
     return (
-      <>
-        <HeaderDiv finalized={fin} finalize={finalize} teamData={teamData} token={token} teamName={this.teamName} />
+      <Container py={3} m={0}>
+        <HeaderDiv
+          finalized={fin}
+          finalize={finalize}
+          teamData={teamData}
+          token={token}
+          teamName={this.teamName}
+        />
         <Grid dir="RTL">
           <Grid.Column
             verticalAlign="middle"
@@ -114,8 +153,12 @@ export default class TeamInfo extends Component {
 
             <Divider />
             <TeamMembersSection teamData={teamData} />
-            
-            <TeamInvitationsSection invitations={teamData.invitations} />
+
+            <TeamInvitationsSection
+              invitations={teamData.invitations}
+              answerInvitation={answerInvitation}
+              token={token}
+            />
 
             <Input
               kind={'addMember'}
@@ -131,7 +174,7 @@ export default class TeamInfo extends Component {
             />
           </Grid.Column>
         </Grid>
-      </>
+      </Container>
     );
   }
 }

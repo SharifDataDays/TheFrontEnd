@@ -6,7 +6,7 @@ export function First({ title, description, date, image, id }) {
   return (
     <Card href={`/blog/${id}`} style={{ width: '100%' }}>
       <Image src={image} wrapped ui={false} />
-      <Card.Content style={{ direction: 'rtl' }}>
+      <Card.Content style={{ direction: 'rtl', textAlign: 'justify' }}>
         <Card.Header>{title}</Card.Header>
         <Card.Meta>
           {moment
@@ -25,7 +25,7 @@ export function Rest({ title, description, date, image, id }) {
     <Item.Group style={{ direction: 'rtl' }}>
       <Item href={`/blog/${id}`}>
         <Item.Image size="small" src={image} />
-        <Item.Content style={{ direction: 'rtl' }}>
+        <Item.Content style={{ direction: 'rtl'  , textAlign: 'justify' }}>
           <Item.Header as="a">{title}</Item.Header>
           <Item.Meta>
             <span>

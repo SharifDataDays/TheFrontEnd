@@ -42,7 +42,8 @@ class Form extends Component {
   render() {
     const { terms, signup, options } = this.props;
     const { success, errors } = signup;
-    console.log('signupppppp:', signup);
+
+    
     return (
       <Grid>
         <Grid.Column verticalAlign="middle">

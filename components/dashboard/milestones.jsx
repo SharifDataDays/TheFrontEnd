@@ -10,13 +10,41 @@ function Milestones({ contest, milestones }) {
         <Card.Group>
           {_.map(milestones, (milestone) => {
             const { id, title, description, image, start_time, end_time } = milestone;
+
             return (
               <a href={`/dashboard/${contest.id}/${id}`}>
                 <Card dir="rtl" style={{ margin: '2rem auto' }} fluid>
                   <Card.Content>
                     <Card.Header>{title}</Card.Header>
-                    <Image size="medium" src={image} />
-                    <Card.Description>{description}</Card.Description>
+                    <div
+                      style={{
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        textAlign: 'justify',
+                        
+                      }}
+                    >
+                      <Image
+                        size="medium"
+                        src={image}
+                        style={{
+                          padding: '20px',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                        }}
+                      />
+                      <p
+                        style={{
+                          textAlign: 'justify',
+                          color: 'black'
+                        }}
+                      >
+                        <Card.Description>{description}</Card.Description>
+                      </p>
+                    </div>
                   </Card.Content>
                   <Card.Content extra>
                     <div>{`شروع گام: ${moment

@@ -5,7 +5,7 @@ import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
 import Trials from '~/components/dashboard/trials';
 import { getTrialAPI } from '~/redux/api/dashboard';
-import { changeAnswerAction, submitAnswersAction } from '~/redux/actions/trials';
+import { changeAnswerAction, submitAnswersAction, clearAnswers } from '~/redux/actions/trials';
 import _ from 'lodash';
 import NotFound from '~/components/global/notFound';
 
@@ -18,6 +18,7 @@ class TrialsPage extends Component {
       status_code = res.data.status_code;
     }
     const { data } = res;
+    console.log(res.data)
     return { status_code, token, questions: data, ...query };
   }
 
@@ -33,6 +34,7 @@ class TrialsPage extends Component {
       task,
       trial,
       status_code,
+      clear
     } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
@@ -43,6 +45,7 @@ class TrialsPage extends Component {
             token={token}
             trials={trials}
             changeAnswer={changeAnswer}
+            clear={clear}
             submit={submit}
             contest={contest}
             milestone={milestone}
@@ -68,6 +71,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     changeAnswer: (answer) => dispatch(changeAnswerAction(answer)),
     submit: (token, contestId, milestoneId, taskId, trialId, final) =>
       dispatch(submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final)),
+    clear: () => dispatch(clearAnswers())
   };
 }
 

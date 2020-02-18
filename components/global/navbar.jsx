@@ -6,15 +6,20 @@ import { Button, Dropdown, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faBlog, faSignOutAlt, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import { logoutAction } from '~/redux/actions/auth';
+import { space, layout } from 'styled-system';
 
 const Menu = styled(M)`
+${space}
+${layout}
   position: ${(props) => (props.transparent ? 'absolute' : 'relative')} !important;
   margin: 0 !important;
+  
   border-radius: 0 !important;
   border: 0 !important;
   border-bottom: ${(props) => (props.transparent ? '0' : '1px solid #e2e2e2')} !important;
   background-color: ${(props) => (props.transparent ? 'transparent' : 'white')} !important;
-  z-index: ${(props) => (props.transparent ? 1 : 0)} !important;
+  z-index: 1;
+  opacity: 1;
   width: 100%;
 `;
 
@@ -62,10 +67,11 @@ const AuthNavbar = connect(
   mapDispatchToProps,
 )(({ logout, transparent }) => {
   return (
-    <Menu size="huge" transparent={transparent} secondary>
-      <Menu.Item>
+    <Menu size="huge" transparent={transparent} secondary pl={[1, 4, 4]} pr={0}>
+      <Menu.Item style={{ paddingRight: 0 ,  zIndex: 1 }}>
         <Dropdown
           item
+          //  direction={"left"}
           trigger={
             <FontAwesomeIcon
               style={{ marginRight: '0.5rem' }}
@@ -74,10 +80,26 @@ const AuthNavbar = connect(
               icon={faUser}
             />
           }
+          style={{ paddingRight: 0 }}
         >
-          <Dropdown.Menu style={{ left: '0 !important' }}>
-            <Dropdown.Item href="/dashboard/profile">
-              <a>تنظیمات</a>
+          <Dropdown.Menu style={{ left: '0 !important', zIndex: 1 }}>
+            {/* todo todo todo */}
+            {/* <Dropdown.Item href="/dashboard/team/2">
+              <a>تیم</a>
+              <FontAwesomeIcon
+                style={{ marginLeft: '0.5rem' }}
+                color="#1d93f7"
+                size="lg"
+                icon={faCog}
+              />
+            </Dropdown.Item> */}
+            <Dropdown.Item
+              href="/dashboard/profile"
+              style={{
+                zIndex: 1,
+              }}
+            >
+              <a>پروفایل</a>
               <FontAwesomeIcon
                 style={{ marginLeft: '0.5rem' }}
                 color="#1d93f7"
@@ -86,6 +108,9 @@ const AuthNavbar = connect(
               />
             </Dropdown.Item>
             <Dropdown.Item
+              style={{
+                zIndex: 1,
+              }}
               href="/login"
               onClick={(e) => {
                 e.preventDefault();
@@ -103,8 +128,12 @@ const AuthNavbar = connect(
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Item>
-      <Menu.Item>
-        <a href="/dashboard">گام‌ها</a>
+      <Menu.Item
+        style={{
+          padding: 0,
+        }}
+      >
+        <a href="/dashboard">داشبورد</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
       </Menu.Item>
       <Menu.Item>

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { space, color, border } from 'styled-system';
 import TeamInfo from './teamInfo';
 import Invitations from './invitations';
-import { Message } from 'semantic-ui-react';
+import { Message, Header, Container as C, Button } from 'semantic-ui-react';
 const Container = styled.div`
   ${space}
   ${color}
   ${border}
 `;
 
-export default function ProfileContainer({
+export default function TeamContainer({
   token,
   team,
   teamData,
@@ -19,10 +19,29 @@ export default function ProfileContainer({
   answerInvitation,
   addMember,
   finalize,
+  rules,
+  cid,
 }) {
+  let rules_container = <> </>;
+  if (!_.isUndefined(rules) && rules !== '') {
+    rules_container = (
+      <Container py={3} my={3} dir="RTL">
+        <Header size="huge" dir="RTL">
+          قوانین
+        </Header>
+        <Container pr={3}>
+          {rules.split('\n').map((item, i) => {
+            return <p key={i}>{item}</p>;
+          })}
+        </Container>
+      </Container>
+    );
+  }
+
   return (
-    <>
-      <Container dir="RTL" px={[4, 5, 6]} pt={3} m={0}>
+    <Container px={[4, 5, 6]} mx={[0, 0, 4]}>
+      {rules_container}
+      <Container dir="RTL" pt={3} m={0}>
         <Message hidden={!team.success} positive>
           تغییرات با موفقیت ذخیره شد.
         </Message>
@@ -31,24 +50,37 @@ export default function ProfileContainer({
         </Message>
       </Container>
 
-      <Container px={[4, 5, 6]} py={3} m={0}>
-        <TeamInfo
-          team={team}
-          teamData={teamData}
-          teamNameUpdate={teamNameUpdate}
-          addMember={addMember}
-          finalize={finalize}
-          token={token}
-        />
+      <TeamInfo
+        team={team}
+        teamData={teamData}
+        teamNameUpdate={teamNameUpdate}
+        addMember={addMember}
+        finalize={finalize}
+        token={token}
+        answerInvitation={answerInvitation}
+      />
+
+      <Invitations
+        finalized={teamData.name_finalized || team.finalized}
+        userInvitations={userInvitations}
+        answerInvitation={answerInvitation}
+        token={token}
+      />
+
+      <Container
+        py={3}
+        style={{
+          alignContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          textAlign: 'justify',
+        }}
+      >
+        <a href={`/dashboard/${cid}/`}>
+          <Button size="large">بازگشت</Button>
+        </a>
       </Container>
-      <Container px={[4, 5, 6]} pt={5} pb={4} m={0}>
-        <Invitations
-          finalized={teamData.name_finalized || team.finalized}
-          userInvitations={userInvitations}
-          answerInvitation={answerInvitation}
-          token={token}
-        />
-      </Container>
-    </>
+    </Container>
   );
 }

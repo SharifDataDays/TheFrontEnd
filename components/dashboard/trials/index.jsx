@@ -3,15 +3,21 @@ import { Grid, Button, Message } from 'semantic-ui-react';
 import Questions from './questions';
 import { Component } from 'react';
 import _ from 'lodash';
+import { relativeTimeThreshold } from 'jalali-moment';
+import { clearAnswers } from '../../../redux/actions/trials';
+import { ThemeConsumer } from 'styled-components';
+import { connect } from 'react-redux';
+import { sawFailAction } from '../../../redux/actions/trials';
 
 class Trials extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       endTime: false,
       submitted: false,
-      final: !_.isUndefined(this.props.questions.submit_time) && !_.isNull(this.props.questions.submit_time)
+      final:
+        !_.isUndefined(this.props.questions.submit_time) &&
+        !_.isNull(this.props.questions.submit_time),
     };
   }
 
@@ -31,12 +37,29 @@ class Trials extends Component {
         </Grid.Row>
 
         <a href={link}>
-          <Button primary size="large" floated="right">
+          <Button onClick={() => this.props.sawFail()} primary size="large" floated="right">
             بازگشت
           </Button>
         </a>
       </Grid>
     );
+  };
+
+  onclick = async (e, final) => {
+    const { submit, token, contest, milestone, task, trial, fail } = this.props;
+
+    e.preventDefault();
+    
+    submit(token, contest, milestone, task, trial, final);
+
+    {
+      this.setState({ submitted: true });
+      if (final) {
+        this.setState({
+          final: false,
+        });
+      }
+    }
   };
 
   render() {
@@ -51,15 +74,29 @@ class Trials extends Component {
       trial,
       questions,
     } = this.props;
-    console.log(this.props)
+    // console.log(this.props);
 
-    if (this.state.final) {
+    
+
+    if (this.state.error) {
+      return this.msg(
+        this.state.error,
+        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+      );
+    }
+    if(this.props.fail) {
+      return this.msg(
+        'پاسخ‌های ارسالی شما با خطا مواجه شد.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
+      );
+    }
+    else if (this.state.final) {
       return this.msg(
         'پاسخ شما ارسال شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/`,
       );
     }
-    if (this.state.submitted) {
+    else if (this.state.submitted) {
       return this.msg(
         'پاسخ شما ذخیره شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
@@ -82,36 +119,32 @@ class Trials extends Component {
               questions={questions}
               endTime={this.endTime.bind(this)}
             />
-             
-              <Button
-                size="large"
-                floated="right"
-                primary
-                onClick={(e) => {
-                  e.preventDefault();
-                  submit(token, contest, milestone, task, trial, true);
-                  this.setState({ submitted: true , final: true});
-                }}
-              >
-                 ثبت نهایی
+
+            <Button
+              size="large"
+              floated="right"
+              primary
+              onClick={(e) => {
+                this.onclick(e, true);
+              }}
+            >
+              ثبت نهایی
+            </Button>
+            <Button
+              size="large"
+              floated="right"
+              primary
+              onClick={(e) => {
+                this.onclick(e, false);
+              }}
+            >
+              ذخیره
+            </Button>
+            <a href={`/dashboard/${this.props.contest}/${this.props.milestone}/`}>
+              <Button size="large" floated="right">
+                بازگشت
               </Button>
-              <Button
-                size="large"
-                floated="right"
-                primary
-                onClick={(e) => {
-                  e.preventDefault();
-                  submit(token, contest, milestone, task, trial, false);
-                  this.setState({ submitted: true });
-                }}
-              >
-                ذخیره
-              </Button>
-              <a href={`/dashboard/${this.props.contest}/${this.props.milestone}/`}>
-                <Button size="large" floated="right">
-                  بازگشت
-                </Button>
-              </a>
+            </a>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -119,4 +152,17 @@ class Trials extends Component {
   }
 }
 
-export default Trials;
+function mapStateToProps(state) {
+  const {trials} = state
+  return {
+    fail :trials.fail
+  }
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    sawFail: () => dispatch(sawFailAction())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Trials);

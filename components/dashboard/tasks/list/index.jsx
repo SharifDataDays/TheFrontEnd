@@ -6,14 +6,14 @@ import Desktop from './desktop';
 
 
 
-function ListSection({ cid, mid, tasks , token}) {
+function ListSection({ cid, mid, tasks , token, clear}) {
   return (
     <NoSSR>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Mobile cid={cid} mid={mid} tasks={tasks} token={token}/>
+        <Mobile clear={clear} cid={cid} mid={mid} tasks={tasks} token={token}/>
       </Responsive>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Desktop cid={cid} mid={mid} tasks={tasks} token={token}/>
+        <Desktop clear={clear} cid={cid} mid={mid} tasks={tasks} token={token}/>
       </Responsive>
     </NoSSR>
   );

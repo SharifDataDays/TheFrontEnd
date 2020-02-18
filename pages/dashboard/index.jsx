@@ -2,9 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import withAuth from '~/components/global/withAuth';
 import Layout from '~/components/global/layout';
-import Milestones from '~/components/dashboard/milestones';
 import { contestAPI, allContestsAPI, milestoneAPI } from '~/redux/api/dashboard';
-import Forbidden from '~/components/global/Forbidden';
+import Container from '~/components/dashboard/contest/index';
 
 class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
@@ -13,71 +12,15 @@ class Dashboard extends Component {
     console.log("______all response:", allRes.data)
     console.log("******finish all res")
     const { contests } = allRes.data;
-    if (!_.isUndefined(contests.status_code)) {
-      status_code = contests.status_code;
-    }
-    if (status_code != 200) {
-      return { status_code };
-    }
-
-    const contest = contests[0];
-
-    const contestRes = await contestAPI(contest.id, token);
-    if (!_.isUndefined(contestRes.data.status_code)) {
-      status_code = contestRes.data.status_code;
-    }
-    if (status_code != 200) {
-      return { status_code };
-    }
-    const milestones = await Promise.all(
-      _.map(contestRes.data.contest.milestones, async (id) => {
-        const milestoneRes = await milestoneAPI(allRes.data.contests[0].id, id, token);
-
-        const { milestone } = milestoneRes.data;
-
-        return milestone;
-      }),
-    );
-    return { milestones, contest, token, status_code };
+    return { contests, token, status_code };
   }
 
   render() {
-    const { milestones, contest, token, status_code } = this.props;
+    const { contests, token } = this.props;
     return (
       <Layout token={token} hasNavbar hasFooter>
-        {status_code === 403 ? (
-          <Forbidden cid={2}/>
-        ) : status_code !== 200 ? (
-          <NotFound />
-        ) : (
+        <Container contests={contests} />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <Milestones contest={contest} milestones={milestones} />
-        )}
       </Layout>
     );
   }

@@ -70,9 +70,9 @@ class Questions extends Component {
       return <></>;
     }
     return (
-      <h1 style={{ textAlign: 'center' }}>
-        {hours}:{minutes}:{seconds}
-      </h1>
+      <h2 style={{ textAlign: 'center' }}>
+        زمان باقی‌مانده: {hours}:{minutes}:{seconds}
+      </h2>
     );
   };
 
@@ -82,7 +82,7 @@ class Questions extends Component {
     return (
       <>
         <Container p={2} mx={[1, 2, 2]} mb={2}>
-          زمان باقی‌مانده:{' '}
+         
           <Countdown dir="ltr" date={new Date(questions.due_time)} renderer={this.renderer} />
         </Container>
         <Divider />

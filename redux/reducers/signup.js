@@ -38,6 +38,12 @@ function signupChekerReducer(state = initialState.signup, action) {
         draft.errors[key] = 'فیلد خالی است.';
       }
     });
+    if (!validator.isNumeric("" + checkFields.student_id)) {
+      draft.errors.student_id = 'یک شماره دانشجویی معتبر وارد کنید.';
+    }
+    if (!validator.isNumeric("" + checkFields.phone_number) || checkFields.phone_number.length != 11) {
+      draft.errors.phone_number = 'یک شماره تماس معتبر به فرمت ۰۹۱۲۳۴۵۶۷۸۹ وارد کنید.';
+    }
     if (!validator.isEmail(checkFields.email)) {
       draft.errors.email = 'ایمیل غیرمعتبر است.';
     }
@@ -45,7 +51,7 @@ function signupChekerReducer(state = initialState.signup, action) {
       draft.errors.password_1 = 'گذرواژه‌ها یکسان نیستند.';
       draft.errors.password_2 = 'گذرواژه‌ها یکسان نیستند.';
     }
-
+  
     return draft;
   });
 }

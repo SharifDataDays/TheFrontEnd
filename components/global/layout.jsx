@@ -6,11 +6,11 @@ import Navbar from './navbar';
 import Footer from './footer';
 import theme from '~/theme';
 
-function Layout({ children, hasNavbar, hasFooter, token }) {
+function Layout({ children, hasNavbar, hasFooter, token , transparent}) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {hasNavbar && <Navbar token={token} />}
+      {hasNavbar && <Navbar token={token} transparent={transparent}/>}
       <Container
         style={{
           width: '100% !important',

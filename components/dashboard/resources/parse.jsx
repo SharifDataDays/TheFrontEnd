@@ -16,7 +16,7 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <div style={{ marginBottom: '1rem' }} dir="RTL">
+          <div style={{ marginBottom: '1rem',  textAlign: 'justify' }} dir="RTL">
             {children}
           </div>
         );
@@ -28,7 +28,7 @@ export default htmlParser({
       },
       processNode(node, children) {
         return (
-          <font {...node.attribs} style={{ lineHeight: 1.5 }} face="IRANSans" size="5">
+          <font {...node.attribs} style={{ lineHeight: 1.5 ,  textAlign: 'justify'}} face="IRANSans" size="5">
             {children}
           </font>
         );
@@ -188,6 +188,7 @@ export default htmlParser({
                 lineHeight: 1.5,
                 marginBottom: '0.75rem',
                 direction: 'rtl',
+                textAlign: 'justify'
               }}
             >
               {children}
@@ -210,6 +211,7 @@ export default htmlParser({
                 lineHeight: 1.5,
                 marginBottom: '0.75rem',
                 direction: 'rtl',
+                textAlign: 'justify'
               }}
             >
               {children}
@@ -223,7 +225,7 @@ export default htmlParser({
         return node.name && node.name === 'li';
       },
       processNode(node, children) {
-        return <List.Item style={{ fontSize: '1.5rem' }}>{children}</List.Item>;
+        return <List.Item style={{ fontSize: '1.5rem',  textAlign: 'justify' }}>{children}</List.Item>;
       },
     },
     {
@@ -264,14 +266,14 @@ export default htmlParser({
       processNode(node, children) {
         if (node.attribs.class === 'math') {
           return (
-            <div dir="ltr" style={{ fontSize: '1.5rem' }}>
+            <div dir="ltr" style={{ fontSize: '1.5rem' ,  textAlign: 'justify'}}>
               <MathJax.Node>{node.children[0].data}</MathJax.Node>
             </div>
           );
         }
         if (node.attribs.class === 'inline') {
           return (
-            <span dir="ltr" style={{ fontSize: '1.5rem' }}>
+            <span dir="ltr" style={{ fontSize: '1.5rem',  textAlign: 'justify' }}>
               <MathJax.Node inline>{_.get(node, 'children[0].data', 'shit')}</MathJax.Node>
             </span>
           );
@@ -286,6 +288,7 @@ export default htmlParser({
               fontSize: '1.5rem',
               lineHeight: 1.5,
               marginBottom: '0.75rem',
+              textAlign: 'justify'
             }}
           >
             {text}
@@ -301,7 +304,7 @@ export default htmlParser({
         return (
           <a
             href={node.attribs.href}
-            style={{ fontSize: '1.5rem' }}
+            style={{ fontSize: '1.5rem',  textAlign: 'justify' }}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -317,7 +320,7 @@ export default htmlParser({
       processNode(node, children) {
         return (
           <blockquote
-            style={{ color: 'grey', borderRight: '5px solid #e0e1e2', paddingRight: '2rem' }}
+            style={{ color: 'grey', borderRight: '5px solid #e0e1e2', paddingRight: '2rem',  textAlign: 'justify' }}
           >
             {children}
           </blockquote>
@@ -329,7 +332,7 @@ export default htmlParser({
         return node.name && node.name === 'strong';
       },
       processNode(node, children) {
-        return <strong style={{ fontSize: '1.5rem' }}>{children}</strong>;
+        return <strong style={{ fontSize: '1.5rem',  textAlign: 'justify' }}>{children}</strong>;
       },
     },
     {
@@ -337,7 +340,7 @@ export default htmlParser({
         return node.name && node.name === 'em';
       },
       processNode(node, children) {
-        return <em style={{ fontSize: '1.5rem' }}>{children}</em>;
+        return <em style={{ fontSize: '1.5rem',  textAlign: 'justify' }}>{children}</em>;
       },
     },
     {
@@ -352,6 +355,7 @@ export default htmlParser({
               lineHeight: 1.5,
               marginBottom: '0.75rem',
               direction: 'rtl',
+              textAlign: 'justify'
             }}
           >
             {node.nodeValue}
@@ -374,6 +378,7 @@ export default htmlParser({
                 fontSize: '1.5rem',
                 lineHeight: 1.5,
                 marginBottom: '0.75rem',
+                textAlign: 'justify'
               }}
             >
               {node.nodeValue}
