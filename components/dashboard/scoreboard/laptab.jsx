@@ -134,7 +134,8 @@ class Scoreboard extends Component {
 
   render() {
     return (
-      <div style={{ overflow: 'auto' }}>
+      <>
+      <div style={{ overflow: 'auto' , marginBottom: '15px'}}>
         <Table celled unstackable>
           <Table.Header>
             <Table.Row>
@@ -156,13 +157,15 @@ class Scoreboard extends Component {
           </Table.Body>
         </Table>
 
-        <Footer
-          teams={this.state.teams}
-          changePage={this.changePage}
-          topRank={this.state.topRank}
-          currentPage={this.state.currentPage}
-        />
+       
       </div>
+       <Footer
+       teams={this.state.teams}
+       changePage={this.changePage}
+       topRank={this.state.topRank}
+       currentPage={this.state.currentPage}
+     />
+     </>
     );
   }
 }
