@@ -23,7 +23,8 @@ class ChoiceAnswer extends Component {
   }
 
   render() {
-    const { content, number, count, choices, saved } = this.props;
+    const { content, number, count, choices, saved, error } = this.props;
+
     return (
       <>
         <Content
@@ -41,6 +42,7 @@ class ChoiceAnswer extends Component {
                 control={count === 1 ? Radio : Checkbox}
                 width={8}
                 onChange={this.handleChange}
+                error={error}
               />
             </Form.Group>
           ))}

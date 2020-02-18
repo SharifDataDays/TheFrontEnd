@@ -126,7 +126,7 @@ export function submitAnswersAction(
   questions,
 ) {
   return (dispatch, getState) => {
-    // dispatch(pageLoadingAction(true));
+     dispatch(pageLoadingAction(true));
 
     const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
     if (!checkFields(questions, getState().trials.answers)) {
@@ -142,6 +142,6 @@ export function submitAnswersAction(
         }
       });
     }
-    // dispatch(pageLoadingAction(false));
+     dispatch(pageLoadingAction(false));
   };
 }

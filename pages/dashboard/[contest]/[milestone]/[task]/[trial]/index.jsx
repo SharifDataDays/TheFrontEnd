@@ -20,6 +20,7 @@ class TrialsPage extends Component {
     const { data } = res;
     console.log(res.data)
     return { status_code, token, questions: data, ...query };
+    
   }
 
 

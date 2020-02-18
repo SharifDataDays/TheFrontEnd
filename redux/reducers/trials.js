@@ -26,8 +26,12 @@ function trialFailReducer(state = initialState.trials, action) {
 
     if (errors.error === 'Must complete all fields') {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
+      draft.errors.fa = fa;
+
     } else if (!_.isUndefined(errors.question_submissions)) {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
+      draft.errors.fa = fa;
+
     } else if (!_.isUndefined(errors.errors)) {
       console.log('ENNN');
 
@@ -64,7 +68,6 @@ function trialFailReducer(state = initialState.trials, action) {
       });
     }
 
-    draft.errors.fa = fa;
     console.log('DRRRFTTT');
     console.log(draft.errors);
     return draft;

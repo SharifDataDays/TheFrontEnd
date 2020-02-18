@@ -116,6 +116,7 @@ export default class TrialAccardion extends Component {
 
     if (res.data.status_code === 200) {
       console.log(`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`)
+      localStorage.clear()
       Router.push(
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
@@ -147,7 +148,7 @@ export default class TrialAccardion extends Component {
         {_.map(this.state.trials, (trial, i) => {
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
             let goToPageButton = (
-              <Button primary size="medium" floated="right">
+              <Button primary size="medium" floated="right" onClick={() => localStorage.clear()}>
                 ورود به صفحه‌ی آزمون
               </Button>
             );

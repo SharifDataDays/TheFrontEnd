@@ -54,7 +54,9 @@ class FieldAnswer extends Component {
 
   render() {
     const { formCount } = this.state;
-    const { content, number, count, type, saved } = this.props;
+    const { content, number, count, type, saved, error } = this.props;
+    // console.log("FIELD")
+    // console.log(this.props)
     return (
       <>
         <Content
@@ -79,14 +81,22 @@ class FieldAnswer extends Component {
         <Form style={{ margin: '1rem auto' }}>
           {_.map(_.range(formCount), (i) => {
             return (
-              <Form.Group key={i} width={2} dir="rtl">
+              <Form.Group
+                key={i}
+                width={2}
+                dir="rtl"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
                 <Form.Input
                   name={i}
                   style={{ textAlign: 'left !important', direction: 'ltr !important' }}
                   value={_.get(saved, `n${i}`, '')}
                   type={type}
-                  width={8}
-                  
+                  // width={8}
+                  error={error}
                   onChange={this.handleChange}
                 />
               </Form.Group>

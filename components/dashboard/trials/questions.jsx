@@ -79,15 +79,25 @@ class Questions extends Component {
   render() {
     const { trials, changeAnswer, questions } = this.props;
 
-    console.log(this.props)
+    console.log('QUESTTT');
+
+    console.log(this.props);
+    console.log(trials);
     return (
       <>
         <Container p={2} mx={[1, 2, 2]} mb={2}>
-         
           <Countdown dir="ltr" date={new Date(questions.due_time)} renderer={this.renderer} />
         </Container>
         <Divider />
         {_.map(questions.question_submissions, (q, i) => {
+          // console.log('YOHOOO');
+          // console.log(q);
+          // console.log(i);
+          let error = false;
+          if (!_.isUndefined(trials.errors.errors)) {
+            console.log(trials.errors.errors[q.id]);
+            error = trials.errors.errors[q.id];
+          }
           const { question } = q;
           const Answer = getAnswer(question);
           return (
@@ -102,6 +112,7 @@ class Questions extends Component {
               qtype={question.type}
               choices={question.choices}
               changeAnswer={changeAnswer}
+              error ={error}
             />
           );
         })}
