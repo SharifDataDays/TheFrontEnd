@@ -23,12 +23,50 @@ function trialFailReducer(state = initialState.trials, action) {
     console.log(errors);
 
     let fa = '';
-    if (!_.isUndefined(draft.errors.question_submissions)) {
-      fa = 'فیلد نباید خالی باشد';
+
+    if (errors.error === 'Must complete all fields') {
+      fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
+    } else if (!_.isUndefined(errors.question_submissions)) {
+      fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
+    } else if (!_.isUndefined(errors.errors)) {
+      console.log('ENNN');
+
+      _.mapKeys(errors.errors, (value, key) => {
+        console.log(value);
+        console.log(key);
+        console.log(_.split(value));
+        fa = '';
+        if (_.startsWith(value, 'File uploaded format is invalid')) {
+          fa = 'فرمت فایل ارسالی نادرست است.';
+        } else if (_.startsWith(value, 'File size is too much')) {
+          fa = 'حجم فایل ارسالی بیشتر از حد مجاز است.';
+        } else if (_.startsWith(value, 'Entered range should contain numbers only')) {
+          fa = 'مقدار ارسال شده باید یک عدد باشد.';
+        } else if (_.startsWith(value, "Entered range isn't a valid numeric range")) {
+          fa = 'مقدار ارسال شده باید یک عدد باشد.';
+        } else if (_.startsWith(value, 'You should select maximum of')) {
+          fa = 'تعداد گزینه‌های انتخابی بیش‌تر از حد مجاز است.';
+        } else if (_.startsWith(value, 'You should choose only one answer')) {
+          fa = 'فقط مجاز به انتخاب یک گزینه هستید.';
+        } else if (_.startsWith(value, 'Answer type should be')) {
+          fa = 'فرمت جواب نادرست است';
+        } else if (_.startsWith(value, 'This question answer should be list')) {
+          fa = 'فرمت جواب نادرست است';
+        } else if (_.startsWith(value, 'Single answer should have only one answer, no more')) {
+          fa = 'فقط مجاز به ارسال یک جواب هستید.';
+        } else if (_.startsWith(value, 'You should submit maximum of ')) {
+          fa = 'تعداد جواب‌های ارسال شده بیش‌تر از حد مجاز است';
+        }
+        if (fa != '') {
+          draft.errors.errors[key + '_en'] = draft.errors.errors[key];
+          draft.errors.errors[key] = fa;
+        }
+      });
     }
 
     draft.errors.fa = fa;
-
+    console.log('DRRRFTTT');
+    console.log(draft.errors);
     return draft;
   });
 }

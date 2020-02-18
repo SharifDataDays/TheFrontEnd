@@ -51,6 +51,7 @@ function mapStateToSubmission(state, trialId, final) {
       data.append(id, n0);
       console.log('IDD');
       console.log(n0);
+      console.log(data);
     }
   });
 
@@ -71,7 +72,7 @@ function mapStateToSubmission(state, trialId, final) {
                 [],
               ),
             )
-          : ['A SAD ERROR I GUESS'];
+          : ['NOTHING'];
       return _.concat(result, {
         id,
         answer,
@@ -81,12 +82,11 @@ function mapStateToSubmission(state, trialId, final) {
     },
     [],
   );
-  let fixedAnswers = answers.slice(1);
   data.append(
     'json',
     JSON.stringify({
       id: trialId,
-      question_submissions: fixedAnswers,
+      question_submissions: answers,
       final_submit: final,
     }),
   );

@@ -87,7 +87,7 @@ class Trials extends Component {
 
     if (this.props.trials.fail) {
       console.log(this.props.trials.errors);
-      return this.msg('پاسخ‌های ارسالی شما با خطا مواجه شد.', ``);
+      return this.msg('پاسخ‌های ارسالی شما با خطا مواجه شد.' + "\n" + trials.errors.fa, ``);
     }
     if (this.props.trials.success) {
       console.log(this.props.trials.errors);
