@@ -228,7 +228,7 @@ export default class TrialAccardion extends Component {
     return (
       <Container
         px={[2, 4, 4]}
-        py={3}
+        py={4}
         m={0}
         style={{
           backgroundColor: '#d5e2ed',

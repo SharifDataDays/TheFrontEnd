@@ -8,7 +8,8 @@ import { space, layout, color, border, typography } from 'styled-system';
 
 const RowSegment = styled(Segment)`
   ${space},
-  ${layout}
+  ${layout},
+  ${color},
   padding: 0 !important;
   display: flex;
   justify-content: flex-end;
@@ -50,8 +51,9 @@ function TasksDesktop({ cid, mid, tasks, token }) {
             justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'center',
-            backgroundColor: '#505763',
+            backgroundColor: 'rgba(52, 116, 235, 1)',
           }}
+          
         >
           <H inverted> مشاهده‌ی جدول امتیازات</H>
         </RowSegment>

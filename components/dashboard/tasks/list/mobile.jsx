@@ -28,7 +28,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
               justifyContent: 'center',
               alignItems: 'center',
               alignContent: 'center',
-              backgroundColor: '#505763',
+              backgroundColor: 'rgba(52, 116, 235, 1)',
             }}
           >
             <H inverted> مشاهده‌ی جدول امتیازات</H>
