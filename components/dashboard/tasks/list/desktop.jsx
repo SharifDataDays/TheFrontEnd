@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import { Segment, Header as H, Image } from 'semantic-ui-react';
+import { Segment, Header as H, Image, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import EllipsisText from 'react-ellipsis-text';
 import TrialAccardion from './trialAccardion';

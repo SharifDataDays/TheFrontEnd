@@ -26,6 +26,8 @@ export class BoxButton extends Component {
       background = 'rgba(52, 116, 235, 1)';
     }
 
+    console.log("refffffff:", this.props.clickOnPage)
+
     return (
       <a href={this.props.clickOnPage}>
         <Button
