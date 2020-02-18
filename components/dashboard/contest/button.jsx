@@ -26,18 +26,17 @@ export class BoxButton extends Component {
       background = 'rgba(52, 116, 235, 1)';
     }
 
-    console.log("refffffff:", this.props.clickOnPage)
-
     return (
       <a href={this.props.clickOnPage}>
         <Button
           attached={this.props.attached}
           style={{
             minHeight: '40px',
-            // minWidth: '100px',
+            minWidth: '100px',
             marginTop: '15px',
             color: 'white',
             backgroundColor: background,
+            textAlign: 'center'
           }}
           onMouseEnter={this.toggleHoverOn}
           onMouseLeave={this.toggleHoverOff}
