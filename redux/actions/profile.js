@@ -74,7 +74,7 @@ export function passwordUpdateAction(fields, token) {
     
     dispatch(profilePasswordCheckerAction(fields));
     fields = { ...fields.password };
-    console.log(fields)
+    // console.log(fields)
     if (fields.new_password1 != '' && !_.isUndefined(fields.new_password1)) {
       console.log("ERROR")
       console.log(getState().profile.errors)

@@ -93,6 +93,13 @@ class Trials extends Component {
       console.log(this.props.trials.errors);
       return this.msg('پاسخ شما ارسال شد.', ``);
     }
+    if (this.state.endTime) {
+      return this.msg(
+        'زمان شما تمام شده‌ است.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+      );
+    }
+
 
     // if (this.state.error) {
     //   return this.msg(
@@ -116,12 +123,6 @@ class Trials extends Component {
     //   return this.msg(
     //     'پاسخ شما ذخیره شد.',
     //     `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
-    //   );
-    // }
-    // if (this.state.endTime) {
-    //   return this.msg(
-    //     'زمان شما تمام شده‌ است.',
-    //     `/dashboard/${this.props.contest}/${this.props.milestone}/`,
     //   );
     // }
 

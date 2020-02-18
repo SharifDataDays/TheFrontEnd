@@ -57,7 +57,7 @@ export default class TrialAccardion extends Component {
         });
       }
     });
-    // console.log(res.data);
+     console.log(res.data);
   }
 
   handleClick = (e, titleProps) => {
@@ -115,7 +115,7 @@ export default class TrialAccardion extends Component {
     }
 
     if (res.data.status_code === 200) {
-      
+      console.log(`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`)
       Router.push(
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,

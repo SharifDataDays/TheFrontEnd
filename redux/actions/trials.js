@@ -49,6 +49,8 @@ function mapStateToSubmission(state, trialId, final) {
     const id = _.join(_.tail(_.split(key, '')), '');
     if (qtype === 'file_upload') {
       data.append(id, n0);
+      console.log('IDD');
+      console.log(n0);
     }
   });
 
@@ -104,21 +106,42 @@ function mapStateToSubmission(state, trialId, final) {
   return data;
 }
 
-export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final, questions) {
+function checkFields(questions, answers) {
+  console.log(questions);
+  console.log(answers);
+  let fine = true;
+  _.each(questions, (value) => {
+    if (_.isUndefined(answers['i' + value.id])) fine = false;
+  });
+  return fine;
+}
+
+export function submitAnswersAction(
+  token,
+  contestId,
+  milestoneId,
+  taskId,
+  trialId,
+  final,
+  questions,
+) {
   return (dispatch, getState) => {
     // dispatch(pageLoadingAction(true));
-    console.log(getState().trials);
+
     const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
-    console.log(answers);
-    submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-      console.log('SUBMIT');
-      console.log(res.data);
-      if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
-        dispatch(trialFailAction(res.data));
-      } else {
-        dispatch(trialSuccessAction());
-      }
-      // dispatch(pageLoadingAction(false));
-    });
+    if (!checkFields(questions, getState().trials.answers)) {
+      dispatch(trialFailAction({ error: 'Must complete all fields' }));
+    } else {
+      submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
+        console.log('SUBMIT');
+        console.log(res.data);
+        if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
+          dispatch(trialFailAction(res.data));
+        } else {
+          dispatch(trialSuccessAction());
+        }
+      });
+    }
+    // dispatch(pageLoadingAction(false));
   };
 }
