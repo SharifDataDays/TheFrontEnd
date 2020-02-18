@@ -4,8 +4,15 @@ import { Button, Grid, Header, Image, Progress } from 'semantic-ui-react';
 import Container from './container';
 import { contentFinished } from '~/redux/api/dashboard.js';
 
-function Pagination({ page, prevPage, nextPage, content, contentRead , returnAddr, content_finished}) {
-
+function Pagination({
+  page,
+  prevPage,
+  nextPage,
+  content,
+  contentRead,
+  returnAddr,
+  content_finished,
+}) {
   return (
     <div style={{ marginBottom: '3rem' }}>
       {page > 0 ? (
@@ -34,11 +41,10 @@ function Pagination({ page, prevPage, nextPage, content, contentRead , returnAdd
   );
 }
 
-
 class Resource extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 0 , content_finished: this.props.content.content_finished};
+    this.state = { page: 0, content_finished: this.props.content.content_finished };
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.contentRead = this.contentRead.bind(this);
@@ -68,25 +74,22 @@ class Resource extends Component {
     const rs = await contentFinished(contestId, milestoneId, taskId, token);
     console.log(rs);
     this.setState({
-      content_finished: true
-    })
+      content_finished: true,
+    });
   }
-
-
-  
 
   render() {
     const { content, contestId, milestoneId, taskId, image } = this.props;
     const { page } = this.state;
 
-    if (contestId + '' === '13') {
+    if (contestId + '' === '3') {
       return (
         <Grid
           style={{ margin: '2rem auto', minHeight: 'calc(100vh - 333px)', direction: 'rtl' }}
           centered
         >
           <Grid.Row>
-            <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}></Grid.Column>
+      
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
@@ -126,6 +129,18 @@ class Resource extends Component {
               <Container content={content.description_en} />
             </Grid.Column>
           </Grid.Row>
+          <Grid.Column textAlign="center" computer={10} tablet={12} mobile={14}>
+              <Pagination
+                page={page}
+                content={content}
+                prevPage={this.prevPage}
+                nextPage={this.nextPage}
+                contentRead={this.contentRead}
+                token={this.props.token}
+                returnAddr={`/dashboard/${contestId}/${milestoneId}`}
+                content_finished={this.state.content_finished}
+              />
+            </Grid.Column>
         </Grid>
       );
     }
