@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { space, color } from 'styled-system';
 import NoSSR from 'react-no-ssr';
-import { Divider, Image, Grid, Header as H, Responsive } from 'semantic-ui-react';
+import { Divider, Image, Grid, Header as H, Responsive, Button } from 'semantic-ui-react';
 import { Zoom, Fade } from 'react-reveal';
 import _ from 'lodash';
 import moment from 'jalali-moment';
+import {BoxButton} from './button'
+
 
 const Container = styled.div`
   ${space}
@@ -49,6 +51,8 @@ export class Box extends Component {
       border = '2px solid rgba(29, 147, 247, 1)';
     }
 
+    // console.log("this.propsssssss of box:", this.props)
+
     return (
       <Container
         py={[4, 4, 4]}
@@ -70,8 +74,8 @@ export class Box extends Component {
           justifyContent: 'center',
           textAlign: 'justify',
         }}
-        onMouseEnter={this.toggleHoverOn}
-        onMouseLeave={this.toggleHoverOff}
+        // onMouseEnter={this.toggleHoverOn}
+        // onMouseLeave={this.toggleHoverOff}
       >
         {' '}
         <Header>{contest.title}</Header>
@@ -97,8 +101,55 @@ export class Box extends Component {
               .fromNow()}`}
           </div>
           <Container pt={3}>{contest.description}</Container>
+
+          {/* <Grid.Row>
+            <BoxButton title="ورود"/>
+            <BoxButton title="جدول امتیازات" />
+          </Grid.Row> */}
         </Container>
+        <Grid.Row>
+        <BoxButton attached="left" title="ورود">Left</BoxButton>
+        <BoxButton attached="right" title="جدول امتیازات">Right</BoxButton>
+        </Grid.Row>
       </Container>
+    );
+  };
+
+  scoreboardBox = (width, minHeight) => {
+    const { contest } = this.props;
+    let backgroundColor = 'rgba(32, 32, 32, 0.6)';
+    let border = '2px solid rgba(32, 32, 32, 0.8)';
+    if (this.state.hover) {
+      backgroundColor = 'rgba(29, 147, 247, 0.8)';
+      border = '2px solid rgba(29, 147, 247, 1)';
+    }
+
+    return (
+      <div>
+        <Container
+          py={[4, 4, 4]}
+          px={[3, 4, 4]}
+          style={{
+            backgroundColor,
+            // border,
+            width,
+            minHeight,
+
+            borderRadius: '10px',
+            color: 'white',
+
+            boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
+            alignContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textAlign: 'justify',
+          }}
+          // onMouseEnter={this.toggleHoverOn}
+          // onMouseLeave={this.toggleHoverOff}
+        ></Container>
+      </div>
     );
   };
 

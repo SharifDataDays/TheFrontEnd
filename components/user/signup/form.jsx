@@ -42,6 +42,7 @@ class Form extends Component {
   render() {
     const { terms, signup, options } = this.props;
     const { success, errors } = signup;
+
     
     return (
       <Grid>
