@@ -84,10 +84,18 @@ class Trials extends Component {
 
     console.log('TRIALS');
     console.log(trials);
+    console.log(questions);
+    console.log(this.state);
 
     if (this.props.trials.success && this.props.trials.finalize) {
       return this.msg(
         'پاسخ شما ارسال شد.',
+        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+      );
+    }
+    if (this.state.final) {
+      return this.msg(
+        'این آزمون ثبت نهایی شده است.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/`,
       );
     }

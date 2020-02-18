@@ -41,6 +41,8 @@ function withAuth(loggedIn) {
       render() {
 
         const { page, auth } = this.props;
+        console.log("PQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+        console.log(page)
         const pageLoading =
           page.loading || (auth.authorized && !loggedIn) || (!auth.authorized && loggedIn);
         if (_.isUndefined(loggedIn)) {

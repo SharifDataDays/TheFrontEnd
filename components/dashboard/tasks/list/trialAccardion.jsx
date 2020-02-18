@@ -161,7 +161,7 @@ export default class TrialAccardion extends Component {
                 >
                   آزمون شماره‌ی {ind}
                 </p>
-                <p>امتیاز: {trial.score}</p>
+                <p>امتیاز: {_.round(trial.score, 2)}</p>
               </>
             );
           }
@@ -193,7 +193,7 @@ export default class TrialAccardion extends Component {
                   renderer={this.renderer}
                   trial={trial}
                 />
-                <p>امتیاز: {trial.score}</p>
+                <p>امتیاز: {_.round(trial.score, 2)}</p>
                 <a
                   href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
                 >

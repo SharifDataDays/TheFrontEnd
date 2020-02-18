@@ -130,7 +130,9 @@ export function submitAnswersAction(
 ) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
+    console.log('STATEEE');
 
+    console.log(getState());
     const answers = mapStateToSubmission(getState().trials.answers, trialId, final);
     if (!checkFields(questions, getState().trials.answers)) {
       dispatch(trialFailAction({ error: 'Must complete all fields' }));

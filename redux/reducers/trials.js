@@ -30,7 +30,7 @@ function trialFailReducer(state = initialState.trials, action) {
     draft.errors.fa = 'خطا در ارسال پاسخ';
 
     if (errors.detail === 'This trial has already been submitted.') {
-      fa = 'این ترایال ثبت نهایی شده است.';
+      fa = 'این آزمون ثبت نهایی شده است.';
       draft.errors.fa = fa;
     } else if (errors.error === 'Must complete all fields') {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
