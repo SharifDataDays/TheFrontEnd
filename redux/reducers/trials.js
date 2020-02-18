@@ -7,10 +7,10 @@ function trialSuccessReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
     const { final } = action.payload;
 
-    draft.final = final;
+    draft.finalize = final;
     draft.fail = false;
     draft.success = true;
-    draft.error = {};
+    draft.errors = {};
     return draft;
   });
 }
