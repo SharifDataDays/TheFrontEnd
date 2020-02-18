@@ -86,6 +86,7 @@ class FieldAnswer extends Component {
                   value={_.get(saved, `n${i}`, '')}
                   type={type}
                   width={8}
+                  
                   onChange={this.handleChange}
                 />
               </Form.Group>

@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { submitTrialAPI } from '../api/dashboard';
 
 export const CHANGE_ANSWER = 'CHANGE_ANSWER';
-export const CLEAR_ANSWER = 'CLEAR_ANSWER'
-export const SAW_FAIL = 'SAW_FAIL'
+export const CLEAR_ANSWER = 'CLEAR_ANSWER';
+export const SAW_FAIL = 'SAW_FAIL';
 
 export function changeAnswerAction(answer) {
   return {
@@ -16,8 +16,8 @@ export function changeAnswerAction(answer) {
 
 export function clearAnswerAction() {
   return {
-    type : CLEAR_ANSWER
-  }
+    type: CLEAR_ANSWER,
+  };
 }
 
 function mapStateToSubmission(state, trialId, final) {
@@ -48,7 +48,7 @@ function mapStateToSubmission(state, trialId, final) {
                 [],
               ),
             )
-          : ['kir'];
+          : ['k'];
       return _.concat(result, {
         id,
         answer,
@@ -58,7 +58,7 @@ function mapStateToSubmission(state, trialId, final) {
     },
     [],
   );
-  let fixedAnswers = answers.slice(1)
+  let fixedAnswers = answers.slice(1);
   data.append(
     'json',
     JSON.stringify({
@@ -67,10 +67,17 @@ function mapStateToSubmission(state, trialId, final) {
       final_submit: final,
     }),
   );
-  let fixedJson = data.get('json').split('\\"').join('"').split('"[').join('[').split(']"').join(']')
-  data.delete('json')
-  data.append('json', fixedJson)
-  console.log(data.get('json'))
+  let fixedJson = data
+    .get('json')
+    .split('\\"')
+    .join('"')
+    .split('"[')
+    .join('[')
+    .split(']"')
+    .join(']');
+  data.delete('json');
+  data.append('json', fixedJson);
+  console.log(data.get('json'));
   return data;
 }
 
@@ -87,24 +94,23 @@ export function trialFailAction(errors) {
 
 export function clearAnswers() {
   return (dispatch) => {
-    dispatch(clearAnswerAction())
-  }
+    dispatch(clearAnswerAction());
+  };
 }
 
 export function sawFailAction() {
   return {
-    type : SAW_FAIL
-  }
+    type: SAW_FAIL,
+  };
 }
 
 export function submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final) {
   return (dispatch, getState) => {
     const answers = mapStateToSubmission(getState().trials, trialId, final);
     submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-      console.log(res.data)
-      if(!_.isUndefined(res.data.status_code) && res.data.status_code !== 200)
-      {
-        dispatch(trialFailAction(res.data.details))
+      console.log(res.data);
+      if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
+        dispatch(trialFailAction(res.data.details));
       }
     });
   };

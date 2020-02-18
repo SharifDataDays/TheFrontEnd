@@ -86,7 +86,7 @@ class Trials extends Component {
     }
     if(this.props.fail) {
       return this.msg(
-        'پاسخ های ارسالی شما با خطا مواجه شد',
+        'پاسخ‌های ارسالی شما با خطا مواجه شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/${this.props.task}/${this.props.trial}`,
       );
     }

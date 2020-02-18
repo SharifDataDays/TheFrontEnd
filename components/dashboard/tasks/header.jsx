@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Image, Header as H } from 'semantic-ui-react';
+import { Grid, Segment, Image, Header as H, Message } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Header = styled(H)`
@@ -16,31 +16,39 @@ const Text = styled.p`
 
 function HeaderSection({ title, description, image }) {
   return (
-    <Grid
-      style={{
-        marginBottom: '8rem',
-        backgroundColor: '#505763',
-      }}
-      centered
-    >
-      <Grid.Column computer={4} tablet={4} mobile={15}>
-        <Segment basic>
-          <Image src={image} size="big" verticalAlign="middle" centered />
-        </Segment>
-      </Grid.Column>
-      <Grid.Column computer={7} tablet={7} mobile={15}>
-        <Segment basic style={{ textAlign: 'right !important' }}>
-          <Header as="h1">{title}</Header>
-          <Text
-            style={{
-              textAlign: 'justify',
-            }}
-          >
-            {description}
-          </Text>
-        </Segment>
-      </Grid.Column>
-    </Grid>
+    <>
+      <Grid centered  style={{
+            marginBottom: '2rem',
+          }}>
+        <Grid.Row
+          style={{
+            marginBottom: '1rem',
+            backgroundColor: '#505763',
+          }}
+        >
+          <Grid.Column computer={4} tablet={4} mobile={15}>
+            <Segment basic>
+              <Image src={image} size="big" verticalAlign="middle" centered />
+            </Segment>
+          </Grid.Column>
+          <Grid.Column computer={7} tablet={7} mobile={15}>
+            <Segment basic style={{ textAlign: 'right !important' }}>
+              <Header as="h1">{title}</Header>
+              <Text
+                style={{
+                  textAlign: 'justify',
+                }}
+              >
+                {description}
+              </Text>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
+        </Grid.Row>
+      </Grid>
+    </>
   );
 }
 

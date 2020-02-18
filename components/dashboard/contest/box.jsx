@@ -55,7 +55,7 @@ export class Box extends Component {
         px={[3, 4, 4]}
         style={{
           backgroundColor,
-          border,
+          // border,
           width,
           minHeight,
 

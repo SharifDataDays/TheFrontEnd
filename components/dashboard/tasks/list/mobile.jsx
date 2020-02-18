@@ -26,7 +26,16 @@ function TasksMobile({ cid, mid, tasks, token, clear }) {
                   </Card.Description>
                 </Card>
               </a>
-              <TrialAccardion clear={clear} key={i} cid={cid} mid={mid} tid={id} token={token} content_finished={task.content_finished}/>
+              <TrialAccardion
+                clear={clear}
+                key={i}
+                cid={cid}
+                mid={mid}
+                tid={id}
+                token={token}
+                can_create_trial={task.can_create_trial}
+                content_finished={task.content_finished}
+              />
             </>
           );
         })}
