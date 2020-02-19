@@ -43,7 +43,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         marginBottom: '3rem',
       }}
     >
-      <a href={`/scoreboard/${cid}/${mid}`}>
+      {/* <a href={`/scoreboard/${cid}/${mid}`}>
         <RowSegment
           p={7}
           style={{
@@ -58,7 +58,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         >
           <H inverted> جدول امتیازات</H>
         </RowSegment>
-      </a>
+      </a> */}
 
       {_.map(tasks, (task, i) => {
         // console.log(task)

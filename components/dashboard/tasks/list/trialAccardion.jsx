@@ -55,7 +55,7 @@ export default class TrialAccardion extends Component {
         });
       }
     });
-    console.log(res.data);
+    // console.log(res.data);
   }
 
   handleClick = (e, titleProps) => {
@@ -92,7 +92,7 @@ export default class TrialAccardion extends Component {
       this.props.tid,
     );
 
-    console.log(res.data);
+    // console.log(res.data);
 
     if (!_.isUndefined(res.data.detail)) {
       if (res.data.detail[0] === 'Cooling down time of trial not finished') {
@@ -113,9 +113,9 @@ export default class TrialAccardion extends Component {
     }
 
     if (res.data.status_code === 200) {
-      console.log(
-        `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
-      );
+      // console.log(
+      //   `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
+      // );
       localStorage.clear();
       Router.push(
         `/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${res.data.trial_id}`,
@@ -209,9 +209,15 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    // console.log(this.props);
+     console.log(this.props);
+     console.log(this.state)
 
     const { activeIndex } = this.state;
+
+    if (this.props.cid + "" === "2") {
+      return <></>;
+    }
+
 
     if (!this.props.content_finished) {
       return <></>;

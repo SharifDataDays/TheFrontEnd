@@ -51,7 +51,7 @@ function HeaderSection({ title, description, image, idsInfo }) {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
+          {/* <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message> */}
         </Grid.Row>
 
         

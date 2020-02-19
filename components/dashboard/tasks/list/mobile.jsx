@@ -18,9 +18,9 @@ const RowSegment = styled(Segment)`
 
 function TasksMobile({ cid, mid, tasks, token }) {
   return (
-    <Grid centered style={{ marginBottom: '5rem' }}>
+    <Grid centered style={{ marginBottom: '1rem' }}>
       <Grid.Column mobile={14}>
-        <a href={`/scoreboard/${cid}/${mid}`}>
+        {/* <a href={`/scoreboard/${cid}/${mid}`}>
           <RowSegment
             p={5}
             style={{
@@ -35,7 +35,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
           >
             <H inverted> مشاهده‌ی جدول امتیازات</H>
           </RowSegment>
-        </a>
+        </a> */}
 
         {_.map(tasks, (task, i) => {
           const { title_fa, description_fa, thumbnail } = task.content;

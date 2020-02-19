@@ -22,10 +22,13 @@ export class BoxButton extends Component {
   render() {
     let background = '';
     if (this.state.hover) {
-      background = 'rgba(29, 147, 247, 1)';
+      background = 'rgba(29, 147, 247, 0.9)';
+      // background = 'rgba(0, 0, 0, 0.5)';
     } else {
       // background = 'rgba(52, 116, 235, 1)';
       background = 'black';
+      // background = 'rgba(0, 0, 0, 0.5)';
+
     }
 
     return (
@@ -34,7 +37,7 @@ export class BoxButton extends Component {
         // attached={this.props.attached}
         style={{
           
-          minHeight: '70px',
+          minHeight: '65px',
           // minWidth: '80px',
           // marginTop: '15px',
           color: 'white',
