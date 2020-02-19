@@ -26,7 +26,7 @@ export class BoxButton extends Component {
       // background = 'rgba(0, 0, 0, 0.5)';
     } else {
       // background = 'rgba(52, 116, 235, 1)';
-      background = 'black';
+      background = '#202020';
       // background = 'rgba(0, 0, 0, 0.5)';
 
     }
