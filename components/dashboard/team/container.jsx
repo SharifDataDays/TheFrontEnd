@@ -46,7 +46,10 @@ export default function TeamContainer({
           تغییرات با موفقیت ذخیره شد.
         </Message>
         <Message hidden={!team.fail} negative>
-          تغییرات بدون موفقیت ذخیره شد. ({team.errors.fa})
+         {team.errors.fa}.
+        </Message>
+        <Message info hidden={teamData.name_finalized || team.finalized}>
+          برای شرکت در مسابقه تیم خود را نهایی کنید.
         </Message>
       </Container>
 

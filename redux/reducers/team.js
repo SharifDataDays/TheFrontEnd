@@ -19,8 +19,8 @@ function teamFailReducer(state = initialState.team, action) {
     draft.success = false;
     draft.errors = errors;
 
-
-    let fa = '';
+    // console.log(errors);
+    let fa = 'تغییرات بدون موفقیت ذخیره شد';
     if (draft.errors.name === 'invalid name') {
       fa = 'فیلد نباید خالی باشد';
     } else if (

@@ -17,6 +17,7 @@ class Dashboard extends Component {
 
   render() {
     const { contests, token } = this.props;
+    console.log(contests)
     return (
       <Layout token={token} hasNavbar hasFooter>
         <Container contests={contests} />

@@ -30,7 +30,7 @@ class Container extends Component {
     const { children } = this.props;
     return (
       <Grid
-        celled
+      celled='internally'
         padded
         centered
         style={{
@@ -40,7 +40,9 @@ class Container extends Component {
           position: 'absolute',
         }}
       >
-        <Grid.Row style={{ height: '100%' }}>
+        <Grid.Row style={{ 
+          height: '100%', padding: 0, margin: 0, display: "flex", flexDirection: "row", alignItems: "stretch"
+           }}>
           <Grid.Column computer={8} only="computer">
             <a href="/">
               <Image

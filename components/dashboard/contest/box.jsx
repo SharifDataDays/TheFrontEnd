@@ -7,6 +7,7 @@ import { Zoom, Fade } from 'react-reveal';
 import _ from 'lodash';
 import moment from 'jalali-moment';
 import { BoxButton } from './button';
+import persianJs from 'persianjs';
 
 const Container = styled.div`
   ${space}
@@ -94,17 +95,33 @@ export class Box extends Component {
               color: 'black',
             }}
           >
-            {`شروع از ${moment
-              .from(contest.start_time, 'en')
-              .locale('fa')
-              .fromNow()}`}
+            {`شروع از 
+            ${persianJs(
+              moment
+                .from(contest.start_time, 'en')
+                .locale('fa')
+                .fromNow(),
+            )
+              .englishNumber()
+              .toString()}
+            `}
           </div>
+
           <Container pt={3}>{contest.description}</Container>
 
           {/* <Grid.Row>
             <BoxButton title="ورود"/>
             <BoxButton title="جدول امتیازات" />
           </Grid.Row> */}
+          {contest.team_size === 1 ? (
+            <></>
+          ) : (
+            <Container pt={3}>
+              <Button size="big" secondary href={`/dashboard/${contest.id}/team`}>
+                تیم من
+              </Button>
+            </Container>
+          )}
         </Container>
         <Grid.Row>
           <BoxButton
