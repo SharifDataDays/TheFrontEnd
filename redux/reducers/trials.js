@@ -22,10 +22,6 @@ function trialFailReducer(state = initialState.trials, action) {
     draft.success = false;
     draft.errors = errors;
 
-    console.log('ERRR');
-    console.log(errors);
-    console.log(errors.detail);
-    console.log(errors.detail === 'This trial has already been submitted.');
     let fa = '';
     draft.errors.fa = 'خطا در ارسال پاسخ';
 
@@ -39,12 +35,10 @@ function trialFailReducer(state = initialState.trials, action) {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
       draft.errors.fa = fa;
     } else if (!_.isUndefined(errors.errors)) {
-      console.log('ENNN');
+      
 
       _.mapKeys(errors.errors, (value, key) => {
-        console.log(value);
-        console.log(key);
-        console.log(_.split(value));
+     
         fa = '';
         if (_.startsWith(value, 'File uploaded format is invalid')) {
           fa = 'فرمت فایل ارسالی نادرست است.';
@@ -75,8 +69,7 @@ function trialFailReducer(state = initialState.trials, action) {
       });
     }
 
-    console.log('DRRRFTTT');
-    console.log(draft.errors);
+    
     return draft;
   });
 }
@@ -97,8 +90,7 @@ function trialClearReducer(state = initialState.trials, action) {
 
 function changeAnswerReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
-    console.log('DRAFT');
-    console.log(draft);
+    
     let answers = draft.answers;
     const { id, qtype, count, number, value } = action.payload.answer;
     _.set(answers, `i${id}.count`, count);

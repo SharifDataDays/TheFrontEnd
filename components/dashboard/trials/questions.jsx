@@ -79,10 +79,6 @@ class Questions extends Component {
   render() {
     const { trials, changeAnswer, questions } = this.props;
 
-    console.log('QUESTTT');
-
-    console.log(this.props);
-    console.log(trials);
     return (
       <>
         <Container p={2} mx={[1, 2, 2]} mb={2}>
@@ -90,12 +86,9 @@ class Questions extends Component {
         </Container>
         <Divider />
         {_.map(questions.question_submissions, (q, i) => {
-          // console.log('YOHOOO');
-          // console.log(q);
-          // console.log(i);
+        
           let error = false;
           if (!_.isUndefined(trials.errors.errors)) {
-            console.log(trials.errors.errors[q.id]);
             error = trials.errors.errors[q.id];
           }
           const { question } = q;

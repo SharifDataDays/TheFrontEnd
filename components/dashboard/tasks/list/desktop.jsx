@@ -45,7 +45,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
     >
       <a href={`/scoreboard/${cid}/${mid}`}>
         <RowSegment
-          p={5}
+          p={7}
           style={{
             display: 'flex',
             justifyContent: 'center',
