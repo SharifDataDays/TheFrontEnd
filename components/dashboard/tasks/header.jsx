@@ -17,7 +17,7 @@ const Text = styled.p`
 function HeaderSection({ title, description, image, idsInfo }) {
   const milestoneID = parseInt(idsInfo.mid);
   const contestID = parseInt(idsInfo.cid);
-  
+
   return (
     <>
       <Grid
@@ -50,11 +50,13 @@ function HeaderSection({ title, description, image, idsInfo }) {
             </Segment>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
-        </Grid.Row>
-
-        
+        {contestID === 2 ? (
+          <></>
+        ) : (
+          <Grid.Row>
+            <Message>.برای دسترسی به آزمون‌ها ابتدا هر محتوا را مطالعه کنید</Message>
+          </Grid.Row>
+        )}
       </Grid>
     </>
   );
