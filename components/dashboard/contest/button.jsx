@@ -22,30 +22,38 @@ export class BoxButton extends Component {
   render() {
     let background = '';
     if (this.state.hover) {
-      background = 'rgba(94, 178, 247, 1)';
+      background = 'rgba(29, 147, 247, 1)';
     } else {
-      background = 'rgba(52, 116, 235, 1)';
+      // background = 'rgba(52, 116, 235, 1)';
+      background = 'black';
     }
 
     return (
-      <a href={this.props.clickOnPage}>
-        <Button
-          attached={this.props.attached}
-          style={{
-            minHeight: '40px',
-            minWidth: '100px',
-            marginTop: '15px',
-            color: 'white',
-            backgroundColor: background,
-            textAlign: 'center'
-            
-          }}
-          onMouseEnter={this.toggleHoverOn}
-          onMouseLeave={this.toggleHoverOff}
-        >
-          {this.props.title}
-        </Button>
-      </a>
+      <Button
+        href={this.props.clickOnPage}
+        // attached={this.props.attached}
+        style={{
+          
+          minHeight: '70px',
+          // minWidth: '80px',
+          // marginTop: '15px',
+          color: 'white',
+          backgroundColor: background,
+          lineHeight: '15pt',
+
+          alignContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+        // secondary
+        onMouseEnter={this.toggleHoverOn}
+        onMouseLeave={this.toggleHoverOff}
+      >
+        {this.props.title}
+      </Button>
     );
   }
 }
