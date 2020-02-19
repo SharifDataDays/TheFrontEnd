@@ -115,8 +115,20 @@ export default class TeamInfo extends Component {
   }
 
   render() {
-    const { team, teamData, teamNameUpdate, addMember, token, finalize, answerInvitation } = this.props;
+    const {
+      team,
+      teamData,
+      teamNameUpdate,
+      addMember,
+      token,
+      finalize,
+      answerInvitation,
+    } = this.props;
     const fin = teamData.name_finalized || team.finalized;
+
+    let teamNameDefault = teamData.name;
+    if (!fin && _.endsWith(teamNameDefault, '_3')) teamNameDefault = '';
+
     return (
       <Container py={3} m={0}>
         <HeaderDiv
@@ -143,7 +155,7 @@ export default class TeamInfo extends Component {
               finalized={fin}
               placeholder={'نام تیم'}
               label={'نام تیم'}
-              defaultValue={teamData.name}
+              defaultValue={teamNameDefault}
               buttonName={'تغییر نام'}
               func={teamNameUpdate}
               paddingLeft={'55px'}
