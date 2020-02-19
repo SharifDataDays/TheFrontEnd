@@ -237,7 +237,7 @@ export default class TrialAccardion extends Component {
         py={4}
         m={0}
         style={{
-          backgroundColor: '#d5e2ed',
+          backgroundColor: '#DFF1FF',
         }}
       >
         <Accordion dir="RTL">
