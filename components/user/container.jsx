@@ -30,7 +30,7 @@ class Container extends Component {
     const { children } = this.props;
     return (
       <Grid
-        celled
+        // celled
         padded
         centered
         style={{
