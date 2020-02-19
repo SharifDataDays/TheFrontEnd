@@ -10,6 +10,7 @@ import Timeline from '~/components/home/timeline';
 import Prize from '~/components/home/prize';
 import homeAPI from '~/redux/api/home';
 import Stats from '~/components/home/stats';
+import CountDown from '../components/home/countdown';
 
 class HomePage extends Component {
   static async getInitialProps(ctx) {
@@ -30,6 +31,7 @@ class HomePage extends Component {
         <Navbar transparent />
         <Header />
         <Sponsers />
+        <CountDown/>
         <Introduction header={intro.header_fa} content={intro.text_fa} />
         <Stats counts={counts} />
 
