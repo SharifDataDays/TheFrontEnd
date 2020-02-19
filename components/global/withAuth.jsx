@@ -58,7 +58,7 @@ function withAuth(loggedIn) {
             <Head>
               <title>DataDays 2020</title>
             </Head>
-            <Dimmer active={pageLoading}>
+            <Dimmer active={pageLoading} page>
               <ClipLoader size={75} color="#fff" loading={pageLoading} />
             </Dimmer>
             <WrappedComponent {...this.props} />

@@ -22,9 +22,14 @@ class TrialsPage extends Component {
     
   }
 
+  constructor(props) {
+    super(props)
+}
+
 
   componentDidMount(){
     this.props.clear(true);
+    
   }
 
   render() {
@@ -43,7 +48,7 @@ class TrialsPage extends Component {
     } = this.props;
     
     return (
-      <Layout token={token} hasNavbar hasFooter>
+      <Layout token={token} hasNavbar hasFooter >
         {status_code !== 200 ? (
           <NotFound />
         ) : (
@@ -61,6 +66,7 @@ class TrialsPage extends Component {
           />
         )}
       </Layout>
+      
     );
   }
 }
