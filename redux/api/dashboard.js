@@ -166,8 +166,6 @@ export function trialsListAPI(contestID, milestoneID, token) {
 }
 
 export function submitTrialAPI(data, token, contestId, milestoneId, taskId, trialId) {
-  console.log('DATA');
-  console.log(data);
   return axios.post(TRIAL(contestId, milestoneId, taskId, trialId), data, {
     headers: {
       Authorization: `Bearer ${token}`,
