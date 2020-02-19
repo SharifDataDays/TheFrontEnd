@@ -54,7 +54,6 @@ class Trials extends Component {
     e.preventDefault();
 
     submit(token, contest, milestone, task, trial, final, questions.question_submissions);
-
   };
 
   render() {
@@ -70,6 +69,9 @@ class Trials extends Component {
       questions,
       clear,
     } = this.props;
+
+    
+    console.log(questions)
 
     if (this.props.trials.success && this.props.trials.finalize) {
       return this.msg(
@@ -94,13 +96,6 @@ class Trials extends Component {
       <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
         <Grid.Row>
           <Grid.Column computer={10} tablet={12} mobile={14}>
-            <Message negative hidden={!this.props.trials.fail}>
-              {trials.errors.fa}
-            </Message>
-            <Message positive hidden={!this.props.trials.success}>
-              {'پاسخ شما ارسال شد.'}
-            </Message>
-
             <Questions
               trials={trials}
               changeAnswer={changeAnswer}
@@ -108,6 +103,12 @@ class Trials extends Component {
               endTime={this.endTime.bind(this)}
             />
 
+            <Message negative hidden={!this.props.trials.fail}>
+              {trials.errors.fa}
+            </Message>
+            <Message positive hidden={!this.props.trials.success}>
+              {'پاسخ شما ارسال شد.'}
+            </Message>
             <Button
               size="large"
               floated="right"
@@ -116,9 +117,9 @@ class Trials extends Component {
                 this.onclick(e, true);
               }}
             >
-              ثبت نهایی
+              ارسال و داوری
             </Button>
-            <Button
+            {/* <Button
               size="large"
               floated="right"
               primary
@@ -127,7 +128,7 @@ class Trials extends Component {
               }}
             >
               ذخیره
-            </Button>
+            </Button> */}
             <a href={`/dashboard/${this.props.contest}/${this.props.milestone}/`}>
               <Button size="large" floated="right">
                 بازگشت

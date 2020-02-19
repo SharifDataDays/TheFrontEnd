@@ -13,7 +13,37 @@ class FieldAnswer extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.removeForm = this.removeForm.bind(this);
     this.addForm = this.addForm.bind(this);
+
+    // if (!_.isUndefined(this.props.initial))
+    //   this.initialValue = _.words(
+    //     _.replace(_.trimEnd(_.trimStart(this.props.initial, '['), ']'), "'", ''),
+    //   );
   }
+
+  // componentDidMount() {
+  //   this.initialChange();
+  // }
+
+  // initialChange() {
+  //   const { id, qtype, changeAnswer } = this.props;
+  //   const { formCount } = this.state;
+  //   const initialValue = this.initialValue;
+  //   console.log(initialValue);
+  //   if (!_.isEmpty(initialValue) && !_.isUndefined(initialValue) && !_.isNull(initialValue)) {
+  //     this.setState({
+  //       formCount: initialValue.length,
+  //     });
+  //     _.map(_.range(formCount), (i) => {
+  //       changeAnswer({
+  //         id,
+  //         qtype,
+  //         formCount,
+  //         number: i,
+  //         value: initialValue[i],
+  //       });
+  //     });
+  //   }
+  // }
 
   handleChange(e) {
     e.preventDefault();
@@ -38,7 +68,7 @@ class FieldAnswer extends Component {
     changeAnswer({
       id,
       qtype,
-      formCount,
+      count: this.state.formCount,
       number: formCount - 1,
       value: '',
     });
@@ -55,8 +85,9 @@ class FieldAnswer extends Component {
   render() {
     const { formCount } = this.state;
     const { content, number, count, type, saved, error } = this.props;
-    // console.log("FIELD")
-    // console.log(this.props)
+    // console.log('FIELD');
+    // console.log(this.props);
+    // console.log(initialValue);
     return (
       <>
         <Content
@@ -80,6 +111,10 @@ class FieldAnswer extends Component {
         )}
         <Form style={{ margin: '1rem auto' }}>
           {_.map(_.range(formCount), (i) => {
+            // const initialValue = this.initialValue
+            // console.log(initialValue[i]);
+            let val = _.get(saved, `n${i}`, '');
+            // if (val === '') val = initialValue[i];
             return (
               <Form.Group
                 key={i}
@@ -93,11 +128,12 @@ class FieldAnswer extends Component {
                 <Form.Input
                   name={i}
                   style={{ textAlign: 'left !important', direction: 'ltr !important' }}
-                  value={_.get(saved, `n${i}`, '')}
+                  value={val}
                   type={type}
                   // width={8}
                   error={error}
                   onChange={this.handleChange}
+                  // defaultValue={initialValue[i]}
                 />
               </Form.Group>
             );

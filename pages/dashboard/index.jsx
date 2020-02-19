@@ -9,19 +9,17 @@ class Dashboard extends Component {
   static async getInitialProps(ctx, token) {
     let status_code = 200;
     const allRes = await allContestsAPI(token);
-    console.log("______all response:", allRes.data)
-    console.log("******finish all res")
+
     const { contests } = allRes.data;
     return { contests, token, status_code };
   }
 
   render() {
     const { contests, token } = this.props;
-    console.log(contests)
+
     return (
       <Layout token={token} hasNavbar hasFooter>
         <Container contests={contests} />
-
       </Layout>
     );
   }

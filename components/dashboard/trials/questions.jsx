@@ -93,6 +93,7 @@ class Questions extends Component {
           }
           const { question } = q;
           const Answer = getAnswer(question);
+          
           return (
             <Answer
               key={i}
@@ -106,6 +107,7 @@ class Questions extends Component {
               choices={question.choices}
               changeAnswer={changeAnswer}
               error ={error}
+              initial = {q.answer}
             />
           );
         })}
