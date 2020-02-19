@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import persianJs from 'persianjs'
+import persianJs from 'persianjs';
 import { space, color, typography } from 'styled-system';
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ border: 2px solid #0088fb;
 display:flex;
 align-items:center;
 justify-content:center;
-`
+`;
 
 const Time = styled.div`
 color:#0088fb;
@@ -47,28 +47,28 @@ ${color}
 text-align:center;
 `;
 
-const second = 1000,
-  minute = second * 60,
-  hour = minute * 60,
-  day = hour * 24;
-
-const target = new Date('feb 25, 2020 00:00:00').getTime(); //todo
+const second = 1000;
+const minute = second * 60;
+const hour = minute * 60;
+const day = hour * 24;
 
 class CountDown extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       second: 0,
       minute: 0,
       hour: 0,
       day: 0,
+      target: new Date(props.timer.time).getTime(),
     };
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
+    const { target } = this.state;
     setInterval(() => {
-      let now = new Date().getTime();
-      let distance = target - now;
+      const now = new Date().getTime();
+      const distance = target - now;
       this.setState({
         day: persianJs(Math.floor(distance / (day)).toString()).englishNumber().toString(),
         hour: persianJs(Math.floor((distance % (day)) / (hour)).toString()).englishNumber().toString(),
@@ -79,6 +79,7 @@ class CountDown extends Component {
   }
 
   render() {
+    const { day, hour, minute, second } = this.state;
     return (
       <>
         <Container p={5}>
@@ -86,19 +87,19 @@ class CountDown extends Component {
             pb={4}
           >
             <TimeBlock>
-              <TimeWrapper><Time>{this.state.day}</Time></TimeWrapper>
+              <TimeWrapper><Time>{day}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>روز</Label>
             </TimeBlock>
             <TimeBlock>
-              <TimeWrapper><Time>{this.state.hour}</Time></TimeWrapper>
+              <TimeWrapper><Time>{hour}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>ساعت</Label>
             </TimeBlock>
             <TimeBlock>
-              <TimeWrapper><Time>{this.state.minute}</Time></TimeWrapper>
+              <TimeWrapper><Time>{minute}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>دقیقه</Label>
             </TimeBlock>
             <TimeBlock>
-              <TimeWrapper><Time>{this.state.second}</Time></TimeWrapper>
+              <TimeWrapper><Time>{second}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>ثانیه</Label>
             </TimeBlock>
           </Row>

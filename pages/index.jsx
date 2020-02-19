@@ -21,23 +21,23 @@ class HomePage extends Component {
 
   render() {
     const { content } = this.props;
-    const { intro, timeline, prizes, counts } = content;
+    const { intro, timeline, prizes, counts, timer} = content;
 
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Navbar transparent />
-        <Header />
-        <Sponsers />
-        <CountDown/>
-        <Introduction header={intro.header_fa} content={intro.text_fa} />
-        <Stats counts={counts} />
+        <Navbar transparent/>
+        <Header/>
+        <Sponsers/>
+        <CountDown timer={timer}/>
+        <Introduction header={intro.header_fa} content={intro.text_fa}/>
+        <Stats counts={counts}/>
 
-        <Timeline timeline={timeline} />
-        <Prize prizes={prizes} />
-        <Footer />
+        <Timeline timeline={timeline}/>
+        <Prize prizes={prizes}/>
+        <Footer/>
       </>
     );
   }
