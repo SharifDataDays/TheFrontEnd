@@ -24,21 +24,27 @@ align-items:center;
 justify-content:center;
 `;
 
-const Time = styled.div`
+const TimeWrapper = styled.div`
 background-color:white;
+padding: 3vh;
+width:13vmin;
+border-radius:10px;
+border: 2px solid #0088fb;
+display:flex;
+align-items:center;
+justify-content:center;
+`
+
+const Time = styled.div`
 color:#0088fb;
 font-size:6vmin;
-padding: 3vh;
-border-radius:10px;
-width:13vh;
-text-align: center;
-border: 2px solid #0088fb;
 `;
 
 const Label = styled.div`
 ${space}
 ${typography}
 ${color}
+text-align:center;
 `;
 
 const second = 1000,
@@ -80,24 +86,24 @@ class CountDown extends Component {
             pb={4}
           >
             <TimeBlock>
-              <Time>{this.state.day}</Time>
+              <TimeWrapper><Time>{this.state.day}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>روز</Label>
             </TimeBlock>
             <TimeBlock>
-              <Time>{this.state.hour}</Time>
+              <TimeWrapper><Time>{this.state.hour}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>ساعت</Label>
             </TimeBlock>
             <TimeBlock>
-              <Time>{this.state.minute}</Time>
+              <TimeWrapper><Time>{this.state.minute}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>دقیقه</Label>
             </TimeBlock>
             <TimeBlock>
-              <Time>{this.state.second}</Time>
+              <TimeWrapper><Time>{this.state.second}</Time></TimeWrapper>
               <Label my={3} fontSize={4} color={'#9a9a9a'}>ثانیه</Label>
             </TimeBlock>
           </Row>
           <Row>
-            <Label fontSize={6} color={'white'}>تا پایان مهلت ثبت تیم</Label>
+            <Label fontSize={6} color={'white'} lineHeight='1.5'>تا پایان مهلت ثبت تیم</Label>
           </Row>
         </Container>
       </>
