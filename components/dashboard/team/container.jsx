@@ -42,14 +42,14 @@ export default function TeamContainer({
     <Container px={[4, 5, 6]} mx={[0, 0, 4]}>
       {rules_container}
       <Container dir="RTL" pt={3} m={0}>
-      <Message info hidden={teamData.name_finalized || team.finalized}>
-          برای شرکت در مسابقه تیم خود را نهایی کنید.
-        </Message>
         <Message hidden={!team.success} positive>
           تغییرات با موفقیت ذخیره شد.
         </Message>
         <Message hidden={!team.fail} negative>
           تغییرات بدون موفقیت ذخیره شد. ({team.errors.fa})
+        </Message>
+        <Message info hidden={teamData.name_finalized || team.finalized}>
+          برای شرکت در مسابقه تیم خود را نهایی کنید.
         </Message>
       </Container>
 

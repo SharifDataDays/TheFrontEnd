@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { space, color } from 'styled-system';
 import NoSSR from 'react-no-ssr';
-import { Divider, Image, Grid, Header as H, Responsive } from 'semantic-ui-react';
+import { Divider, Image, Grid, Header as H, Responsive, Button } from 'semantic-ui-react';
 import { Zoom, Fade } from 'react-reveal';
 import _ from 'lodash';
 import moment from 'jalali-moment';
 import persianJs from 'persianjs';
-
 
 const Container = styled.div`
   ${space}
@@ -104,7 +103,17 @@ export class Box extends Component {
               .toString()}
             `}
           </div>
+
           <Container pt={3}>{contest.description}</Container>
+          {contest.team_size === 1 ? (
+            <></>
+          ) : (
+            <Container pt={3}>
+              <Button size="big" secondary href={`/dashboard/${contest.id}/team`}>
+                تیم من
+              </Button>
+            </Container>
+          )}
         </Container>
       </Container>
     );
