@@ -6,6 +6,8 @@ import { Divider, Image, Grid, Header as H, Responsive } from 'semantic-ui-react
 import { Zoom, Fade } from 'react-reveal';
 import _ from 'lodash';
 import moment from 'jalali-moment';
+import persianJs from 'persianjs';
+
 
 const Container = styled.div`
   ${space}
@@ -55,7 +57,7 @@ export class Box extends Component {
         px={[3, 4, 4]}
         style={{
           backgroundColor,
-          border,
+          // border,
           width,
           minHeight,
 
@@ -91,10 +93,16 @@ export class Box extends Component {
               color: 'black',
             }}
           >
-            {`شروع از ${moment
-              .from(contest.start_time, 'en')
-              .locale('fa')
-              .fromNow()}`}
+            {`شروع از 
+            ${persianJs(
+              moment
+                .from(contest.start_time, 'en')
+                .locale('fa')
+                .fromNow(),
+            )
+              .englishNumber()
+              .toString()}
+            `}
           </div>
           <Container pt={3}>{contest.description}</Container>
         </Container>
