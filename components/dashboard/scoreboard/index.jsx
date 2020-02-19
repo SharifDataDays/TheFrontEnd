@@ -32,7 +32,7 @@ const HeaderScoreBoard = (props) => (
         انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف
       </Text>
       <Header as="h1" style={{ color: 'white' }}>
-        جدول رده‌بندی {props.milestone.name}  
+        جدول رده‌بندی {props.milestone.name}
       </Header>
       <Header as="h4" style={{ color: 'white', marginTop: 0 }}>
         Data days دومین دوره‌ی مسابقات
@@ -45,7 +45,6 @@ class ScoreBoard extends Component {
   constructor(props) {
     super(props);
     this.state = { padding: '0px !important' };
-  
   }
 
   componentDidMount() {
@@ -56,7 +55,7 @@ class ScoreBoard extends Component {
 
   render() {
     const { padding } = this.state;
-console.log(this.props)
+    // console.log(this.props);
     const count = this.props.myteam.teams_count;
     //const count = 245;
     return (

@@ -52,10 +52,11 @@ function TasksDesktop({ cid, mid, tasks, token }) {
             alignItems: 'center',
             alignContent: 'center',
             backgroundColor: 'rgba(52, 116, 235, 1)',
+            paddingTop: '30px',
+            paddingBottom: '30px',
           }}
-          
         >
-          <H inverted> مشاهده‌ی جدول امتیازات</H>
+          <H inverted> جدول امتیازات</H>
         </RowSegment>
       </a>
 

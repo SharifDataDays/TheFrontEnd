@@ -135,8 +135,8 @@ class Scoreboard extends Component {
   render() {
     return (
       <>
-      <div style={{ overflow: 'auto' , marginBottom: '15px'}}>
-        <Table celled unstackable>
+      <div style={{ overflow: 'auto' , marginBottom: '15px', direction: "rtl"}}>
+        <Table celled unstackable dir="LTR">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
