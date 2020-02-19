@@ -17,16 +17,21 @@ function trialSuccessReducer(state = initialState.trials, action) {
 
 function trialFailReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
-    const { errors } = action.payload;
+    let { errors } = action.payload;
+    if (_.isUndefined(errors)) errors = {};
+
     draft.fail = true;
     draft.success = false;
     draft.errors = errors;
 
     let fa = '';
-    draft.errors.fa = 'خطا در ارسال پاسخ';
+    draft.errors.fa = 'پاسخ‌های ارسالی شما با خطا مواجه شد.';
 
     if (errors.detail === 'This trial has already been submitted.') {
       fa = 'این آزمون ثبت نهایی شده است.';
+      draft.errors.fa = fa;
+    } else if (errors.error === 'Failed request') {
+      fa = 'پاسخ‌های ارسالی شما با خطا مواجه شد. لطفا دوباره تلاش کنید.';
       draft.errors.fa = fa;
     } else if (errors.error === 'Must complete all fields') {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
@@ -35,10 +40,7 @@ function trialFailReducer(state = initialState.trials, action) {
       fa = 'لطفا همه‌ی پاسخ‌ها را ارسال کنید.';
       draft.errors.fa = fa;
     } else if (!_.isUndefined(errors.errors)) {
-      
-
       _.mapKeys(errors.errors, (value, key) => {
-     
         fa = '';
         if (_.startsWith(value, 'File uploaded format is invalid')) {
           fa = 'فرمت فایل ارسالی نادرست است.';
@@ -69,7 +71,6 @@ function trialFailReducer(state = initialState.trials, action) {
       });
     }
 
-    
     return draft;
   });
 }
@@ -90,7 +91,6 @@ function trialClearReducer(state = initialState.trials, action) {
 
 function changeAnswerReducer(state = initialState.trials, action) {
   return produce(state, (draft) => {
-    
     let answers = draft.answers;
     const { id, qtype, count, number, value } = action.payload.answer;
     _.set(answers, `i${id}.count`, count);

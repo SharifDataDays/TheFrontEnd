@@ -127,15 +127,21 @@ export function submitAnswersAction(
     } else {
       dispatch(pageLoadingAction(true));
 
-      submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then((res) => {
-        if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
-          dispatch(trialFailAction(res.data));
+      submitTrialAPI(answers, token, contestId, milestoneId, taskId, trialId).then(
+        (res) => {
+          if (!_.isUndefined(res.data.status_code) && res.data.status_code !== 200) {
+            dispatch(trialFailAction(res.data));
+            dispatch(pageLoadingAction(false));
+          } else {
+            dispatch(trialSuccessAction(final));
+            dispatch(pageLoadingAction(false));
+          }
+        },
+        () => {
+          dispatch(trialFailAction({ error: 'Failed request' }));
           dispatch(pageLoadingAction(false));
-        } else {
-          dispatch(trialSuccessAction(final));
-          dispatch(pageLoadingAction(false));
-        }
-      });
+        },
+      );
     }
   };
 }

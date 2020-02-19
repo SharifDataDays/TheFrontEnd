@@ -50,17 +50,23 @@ export function loginAction(username, password) {
     dispatch(loginClearAction());
     dispatch(loginCheckerAction({ username, password }));
     if (_.isEmpty(getState().auth.errors)) {
-      loginAPI({ username, password }).then((res) => {
-        const { data } = res;
-        
-        if (data.status_code === 200) {
-          dispatch(loginSuccessAction(data.access));
+      loginAPI({ username, password }).then(
+        (res) => {
+          const { data } = res;
+
+          if (data.status_code === 200) {
+            dispatch(loginSuccessAction(data.access));
+            dispatch(pageLoadingAction(false));
+          } else {
+            dispatch(loginFailAction(data.detail));
+            dispatch(pageLoadingAction(false));
+          }
+        },
+        () => {
+          dispatch(loginFailAction({ error: 'error' }));
           dispatch(pageLoadingAction(false));
-        } else {
-          dispatch(loginFailAction(data.detail));
-          dispatch(pageLoadingAction(false));
-        }
-      });
+        },
+      );
     } else {
       dispatch(pageLoadingAction(false));
     }

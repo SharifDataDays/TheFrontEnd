@@ -38,17 +38,23 @@ export function teamNameUpdateAction(fields, token) {
     dispatch(pageLoadingAction(true));
 
     if (_.isUndefined(fields.name) || fields.name === '') {
-      dispatch(teamFailAction({name: 'invalid name'}));
+      dispatch(teamFailAction({ name: 'invalid name' }));
     } else {
-      updateTeamNameAPI(fields.contest, fields, token).then((res) => {
-        const { data } = res;
-        
-        if (data.status_code === 200) {
-          dispatch(teamSuccessAction());
-        } else {
-          dispatch(teamFailAction(data.detail));
-        }
-      });
+      updateTeamNameAPI(fields.contest, fields, token).then(
+        (res) => {
+          const { data } = res;
+
+          if (data.status_code === 200) {
+            dispatch(teamSuccessAction());
+          } else {
+            dispatch(teamFailAction(data.detail));
+          }
+        },
+        () => {
+          dispatch(teamFailAction({ error: 'error' }));
+          dispatch(pageLoadingAction(false));
+        },
+      );
     }
 
     dispatch(pageLoadingAction(false));
@@ -65,15 +71,21 @@ export function finalizeTeamAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
 
-    updateTeamNameAPI(fields.contest, fields, token).then((res) => {
-      const { data } = res;
-      if (data.status_code === 200) {
-        dispatch(teamSuccessAction());
-        dispatch(teamFinalAction());
-      } else {
-        dispatch(teamFailAction(data.detail));
-      }
-    });
+    updateTeamNameAPI(fields.contest, fields, token).then(
+      (res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          dispatch(teamSuccessAction());
+          dispatch(teamFinalAction());
+        } else {
+          dispatch(teamFailAction(data.detail));
+        }
+      },
+      () => {
+        dispatch(teamFailAction({ error: 'error' }));
+        dispatch(pageLoadingAction(false));
+      },
+    );
 
     dispatch(pageLoadingAction(false));
   };
@@ -82,14 +94,20 @@ export function finalizeTeamAction(fields, token) {
 export function addMemberAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
-    inviteUserAPI(fields.contest_id, fields, token).then((res) => {
-      const { data } = res;
-      if (data.status_code === 200) {
-        dispatch(teamSuccessAction());
-      } else {
-        dispatch(teamFailAction(data.detail));
-      }
-    });
+    inviteUserAPI(fields.contest_id, fields, token).then(
+      (res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          dispatch(teamSuccessAction());
+        } else {
+          dispatch(teamFailAction(data.detail));
+        }
+      },
+      () => {
+        dispatch(teamFailAction({ error: 'error' }));
+        dispatch(pageLoadingAction(false));
+      },
+    );
     dispatch(pageLoadingAction(false));
   };
 }
@@ -97,14 +115,20 @@ export function addMemberAction(fields, token) {
 export function answerInvitationAction(fields, token) {
   return (dispatch, getState) => {
     dispatch(pageLoadingAction(true));
-    answerInvitationAPI(fields.contest_id, fields, token).then((res) => {
-      const { data } = res;
-      if (data.status_code === 200) {
-        dispatch(teamSuccessAction());
-      } else {
-        dispatch(teamFailAction(data.detail));
-      }
-    });
+    answerInvitationAPI(fields.contest_id, fields, token).then(
+      (res) => {
+        const { data } = res;
+        if (data.status_code === 200) {
+          dispatch(teamSuccessAction());
+        } else {
+          dispatch(teamFailAction(data.detail));
+        }
+      },
+      () => {
+        dispatch(teamFailAction({ error: 'error' }));
+        dispatch(pageLoadingAction(false));
+      },
+    );
     dispatch(pageLoadingAction(false));
   };
 }
