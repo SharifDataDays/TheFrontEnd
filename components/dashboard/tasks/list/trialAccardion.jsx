@@ -262,7 +262,7 @@ export default class TrialAccardion extends Component {
 
     const { activeIndex } = this.state;
 
-    if (this.props.cid + '' === '23') {
+    if (this.props.cid + '' === '2') {
       return <></>;
     }
 
