@@ -55,7 +55,7 @@ class OnlyQuestions extends Component {
                   }}
                 >
                   امتیاز:{' '}
-                  {persianJs(q.score.number.toString())
+                  {persianJs(_.round(q.score.number, 2).toString())
                     .englishNumber()
                     .toString()}{' '}
                   {/* از{' '}
