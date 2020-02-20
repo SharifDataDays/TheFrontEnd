@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import styled from 'styled-components';
 import { space, layout, color, border, typography } from 'styled-system';
 import _ from 'lodash';
+import persianJs from 'persianjs';
 
 const Container = styled.div`
   ${space}
@@ -47,17 +48,24 @@ class SingleStat extends Component {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-
             backgroundColor: 'transparent',
+            width: '280px',
           }}
         >
-          <Statistic py={4} px={5} m={0}  size='large'>
+          <Statistic py={4} px={5} m={0} size="large">
             <Statistic.Value style={{ color: 'white' }}>
               <CountUp
                 start={this.state.start}
                 end={this.state.end}
                 delay={0}
-                duration={3.6}
+                duration={4}
+                formattingFn={(number) => {
+                  const num = persianJs(number.toString())
+                    .englishNumber()
+                    .toString()
+                    .padEnd(4);
+                  return num;
+                }}
               ></CountUp>
             </Statistic.Value>
             <Statistic.Label style={{ color: '#1d93f7' }}>{this.props.title}</Statistic.Label>
@@ -89,7 +97,7 @@ class SingleStat extends Component {
 }
 
 export default function Stats({ counts }) {
-return(
+  return (
     <Container
       style={{
         backgroundColor: '#202020',
