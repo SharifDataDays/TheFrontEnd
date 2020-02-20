@@ -30,10 +30,8 @@ const Text = styled.p`
 `;
 
 const numberFarsi = (number) => {
-  
   if (_.isUndefined(number) || _.isNull(number)) return;
-  if (number === 0) number = '0';
-  return persianJs(number)
+  return persianJs(number.toString())
     .englishNumber()
     .toString();
 };
@@ -165,7 +163,8 @@ export default class TrialAccardion extends Component {
             textAlign: 'justify',
           }}
         >
-          شما مجاز به دریافت {numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
+          شما مجاز به دریافت{' '}
+          {numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
           هستید. مدت زمان هر آزمون {numberFarsi(this.state.data.trial_time)} ساعت می‌باشد و پس از
           اتمام یک آزمون برای گرفتن آزمون بعدی باید {numberFarsi(this.state.data.trial_cooldown)}{' '}
           ساعت صبر کنید.
@@ -188,22 +187,25 @@ export default class TrialAccardion extends Component {
         {error}
         {info}
         {_.map(this.state.trials, (trial, i) => {
-          
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
           } else {
             ind = ind + 1;
             return (
-              <>
+              <Container key={this.props.tid + 'tr' + ind}>
                 <Divider />
                 <p
                   style={{
                     fontWeight: 'bold',
                   }}
                 >
-                  آزمون شماره‌ی {numberFarsi(ind)}
+                  <a
+                    href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
+                  >
+                    آزمون شماره‌ی {numberFarsi(ind)}
+                  </a>
                 </p>
                 <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
-              </>
+              </Container>
             );
           }
         })}
@@ -220,14 +222,18 @@ export default class TrialAccardion extends Component {
             ind = ind + 1;
 
             return (
-              <>
+              <Container key={this.props.tid + 'tr' + ind}>
                 <Divider />
                 <p
                   style={{
                     fontWeight: 'bold',
                   }}
                 >
-                  آزمون شماره‌ی {numberFarsi(ind)}
+                  <a
+                    href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
+                  >
+                    آزمون شماره‌ی {numberFarsi(ind)}
+                  </a>
                 </p>
                 <Countdown
                   dir="ltr"
@@ -241,7 +247,7 @@ export default class TrialAccardion extends Component {
                 >
                   {goToPageButton}
                 </a>
-              </>
+              </Container>
             );
           }
         })}
@@ -251,12 +257,12 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
+    // console.log(this.props);
+    // console.log(this.state);
 
     const { activeIndex } = this.state;
 
-    if (this.props.cid + '' === '2') {
+    if (this.props.cid + '' === '23') {
       return <></>;
     }
 

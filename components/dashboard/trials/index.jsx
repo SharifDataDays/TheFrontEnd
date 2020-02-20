@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Button, Message } from 'semantic-ui-react';
 import Questions from './questions';
+import OnlyQuestions from './onlyQuestions';
 import { Component } from 'react';
 import _ from 'lodash';
 import { relativeTimeThreshold } from 'jalali-moment';
@@ -20,9 +21,10 @@ class Trials extends Component {
   }
 
   endTime = () => {
-    this.setState({
-      endTime: true,
-    });
+    if (!this.state.endTime)
+      this.setState({
+        endTime: true,
+      });
   };
 
   msg = (text, link) => {
@@ -70,27 +72,44 @@ class Trials extends Component {
       clear,
     } = this.props;
 
-    
-    console.log(questions)
-
     if (this.props.trials.success && this.props.trials.finalize) {
       return this.msg(
         'پاسخ شما ارسال شد.',
         `/dashboard/${this.props.contest}/${this.props.milestone}/`,
       );
     }
-    if (this.state.final) {
-      return this.msg(
-        'این آزمون ثبت نهایی شده است.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+    if (this.state.final || this.state.endTime) {
+      return (
+        <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>
+          <Grid.Row>
+            <Grid.Column computer={10} tablet={12} mobile={14}>
+              <OnlyQuestions
+                trials={trials}
+                // changeAnswer={changeAnswer}
+                questions={questions}
+                endTime={this.endTime.bind(this)}
+              />
+
+              <a href={`/dashboard/${this.props.contest}/${this.props.milestone}/`}>
+                <Button size="large" floated="right">
+                  بازگشت
+                </Button>
+              </a>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       );
+      // return this.msg(
+      //   'این آزمون ثبت نهایی شده است.',
+      //   `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+      // );
     }
-    if (this.state.endTime) {
-      return this.msg(
-        'زمان شما تمام شده‌ است.',
-        `/dashboard/${this.props.contest}/${this.props.milestone}/`,
-      );
-    }
+    // if (this.state.endTime) {
+    //   return this.msg(
+    //     'زمان شما تمام شده‌ است.',
+    //     `/dashboard/${this.props.contest}/${this.props.milestone}/`,
+    //   );
+    // }
 
     return (
       <Grid style={{ margin: '2rem auto', direction: 'rtl' }} centered>

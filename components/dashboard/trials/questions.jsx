@@ -70,9 +70,12 @@ class Questions extends Component {
       return <></>;
     }
     return (
-      <h2 style={{ textAlign: 'center' }}>
-        زمان باقی‌مانده: {hours}:{minutes}:{seconds}
-      </h2>
+      <>
+        <h3 style={{ textAlign: 'center' }}>
+          زمان باقی‌مانده: {hours}:{minutes}:{seconds}
+        </h3>
+        <Divider />
+      </>
     );
   };
 
@@ -84,16 +87,15 @@ class Questions extends Component {
         <Container p={2} mx={[1, 2, 2]} mb={2}>
           <Countdown dir="ltr" date={new Date(questions.due_time)} renderer={this.renderer} />
         </Container>
-        <Divider />
+
         {_.map(questions.question_submissions, (q, i) => {
-        
           let error = false;
           if (!_.isUndefined(trials.errors.errors)) {
             error = trials.errors.errors[q.id];
           }
           const { question } = q;
           const Answer = getAnswer(question);
-          
+
           return (
             <Answer
               key={i}
@@ -106,8 +108,8 @@ class Questions extends Component {
               qtype={question.type}
               choices={question.choices}
               changeAnswer={changeAnswer}
-              error ={error}
-              initial = {q.answer}
+              error={error}
+              initial={q.answer}
             />
           );
         })}

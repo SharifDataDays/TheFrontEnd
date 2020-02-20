@@ -41,7 +41,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
           const { title_fa, description_fa, thumbnail } = task.content;
           const { id } = task;
           return (
-            <>
+            <div key={i}>
               <a key={i} href={`/dashboard/${cid}/${mid}/${id}`}>
                 <Card style={{ padding: '1rem', width: '100%' }}>
                   <Image src={`${thumbnail}`} />
@@ -56,7 +56,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
                 </Card>
               </a>
               <TrialAccardion
-                key={i}
+                key={"ta" + i}
                 cid={cid}
                 mid={mid}
                 tid={id}
@@ -64,7 +64,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
                 can_create_trial={task.can_create_trial}
                 content_finished={task.content_finished}
               />
-            </>
+            </div>
           );
         })}
       </Grid.Column>
