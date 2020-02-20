@@ -68,7 +68,7 @@ const AuthNavbar = connect(
   mapDispatchToProps,
 )(({ logout, transparent }) => {
   return (
-    <Menu size="huge" transparent={transparent} secondary pl={[1, 4, 4]} pr={0}>
+    <Menu size="huge" transparent={transparent} secondary pl={[1, 4, 4]}>
       <Menu.Item style={{ paddingRight: 0, zIndex: 1 }}>
         <Dropdown
           item
@@ -133,15 +133,11 @@ const AuthNavbar = connect(
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
       </Menu.Item>
       <Menu.Menu position="left">
-        <Menu.Header>
-          <a href="/">
-            <Image
-              style={{ marginRight: '1rem', marginTop: '2rem' }}
-              size="mini"
-              src="/images/logo.png"
-            />
-          </a>
-        </Menu.Header>
+        {/* <Menu.Header> */}
+        <a href="/">
+          <Image style={{ marginRight: '1.2rem' }} size="mini" src="/images/logo.png" />
+        </a>
+        {/* </Menu.Header> */}
       </Menu.Menu>
     </Menu>
   );
