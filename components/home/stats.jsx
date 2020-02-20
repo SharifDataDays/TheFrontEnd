@@ -55,10 +55,10 @@ class SingleStat extends Component {
           <Statistic py={4} px={5} m={0} size="large">
             <Statistic.Value style={{ color: 'white' }}>
               <CountUp
-                start={this.state.start}
+                start={Math.max(this.state.start, this.state.end - 100)}
                 end={this.state.end}
                 delay={0}
-                duration={4}
+                duration={5}
                 formattingFn={(number) => {
                   const num = persianJs(number.toString())
                     .englishNumber()

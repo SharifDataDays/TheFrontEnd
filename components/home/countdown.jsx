@@ -52,14 +52,21 @@ const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 
+const numberFarsi = (number) => {
+  if (_.isUndefined(number) || _.isNull(number)) return;
+  return persianJs(number.toString())
+    .englishNumber()
+    .toString();
+};
+
 class CountDown extends Component {
   constructor(props) {
     super();
     this.state = {
-      second: 0,
-      minute: 0,
-      hour: 0,
-      day: 0,
+      second: numberFarsi(0),
+      minute: numberFarsi(0),
+      hour: numberFarsi(0),
+      day: numberFarsi(0),
       target: new Date(props.timer.time).getTime(),
     };
   }
@@ -70,18 +77,10 @@ class CountDown extends Component {
       const now = new Date().getTime();
       const distance = target - now;
       this.setState({
-        day: persianJs(Math.floor(distance / day).toString())
-          .englishNumber()
-          .toString(),
-        hour: persianJs(Math.floor((distance % day) / hour).toString())
-          .englishNumber()
-          .toString(),
-        minute: persianJs(Math.floor((distance % hour) / minute).toString())
-          .englishNumber()
-          .toString(),
-        second: persianJs(Math.floor((distance % minute) / second).toString())
-          .englishNumber()
-          .toString(),
+        day: numberFarsi(Math.floor(distance / day)),
+        hour: numberFarsi(Math.floor((distance % day) / hour)),
+        minute: numberFarsi(Math.floor((distance % hour) / minute)),
+        second: numberFarsi(Math.floor((distance % minute) / second)),
       });
     }, second);
   }
@@ -126,7 +125,7 @@ class CountDown extends Component {
             </TimeBlock>
           </Row>
           <Row>
-            <Label fontSize={[5,6,6]} color={'white'} lineHeight="1.5">
+            <Label fontSize={[5, 6, 6]} color={'white'} lineHeight="1.5">
               تا پایان مهلت ثبت تیم
             </Label>
           </Row>
