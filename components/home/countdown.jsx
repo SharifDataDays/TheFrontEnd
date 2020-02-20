@@ -36,7 +36,7 @@ const TimeWrapper = styled.div`
 `;
 
 const Time = styled.div`
-  color: #0088fb;
+  color: white;
   font-size: 6vmin;
 `;
 
