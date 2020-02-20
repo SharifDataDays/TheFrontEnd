@@ -15,6 +15,7 @@ import { taskAPI, getNewTrialAPI } from '~/redux/api/dashboard';
 import _ from 'lodash';
 import Countdown from 'react-countdown';
 import Router from 'next/router';
+import persianJs from 'persianjs';
 
 const Container = styled.div`
   ${space}
@@ -27,6 +28,15 @@ const Text = styled.p`
   font-weight: bold;
   direction: rtl;
 `;
+
+const numberFarsi = (number) => {
+  
+  if (_.isUndefined(number) || _.isNull(number)) return;
+  if (number === 0) number = '0';
+  return persianJs(number)
+    .englishNumber()
+    .toString();
+};
 
 export default class TrialAccardion extends Component {
   constructor(props) {
@@ -78,7 +88,8 @@ export default class TrialAccardion extends Component {
     return (
       <>
         <p>
-          مدت زمان باقی‌مانده این آزمون: {hours}:{minutes}:{seconds}
+          مدت زمان باقی‌مانده این آزمون: {numberFarsi(hours)}:{numberFarsi(minutes)}:
+          {numberFarsi(seconds)}
         </p>
       </>
     );
@@ -97,7 +108,9 @@ export default class TrialAccardion extends Component {
     if (!_.isUndefined(res.data.detail)) {
       if (res.data.detail[0] === 'Cooling down time of trial not finished') {
         this.setState({
-          error: `برای گرفتن آزمون جدید باید ${this.state.data.trial_cooldown} ساعت از اتمام آزمون قبلی گذشته باشد.`,
+          error: `برای گرفتن آزمون جدید باید ${numberFarsi(
+            this.state.data.trial_cooldown,
+          )} ساعت از اتمام آزمون قبلی گذشته باشد.`,
         });
       }
       if (res.data.detail[0] === 'Task has no trial_recipe.') {
@@ -143,10 +156,39 @@ export default class TrialAccardion extends Component {
       );
     }
 
+    let info = <></>;
+    if (this.state.data.trial_available) {
+      info = (
+        <Message
+          info
+          style={{
+            textAlign: 'justify',
+          }}
+        >
+          شما مجاز به دریافت {numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
+          هستید. مدت زمان هر آزمون {numberFarsi(this.state.data.trial_time)} ساعت می‌باشد و پس از
+          اتمام یک آزمون برای گرفتن آزمون بعدی باید {numberFarsi(this.state.data.trial_cooldown)}{' '}
+          ساعت صبر کنید.
+        </Message>
+      );
+    }
+
+    let error = <></>;
+    if (
+      !_.isNull(this.state.error) &&
+      !_.isUndefined(this.state.error) &&
+      this.state.error !== ''
+    ) {
+      error = <Message negative>{this.state.error}</Message>;
+    }
+
     let ind = 0;
     return (
       <Container pb={4}>
+        {error}
+        {info}
         {_.map(this.state.trials, (trial, i) => {
+          
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
           } else {
             ind = ind + 1;
@@ -158,9 +200,9 @@ export default class TrialAccardion extends Component {
                     fontWeight: 'bold',
                   }}
                 >
-                  آزمون شماره‌ی {ind}
+                  آزمون شماره‌ی {numberFarsi(ind)}
                 </p>
-                <p>امتیاز: {_.round(trial.score, 2)}</p>
+                <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
               </>
             );
           }
@@ -176,6 +218,7 @@ export default class TrialAccardion extends Component {
               goToPageButton = <></>;
             }
             ind = ind + 1;
+
             return (
               <>
                 <Divider />
@@ -184,7 +227,7 @@ export default class TrialAccardion extends Component {
                     fontWeight: 'bold',
                   }}
                 >
-                  آزمون شماره‌ی {ind}
+                  آزمون شماره‌ی {numberFarsi(ind)}
                 </p>
                 <Countdown
                   dir="ltr"
@@ -192,7 +235,7 @@ export default class TrialAccardion extends Component {
                   renderer={this.renderer}
                   trial={trial}
                 />
-                <p>امتیاز: {_.round(trial.score, 2)}</p>
+                <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
                 <a
                   href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
                 >
@@ -202,39 +245,29 @@ export default class TrialAccardion extends Component {
             );
           }
         })}
-
         {addButton}
       </Container>
     );
   };
 
   render() {
-     console.log(this.props);
-     console.log(this.state)
+    console.log(this.props);
+    console.log(this.state);
 
     const { activeIndex } = this.state;
 
-    if (this.props.cid + "" === "2") {
+    if (this.props.cid + '' === '2') {
       return <></>;
     }
-
 
     if (!this.props.content_finished) {
       return <></>;
     }
 
-    let error = <></>;
-    if (
-      !_.isNull(this.state.error) &&
-      !_.isUndefined(this.state.error) &&
-      this.state.error !== ''
-    ) {
-      error = <Message negative>{this.state.error}</Message>;
-    }
     return (
       <Container
         px={[2, 4, 4]}
-        py={4}
+        py={3}
         m={0}
         style={{
           backgroundColor: '#DFF1FF',
@@ -251,7 +284,6 @@ export default class TrialAccardion extends Component {
               <Icon name="dropdown" />
               آزمون‌
             </Text>
-            {error}
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>{this.content()}</Accordion.Content>
         </Accordion>
