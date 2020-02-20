@@ -26,8 +26,8 @@ const customTheme = createTheme(themes.default, {
   card: {
     textAlign: 'right',
     borderRadius: '4px',
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    color: '#dbdbdb',
     padding: '1rem',
     // boxShadow: '0 6px 10px 3px hsla(0, 0%, 0%, 0.4)',
     width: '100%',
