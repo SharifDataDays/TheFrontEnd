@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faBlog, faSignOutAlt, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import { logoutAction } from '~/redux/actions/auth';
 import { space, layout } from 'styled-system';
+import Router from 'next/router';
 
 const Menu = styled(M)`
 ${space}
@@ -68,7 +69,7 @@ const AuthNavbar = connect(
 )(({ logout, transparent }) => {
   return (
     <Menu size="huge" transparent={transparent} secondary pl={[1, 4, 4]} pr={0}>
-      <Menu.Item style={{ paddingRight: 0 ,  zIndex: 1 }}>
+      <Menu.Item style={{ paddingRight: 0, zIndex: 1 }}>
         <Dropdown
           item
           //  direction={"left"}
@@ -83,16 +84,6 @@ const AuthNavbar = connect(
           style={{ paddingRight: 0 }}
         >
           <Dropdown.Menu style={{ left: '0 !important', zIndex: 1 }}>
-            {/* todo todo todo */}
-            {/* <Dropdown.Item href="/dashboard/team/2">
-              <a>تیم</a>
-              <FontAwesomeIcon
-                style={{ marginLeft: '0.5rem' }}
-                color="#1d93f7"
-                size="lg"
-                icon={faCog}
-              />
-            </Dropdown.Item> */}
             <Dropdown.Item
               href="/dashboard/profile"
               style={{
@@ -111,10 +102,11 @@ const AuthNavbar = connect(
               style={{
                 zIndex: 1,
               }}
-              href="/login"
+              // href="/login"
               onClick={(e) => {
-                e.preventDefault();
                 logout();
+                Router.push('/login', '/login', { shallow: false });
+                //  e.preventDefault();
               }}
             >
               <a>خروج</a>
@@ -142,7 +134,7 @@ const AuthNavbar = connect(
       </Menu.Item>
       <Menu.Menu position="left">
         <Menu.Header>
-          <a href="/dashboard">
+          <a href="/">
             <Image
               style={{ marginRight: '1rem', marginTop: '2rem' }}
               size="mini"

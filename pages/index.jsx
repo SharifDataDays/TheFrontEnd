@@ -11,36 +11,40 @@ import Prize from '~/components/home/prize';
 import homeAPI from '~/redux/api/home';
 import Stats from '~/components/home/stats';
 import CountDown from '../components/home/countdown';
+import Layout from '~/components/global/layout';
 
 class HomePage extends Component {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx, token) {
     const res = await homeAPI();
     const content = res.data;
-    return { content };
+    return { content, token };
   }
 
   render() {
-    const { content } = this.props;
-    const { intro, timeline, prizes, counts, timer} = content;
+    const { token, content } = this.props;
+    const { intro, timeline, prizes, counts, timer } = content;
 
     return (
       <>
         <Head>
           <title>DataDays 2020</title>
         </Head>
-        <Navbar transparent/>
-        <Header/>
-        <Sponsers/>
-        <CountDown timer={timer}/>
-        <Introduction header={intro.header_fa} content={intro.text_fa}/>
-        <Stats counts={counts}/>
+        {/* <Navbar transparent/> */}
+        <Layout token={token} hasNavbar hasFooter transparent>
+          <Header />
+          <Sponsers />
+          <CountDown timer={timer} />
+          <Introduction header={intro.header_fa} content={intro.text_fa} />
+          <Stats counts={counts} />
 
-        <Timeline timeline={timeline}/>
-        <Prize prizes={prizes}/>
-        <Footer/>
+          <Timeline timeline={timeline} />
+          <Prize prizes={prizes} />
+        </Layout>
+
+        {/* <Footer/> */}
       </>
     );
   }
 }
 
-export default withAuth(false)(HomePage);
+export default withAuth()(HomePage);
