@@ -7,6 +7,7 @@ import parseHtml from './parse';
 import CodeBlock from './code';
 
 function Container({ content }) {
+  console.log(content)
   const modifiedContent = _.replace(
     _.replace(
       _.replace(content, /\$\$(.+?)\$\$/gs, (x) => {
