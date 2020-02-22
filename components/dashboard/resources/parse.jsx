@@ -15,7 +15,7 @@ export default htmlParser({
         return node.name && node.name === 'div';
       },
       processNode(node, children) {
-        console.log(children);
+        // console.log(children);
         return (
           <div style={{ marginBottom: '1rem', textAlign: 'justify', direction: 'rtl' }} dir="RTL">
             {children}

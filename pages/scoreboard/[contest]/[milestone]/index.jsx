@@ -38,7 +38,8 @@ class MainScoreboard extends Component {
       const teams = res2.data.teams;
       //const teamName = "asgharha"
 
-      const teamName = teams[contestID];
+      let teamName = '';
+      if (!_.isUndefined(teams)) teamName = teams[contestID];
 
       const myRow = scoreboard.filter((a) => {
         return a.name === teamName;
