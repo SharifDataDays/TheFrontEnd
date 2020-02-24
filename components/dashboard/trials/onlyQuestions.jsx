@@ -23,7 +23,7 @@ class OnlyQuestions extends Component {
 
   render() {
     const { questions } = this.props;
-
+    // console.log(this.props);
     return (
       <>
         {_.map(questions.question_submissions, (q, i) => {
@@ -48,28 +48,41 @@ class OnlyQuestions extends Component {
                   marginRight: '5px',
                 }}
               >
-                <p
-                  style={{
-                    //   fontWeight: 'bold',
-                    fontSize: '19px',
-                  }}
-                >
-                  امتیاز:{' '}
-                  {persianJs(_.round(q.score.number, 2).toString())
-                    .englishNumber()
-                    .toString()}{' '}
-                  {/* از{' '}
+                {_.isNull(q.score) || _.isUndefined(q.score) ? (
+                  <p
+                    style={{
+                      //   fontWeight: 'bold',
+                      fontSize: '19px',
+                    }}
+                  >
+                    در حال داوری ...
+                  </p>
+                ) : (
+                  <>
+                    <p
+                      style={{
+                        //   fontWeight: 'bold',
+                        fontSize: '19px',
+                      }}
+                    >
+                      امتیاز:{' '}
+                      {persianJs(_.round(q.score.number, 2).toString())
+                        .englishNumber()
+                        .toString()}{' '}
+                      {/* از{' '}
                     {persianJs(question.max_score.toString())
                       .englishNumber()
                       .toString()} */}
-                </p>
-                <p
-                  style={{
-                    textAlign: 'left',
-                  }}
-                >
-                  {q.score.status} - {q.score.info}
-                </p>
+                    </p>
+                    <p
+                      style={{
+                        textAlign: 'left',
+                      }}
+                    >
+                      {q.score.status} - {q.score.info}
+                    </p>
+                  </>
+                )}
               </Message>
             </Container>
           );

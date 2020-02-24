@@ -29,7 +29,7 @@ class Form extends Component {
           phone_number: this.phone_number.state.value,
         },
       };
-      console.log(new_fields);
+      // console.log(new_fields);
       update(new_fields, token);
     } else {
       const new_fields = {
@@ -39,7 +39,7 @@ class Form extends Component {
           new_password2: this.new_password2.state.value,
         },
       };
-      console.log(new_fields);
+      // console.log(new_fields);
       password_update(new_fields, token);
     }
   }

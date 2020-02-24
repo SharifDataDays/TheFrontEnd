@@ -76,13 +76,13 @@ export function passwordUpdateAction(fields, token) {
     fields = { ...fields.password };
     // console.log(fields)
     if (fields.new_password1 != '' && !_.isUndefined(fields.new_password1)) {
-      console.log('ERROR');
-      console.log(getState().profile.errors);
+      // console.log('ERROR');
+      // console.log(getState().profile.errors);
       if (_.isEmpty(getState().profile.errors)) {
         passwordUpdateAPI(fields, token).then(
           (res) => {
             const { data } = res;
-            console.log(res);
+            // console.log(res);
             if (data.status_code === 200) {
               dispatch(profileSuccessAction());
             } else {

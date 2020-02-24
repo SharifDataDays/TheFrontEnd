@@ -18,18 +18,16 @@ class TrialsPage extends Component {
       status_code = res.data.status_code;
     }
     const { data } = res;
+
     return { status_code, token, questions: data, ...query };
-    
   }
 
   constructor(props) {
-    super(props)
-}
+    super(props);
+  }
 
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.clear(true);
-    
   }
 
   render() {
@@ -46,9 +44,9 @@ class TrialsPage extends Component {
       status_code,
       clear,
     } = this.props;
-    
+
     return (
-      <Layout token={token} hasNavbar hasFooter >
+      <Layout token={token} hasNavbar hasFooter>
         {status_code !== 200 ? (
           <NotFound />
         ) : (
@@ -66,7 +64,6 @@ class TrialsPage extends Component {
           />
         )}
       </Layout>
-      
     );
   }
 }
@@ -82,9 +79,10 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     changeAnswer: (answer) => dispatch(changeAnswerAction(answer)),
     submit: (token, contestId, milestoneId, taskId, trialId, final, questions) =>
-      dispatch(submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final, questions)),
+      dispatch(
+        submitAnswersAction(token, contestId, milestoneId, taskId, trialId, final, questions),
+      ),
     clear: (clearAnswers) => dispatch(trialClearAction(clearAnswers)),
-
   };
 }
 

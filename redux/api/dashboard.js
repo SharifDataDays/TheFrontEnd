@@ -187,7 +187,7 @@ export function teamCountAPI(milestoneID, token) {
   });
 }
 export function scoreboardAPI(startIndex, endIndex, milestoneID, token) {
-  console.log(SCOREBOARD(startIndex, endIndex, milestoneID));
+  // console.log(SCOREBOARD(startIndex, endIndex, milestoneID));
   return axios.get(SCOREBOARD(startIndex, endIndex, milestoneID), {
     headers: {
       Authorization: `Bearer ${token}`,

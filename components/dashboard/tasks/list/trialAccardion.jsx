@@ -187,6 +187,7 @@ export default class TrialAccardion extends Component {
         {error}
         {info}
         {_.map(this.state.trials, (trial, i) => {
+          // console.log(trial);
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
           } else {
             ind = ind + 1;
@@ -204,7 +205,11 @@ export default class TrialAccardion extends Component {
                     آزمون شماره‌ی {numberFarsi(ind)}
                   </a>
                 </p>
-                <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
+                {trial.scored ? (
+                  <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
+                ) : (
+                  <p>امتیاز: در حال داوری ...</p>
+                )}
               </Container>
             );
           }
@@ -241,7 +246,6 @@ export default class TrialAccardion extends Component {
                   renderer={this.renderer}
                   trial={trial}
                 />
-                <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
                 <a
                   href={`/dashboard/${this.props.cid}/${this.props.mid}/${this.props.tid}/${trial.id}`}
                 >

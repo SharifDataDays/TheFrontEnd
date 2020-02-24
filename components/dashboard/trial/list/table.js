@@ -3,7 +3,7 @@ import { Table } from 'semantic-ui-react';
 import moment from 'jalali-moment'
 
 const TaskTrialsTable = (props) => {
-    console.log(props.trials)
+    // console.log(props.trials)
     return (
         <Table>
             <Table.Header>
