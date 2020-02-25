@@ -33,7 +33,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
   // console.log(tasks);
   return (
     <Segment.Group
-      basic={"true"}
+      basic={'true'}
       raised
       style={{
         width: '60vw',
@@ -43,22 +43,26 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         marginBottom: '3rem',
       }}
     >
-      {/* <a href={`/scoreboard/${cid}/${mid}`}>
-        <RowSegment
-          p={7}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            alignContent: 'center',
-            backgroundColor: 'rgba(52, 116, 235, 1)',
-            paddingTop: '30px',
-            paddingBottom: '30px',
-          }}
-        >
-          <H inverted> جدول امتیازات</H>
-        </RowSegment>
-      </a> */}
+      {cid + '' != '2' ? (
+        <a href={`/scoreboard/${cid}/${mid}`}>
+          <RowSegment
+            p={7}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignContent: 'center',
+              backgroundColor: 'rgba(52, 116, 235, 1)',
+              paddingTop: '30px',
+              paddingBottom: '30px',
+            }}
+          >
+            <H inverted> جدول امتیازات</H>
+          </RowSegment>
+        </a>
+      ) : (
+        <></>
+      )}
 
       {_.map(tasks, (task, i) => {
         // console.log(task)
@@ -86,7 +90,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
               </RowSegment>
             </a>
             <TrialAccardion
-              key={"ta" + i}
+              key={'ta' + i}
               cid={cid}
               mid={mid}
               tid={id}
