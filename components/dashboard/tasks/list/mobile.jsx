@@ -20,26 +20,22 @@ function TasksMobile({ cid, mid, tasks, token }) {
   return (
     <Grid centered style={{ marginBottom: '1rem' }}>
       <Grid.Column mobile={14}>
-        {cid + '' != '2' ? (
-          <a href={`/scoreboard/${cid}/${mid}`}>
-            <RowSegment
-              p={5}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignContent: 'center',
-                backgroundColor: 'rgba(52, 116, 235, 1)',
-                paddingTop: '30px',
-                paddingBottom: '30px',
-              }}
-            >
-              <H inverted> مشاهده‌ی جدول امتیازات</H>
-            </RowSegment>
-          </a>
-        ) : (
-          <></>
-        )}
+        {/* <a href={`/scoreboard/${cid}/${mid}`}>
+          <RowSegment
+            p={5}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignContent: 'center',
+              backgroundColor: 'rgba(52, 116, 235, 1)',
+              paddingTop: '30px',
+              paddingBottom: '30px',
+            }}
+          >
+            <H inverted> مشاهده‌ی جدول امتیازات</H>
+          </RowSegment>
+        </a> */}
 
         {_.map(tasks, (task, i) => {
           const { title_fa, description_fa, thumbnail } = task.content;
@@ -60,7 +56,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
                 </Card>
               </a>
               <TrialAccardion
-                key={'ta' + i}
+                key={"ta" + i}
                 cid={cid}
                 mid={mid}
                 tid={id}
