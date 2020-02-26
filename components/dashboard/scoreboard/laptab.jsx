@@ -33,9 +33,9 @@ const GenerateRows = ({ myName, teams, topRank }) => {
     let background = '#f8f8fa';
     let fontWeight = 'normal';
     const rank = x.rank;
-    if (rank <= 1) background = '#fed76673';
-    else if (rank <= 2) background = '#bbbbbb73';
-    else if (rank <= 3) background = '#cd7f3273';
+    if (rank <= 3) background = '#fed76673';
+    else if (rank <= 6) background = '#bbbbbb73';
+    else if (rank <= 9) background = '#cd7f3273';
 
     let borderTop = `none`;
     let borderBottom = `none`;
