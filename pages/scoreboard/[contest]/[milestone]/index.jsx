@@ -10,6 +10,7 @@ import _ from 'lodash';
 class MainScoreboard extends Component {
   static async getInitialProps({ query }, token) {
     const contestID = parseInt(query.contest);
+
     let milestoneID = parseInt(query.milestone);
     let requestID = contestID;
     if (milestoneID !== 0) requestID = contestID * 1000 + milestoneID;
@@ -29,6 +30,7 @@ class MainScoreboard extends Component {
 
     const res = await scoreboardAPI(startIndex, endIndex, requestID, token);
     let { milestone, scoreboard, tasks, status_code } = res.data;
+    if (contestID + '' === '2') status_code = 404;
     // console.log(res.data);
 
     if (status_code === 200 || _.isUndefined(status_code)) {
