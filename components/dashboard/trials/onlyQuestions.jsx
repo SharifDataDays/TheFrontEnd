@@ -55,7 +55,7 @@ class OnlyQuestions extends Component {
                       fontSize: '19px',
                     }}
                   >
-                    در حال داوری ...
+                    امتیاز داده نشده
                   </p>
                 ) : (
                   <>

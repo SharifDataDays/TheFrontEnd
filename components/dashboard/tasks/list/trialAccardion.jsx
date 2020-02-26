@@ -208,7 +208,7 @@ export default class TrialAccardion extends Component {
                 {trial.scored ? (
                   <p>امتیاز: {numberFarsi(_.round(trial.score, 2))}</p>
                 ) : (
-                  <p>امتیاز: در حال داوری ...</p>
+                  <p>امتیاز: امتیاز داده نشده</p>
                 )}
               </Container>
             );
