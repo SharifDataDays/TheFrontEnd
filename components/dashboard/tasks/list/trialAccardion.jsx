@@ -186,8 +186,9 @@ export default class TrialAccardion extends Component {
       <Container pb={4}>
         {error}
         {info}
+        <p style={{fontWeight: 'bold', textAlign: 'center'}}>رتبه‌ی شما: {numberFarsi(this.state.data.rank)}</p>
         {_.map(this.state.trials, (trial, i) => {
-          // console.log(trial);
+          //console.log(trial);
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
           } else {
             ind = ind + 1;
@@ -261,8 +262,8 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // console.log(this.state);
+    //console.log(this.props);
+    //console.log(this.state);
 
     const { activeIndex } = this.state;
 
