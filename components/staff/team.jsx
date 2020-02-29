@@ -1,23 +1,47 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon, Image, Header } from 'semantic-ui-react';
+import styled from 'styled-components';
+import { space, color, border } from 'styled-system';
+import _ from 'lodash';
+import Person from './person';
 
-const Team = (team) => {
-    console.log(team)
+const Container = styled.div`
+  ${space}
+  ${color}
+  ${border}
+`;
+
+const Team = ({ team }) => {
+  // console.log(team);
   return (
-    <Card color="blue">
-      <Image src={'/images/logo.png'} wrapped ui={false} />
-      <Card.Content>
-        <Card.Header>person</Card.Header>
-        <Card.Meta>Joined in 2016</Card.Meta>
-        <Card.Description>Daniel is a comedian living in Nashville.</Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <a>
-          <Icon name="user" />
-          10 Friends
-        </a>
-      </Card.Content>
-    </Card>
+    <Container>
+      {_.map(team.subteams, (subteam) => {
+        // console.log(subteam);
+        return (
+          <Container p={3}>
+            {subteam.title_fa === team.title_fa ? (
+              <></>
+            ) : (
+              <Header
+                inverted
+                textAlign="center"
+                style={{
+                  padding: '25px',
+                }}
+              >
+                {subteam.title_fa}
+              </Header>
+            )}
+
+            <Card.Group itemsPerRow={5} centered dir="RTL">
+              {_.map(subteam.staffs, (staff) => {
+                return <Person person={staff}></Person>;
+              })}
+            </Card.Group>
+          </Container>
+        );
+      })}
+    </Container>
   );
 };
 

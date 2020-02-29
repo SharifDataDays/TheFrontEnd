@@ -17,7 +17,7 @@ class Staff extends Component {
     const { staffs, token } = this.props;
     return (
       <>
-        <Layout token={token} hasNavbar hasFooter>
+        <Layout token={token} hasNavbar hasFooter transparent>
           <Container staffs={staffs}/>
         </Layout>
       </>
