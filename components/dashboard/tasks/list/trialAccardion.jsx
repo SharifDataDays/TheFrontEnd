@@ -64,6 +64,7 @@ export default class TrialAccardion extends Component {
       }
     });
     // console.log(res.data);
+
   }
 
   handleClick = (e, titleProps) => {
@@ -154,8 +155,15 @@ export default class TrialAccardion extends Component {
       );
     }
 
+
     let info = <></>;
     if (this.state.data.trial_available) {
+      let max_trial_text = `
+      شما مجاز به دریافت
+      ${numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
+      هستید.`;
+      if(this.state.data.max_trials_count + "" === "0")
+      max_trial_text = "محدودیتی در تعداد آزمون‌های مجاز برای این محتوا وجود ندارد."
       info = (
         <Message
           info
@@ -163,11 +171,9 @@ export default class TrialAccardion extends Component {
             textAlign: 'justify',
           }}
         >
-          شما مجاز به دریافت{' '}
-          {numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
-          هستید. مدت زمان هر آزمون {numberFarsi(this.state.data.trial_time)} ساعت می‌باشد و پس از
-          اتمام یک آزمون برای گرفتن آزمون بعدی باید {numberFarsi(this.state.data.trial_cooldown)}{' '}
-          ساعت صبر کنید.
+          {max_trial_text} مدت زمان هر آزمون {numberFarsi(this.state.data.trial_time)} ساعت می‌باشد
+          و پس از اتمام یک آزمون برای گرفتن آزمون بعدی باید{' '}
+          {numberFarsi(this.state.data.trial_cooldown)} ساعت صبر کنید.
         </Message>
       );
     }
@@ -186,7 +192,9 @@ export default class TrialAccardion extends Component {
       <Container pb={4}>
         {error}
         {info}
-        <p style={{fontWeight: 'bold', textAlign: 'center'}}>رتبه‌ی شما: {numberFarsi(this.state.data.rank)}</p>
+        <p style={{ fontWeight: 'bold', textAlign: 'center' }}>
+          رتبه‌ی شما: {numberFarsi(this.state.data.rank)}
+        </p>
         {_.map(this.state.trials, (trial, i) => {
           //console.log(trial);
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
