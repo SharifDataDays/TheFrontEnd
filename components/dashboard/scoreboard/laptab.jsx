@@ -19,9 +19,11 @@ const Info = styled.p`
   margin-left: 1rem;
 `;
 
+const page_length = 15;
+
 const GenerateRows = ({ myName, teams, topRank }) => {
   let firstRank = topRank - 1;
-  let endRank = topRank + 19;
+  let endRank = topRank + page_length - 1;
   let numberOfTeams = teams.length;
   if (endRank > numberOfTeams) {
     endRank = numberOfTeams;
@@ -75,10 +77,10 @@ const GenerateRows = ({ myName, teams, topRank }) => {
 
 const Footer = (props) => {
   const numberOfTeams = props.teams.length;
-  const pageNumbers = Math.ceil(numberOfTeams / 20);
+  const pageNumbers = Math.ceil(numberOfTeams / page_length);
 
-  const currentPage = (props.topRank - 1) / 20 + 1;
-  let endRank = Math.min(props.topRank + 19, numberOfTeams);
+  const currentPage = (props.topRank - 1) / page_length + 1;
+  let endRank = Math.min(props.topRank + page_length - 1, numberOfTeams);
 
   return (
     <>
@@ -115,7 +117,7 @@ const Footer = (props) => {
 };
 
 function onPageChange(e, pageInfo) {
-  let newTopRank = (pageInfo.activePage - 1) * 20 + 1;
+  let newTopRank = (pageInfo.activePage - 1) * page_length + 1;
   this.setState({ topRank: newTopRank });
 }
 

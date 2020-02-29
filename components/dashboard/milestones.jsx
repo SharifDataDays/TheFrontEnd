@@ -7,13 +7,16 @@ function Milestones({ contest, milestones }) {
   return (
     <Grid centered>
       <Grid.Column computer={10} tablet={12} mobile={14}>
-        <Card.Group>
+        <Card.Group style={{
+          paddingBottom: '40px',
+          paddingTop: '40px'
+        }}>
           {_.map(milestones, (milestone) => {
             const { id, title, description, image, start_time, end_time } = milestone;
 
             return (
               <a href={`/dashboard/${contest.id}/${id}`}>
-                <Card dir="rtl" style={{ margin: '2rem auto' }} fluid>
+                <Card dir="rtl" style={{ margin: '20px auto' }} fluid>
                   <Card.Content>
                     <Card.Header>{title}</Card.Header>
                     <div

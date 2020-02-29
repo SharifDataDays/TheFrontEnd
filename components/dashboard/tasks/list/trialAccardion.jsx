@@ -64,7 +64,6 @@ export default class TrialAccardion extends Component {
       }
     });
     // console.log(res.data);
-
   }
 
   handleClick = (e, titleProps) => {
@@ -155,15 +154,14 @@ export default class TrialAccardion extends Component {
       );
     }
 
-
     let info = <></>;
     if (this.state.data.trial_available) {
       let max_trial_text = `
       شما مجاز به دریافت
       ${numberFarsi(this.state.data.max_trials_count - this.state.trials.length)} آزمون دیگر
       هستید.`;
-      if(this.state.data.max_trials_count + "" === "0")
-      max_trial_text = "محدودیتی در تعداد آزمون‌های مجاز برای این محتوا وجود ندارد."
+      if (this.state.data.max_trials_count + '' === '0')
+        max_trial_text = 'محدودیتی در تعداد آزمون‌های مجاز برای این محتوا وجود ندارد.';
       info = (
         <Message
           info
@@ -270,12 +268,12 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    //console.log(this.props);
-    //console.log(this.state);
+    // console.log(this.props);
+    // console.log(this.state);
 
     const { activeIndex } = this.state;
 
-    if (this.props.cid + '' === '2') {
+    if (!this.state.trial_available) {
       return <></>;
     }
 

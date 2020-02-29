@@ -47,7 +47,7 @@ class MainScoreboard extends Component {
         return a.name === teamName;
       })[0];
       if (!_.isUndefined(myRow)) {
-        const myPageTopRank = Math.floor((myRow.rank - 1) / 20) * 20 + 1;
+        const myPageTopRank = Math.floor((myRow.rank - 1) / 15) * 15 + 1;
         myteam = {
           name: teamName,
           myPageTopRank: myPageTopRank,
