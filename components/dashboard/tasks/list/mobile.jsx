@@ -66,6 +66,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
                 tid={id}
                 token={token}
                 can_create_trial={task.can_create_trial}
+                trial_released={task.trial_released}
                 content_finished={task.content_finished}
               />
             </div>

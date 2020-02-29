@@ -30,7 +30,7 @@ const Text = styled.p`
 `;
 
 function TasksDesktop({ cid, mid, tasks, token }) {
-  // console.log(tasks);
+  //  console.log(tasks);
   return (
     <Segment.Group
       basic={'true'}
@@ -95,6 +95,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
               mid={mid}
               tid={id}
               token={token}
+              trial_released={task.trial_released}
               can_create_trial={task.can_create_trial}
               content_finished={task.content_finished}
             />
