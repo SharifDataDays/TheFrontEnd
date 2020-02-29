@@ -268,14 +268,15 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // console.log(this.state);
+     // console.log(this.props);
+    //console.log(this.state);
+   //   console.log(this.props.can_create_trial)
 
     const { activeIndex } = this.state;
 
-    if (!this.state.trial_available) {
-      return <></>;
-    }
+   if (!this.props.trial_released) {
+     return <></>;
+   }
 
     if (!this.props.content_finished) {
       return <></>;
