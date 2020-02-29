@@ -67,11 +67,9 @@ export class Box extends Component {
 
     return (
       <Container
-        style={
-          {
-             boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
-          }
-        }
+        style={{
+          boxShadow: `-20px 20px 30px rgba(32, 32, 32, 0.5)`,
+        }}
       >
         <Segment
           // color="black"
@@ -140,11 +138,15 @@ export class Box extends Component {
         <Button.Group size="medium" attached="bottom" widths="5">
           <BoxButton title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`} />
 
-          {/* <BoxButton
-            title="جدول امتیازات"
-            contest={contest}
-            clickOnPage={`/scoreboard/${contest.id}/0`}
-          /> */}
+          {contest.id + '' != '2' ? (
+            <BoxButton
+              title="جدول امتیازات"
+              contest={contest}
+              clickOnPage={`/scoreboard/${contest.id}/0`}
+            />
+          ) : (
+            <></>
+          )}
           {contest.team_size === 1 ? (
             <></>
           ) : (
