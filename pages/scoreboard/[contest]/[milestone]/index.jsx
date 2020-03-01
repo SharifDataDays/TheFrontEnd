@@ -26,6 +26,7 @@ class MainScoreboard extends Component {
       name: '',
       myPageTopRank: 1,
       teams_count: teams_count,
+      myRank: 0
     };
 
     const res = await scoreboardAPI(startIndex, endIndex, requestID, token);
@@ -52,6 +53,7 @@ class MainScoreboard extends Component {
           name: teamName,
           myPageTopRank: myPageTopRank,
           teams_count: teams_count,
+          myRank: myRow.rank
         };
       }
     }

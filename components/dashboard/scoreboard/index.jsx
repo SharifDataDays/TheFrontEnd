@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Laptab from './laptab';
 import Mobile from './mobile';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
+import persianJs from 'persianjs';
 
 const Text = styled.p`
   color: white;
@@ -41,6 +42,13 @@ const HeaderScoreBoard = (props) => (
   </Grid.Column>
 );
 
+const numberFarsi = (number) => {
+  if (_.isUndefined(number) || _.isNull(number)) return;
+  return persianJs(number.toString())
+    .englishNumber()
+    .toString();
+};
+
 class ScoreBoard extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +63,7 @@ class ScoreBoard extends Component {
 
   render() {
     const { padding } = this.state;
-    // console.log(this.props);
+    //  console.log(this.props);
     const count = this.props.myteam.teams_count;
     //const count = 245;
     return (
@@ -73,8 +81,22 @@ class ScoreBoard extends Component {
                 backgroundColor: 'white',
               }}
             >
-              تعداد تیم‌ها: {count} تیم
+              تعداد تیم‌ها: {numberFarsi(count)} تیم
             </Text>
+            {this.props.myteam.myRank === 0 ? (
+              <></>
+            ) : (
+              <Text
+                marginTop=""
+                style={{
+                  color: 'black',
+                  textAlign: 'right',
+                  backgroundColor: 'white',
+                }}
+              >
+                رتبه‌ی شما: {numberFarsi(this.props.myteam.myRank)}
+              </Text>
+            )}
           </Grid.Column>
         </Grid>
         <Grid centered>
@@ -101,4 +123,3 @@ class ScoreBoard extends Component {
 }
 
 export default ScoreBoard;
-

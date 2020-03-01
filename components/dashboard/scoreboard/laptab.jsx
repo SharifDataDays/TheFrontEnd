@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Pagination, Segment, TableRow, Tab, Header, Menu, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
+import persianJs from 'persianjs';
+import _ from 'lodash';
 
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
@@ -20,6 +22,15 @@ const Info = styled.p`
 `;
 
 const page_length = 15;
+
+const numberFarsi = (number) => {
+  if (_.isUndefined(number) || _.isNull(number)) return;
+
+  if (_.ceil(number) === 0) number = 0;
+  return persianJs(number.toString())
+    .englishNumber()
+    .toString();
+};
 
 const GenerateRows = ({ myName, teams, topRank }) => {
   let firstRank = topRank - 1;
@@ -54,12 +65,12 @@ const GenerateRows = ({ myName, teams, topRank }) => {
     return (
       <Table.Row style={{ background, fontWeight }}>
         <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
-          {x.total_score}
+          {numberFarsi(x.total_score)}
         </Table.Cell>
         {x.scores.map((score) => {
           return (
             <TableCell textAlign="center" style={{ borderTop, borderBottom }}>
-              {score}
+              {numberFarsi(score)}
             </TableCell>
           );
         })}
@@ -67,7 +78,7 @@ const GenerateRows = ({ myName, teams, topRank }) => {
           {x.name}
         </Table.Cell>
         <Table.Cell textAlign="center" style={{ borderTop, borderBottom, borderRight }}>
-          {x.rank}
+          {numberFarsi(x.rank)}
         </Table.Cell>
       </Table.Row>
     );
@@ -92,7 +103,7 @@ const Footer = (props) => {
         }}
       >
         {' '}
-        {endRank} رتبه‌های {props.topRank} الی
+        {numberFarsi(endRank)} رتبه‌های {numberFarsi(props.topRank)} الی
       </Info>
 
       <Table.Row
@@ -129,45 +140,47 @@ class Scoreboard extends Component {
       teams: props.teams,
       tasks: props.tasks,
       myteam: props.myteam,
-      topRank: props.myteam.myPageTopRank,
+      topRank: 1,
+      // topRank: props.myteam.myPageTopRank,             // to show the page of current team uncomment this
+      
     };
     this.changePage = onPageChange.bind(this);
   }
 
   render() {
+    // console.log(this.props)
+    // console.log(this.state)
     return (
       <>
-      <div style={{ overflow: 'auto' , marginBottom: '15px', direction: "rtl"}}>
-        <Table celled unstackable dir="LTR">
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textAlign="center">امتیاز</Table.HeaderCell>
-              {this.state.tasks.map((x) => {
-                return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
-              })}
-              <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+        <div style={{ overflow: 'auto', marginBottom: '15px', direction: 'rtl' }}>
+          <Table unstackable dir="LTR">
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
+                {this.state.tasks.map((x) => {
+                  return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
+                })}
+                <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
+                <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-          <Table.Body>
-            <GenerateRows
-              myName={this.state.myteam.name}
-              teams={this.state.teams}
-              topRank={this.state.topRank}
-            />
-          </Table.Body>
-        </Table>
-
-       
-      </div>
-       <Footer
-       teams={this.state.teams}
-       changePage={this.changePage}
-       topRank={this.state.topRank}
-       currentPage={this.state.currentPage}
-     />
-     </>
+            <Table.Body>
+              <GenerateRows
+                myName={this.state.myteam.name}
+                teams={this.state.teams}
+                topRank={this.state.topRank}
+              />
+            </Table.Body>
+          </Table>
+        </div>
+        <Footer
+          teams={this.state.teams}
+          changePage={this.changePage}
+          topRank={this.state.topRank}
+          currentPage={this.state.currentPage}
+        />
+      </>
     );
   }
 }

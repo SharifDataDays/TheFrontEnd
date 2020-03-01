@@ -54,6 +54,7 @@ const day = hour * 24;
 
 const numberFarsi = (number) => {
   if (_.isUndefined(number) || _.isNull(number)) return;
+  if (number < 0) number = 0;
   return persianJs(number.toString())
     .englishNumber()
     .toString();
