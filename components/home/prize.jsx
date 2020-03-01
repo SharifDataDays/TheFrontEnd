@@ -20,7 +20,7 @@ function Prize({ prizes }) {
   const thirdMain = prizes[5].prize_fa;
   return (
     <NoSSR>
-      <Container py={[5, 6, 6]}>
+      <Container py={[4, 5, 5]}>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
           <Grid dir="RTL" centered>
             <Grid.Row>
