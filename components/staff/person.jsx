@@ -3,6 +3,7 @@ import { Card as C, Icon, Image } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { space, color, border } from 'styled-system';
 import _ from 'lodash';
+import { Fade, Flip } from 'react-reveal';
 
 const Card = styled(C)`
   ${space}
@@ -10,7 +11,9 @@ const Card = styled(C)`
   ${border}
 `;
 
-const Person = ({ person }) => {
+const Person = ({ person, homePage }) => {
+  const width = homePage ? '130px' : '150px';
+
   //  console.log(person);
 
   if (_.isUndefined(person.image) || _.isNull(person.image) || person.image === '')
@@ -20,35 +23,23 @@ const Person = ({ person }) => {
     <Card
       color="blue"
       centered
-      m={5}
+      // m={5}
       dir="RTL"
       style={{
-        width: '150px',
+        width: width,
+        margin: '10px',
       }}
     >
-      {/* <Image src={'/images/logo.png'} wrapped ui={false} /> */}
       {/* <Image src={person.image} wrapped ui={false} /> */}
-      {/* <Image
-        src={'https://datadays.ir' + person.image}
-        wrapped
-        ui={false}
-        style={{
-          //  width: '150px',
-          height: '150px',
-          overflow: 'hidden',
-          backgroundSize: 'cover',
-          objectFit: 'cover'
-          
-        }}
-      
-      /> */}
+
       <img
-        src={person.image}
+        // src={person.image}
+        src={'https://datadays.ir' + person.image}
         // wrapped
         // ui={false}
         style={{
-          //  width: '150px',
-          height: '150px',
+          //  width: width,
+          height: width,
           overflow: 'hidden',
           backgroundSize: 'cover',
           objectFit: 'cover',
@@ -58,13 +49,22 @@ const Person = ({ person }) => {
       <Card.Content textAlign="center">
         <Card.Header
           style={{
-            fontSize: '16px',
-            paddingBottom: '5px',
+            fontSize: homePage ? '14px' : '16px',
           }}
         >
           {person.name_fa}
         </Card.Header>
-        <Card.Meta>{person.title_fa}</Card.Meta>
+        {homePage ? (
+          <></>
+        ) : (
+          <Card.Meta
+            style={{
+              paddingTop: '5px',
+            }}
+          >
+            {person.title_fa}
+          </Card.Meta>
+        )}
       </Card.Content>
     </Card>
   );

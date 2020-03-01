@@ -12,16 +12,21 @@ import homeAPI from '~/redux/api/home';
 import Stats from '~/components/home/stats';
 import CountDown from '../components/home/countdown';
 import Layout from '~/components/global/layout';
+import Staff from '~/components/staff/staffRandom';
+import { staffAPI } from '~/redux/api/home';
 
 class HomePage extends Component {
   static async getInitialProps(ctx, token) {
     const res = await homeAPI();
     const content = res.data;
-    return { content, token };
+    const res2 = await staffAPI();
+    const staffs = res2.data;
+
+    return { staffs, content, token };
   }
 
   render() {
-    const { token, content } = this.props;
+    const { token, content, staffs } = this.props;
     const { intro, timeline, prizes, counts, timer } = content;
 
     return (
@@ -36,9 +41,10 @@ class HomePage extends Component {
           <CountDown timer={timer} />
           <Introduction header={intro.header_fa} content={intro.text_fa} />
           <Stats counts={counts} />
-
           <Timeline timeline={timeline} />
+
           <Prize prizes={prizes} />
+          <Staff staffs={staffs} />
         </Layout>
 
         {/* <Footer/> */}

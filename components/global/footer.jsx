@@ -42,6 +42,7 @@ const FixedMenuLayout = () => (
             </List>
           </Grid.Column>
           <Grid.Column width={7}>
+            {/* <a href="\staff">تیم ما</a> */}
             <Header inverted as="h4" content="آدرس" />
             <p>تهران، خیابان آزادی، دانشگاه صنعتی شریف، دانشکده مهندسی کامپیوتر</p>
           </Grid.Column>
