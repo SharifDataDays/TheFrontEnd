@@ -15,10 +15,10 @@ const Team = ({ team }) => {
   // console.log(team);
   return (
     <Container>
-      {_.map(team.subteams, (subteam) => {
+      {_.map(team.subteams, (subteam, ind) => {
         // console.log(subteam);
         return (
-          <Container p={3}>
+          <Container p={3} key={ind}>
             {subteam.title_fa === team.title_fa ? (
               <></>
             ) : (
@@ -34,8 +34,8 @@ const Team = ({ team }) => {
             )}
 
             <Card.Group itemsPerRow={5} centered dir="RTL">
-              {_.map(subteam.staffs, (staff) => {
-                return <Person person={staff}></Person>;
+              {_.map(subteam.staffs, (staff, ind) => {
+                return <Person person={staff} key={ind}></Person>;
               })}
             </Card.Group>
           </Container>

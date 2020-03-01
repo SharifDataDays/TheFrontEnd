@@ -11,7 +11,7 @@ const Card = styled(C)`
 `;
 
 const Person = ({ person }) => {
-  // console.log(person);
+  //  console.log(person);
 
   if (_.isUndefined(person.image) || _.isNull(person.image) || person.image === '')
     person.image = '/images/logo.png';
@@ -27,12 +27,39 @@ const Person = ({ person }) => {
       }}
     >
       {/* <Image src={'/images/logo.png'} wrapped ui={false} /> */}
-      <Image src={person.image} wrapped ui={false} />
+      {/* <Image src={person.image} wrapped ui={false} /> */}
+      {/* <Image
+        src={'https://datadays.ir' + person.image}
+        wrapped
+        ui={false}
+        style={{
+          //  width: '150px',
+          height: '150px',
+          overflow: 'hidden',
+          backgroundSize: 'cover',
+          objectFit: 'cover'
+          
+        }}
+      
+      /> */}
+      <img
+        src={person.image}
+        // wrapped
+        // ui={false}
+        style={{
+          //  width: '150px',
+          height: '150px',
+          overflow: 'hidden',
+          backgroundSize: 'cover',
+          objectFit: 'cover',
+        }}
+      />
+
       <Card.Content textAlign="center">
         <Card.Header
           style={{
             fontSize: '16px',
-            paddingBottom: '5px'
+            paddingBottom: '5px',
           }}
         >
           {person.name_fa}

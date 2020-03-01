@@ -50,6 +50,7 @@ export default class Staff extends Component {
               <Menu.Item
                 name={team.title_fa}
                 ind={ind}
+                key={ind}
                 active={this.state.activeItem === ind}
                 onClick={this.handleItemClick}
               >
@@ -73,7 +74,7 @@ export default class Staff extends Component {
           })}
         </Menu>
         <Container>
-          <Team team={staffs[this.state.activeItem]}></Team>
+          <Team team={staffs[this.state.activeItem]} key={this.state.activeItem}></Team>
         </Container>
       </Container>
     );
