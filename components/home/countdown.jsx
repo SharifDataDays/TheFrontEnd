@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import persianJs from 'persianjs';
 import { space, color, typography } from 'styled-system';
+import { Header } from 'semantic-ui-react';
+import { Fade, Roll, Zoom, Flip, Bounce, LightSpeed } from 'react-reveal';
+import Pulse from 'react-reveal/Pulse';
+
+import NoSSR from 'react-no-ssr';
 
 const Container = styled.div`
   ${space}
@@ -45,6 +50,7 @@ ${space}
 ${typography}
 ${color}
 text-align:center;
+direction: rtl;
 `;
 
 const second = 1000;
@@ -74,7 +80,7 @@ class CountDown extends Component {
 
   componentDidMount() {
     const { target } = this.state;
-    setInterval(() => {
+    this.interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = target - now;
       this.setState({
@@ -85,52 +91,73 @@ class CountDown extends Component {
       });
     }, second);
   }
+  componentWillUnmount(){
+    clearInterval(this.interval);
+  }
+  
 
   render() {
     const { day, hour, minute, second } = this.state;
     return (
       <>
-        <Container p={5}>
-          <Row pb={4}>
-            <TimeBlock>
-              <TimeWrapper>
-                <Time>{day}</Time>
-              </TimeWrapper>
-              <Label my={3} fontSize={4} color={'#9a9a9a'}>
-                روز
+        <NoSSR>
+          <Container pt={4} px={5} pb={5}>
+          <Bounce >
+              <Label
+                fontSize={6}
+                color={'white'}
+                lineHeight="1.5"
+                style={{
+                  paddingBottom: '40px',
+                }}
+              >
+                <a href="/signup">همین حالا </a>
+                <p>
+                در چالش نهایی شرکت کنید!
+                </p>
               </Label>
-            </TimeBlock>
-            <TimeBlock>
-              <TimeWrapper>
-                <Time>{hour}</Time>
-              </TimeWrapper>
-              <Label my={3} fontSize={4} color={'#9a9a9a'}>
-                ساعت
+            </Bounce>
+            <Row pb={4}>
+              <TimeBlock>
+                <TimeWrapper>
+                  <Time>{day}</Time>
+                </TimeWrapper>
+                <Label my={3} fontSize={4} color={'#9a9a9a'}>
+                  روز
+                </Label>
+              </TimeBlock>
+              <TimeBlock>
+                <TimeWrapper>
+                  <Time>{hour}</Time>
+                </TimeWrapper>
+                <Label my={3} fontSize={4} color={'#9a9a9a'}>
+                  ساعت
+                </Label>
+              </TimeBlock>
+              <TimeBlock>
+                <TimeWrapper>
+                  <Time>{minute}</Time>
+                </TimeWrapper>
+                <Label my={3} fontSize={4} color={'#9a9a9a'}>
+                  دقیقه
+                </Label>
+              </TimeBlock>
+              <TimeBlock>
+                <TimeWrapper>
+                  <Time>{second}</Time>
+                </TimeWrapper>
+                <Label my={3} fontSize={4} color={'#9a9a9a'}>
+                  ثانیه
+                </Label>
+              </TimeBlock>
+            </Row>
+            <Row>
+              <Label fontSize={[5, 6, 6]} color={'white'} lineHeight="1">
+                تا پایان مهلت ثبت تیم
               </Label>
-            </TimeBlock>
-            <TimeBlock>
-              <TimeWrapper>
-                <Time>{minute}</Time>
-              </TimeWrapper>
-              <Label my={3} fontSize={4} color={'#9a9a9a'}>
-                دقیقه
-              </Label>
-            </TimeBlock>
-            <TimeBlock>
-              <TimeWrapper>
-                <Time>{second}</Time>
-              </TimeWrapper>
-              <Label my={3} fontSize={4} color={'#9a9a9a'}>
-                ثانیه
-              </Label>
-            </TimeBlock>
-          </Row>
-          <Row>
-            <Label fontSize={[5, 6, 6]} color={'white'} lineHeight="1.5">
-              تا پایان مهلت ثبت تیم
-            </Label>
-          </Row>
-        </Container>
+            </Row>
+          </Container>
+        </NoSSR>
       </>
     );
   }

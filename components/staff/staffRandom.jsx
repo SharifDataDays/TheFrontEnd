@@ -49,7 +49,7 @@ const Staff = ({ staffs }) => {
       <Fade left>
         <Card.Group itemsPerRow={5} centered dir="RTL">
           {_.map(randomStaffs, (staff, ind) => {
-            console.log(staff);
+            // console.log(staff);
             return <Person person={staff} key={ind} homePage={true} />;
           })}
         </Card.Group>
@@ -57,7 +57,7 @@ const Staff = ({ staffs }) => {
 
       <Button
         primary
-        textAlign="center"
+        // textAlign="center"
         style={{
           marginTop: '30px',
         }}
