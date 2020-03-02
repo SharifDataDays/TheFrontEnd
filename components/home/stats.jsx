@@ -12,10 +12,12 @@ const Container = styled.div`
   ${space}
   ${color}
   ${border}
+  ${layout}
 `;
 const Statistic = styled(S)`
   ${space}
   ${color}
+  ${layout}
 `;
 
 class SingleStat extends Component {
@@ -52,13 +54,13 @@ class SingleStat extends Component {
             width: '280px',
           }}
         >
-          <Statistic py={4} px={5} m={0} size="large">
+          <Statistic py={3} px={4} m={0} size="large">
             <Statistic.Value style={{ color: 'white' }}>
               <CountUp
                 start={Math.max(this.state.start, this.state.end - 100)}
                 end={this.state.end}
                 delay={0}
-                duration={5}
+                duration={3}
                 formattingFn={(number) => {
                   const num = persianJs(number.toString())
                     .englishNumber()
@@ -90,7 +92,7 @@ class SingleStat extends Component {
             });
           }
         }}
-        onLeaveViewport={{}}
+        onLeaveViewport={() => {}}
       />
     );
   }
