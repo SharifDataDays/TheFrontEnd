@@ -109,6 +109,7 @@ class CountDown extends Component {
                 lineHeight="1.5"
                 style={{
                   paddingBottom: '40px',
+                  textShadow: `0px 10px 12px`
                 }}
               >
                 <a href="/signup">همین حالا </a>
