@@ -24,8 +24,6 @@ function getSSRToken(headerCookies) {
 function withAuth(loggedIn) {
   return (WrappedComponent) => {
     class Wrapper extends Component {
-      
-
       static async getInitialProps(ctx) {
         const { store, isServer, req } = ctx;
         const token = isServer ? getSSRToken(req.headers.cookie) : cookie.get('token');
@@ -39,13 +37,19 @@ function withAuth(loggedIn) {
       }
 
       render() {
-
         const { page, auth } = this.props;
-      
+
         const pageLoading =
           page.loading || (auth.authorized && !loggedIn) || (!auth.authorized && loggedIn);
         if (_.isUndefined(loggedIn)) {
-          return <WrappedComponent {...this.props} />;
+          return (
+            <>
+              <Head>
+                <title>DataDays 2020</title>
+              </Head>
+              <WrappedComponent {...this.props} />
+            </>
+          );
         }
         if (!auth.authorized && loggedIn) {
           Router.push('/login', '/login', { shallow: false });
@@ -53,6 +57,7 @@ function withAuth(loggedIn) {
         if (auth.authorized && !loggedIn) {
           Router.push('/dashboard', '/dashboard', { shallow: false });
         }
+        
         return (
           <>
             <Head>

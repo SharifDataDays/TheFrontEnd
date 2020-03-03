@@ -16,11 +16,11 @@ class Staff extends Component {
   render() {
     const { staffs, token } = this.props;
     return (
-      <>
+      
         <Layout token={token} hasNavbar hasFooter transparent>
           <Container staffs={staffs}/>
         </Layout>
-      </>
+      
     );
   }
 }
