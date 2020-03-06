@@ -185,11 +185,7 @@ export default class TrialAccardion extends Component {
       error = <Message negative>{this.state.error}</Message>;
     }
 
-    console.log(this.state.data);
 
-    console.log(_.isNaN(this.state.data.rank) ||
-    _.isUndefined(this.state.data.rank) ||
-    _.isNull(this.state.data.rank) )
     let ind = 0;
     return (
       <Container pb={4}>
