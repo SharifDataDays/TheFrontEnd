@@ -195,6 +195,7 @@ export default class TrialAccardion extends Component {
         _.isUndefined(this.state.data.rank) ||
         _.isNull(this.state.data.rank) 
         || this.state.data.rank == "NaN"
+        || this.state.data.rank + "" == "0"
         ? (
           <></>
         ) : (
