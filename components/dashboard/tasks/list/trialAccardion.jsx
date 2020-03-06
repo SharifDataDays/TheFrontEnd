@@ -185,14 +185,27 @@ export default class TrialAccardion extends Component {
       error = <Message negative>{this.state.error}</Message>;
     }
 
+    console.log(this.state.data);
+
+    console.log(_.isNaN(this.state.data.rank) ||
+    _.isUndefined(this.state.data.rank) ||
+    _.isNull(this.state.data.rank) )
     let ind = 0;
     return (
       <Container pb={4}>
         {error}
         {info}
-        <p style={{ fontWeight: 'bold', textAlign: 'center' }}>
-          رتبه‌ی شما: {numberFarsi(this.state.data.rank)}
-        </p>
+        {_.isNaN(this.state.data.rank) ||
+        _.isUndefined(this.state.data.rank) ||
+        _.isNull(this.state.data.rank) 
+        || this.state.data.rank == "NaN"
+        ? (
+          <></>
+        ) : (
+          <p style={{ fontWeight: 'bold', textAlign: 'center' }}>
+            رتبه‌ی شما: {numberFarsi(this.state.data.rank)}
+          </p>
+        )}
         {_.map(this.state.trials, (trial, i) => {
           //console.log(trial);
           if (_.isNull(trial.submit_time) || _.isUndefined(trial.submit_time)) {
@@ -268,15 +281,15 @@ export default class TrialAccardion extends Component {
   };
 
   render() {
-     // console.log(this.props);
+    // console.log(this.props);
     //console.log(this.state);
-   //   console.log(this.props.can_create_trial)
+    //   console.log(this.props.can_create_trial)
 
     const { activeIndex } = this.state;
 
-   if (!this.props.trial_released) {
-     return <></>;
-   }
+    if (!this.props.trial_released) {
+      return <></>;
+    }
 
     if (!this.props.content_finished) {
       return <></>;
