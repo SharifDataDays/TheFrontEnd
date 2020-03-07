@@ -64,13 +64,9 @@ const GenerateRows = ({ myName, teams, topRank }) => {
 
     return (
       <Table.Row style={{ background, fontWeight }}>
-        {x.scores.length > 1 ? (
-          <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
-            {numberFarsi(x.total_score)}
-          </Table.Cell>
-        ) : (
-          <></>
-        )}
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
+          {numberFarsi(x.total_score)}
+        </Table.Cell>
         {x.scores.map((score) => {
           return (
             <TableCell textAlign="center" style={{ borderTop, borderBottom }}>
@@ -146,24 +142,21 @@ class Scoreboard extends Component {
       myteam: props.myteam,
       topRank: 1,
       // topRank: props.myteam.myPageTopRank,             // to show the page of current team uncomment this
+      
     };
     this.changePage = onPageChange.bind(this);
   }
 
   render() {
     // console.log(this.props)
-    //console.log(this.state);
+    // console.log(this.state)
     return (
       <>
         <div style={{ overflow: 'auto', marginBottom: '15px', direction: 'rtl' }}>
           <Table unstackable dir="LTR">
             <Table.Header>
               <Table.Row>
-                {this.state.tasks.length > 1 ? (
-                  <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
-                ) : (
-                  <></>
-                )}
+                <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
                 {this.state.tasks.map((x) => {
                   return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
                 })}
