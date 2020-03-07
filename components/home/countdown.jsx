@@ -103,7 +103,7 @@ class CountDown extends Component {
       <>
         <NoSSR>
           <Container pt={4} px={5} pb={5}>
-          <Bounce >
+          {/* <Bounce >
               <Label
                 fontSize={6}
                 color={'white'}
@@ -118,7 +118,7 @@ class CountDown extends Component {
                 در چالش نهایی شرکت کنید!
                 </p>
               </Label>
-            </Bounce>
+            </Bounce> */}
             <Row pb={4}>
               <TimeBlock>
                 <TimeWrapper>
