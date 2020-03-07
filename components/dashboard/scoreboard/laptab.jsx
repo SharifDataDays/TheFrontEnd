@@ -160,8 +160,8 @@ class Scoreboard extends Component {
                 {this.state.tasks.map((x) => {
                   return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
                 })}
-                <Table.HeaderCell textAlign="center">نام</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center">رتبه</Table.HeaderCell>
+                <Table.HeaderCell textAlign="center" width={7}>نام</Table.HeaderCell>
+                <Table.HeaderCell textAlign="center" width={2}>رتبه</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
