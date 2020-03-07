@@ -36,7 +36,7 @@ const HeaderScoreBoard = (props) => (
         جدول رده‌بندی {props.milestone.name}
       </Header>
       <Header as="h4" style={{ color: 'white', marginTop: 0 }}>
-        Data days دومین دوره‌ی مسابقات
+        DataDays دومین دورهٔ رویداد
       </Header>
     </div>
   </Grid.Column>
@@ -73,7 +73,7 @@ class ScoreBoard extends Component {
         </Grid>
         <Grid centered>
           <Grid.Column computer={10} mobile={15} tablet={15}>
-            <Text
+            {/* <Text
               marginTop=""
               style={{
                 color: 'black',
@@ -82,7 +82,7 @@ class ScoreBoard extends Component {
               }}
             >
               تعداد تیم‌ها: {numberFarsi(count)} تیم
-            </Text>
+            </Text> */}
             {this.props.myteam.myRank === 0 ? (
               <></>
             ) : (
