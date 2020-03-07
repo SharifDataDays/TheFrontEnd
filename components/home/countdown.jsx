@@ -68,6 +68,7 @@ const numberFarsi = (number) => {
 
 class CountDown extends Component {
   constructor(props) {
+    console.log(props)
     super();
     this.state = {
       second: numberFarsi(0),
@@ -154,7 +155,7 @@ class CountDown extends Component {
             </Row>
             <Row>
               <Label fontSize={[5, 6, 6]} color={'white'} lineHeight="1">
-                تا پایان مهلت ثبت تیم
+                {this.props.timer.title}
               </Label>
             </Row>
           </Container>
