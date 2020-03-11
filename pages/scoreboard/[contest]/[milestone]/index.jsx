@@ -63,7 +63,7 @@ class MainScoreboard extends Component {
   render() {
     const { milestone, scoreboard, tasks, token, status_code, myteam } = this.props;
     return (
-      <Layout token={token} hasNavbar hasFooter>
+      <Layout token={token} hasNavbar hasFooter transparent>
         {status_code !== 200 ? (
           <NotFound />
         ) : (

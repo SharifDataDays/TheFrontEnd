@@ -43,18 +43,18 @@ const GenerateRows = ({ myName, teams, topRank }) => {
   let newTeams = teams.slice(firstRank, endRank);
 
   const rows = newTeams.map((x) => {
-    let background = '#f8f8fa';
+    let background = '';
     let fontWeight = 'normal';
     const rank = x.rank;
-    if (rank <= 1) background = '#fed76673';
-    else if (rank <= 2) background = '#bbbbbb73';
-    else if (rank <= 3) background = '#cd7f3273';
+    if (rank <= 1) background = '#AF9500';
+    else if (rank <= 2) background = '#B4B4B4';
+    else if (rank <= 3) background = '#AD8A56';
 
     let borderTop = `none`;
     let borderBottom = `none`;
 
     if (x.name === myName) {
-      background = '#fff8eb';
+      background = '#1D93F7';
       fontWeight = 'bold';
       borderTop = `2px solid #858585`;
       borderBottom = `2px solid #858585`;
@@ -63,7 +63,7 @@ const GenerateRows = ({ myName, teams, topRank }) => {
     const borderRight = `3px solid ${background} !important`;
 
     return (
-      <Table.Row style={{ background, fontWeight }}>
+      <Table.Row style={{ background, fontWeight }} inverted>
         <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
           {numberFarsi(x.total_score)}
         </Table.Cell>
@@ -100,6 +100,7 @@ const Footer = (props) => {
           textAlign: 'center',
           margin: '5px',
           padding: 0,
+          color: 'white'
         }}
       >
         {' '}
@@ -121,6 +122,7 @@ const Footer = (props) => {
           secondary
           totalPages={pageNumbers}
           onPageChange={props.changePage}
+          inverted
         />
       </Table.Row>
     </>
@@ -153,9 +155,16 @@ class Scoreboard extends Component {
     return (
       <>
         <div style={{ overflow: 'auto', marginBottom: '15px', direction: 'rtl' }}>
-          <Table unstackable dir="LTR">
-            <Table.Header>
-              <Table.Row>
+          <Table unstackable dir="LTR" inverted  style={{
+            borderTop: `2px solid #1d93f7`
+          }}>
+            <Table.Header >
+              <Table.Row
+              // style={{
+              //   color: "black",
+              //   backgroundColor:"red"
+              // }}
+              >
                 <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
                 {this.state.tasks.map((x) => {
                   return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
@@ -165,7 +174,7 @@ class Scoreboard extends Component {
               </Table.Row>
             </Table.Header>
 
-            <Table.Body>
+            <Table.Body >
               <GenerateRows
                 myName={this.state.myteam.name}
                 teams={this.state.teams}
