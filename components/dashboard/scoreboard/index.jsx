@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Responsive, Header,  Container as C } from 'semantic-ui-react';
+import { Grid, Responsive, Header, Container as C } from 'semantic-ui-react';
 import NoSSR from 'react-no-ssr';
 import styled from 'styled-components';
 import Laptab from './laptab';
@@ -7,6 +7,7 @@ import Mobile from './mobile';
 import example from '~/public/static/locales/test-scoreboard/scoreboard.json';
 import persianJs from 'persianjs';
 import { space, color, border } from 'styled-system';
+import { Zoom, Fade } from 'react-reveal';
 
 const Container = styled(C)`
   ${space}
@@ -21,31 +22,40 @@ const Text = styled.p`
 
 const HeaderScoreBoard = (props) => (
   <Grid.Column computer={11} mobile={15} tablet={15}>
-    <div
-      style={{
-        background: 'url(/images/datas.jpeg)',
-        backgroundSize: 'cover',
-        height: ' 18rem',
-        // opacity: '.9',
-        padding: '0px',
-        marginTop: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-      }}
-    >
-      <Text style={{ color: '#ffeac2' }}>
-        انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف
-      </Text>
-      <Header as="h1" style={{ color: 'white' }}>
-        جدول رده‌بندی {props.milestone.name}
-      </Header>
-      <Header as="h4" style={{ color: 'white', marginTop: 0 }}>
-        DataDays دومین دورهٔ رویداد
-      </Header>
-    </div>
+    <Fade top>
+      <div
+        style={{
+          // background: 'url(/images/datas.jpeg)',
+          // backgroundSize: 'cover',
+          //height: ' 18rem',
+          // opacity: '.9',
+          paddingTop: '30px',
+          marginBottom: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <Text style={{ color: '#1d93f7', paddingBottom: 0, marginBottom: 0 }}>
+          انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف
+        </Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: '30px',
+            paddingTop: '15px',
+            paddingBottom: '10px',
+            marginBottom: 0,
+          }}
+        >
+          جدول رده‌بندی {props.milestone.name}
+        </Text>
+
+        <Text style={{ color: '#1d93f7', fontSize: '18px' }}>DataDays دومین دورهٔ رویداد</Text>
+      </div>
+    </Fade>
   </Grid.Column>
 );
 
@@ -74,88 +84,72 @@ class ScoreBoard extends Component {
     const count = this.props.myteam.teams_count;
     //const count = 245;
     return (
-      <>
-      {/* <Container
-        px={[2, 4, 6]}
-        pt={6}
-        pb={6}
-        style={{
-          backgroundImage:
-            'linear-gradient(to bottom, #101010, #141414, #171717, #1a1a1a, #202020)',
-          // paddingTop: '90px',
-
-          minHeight: 'calc(100vh - 333px)',
-        }}
-        fluid
-      > */}
       <Container
         //  py={[5, 6, 6]}
         px={[1, 4, 4]}
         pt={5}
         style={{
-          backgroundImage: "url('/images/scoreboard.png')",
-          backgroundPosition: "right",
-
+          //backgroundImage: "url('/images/scoreboard.png')",
+          //backgroundImage: 'linear-gradient(to bottom, #101010, #141414, #171717, #1a1a1a, #303030)',
+          backgroundColor: '#191919',
+          backgroundPosition: 'right',
           backgroundSize: 'cover',
-           backgroundImage: 'linear-gradient(to bottom, #101010, #141414, #171717, #1a1a1a, #303030)',
           backgroundRepeat: 'true',
           minHeight: 'calc(100vh - 333px)',
-
-
         }}
-              fluid
+        fluid
       >
-        
-        <Grid centered style={{padding: 0, margin: 0}}>
+        <Grid centered style={{ padding: 0, margin: 0 }}>
           <HeaderScoreBoard milestone={this.props.milestone} />
-     
+
           <Grid.Column computer={11} mobile={15} tablet={15}>
-            {/* <Text
+            <Fade top>
+              {/* <Text
               marginTop=""
               style={{
                 color: 'white',
                 textAlign: 'right',
-            
               }}
             >
               تعداد تیم‌ها: {numberFarsi(count)} تیم
             </Text> */}
-            {this.props.myteam.myRank === 0 ? (
-              <></>
-            ) : (
-              <Text
-                marginTop=""
-                style={{
-                  color: 'white',
-                  textAlign: 'right',
-                  paddingRight: '10px'
-                }}
-              >
-                رتبه‌ی شما: {numberFarsi(this.props.myteam.myRank)}
-              </Text>
-            )}
+              {this.props.myteam.myRank === 0 ? (
+                <></>
+              ) : (
+                <Text
+                  marginTop=""
+                  style={{
+                    color: 'white',
+                    textAlign: 'right',
+                    paddingRight: '10px',
+                  }}
+                >
+                  رتبه‌ی شما: {numberFarsi(this.props.myteam.myRank)}
+                </Text>
+              )}
+            </Fade>
           </Grid.Column>
-     
+
           <Grid.Column computer={11} mobile={15} tablet={15}>
             {/* <NoSSR> */}
-              {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+            {/* <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
                 <Mobile data={example} />
               </Responsive> */}
-              {/* minWidth={Responsive.onlyTablet.minWidth} */}
-              {/* <Responsive> */}
-                <Laptab
-                  milestone={this.props.milestone}
-                  teams={this.props.teams}
-                  tasks={this.props.tasks}
-                  myteam={this.props.myteam}
-                />
-              {/* </Responsive> */}
+            {/* minWidth={Responsive.onlyTablet.minWidth} */}
+            {/* <Responsive> */}
+            <Fade bottom>
+              <Laptab
+                milestone={this.props.milestone}
+                teams={this.props.teams}
+                tasks={this.props.tasks}
+                myteam={this.props.myteam}
+              />
+            </Fade>
+            {/* </Responsive> */}
             {/* </NoSSR> */}
           </Grid.Column>
         </Grid>
-        </Container>
-      {/* </Container> */}
-      </>
+      </Container>
     );
   }
 }

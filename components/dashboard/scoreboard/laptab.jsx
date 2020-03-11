@@ -46,9 +46,9 @@ const GenerateRows = ({ myName, teams, topRank }) => {
     let background = '';
     let fontWeight = 'normal';
     const rank = x.rank;
-    if (rank <= 1) background = '#AF9500';
-    else if (rank <= 2) background = '#B4B4B4';
-    else if (rank <= 3) background = '#AD8A56';
+    if (rank <= 1) background = '#D6AF36';
+    else if (rank <= 2) background = '#A7A7AD';
+    else if (rank <= 3) background = '#A77044';
 
     let borderTop = `none`;
     let borderBottom = `none`;
@@ -56,8 +56,8 @@ const GenerateRows = ({ myName, teams, topRank }) => {
     if (x.name === myName) {
       background = '#1D93F7';
       fontWeight = 'bold';
-      borderTop = `2px solid #858585`;
-      borderBottom = `2px solid #858585`;
+      // borderTop = `2px solid #858585`;
+      // borderBottom = `2px solid #858585`;
     }
 
     const borderRight = `3px solid ${background} !important`;
@@ -100,7 +100,7 @@ const Footer = (props) => {
           textAlign: 'center',
           margin: '5px',
           padding: 0,
-          color: 'white'
+          color: 'white',
         }}
       >
         {' '}
@@ -144,7 +144,6 @@ class Scoreboard extends Component {
       myteam: props.myteam,
       topRank: 1,
       // topRank: props.myteam.myPageTopRank,             // to show the page of current team uncomment this
-      
     };
     this.changePage = onPageChange.bind(this);
   }
@@ -155,26 +154,31 @@ class Scoreboard extends Component {
     return (
       <>
         <div style={{ overflow: 'auto', marginBottom: '15px', direction: 'rtl' }}>
-          <Table unstackable dir="LTR" inverted  style={{
-            borderTop: `2px solid #1d93f7`
-          }}>
-            <Table.Header >
-              <Table.Row
-              // style={{
-              //   color: "black",
-              //   backgroundColor:"red"
-              // }}
-              >
+          <Table
+            unstackable
+            dir="LTR"
+            inverted
+            striped
+            style={{
+              borderTop: `2px solid #1d93f7`,
+            }}
+          >
+            <Table.Header>
+              <Table.Row>
                 <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
                 {this.state.tasks.map((x) => {
                   return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
                 })}
-                <Table.HeaderCell textAlign="center" width={7}>نام</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>رتبه</Table.HeaderCell>
+                <Table.HeaderCell textAlign="center" width={7}>
+                  نام
+                </Table.HeaderCell>
+                <Table.HeaderCell textAlign="center" width={2}>
+                  رتبه
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
-            <Table.Body >
+            <Table.Body>
               <GenerateRows
                 myName={this.state.myteam.name}
                 teams={this.state.teams}
