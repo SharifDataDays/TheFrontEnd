@@ -43,12 +43,14 @@ const GenerateRows = ({ myName, teams, topRank }) => {
   let newTeams = teams.slice(firstRank, endRank);
 
   const rows = newTeams.map((x) => {
+    let color ="";
     let background = '';
     let fontWeight = 'normal';
     const rank = x.rank;
     if (rank <= 1) background = '#D6AF36';
-    else if (rank <= 2) background = '#A7A7AD';
-    else if (rank <= 3) background = '#A77044';
+    else if (rank <= 2) background = '#B0B0B6';
+    else if (rank <= 3) background = '#B97C4B';
+    if (rank <= 3) color = 'black';
 
     let borderTop = `none`;
     let borderBottom = `none`;
@@ -64,20 +66,20 @@ const GenerateRows = ({ myName, teams, topRank }) => {
 
     return (
       <Table.Row style={{ background, fontWeight }} inverted>
-        <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom , color}}>
           {numberFarsi(x.total_score)}
         </Table.Cell>
         {x.scores.map((score) => {
           return (
-            <TableCell textAlign="center" style={{ borderTop, borderBottom }}>
+            <TableCell textAlign="center" style={{ borderTop, borderBottom, color }}>
               {numberFarsi(score)}
             </TableCell>
           );
         })}
-        <Table.Cell textAlign="center" style={{ borderTop, borderBottom }}>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom, color }}>
           {x.name}
         </Table.Cell>
-        <Table.Cell textAlign="center" style={{ borderTop, borderBottom, borderRight }}>
+        <Table.Cell textAlign="center" style={{ borderTop, borderBottom, borderRight, color }}>
           {numberFarsi(x.rank)}
         </Table.Cell>
       </Table.Row>
