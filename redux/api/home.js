@@ -19,6 +19,5 @@ export function staffAPI() {
 const RANDOM_PRIZE = (token) => `${BASE_ADDR}/rrank/${token}/`;
 
 export function randomPrizeAPI(token, data) {
-  console.log(data)
   return axios.post(RANDOM_PRIZE(token), data);
 }
