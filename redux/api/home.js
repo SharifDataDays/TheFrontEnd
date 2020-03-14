@@ -18,6 +18,10 @@ export function staffAPI() {
 
 const RANDOM_PRIZE = (token) => `${BASE_ADDR}/rrank/${token}/`;
 
-export function randomPrizeAPI(token, data) {
-  return axios.post(RANDOM_PRIZE(token), data);
+export function randomPrizeAPI(token, prizeToken, data) {
+  return axios.post(RANDOM_PRIZE(prizeToken), data,  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }

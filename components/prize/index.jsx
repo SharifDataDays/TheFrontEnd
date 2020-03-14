@@ -45,10 +45,10 @@ class Form extends Component {
     const { number } = this.state;
 
     this.setState({ submittedNumber: number, waiting: true, success: false, error: '' });
-    const res = await randomPrizeAPI(this.props.token, { number: number });
-
+    const res = await randomPrizeAPI(this.props.token, this.props.prizeToken, { number: number });
+//console.log(res)
     if (!_.isUndefined(res.data.status_code) && res.data.status_code != 200) {
-      let error = 'خطا';
+      let error = 'درخواست با خطا مواجه شد.';
 
       if (
         !_.isUndefined(res.data.detail) &&

@@ -19,10 +19,10 @@ class ChooseRandom extends Component {
     return (
       <Layout token={token} hasNavbar hasFooter transparent>
   
-          <Form token={prizeToken}/>
+          <Form prizeToken={prizeToken} token={token}/>
   
       </Layout>
     );
   }
 }
-export default withAuth()(ChooseRandom);
+export default withAuth(true)(ChooseRandom);
