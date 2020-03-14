@@ -12,6 +12,13 @@ export default function homeAPI() {
   return axios.get(HOME);
 }
 
-export function staffAPI(){
+export function staffAPI() {
   return axios.get(STAFF);
+}
+
+const RANDOM_PRIZE = (token) => `${BASE_ADDR}/rrank/${token}/`;
+
+export function randomPrizeAPI(token, data) {
+  console.log(data)
+  return axios.post(RANDOM_PRIZE(token), data);
 }
