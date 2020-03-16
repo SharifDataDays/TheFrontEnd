@@ -18,6 +18,7 @@ const Container = styled(C)`
 const Text = styled.p`
   color: white;
   margin-top: ${(props) => props.marginTop} !important;
+  
 `;
 
 const HeaderScoreBoard = (props) => (
@@ -80,7 +81,7 @@ class ScoreBoard extends Component {
 
   render() {
     const { padding } = this.state;
-    //  console.log(this.props);
+    // console.log(this.props);
     const count = this.props.myteam.teams_count;
     //const count = 245;
     return (
@@ -143,6 +144,9 @@ class ScoreBoard extends Component {
                 teams={this.props.teams}
                 tasks={this.props.tasks}
                 myteam={this.props.myteam}
+                total_score={this.props.total_score}
+                page_length={this.props.page_length}
+                details={this.props.details}
               />
             </Fade>
             {/* </Responsive> */}

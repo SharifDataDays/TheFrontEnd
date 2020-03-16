@@ -173,7 +173,7 @@ export function submitTrialAPI(data, token, contestId, milestoneId, taskId, tria
   });
 }
 
-const SCOREBOARD_BASE_ADD = 'http://datadays.sharif.edu/scoreboard-api';
+const SCOREBOARD_BASE_ADD = 'http://datadays.ir/scoreboard-api';
 const SCOREBOARD = (start_index, end_index, ms_id) =>
   `${SCOREBOARD_BASE_ADD}/scoreboard/?start_index=${start_index}&end_index=${end_index}&ms_id=${ms_id}`;
 

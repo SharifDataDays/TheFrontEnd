@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import persianJs from 'persianjs';
 import _ from 'lodash';
 
+const Text = styled.p`
+  color: white;
+  font-size: 12px;
+`;
+
 const TableHeader = styled(Table.HeaderCell)`
   background: rgba(80, 87, 99, 0.05) !important;
   border-radius: 0 !important;
@@ -21,7 +26,7 @@ const Info = styled.p`
   margin-left: 1rem;
 `;
 
-const page_length = 15;
+let page_length = 15;
 
 const numberFarsi = (number) => {
   if (_.isUndefined(number) || _.isNull(number)) return;
@@ -32,7 +37,7 @@ const numberFarsi = (number) => {
     .toString();
 };
 
-const GenerateRows = ({ myName, teams, topRank }) => {
+const GenerateRows = ({ myName, teams, topRank, total_score }) => {
   let firstRank = topRank - 1;
   let endRank = topRank + page_length - 1;
   let numberOfTeams = teams.length;
@@ -43,7 +48,7 @@ const GenerateRows = ({ myName, teams, topRank }) => {
   let newTeams = teams.slice(firstRank, endRank);
 
   const rows = newTeams.map((x) => {
-    let color ="";
+    let color = '';
     let background = '';
     let fontWeight = 'normal';
     const rank = x.rank;
@@ -66,9 +71,13 @@ const GenerateRows = ({ myName, teams, topRank }) => {
 
     return (
       <Table.Row style={{ background, fontWeight }} inverted>
-        <Table.Cell textAlign="center" style={{ borderTop, borderBottom , color}}>
-          {numberFarsi(x.total_score)}
-        </Table.Cell>
+        {total_score ? (
+          <Table.Cell textAlign="center" style={{ borderTop, borderBottom, color }}>
+            {numberFarsi(x.total_score)}
+          </Table.Cell>
+        ) : (
+          <></>
+        )}
         {x.scores.map((score) => {
           return (
             <TableCell textAlign="center" style={{ borderTop, borderBottom, color }}>
@@ -148,6 +157,7 @@ class Scoreboard extends Component {
       // topRank: props.myteam.myPageTopRank,             // to show the page of current team uncomment this
     };
     this.changePage = onPageChange.bind(this);
+    if (!_.isUndefined(this.props.page_length)) page_length = this.props.page_length;
   }
 
   render() {
@@ -167,7 +177,11 @@ class Scoreboard extends Component {
           >
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
+                {this.props.total_score ? (
+                  <Table.HeaderCell textAlign="center">امتیاز کل</Table.HeaderCell>
+                ) : (
+                  <></>
+                )}
                 {this.state.tasks.map((x) => {
                   return <Table.HeaderCell textAlign="center">{x.name}</Table.HeaderCell>;
                 })}
@@ -185,10 +199,25 @@ class Scoreboard extends Component {
                 myName={this.state.myteam.name}
                 teams={this.state.teams}
                 topRank={this.state.topRank}
+                total_score={this.props.total_score}
               />
             </Table.Body>
           </Table>
         </div>
+        {_.isUndefined(this.props.details) ? (
+          <></>
+        ) : (
+          <Text
+            style={{
+              color: 'white',
+              textAlign: 'right',
+              paddingRight: '10px',
+              paddingBottom: '30px',
+            }}
+          >
+            {this.props.details}
+          </Text>
+        )}
         <Footer
           teams={this.state.teams}
           changePage={this.changePage}

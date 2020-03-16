@@ -67,7 +67,7 @@ class MainScoreboard extends Component {
         {status_code !== 200 ? (
           <NotFound />
         ) : (
-          <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks} myteam={myteam} />
+          <Scoreboard milestone={milestone} teams={scoreboard} tasks={tasks} myteam={myteam} total_score={true}/>
         )}
       </Layout>
     );
