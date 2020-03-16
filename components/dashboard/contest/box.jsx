@@ -139,15 +139,22 @@ export class Box extends Component {
           <BoxButton title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`} />
 
           {contest.id + '' != '2' ? (
-            <BoxButton
-              title="جدول امتیازات"
-              contest={contest}
-              clickOnPage={`/scoreboard/${contest.id}/0`}
-            />
+            <>
+              <BoxButton
+                title="رده‌بندی نهایی"
+                contest={contest}
+                clickOnPage={`/scoreboard/final`}
+              />
+              <BoxButton
+                title="رده‌بندی اولیه"
+                contest={contest}
+                clickOnPage={`/scoreboard/${contest.id}/0`}
+              />
+            </>
           ) : (
             <></>
           )}
-          {contest.team_size === 1 ? (
+          {/* {contest.team_size === 1 ? (
             <></>
           ) : (
             <BoxButton
@@ -155,7 +162,7 @@ export class Box extends Component {
               contest={contest}
               clickOnPage={`/dashboard/${contest.id}/team`}
             />
-          )}
+          )} */}
         </Button.Group>
       </Container>
     );

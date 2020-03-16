@@ -32,7 +32,7 @@ const numberFarsi = (number) => {
   if (_.isUndefined(number) || _.isNull(number)) return;
 
   if (_.ceil(number) === 0) number = 0;
-  return persianJs(number.toString())
+  return persianJs(_.round(number, 2).toString())
     .englishNumber()
     .toString();
 };
