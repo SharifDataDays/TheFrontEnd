@@ -68,7 +68,7 @@ const numberFarsi = (number) => {
 
 class CountDown extends Component {
   constructor(props) {
-    console.log(props)
+    console.log(props);
     super();
     this.state = {
       second: numberFarsi(0),
@@ -92,18 +92,30 @@ class CountDown extends Component {
       });
     }, second);
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
-  
 
   render() {
     const { day, hour, minute, second } = this.state;
+    // console.log(this.props);
+    if (
+      _.isUndefined(this.props.timer) ||
+      _.isEmpty(this.props.timer) ||
+      _.isNull(this.props.timer) ||
+      _.isUndefined(this.props.timer.time) ||
+      _.isNull(this.props.timer.time) ||
+      _.isEmpty(this.props.timer.time) ||
+      _.isUndefined(this.props.timer.title) ||
+      _.isNull(this.props.timer.title) ||
+      _.isEmpty(this.props.timer.tile)
+    )
+      return <></>;
     return (
       <>
         <NoSSR>
           <Container pt={4} px={5} pb={5}>
-          {/* <Bounce >
+            {/* <Bounce >
               <Label
                 fontSize={6}
                 color={'white'}

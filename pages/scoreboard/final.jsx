@@ -235,4 +235,4 @@ class MainScoreboard extends Component {
     );
   }
 }
-export default withAuth(false)(MainScoreboard);
+export default withAuth()(MainScoreboard);
