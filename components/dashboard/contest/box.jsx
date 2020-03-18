@@ -141,7 +141,7 @@ export class Box extends Component {
           {contest.id + '' != '2' ? (
             <>
               <BoxButton
-                title="رده‌بندی نهایی"
+                title="نمرات نهایی"
                 contest={contest}
                 clickOnPage={`/scoreboard/final`}
               />

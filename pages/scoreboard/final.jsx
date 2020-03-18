@@ -164,7 +164,7 @@ const finalData = {
     },
 
     {
-      name: 'کمبزه *',
+      name: 'کمبزه **',
       rank: 23,
       scores: ['5565.12', '5575.27'],
       total_score: '5575.27',
@@ -220,7 +220,7 @@ const finalData = {
     },
 
     {
-      name: 'Flawless *',
+      name: 'Flawless **',
       rank: 31,
       scores: ['5385.23', '5138.26'],
       total_score: '5138.26',
@@ -245,7 +245,9 @@ const finalData = {
   ],
 };
 
-const details = 'عدم شرکت داده‌شدن در رده‌بندی نهایی به علت نقص گزارش *';
+const details =
+  'عدم شرکت داده‌شدن در رده‌بندی نهایی به علت نقص گزارش *\n\
+   عدم شرکت داده‌شدن در رده‌بندی نهایی به علت عدم ارسال گزارش **';
 
 class MainScoreboard extends Component {
   static async getInitialProps({ query }, token) {

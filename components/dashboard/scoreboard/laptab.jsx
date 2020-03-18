@@ -215,7 +215,9 @@ class Scoreboard extends Component {
               paddingBottom: '30px',
             }}
           >
-            {this.props.details}
+            {this.props.details.split('\n').map((item, i) => {
+              return <p key={i}>{item}</p>;
+            })}
           </Text>
         )}
         <Footer
