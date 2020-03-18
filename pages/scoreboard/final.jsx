@@ -19,6 +19,7 @@ const finalData = {
       scores: ['5985.77643485128', '5989.47962'],
       total_score: '5989.47962',
     },
+
     {
       name: 'Pandas',
       rank: 2,
@@ -32,7 +33,6 @@ const finalData = {
       scores: ['5972.54223328956', '5972.697979'],
       total_score: '5972.697979',
     },
-
     {
       name: 'تانژانت هایپربولیک مزایای بسیاری دارد',
       rank: 4,
@@ -149,12 +149,88 @@ const finalData = {
       scores: ['5990.73', '5992.477012'],
       total_score: '5992.477012',
     },
+    {
+      name: 'maede.nsi_3 **',
+      rank: 21,
+      scores: ['5666.32', '5670.92'],
+      total_score: '5670.92',
+    },
+
+    {
+      name: 'sikimkhiyari **',
+      rank: 22,
+      scores: ['5960.36', '5662.15'],
+      total_score: '5662.15',
+    },
 
     {
       name: 'کمبزه *',
-      rank: 21,
-      scores: ['5565.12', '5575.274182'],
-      total_score: '5575.274182',
+      rank: 23,
+      scores: ['5565.12', '5575.27'],
+      total_score: '5575.27',
+    },
+
+    {
+      name: '!Har Chi Bezarin Okeye **',
+      rank: 24,
+      scores: ['5766.56', '5511.13'],
+      total_score: '5511.13',
+    },
+
+    {
+      name: 'Socialised Potato **',
+      rank: 25,
+      scores: ['5480.78', '5480.37'],
+      total_score: '5480.37',
+    },
+
+    {
+      name: 'MRSH **',
+      rank: 26,
+      scores: ['5479.81', '5460.63'],
+      total_score: '5460.63',
+    },
+
+    {
+      name: 'آذرخش. **',
+      rank: 27,
+      scores: ['5211.83', '5218.34'],
+      total_score: '5218.34',
+    },
+
+    {
+      name: 'گلابیز **',
+      rank: 28,
+      scores: ['5960.36', '5216.35'],
+      total_score: '5216.35',
+    },
+
+    {
+      name: 'Kafa_3 *',
+      rank: 29,
+      scores: ['5185.77', '5214.40'],
+      total_score: '5214.40',
+    },
+
+    {
+      name: 'Machina **',
+      rank: 30,
+      scores: ['5220.30', '5207.54'],
+      total_score: '5207.54',
+    },
+
+    {
+      name: 'Flawless *',
+      rank: 31,
+      scores: ['5385.23', '5138.26'],
+      total_score: '5138.26',
+    },
+
+    {
+      name: 'ELECAV **',
+      rank: 32,
+      scores: ['5214.02', '5045.34'],
+      total_score: '5045.34',
     },
   ],
   tasks: [
@@ -228,7 +304,7 @@ class MainScoreboard extends Component {
           tasks={tasks}
           myteam={myteam}
           total_score={false}
-          page_length={21}
+          page_length={20}
           details={details}
         />
       </Layout>
