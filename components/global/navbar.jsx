@@ -34,20 +34,20 @@ function NoAuthNavbar({ transparent }) {
   return (
     <Menu size="huge" transparent={transparent} secondary>
       <Menu.Item>
-        <a href="/login">
-          <Button primary>ورود</Button>
+        <a href="/signup">
+          <Button primary>ثبت نام</Button>
         </a>
       </Menu.Item>
-      <Menu.Item>
+      {/* <Menu.Item>
         <a href="/blog">بلاگ</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Menu position="left">
         <Menu.Header>
           <a href="/">
             <Image
-              style={{ marginRight: '1rem', marginTop: '2rem' }}
-              size="mini"
+              style={{ marginRight: '1rem', marginTop: '1rem' }}
+              size="tiny"
               src="/images/logo.png"
             />
           </a>

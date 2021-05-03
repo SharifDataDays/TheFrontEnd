@@ -10,14 +10,14 @@ import {getUniversities, getFields, getBmp} from '~/components/dashboard/profile
 
 class SignupPage extends Component {
   static async getInitialProps(ctx) {
-    const res = await termsAPI();
-    const terms = res.data;
+    // const res = await termsAPI();
+    // const terms = res.data;
     const universities = await getUniversities();
     const BMPs = await getBmp();
     const fields = await getFields();
     const options = {universities, BMPs, fields}
 
-    return { terms, options};
+    return { options};
   }
 
   componentDidMount() {
@@ -26,14 +26,14 @@ class SignupPage extends Component {
   }
 
   render() {
-    const { signup, request, terms, options} = this.props;
+    const { signup, request, options} = this.props;
     
     return (
       <>
         <Head>
           <title>ثبت نام - DataDays 2020</title>
         </Head>
-        <Container signup={signup} request={request} terms={terms} options={options}/>
+        <Container signup={signup} request={request} options={options}/>
       </>
     );
   }
@@ -55,4 +55,4 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default withAuth(false)(connect(mapStateToProps, mapDispatchToProps)(SignupPage));
+export default (connect(mapStateToProps, mapDispatchToProps)(SignupPage));

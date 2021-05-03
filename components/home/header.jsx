@@ -31,10 +31,10 @@ function ParticleContainer({ particleCount }) {
             value: particleCount,
           },
           coloe: {
-            value: '#1d93f7',
+            value: '#a2c1da',
           },
           line_linked: {
-            color: '#1d93f7',
+            color: '#2167a4',
             width: 2,
           },
           size: {
@@ -49,14 +49,14 @@ function ParticleContainer({ particleCount }) {
 function Header() {
   return (
     <NoSSR>
-      <Image size="large" src="/images/center.png" />
+      <Image size="big" src="/images/center.png" />
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <ParticleContainer particleCount={30} />
         <Subscribe />
       </Responsive>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <ParticleContainer particleCount={100} />
-        <Subscribe />
+        {/* <Subscribe /> */}
       </Responsive>
     </NoSSR>
   );

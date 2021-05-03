@@ -17,22 +17,12 @@ const logo2 = {
   invert: true,
 };
 const logo3 = {
-  image: '/images/sponsors/Tapsell.png',
-  link: 'https://tapsell.ir/',
-  invert: false,
-};
-const logo4 = {
-  image: '/images/sponsors/ictic.png',
-  link: '#',
-  invert: false,
-};
-const logo5 = {
-  image: '/images/sponsors/setad.jpeg',
-  link: '#',
+  image: '/images/sponsors/torob.png',
+  link: 'https://torob.com/',
   invert: false,
 };
 
-const logos = [logo1, logo2, logo3, logo4, logo5];
+const logos = [logo1, logo2, logo3];
 
 const Container = styled.div`
   ${space};

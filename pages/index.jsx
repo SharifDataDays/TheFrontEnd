@@ -13,38 +13,41 @@ import Stats from '~/components/home/stats';
 import CountDown from '../components/home/countdown';
 import Layout from '~/components/global/layout';
 import Staff from '~/components/staff/staffRandom';
+import IntroImages from '~/components/home/introImages';
 import { staffAPI } from '~/redux/api/home';
 
 class HomePage extends Component {
-  static async getInitialProps(ctx, token) {
-    const res = await homeAPI();
-    const content = res.data;
-    const res2 = await staffAPI();
-    const staffs = res2.data;
+  // static async getInitialProps(ctx, token) {
+  //   const res = await homeAPI();
+  //   const content = res.data;
+  //   const res2 = await staffAPI();
+  //   const staffs = res2.data;
 
-    return { staffs, content, token };
-  }
+  //   return { staffs, content, token };
+  // }
 
   render() {
-    const { token, content, staffs } = this.props;
-    const { intro, timeline, prizes, counts, timer } = content;
-
+    // const { token, content, staffs } = this.props;
+    // const { intro, timeline, prizes, counts, timer } = content;
+    const prizes = [{ prize_fa: '۱۲ میلیون تومان' }, { prize_fa: '۸ میلیون تومان' }, { prize_fa: '۴ میلیون تومان' }];
     return (
       <>
         <Head>
-          <title>DataDays 2020</title>
+          <title>DataDays 2021</title>
         </Head>
-        {/* <Navbar transparent/> */}
-        <Layout token={token} hasNavbar hasFooter transparent>
+        <Navbar transparent />
+        <Layout hasNavbar hasFooter transparent>
           <Header />
-          <Sponsers />
-          <CountDown timer={timer} />
-          <Introduction header={intro.header_fa} content={intro.text_fa} />
-          <Stats counts={counts} />
-          <Timeline timeline={timeline} />
-
+          <IntroImages />
           <Prize prizes={prizes} />
-          <Staff staffs={staffs} />
+          <Sponsers />
+
+          {/* <CountDown timer={timer} /> */}
+          {/* <Introduction header={intro.header_fa} content={intro.text_fa} /> */}
+          {/* <Stats counts={counts} /> */}
+          {/* <Timeline timeline={timeline} /> */}
+
+          {/* <Staff staffs={staffs} /> */}
         </Layout>
 
         {/* <Footer/> */}
@@ -53,4 +56,4 @@ class HomePage extends Component {
   }
 }
 
-export default withAuth()(HomePage);
+export default HomePage;

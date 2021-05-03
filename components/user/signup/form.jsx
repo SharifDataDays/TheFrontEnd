@@ -195,12 +195,12 @@ class Form extends Component {
                 ایمیل تایید برای شما ارسال شد.
               </Message>
             </F.Field>
-            <F.Field dir="rtl">
+            {/* <F.Field dir="rtl">
               <a href="/login">عضو هستید؟ وارد شوید!</a>
-            </F.Field>
-            <F.Field dir="rtl">
+            </F.Field> */}
+            {/* <F.Field dir="rtl">
               <Terms terms={terms} />
-            </F.Field>
+            </F.Field> */}
             <Button type="submit" primary>
               موافقت با قوانین و ثبت نام
             </Button>

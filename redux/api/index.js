@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const BASE_ADDR = 'https://datadays.ir/api';
+// const BASE_ADDR = 'https://datadays.ir/api';
 //const BASE_ADDR = 'https://datadays.sharif.edu/api';
-// const BASE_ADDR = 'http://81.31.170.5/api';
+const BASE_ADDR = 'http://localhost:8000/api';
 // const BASE_ADDR = 'http://81.31.170.5/test/api';
 
 const TERMS = `${BASE_ADDR}/terms/`;
