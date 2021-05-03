@@ -202,7 +202,7 @@ class Form extends Component {
               <Terms terms={terms} />
             </F.Field> */}
             <Button type="submit" primary>
-              موافقت با قوانین و ثبت نام
+              ثبت نام
             </Button>
           </F>
         </Grid.Column>
