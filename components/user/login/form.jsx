@@ -21,7 +21,7 @@ class Form extends Component {
       <Grid centered>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit}>
-            <F.Group width={2} dir="rtl">
+            {/* <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.username = c;
@@ -56,7 +56,12 @@ class Form extends Component {
             </F.Field>
             <Button type="submit" primary>
               ورود
-            </Button>
+            </Button> */}
+            <F.Field dir="rtl">
+              <Message positive>
+                حساب کاربری شما فعال شد. برای ورود به حساب منتظر اطلاع رسانی از سمت ما باشید.
+              </Message>
+            </F.Field>
           </F>
         </Grid.Column>
       </Grid>
