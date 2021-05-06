@@ -52,7 +52,7 @@ function Header() {
       <Image size="big" src="/images/center.png" />
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <ParticleContainer particleCount={30} />
-        <Subscribe />
+        {/* <Subscribe /> */}
       </Responsive>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <ParticleContainer particleCount={100} />
