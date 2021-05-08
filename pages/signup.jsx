@@ -12,10 +12,10 @@ class SignupPage extends Component {
   static async getInitialProps(ctx) {
     // const res = await termsAPI();
     // const terms = res.data;
-    const universities = await getUniversities();
+    // const universities = await getUniversities();
     const BMPs = await getBmp();
     const fields = await getFields();
-    const options = {universities, BMPs, fields}
+    const options = {BMPs, fields}
 
     return { options};
   }
