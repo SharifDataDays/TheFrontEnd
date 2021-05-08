@@ -3,7 +3,7 @@ import BASE_ADDR from '.';
 
 const GET_UNIS = `${BASE_ADDR}/accounts/university/`;
 
-const SIGNUP_API = `${BASE_ADDR}/accounts/signup/`;
+const SIGNUP_API = `https://datadays.ir/api/accounts/signup/`;
 
 export function getUnisAPI() {
   return axios.get(GET_UNIS, {
