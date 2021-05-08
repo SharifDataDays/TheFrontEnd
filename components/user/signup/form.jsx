@@ -136,7 +136,7 @@ class Form extends Component {
                   this.email = c;
                 }}
                 type="email"
-                error={errors.email}
+                error={errors.email ? 'ایمیل تکراری است' : undefined}
                 label="ایمیل"
               />
             </F.Group>
@@ -192,7 +192,7 @@ class Form extends Component {
 
             <F.Field dir="rtl">
               <Message hidden={!success} positive>
-                ایمیل تایید برای شما ارسال شد.
+                ثبت نام شما با موفقیت انجام شد. لطفا برای دسترسی به بخش های سایت منتظر اطلاع رسانی رویداد باشید.
               </Message>
             </F.Field>
             {/* <F.Field dir="rtl">
