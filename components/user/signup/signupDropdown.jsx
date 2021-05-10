@@ -19,9 +19,9 @@ class SignupDropdown extends Component {
     this.setState((prevState) => ({
       options: [{ key: value, text: value, value }, ...prevState.options],
     }));
-    if (this.props.field.en === 'uni') {
-      addUniAPI({ name: value });
-    }
+    // if (this.props.field.en === 'uni') {
+    //   addUniAPI({ name: value });
+    // }
   };
 
   render() {
