@@ -54,7 +54,7 @@ class Sponsors extends Component {
           onChange={this.onChange}
           offset={{ top: 150, bottom: 150, left: -30, right: -30 }}
         >
-          <Container py={[3, 4, 4]}>
+          <Container p={[3, 4, 4]}>
             <Grid centered>
               {_.map(logos, (logo, i) => {
                 return (
