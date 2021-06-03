@@ -17,19 +17,24 @@ import IntroImages from '~/components/home/introImages';
 import { staffAPI } from '~/redux/api/home';
 
 class HomePage extends Component {
-  // static async getInitialProps(ctx, token) {
-  //   const res = await homeAPI();
-  //   const content = res.data;
-  //   const res2 = await staffAPI();
-  //   const staffs = res2.data;
-
-  //   return { staffs, content, token };
-  // }
+  static async getInitialProps(ctx, token) {
+    const res = await homeAPI();
+    const content = res.data;
+    const res2 = await staffAPI();
+    const staffs = res2.data;
+  //
+    return { staffs, content, token };
+  }
 
   render() {
-    // const { token, content, staffs } = this.props;
-    // const { intro, timeline, prizes, counts, timer } = content;
-    const prizes = [{ prize_fa: '۱۲ میلیون تومان' }, { prize_fa: '۸ میلیون تومان' }, { prize_fa: '۴ میلیون تومان' }];
+    const { token, content, staffs } = this.props;
+    const { intro, timeline, prizes, counts, timer } = content;
+    // const prizes = [
+    //   { prize_fa: '۲۴ میلیون تومان' },
+    //   { prize_fa: '۱۲ میلیون تومان' },
+    //   { prize_fa: '۶ میلیون تومان' },
+    //   { prize_fa: '۳ میلیون تومان' },
+    // ];
     return (
       <>
         <Head>

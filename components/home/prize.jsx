@@ -18,6 +18,7 @@ function Prize({ prizes }) {
   const firstMain = prizes[0].prize_fa;
   const secondMain = prizes[1].prize_fa;
   const thirdMain = prizes[2].prize_fa;
+  const forthMain = prizes[3].prize_fa;
   return (
     <NoSSR>
       <Container py={[4, 5, 5]}>
@@ -64,13 +65,13 @@ function Prize({ prizes }) {
             <Divider hidden />
             <Divider hidden />
             <Divider hidden />
-            {/* <Grid.Row>
+            <Grid.Row>
               <Fade>
                 <Header as="h3" style={{ margin: '1rem' }}>
-                  دو تیم از تیم‌های چهارم تا بیستم: هرکدام ۲ میلیون تومان
+                  تیم چهارم: {forthMain}
                 </Header>
               </Fade>
-            </Grid.Row> */}
+            </Grid.Row>
           </Grid>
         </Responsive>
         <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
@@ -104,13 +105,13 @@ function Prize({ prizes }) {
             <Divider hidden />
             <Divider hidden />
             <Divider hidden />
-            {/* <Grid.Row>
+            <Grid.Row>
               <Fade>
                 <Header as="h3" style={{ margin: '1rem', padding: '1.5rem' }}>
-                  دو تیم از تیم‌های چهارم تا بیستم: هرکدام ۲ میلیون تومان
+                  تیم چهارم: {forthMain}
                 </Header>
               </Fade>
-            </Grid.Row> */}
+            </Grid.Row>
           </Grid>
         </Responsive>
       </Container>
