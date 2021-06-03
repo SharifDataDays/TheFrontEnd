@@ -30,7 +30,7 @@ import Fade from 'react-reveal/Fade';
 // }
 
 function IntroImages() {
-  const imageUrls = ['/images/1.png', '/images/2.png', '/images/3.png', '/images/4.png'];
+  const imageUrls = ['/images/1-min.png', '/images/2-min.png', '/images/3-min.png', '/images/4-min.png'];
   return (
     <NoSSR>
       <div
