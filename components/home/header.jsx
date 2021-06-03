@@ -13,8 +13,17 @@ const Image = styled(Im)`
     height: 100vh;
   }
   transform: translateX(-50%) translateY(-50%);
-  
-  padding: 2rem;
+  padding: 1rem;
+`;
+
+const NameImage = styled(Im)`
+  position: absolute !important;
+  left: 0;
+  top: 100%;
+  @media (min-width: 768px) {
+    height: 100vh;
+  }
+  transform: translateX(10%) translateY(-110%);
 `;
 
 function ParticleContainer({ particleCount }) {
@@ -49,7 +58,8 @@ function ParticleContainer({ particleCount }) {
 function Header() {
   return (
     <NoSSR>
-      <Image size="big" src="/images/center.png" />
+      <Image size="huge" src="/images/site-14-min.png" />
+      <NameImage size="small" src="/images/SITE-22-min.png" />
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <ParticleContainer particleCount={30} />
         {/* <Subscribe /> */}
