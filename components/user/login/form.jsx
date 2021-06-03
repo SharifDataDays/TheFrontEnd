@@ -21,7 +21,7 @@ class Form extends Component {
       <Grid centered>
         <Grid.Column verticalAlign="middle">
           <F onSubmit={this.onSubmit}>
-            {/* <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir="rtl">
               <Input
                 ref={(c) => {
                   this.username = c;
@@ -41,10 +41,10 @@ class Form extends Component {
             <F.Field dir="rtl">
               <Message hidden={_.isEmpty(errors)} negative>
                 <p>
-                مشخصات وارد شده صحیح نمی‌باشد.
+                  مشخصات وارد شده صحیح نمی‌باشد.
                 </p>
                 <p>
-                نام کاربری و کلمه‌ی عبور به کوچکی و بزرگی حروف حساس هستند.
+                  نام کاربری و کلمه‌ی عبور به کوچکی و بزرگی حروف حساس هستند.
                 </p>
               </Message>
             </F.Field>
@@ -56,12 +56,7 @@ class Form extends Component {
             </F.Field>
             <Button type="submit" primary>
               ورود
-            </Button> */}
-            <F.Field dir="rtl">
-              <Message positive>
-                حساب کاربری شما فعال شد. برای ورود به حساب منتظر اطلاع رسانی از سمت ما باشید.
-              </Message>
-            </F.Field>
+            </Button>
           </F>
         </Grid.Column>
       </Grid>

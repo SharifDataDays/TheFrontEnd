@@ -195,9 +195,9 @@ class Form extends Component {
                 ثبت نام شما با موفقیت انجام شد. لطفا برای دسترسی به بخش های سایت منتظر اطلاع رسانی رویداد باشید.
               </Message>
             </F.Field>
-            {/* <F.Field dir="rtl">
+            {<F.Field dir="rtl">
               <a href="/login">عضو هستید؟ وارد شوید!</a>
-            </F.Field> */}
+            </F.Field>}
             {/* <F.Field dir="rtl">
               <Terms terms={terms} />
             </F.Field> */}

@@ -38,6 +38,9 @@ function NoAuthNavbar({ transparent }) {
           <Button primary>ثبت نام</Button>
         </a>
       </Menu.Item>
+      {<Menu.Item>
+        <a href="/login">ورود</a>
+      </Menu.Item>}
       {/* <Menu.Item>
         <a href="/blog">بلاگ</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
