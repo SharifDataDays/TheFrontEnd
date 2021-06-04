@@ -138,7 +138,7 @@ export class Box extends Component {
         <Button.Group size="medium" attached="bottom" widths="5">
           <BoxButton title="ورود" contest={contest} clickOnPage={`/dashboard/${contest.id}`} />
 
-          {contest.id + '' != '2' ? (
+          {/* contest.id + '' != '2' ? (
             <>
               <BoxButton
                 title="نمرات نهایی"
@@ -153,7 +153,7 @@ export class Box extends Component {
             </>
           ) : (
             <></>
-          )}
+          ) */}
           {/* {contest.team_size === 1 ? (
             <></>
           ) : (
