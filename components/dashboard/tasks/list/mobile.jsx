@@ -20,7 +20,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
   return (
     <Grid centered style={{ marginBottom: '1rem' }}>
       <Grid.Column mobile={14}>
-        {cid + '' != '2' ? (
+        {/* cid + '' != '2' ? (
           <a href={`/scoreboard/${cid}/${mid}`}>
             <RowSegment
               p={5}
@@ -39,7 +39,7 @@ function TasksMobile({ cid, mid, tasks, token }) {
           </a>
         ) : (
           <></>
-        )}
+        ) */}
 
         {_.map(tasks, (task, i) => {
           const { title_fa, description_fa, thumbnail } = task.content;

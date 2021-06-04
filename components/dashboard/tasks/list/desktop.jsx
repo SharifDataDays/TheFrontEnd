@@ -43,7 +43,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         marginBottom: '3rem',
       }}
     >
-      {cid + '' != '2' ? (
+      {/* cid + '' != '2' ? (
         <a href={`/scoreboard/${cid}/${mid}`}>
           <RowSegment
             p={7}
@@ -62,7 +62,7 @@ function TasksDesktop({ cid, mid, tasks, token }) {
         </a>
       ) : (
         <></>
-      )}
+      ) */}
 
       {_.map(tasks, (task, i) => {
         // console.log(task)

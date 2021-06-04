@@ -131,14 +131,10 @@ const AuthNavbar = connect(
         <a href="/dashboard">داشبورد</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
       </Menu.Item>
-      <Menu.Item>
-        <a href="/blog">بلاگ</a>
-        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBlog} />
-      </Menu.Item>
       <Menu.Menu position="left">
         {/* <Menu.Header> */}
         <a href="/">
-          <Image style={{ marginRight: '1.2rem' }} size="mini" src="/images/logo.png" />
+          <Image style={{ marginRight: '1.2rem' }} size="tiny" src="/images/logo.png" />
         </a>
         {/* </Menu.Header> */}
       </Menu.Menu>
