@@ -42,46 +42,46 @@ class Form extends Component {
   render() {
     const { terms, signup, options } = this.props;
     let { success, errors } = signup;
-    errors = {...errors, ...errors.profile}
+    errors = { ...errors, ...errors.profile };
     return (
       <Grid>
-        <Grid.Column verticalAlign="middle">
+        <Grid.Column verticalAlign='middle'>
           <F onSubmit={this.onSubmit}>
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <Input
                 ref={(c) => {
                   this.firstname_fa = c;
                 }}
                 error={errors.firstname_fa}
-                label="نام به فارسی"
+                label='نام به فارسی'
               />
               <Input
                 ref={(c) => {
                   this.lastname_fa = c;
                 }}
                 error={errors.lastname_fa}
-                label="نام خانوادگی به فارسی"
+                label='نام خانوادگی به فارسی'
               />
             </F.Group>
 
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <Input
                 ref={(c) => {
                   this.firstname_en = c;
                 }}
                 error={errors.firstname_en}
-                label="نام به انگلیسی"
+                label='نام به انگلیسی'
               />
               <Input
                 ref={(c) => {
                   this.lastname_en = c;
                 }}
                 error={errors.lastname_en}
-                label="نام خانوادگی به انگلیسی"
+                label='نام خانوادگی به انگلیسی'
               />
             </F.Group>
 
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <SignupDropdown
                 ref={(c) => {
                   this.uni = c;
@@ -102,64 +102,64 @@ class Form extends Component {
                   this.birth_date = c;
                 }}
                 error={errors.birth_date}
-                label="تاریخ تولد"
+                label='تاریخ تولد'
               />
             </F.Group>
 
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <Input
                 ref={(c) => {
                   this.student_id = c;
                 }}
                 error={errors.student_id}
-                label="شماره دانشجویی"
+                label='شماره دانشجویی'
               />
               <Input
                 ref={(c) => {
                   this.phone_number = c;
                 }}
                 error={errors.phone_number}
-                label="شماره تماس"
+                label='شماره تماس'
               />
             </F.Group>
 
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <Input
                 ref={(c) => {
                   this.username = c;
                 }}
                 error={errors.username}
-                label="نام کاربری"
+                label='نام کاربری'
               />
               <Input
                 ref={(c) => {
                   this.email = c;
                 }}
-                type="email"
+                type='email'
                 error={errors.email ? 'ایمیل تکراری است' : undefined}
-                label="ایمیل"
+                label='ایمیل'
               />
             </F.Group>
 
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <Input
                 ref={(c) => {
                   this.password_1 = c;
                 }}
-                type="password"
+                type='password'
                 error={errors.password_1}
-                label="گذرواژه"
+                label='گذرواژه'
               />
               <Input
                 ref={(c) => {
                   this.password_2 = c;
                 }}
-                type="password"
+                type='password'
                 error={errors.password_2}
-                label="تکرار گذرواژه"
+                label='تکرار گذرواژه'
               />
             </F.Group>
-            <F.Group width={2} dir="rtl">
+            <F.Group width={2} dir='rtl'>
               <SignupDropdown
                 ref={(c) => {
                   this.bmp = c;
@@ -190,18 +190,18 @@ class Form extends Component {
               />
             </F.Group>
 
-            <F.Field dir="rtl">
+            <F.Field dir='rtl'>
               <Message hidden={!success} positive>
-                ثبت نام شما با موفقیت انجام شد. لطفا برای دسترسی به بخش های سایت منتظر اطلاع رسانی رویداد باشید.
+                ثبت‌نام شما با موفقیت انجام و ایمیل فعال‌سازی ارسال شد.
               </Message>
             </F.Field>
-            {<F.Field dir="rtl">
-              <a href="/login">عضو هستید؟ وارد شوید!</a>
+            {<F.Field dir='rtl'>
+              <a href='/login'>عضو هستید؟ وارد شوید!</a>
             </F.Field>}
             {/* <F.Field dir="rtl">
               <Terms terms={terms} />
             </F.Field> */}
-            <Button type="submit" primary>
+            <Button type='submit' primary>
               ثبت نام
             </Button>
           </F>
