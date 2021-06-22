@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Dropdown, Menu as M, Image as Im } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBlog, faSignOutAlt, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faGem, faSignOutAlt, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import { logoutAction } from '~/redux/actions/auth';
 import { space, layout } from 'styled-system';
 import Router from 'next/router';
@@ -130,6 +130,14 @@ const AuthNavbar = connect(
       >
         <a href="/dashboard">داشبورد</a>
         <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faBook} />
+      </Menu.Item>
+      <Menu.Item
+        style={{
+          padding: 0,
+        }}
+      >
+        <a href="https://challenge.datadays.ir">مسابقه</a>
+        <FontAwesomeIcon style={{ marginLeft: '0.5rem' }} color="#1d93f7" size="lg" icon={faGem} />
       </Menu.Item>
       <Menu.Menu position="left">
         {/* <Menu.Header> */}
